@@ -3,12 +3,11 @@
     padding: 0%;
     max-width: 1440px;
     max-height: 1024px;
-    /* overflow: hidden; */
+    /* overflow:hidden; */
 }
 html{
-    /* max-width: 1440px; */
-    width: 1440px;
-    height: 1024px;
+    max-width: 1440px;
+    max-height: 1024px;
 }
 a{
     text-decoration: none;
