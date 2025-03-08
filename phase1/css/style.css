@@ -173,7 +173,7 @@ main{
     justify-content: flex-start;
     background-color: #FFF;
 }
-.test{
+.backgroud{
     background-image: url('../img/background.png');
     background-size:100% 145%;
     background-position:cover;
@@ -189,7 +189,7 @@ main{
     z-index: 0;
     background-color: lightgray;
 }
-.test::after {
+.backgroud::after {
     content: '';
     position: absolute;
     top: 50%;
