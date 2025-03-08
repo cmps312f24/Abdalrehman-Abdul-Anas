@@ -162,6 +162,10 @@ nav:hover .menu-element{
 .menu-element:hover{
     background-color: #0a0f14;
 }
+body:has(nav:hover) .test{
+    background-size: 100% 135%;
+}
+
 main{
     width: 100%;
     height: 100%;
@@ -171,9 +175,9 @@ main{
     background-color: #FFF;
 }
 .test{
-    background-image: url('img/background.png');
-    background-size:100% 100%;
-    background-position: center;
+    background-image: url('../img/background.png');
+    background-size:100% 145%;
+    background-position:cover;
     background-repeat: no-repeat;
     position: relative;
     width: 105%;
@@ -183,16 +187,17 @@ main{
     margin-left: -1.5%;
     margin-bottom: -2%;
     aspect-ratio: 654/305;
-
+    z-index: 0;
+    background-color: lightgray;
 }
 .test::after {
     content: '';
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.063), rgb(255, 255, 255));
+    height: 50%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.359), rgba(255, 255, 255, 0.782), rgb(255, 255, 255));
 }
 #content{
     width: 100%;
