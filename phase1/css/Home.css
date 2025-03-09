@@ -52,6 +52,7 @@ nav img{
 .menu-element{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 #user-info{
     display: flex;
@@ -153,14 +154,19 @@ nav:hover{
     align-items: center;
     align-content: center;
     overflow: visible;
+    cursor: pointer;
 }
 nav:hover .menu-element{
-    padding: 5%;
+    padding: 0% 5% 5% 5%;
     align-items: center;
     justify-content: flex-start;
 }
 .menu-element:hover{
     background-color: #0a0f14;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transition: ease-in-out;
 }
 body:has(nav:hover) .backgroud{
     background-size: 100% 125%;
