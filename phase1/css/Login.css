@@ -33,8 +33,8 @@ main{
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 80%;
-    height: 70%;
+    width: 85%;
+    height: 55%;
     border-radius: 25px;
     background: url(/img/login-box-background.png);
     background-color:rgb(184, 200, 206);
@@ -95,7 +95,7 @@ main{
 }
 #user-img{
     width: 30%;
-    height: 40%;
+    height: 30%;
     position: relative;
     z-index: 2;
     top: 12%;
