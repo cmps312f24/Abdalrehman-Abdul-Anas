@@ -3,7 +3,7 @@
     padding: 0%;
     max-width: 1440px;
     max-height: 1024px;
-    /* overflow:hidden; */
+    overflow:hidden;
 }
 html{
     max-width: 1440px;
@@ -19,7 +19,7 @@ body{
     margin: 0%;
     padding: 0%;
     display: grid;
-    grid-template-columns:7% 90%; 
+    grid-template-columns:7% 91.5%; 
     column-gap: 1.5%; 
     row-gap: 0%;  
 }
@@ -90,7 +90,7 @@ nav img{
     height: 80px;
 }
 body:has(nav:hover){
-    grid-template-columns: 20% 77%;
+    grid-template-columns: 20% 78.5%;
 }
 nav:hover #user-info{
     align-items: center;
@@ -149,6 +149,7 @@ nav:hover .menu-text{
     overflow: visible;
 }
 nav:hover{
+    transition: ease-in-out;
     align-items: center;
     align-content: center;
     overflow: visible;
@@ -161,8 +162,8 @@ nav:hover .menu-element{
 .menu-element:hover{
     background-color: #0a0f14;
 }
-body:has(nav:hover) .test{
-    background-size: 100% 135%;
+body:has(nav:hover) .backgroud{
+    background-size: 100% 125%;
 }
 
 main{
