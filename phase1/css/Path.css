@@ -29,7 +29,7 @@ main{
     display: flex;
     flex-direction: column;
     background-color: aqua;
-    width: 90%;
+    width: 95%;
     height: 80%;
     margin: 5%;
     margin-top: 2%;
@@ -50,22 +50,23 @@ main{
     width: 100%;
     height: 90%;
     display: grid;
+    position: relative;
     grid-template-columns: repeat(8,1fr);
     grid-template-rows: repeat(6,1fr);
     grid-template-areas: 
         "f11 s11 f21 s21 f31 s31 f41 s41"
         "f12 s12 f22 s22 f32 s32 f42 s42"
-        "f13 s13 f23 s23 f33 s33 f43 s43"
-        "f14 s14 f24 s24 f34 s34 f44 s44"
-        "f15 s15 f25 s25 f35 s35 f45 s45"
-        "f16 s16 f26 s26 f36 s36 f46 s46";
+        "f13 s13 f23 s23 f33 em3 em4 em6"
+        "f14 s14 f24 em1 f34 s33 f43 s43"
+        "f15 s15 f25 s24 f35 s34 f44 s44"
+        "f16 s16 f26 s25 em2 s35 em5 em7";
     column-gap: 1%;
     row-gap: 1%;
     place-items: center;
 }
 .course{
-    width: 80%;
-    height: 80%;
+    width: 85%;
+    height: 70%;
     background-color: blue;
 }
 .empty{
@@ -74,196 +75,163 @@ main{
     width: 100%;
     height: 100%;
 }
-/* assinging grid template area */
 
+/* assinging grid template area */
 #f11 {
     grid-area: f11;
 }
-
 #f12 {
     grid-area: f12;
 }
-
 #f13 {
     grid-area: f13;
 }
-
 #f14 {
     grid-area: f14;
 }
-
 #f15 {
     grid-area: f15;
 }
-
 #f16 {
     grid-area: f16;
 }
-
 #s11 {
     grid-area: s11;
 }
-
 #s12 {
     grid-area: s12;
 }
-
 #s13 {
     grid-area: s13;
 }
-
 #s14 {
     grid-area: s14;
 }
-
 #s15 {
     grid-area: s15;
 }
-
 #s16 {
     grid-area: s16;
 }
-
 #f21 {
     grid-area: f21;
 }
-
 #f22 {
     grid-area: f22;
 }
-
 #f23 {
     grid-area: f23;
 }
-
 #f24 {
     grid-area: f24;
 }
-
 #f25 {
     grid-area: f25;
 }
-
 #f26 {
     grid-area: f26;
 }
-
 #s21 {
     grid-area: s21;
 }
-
 #s22 {
     grid-area: s22;
 }
-
 #s23 {
     grid-area: s23;
 }
-
 #s24 {
     grid-area: s24;
 }
-
 #s25 {
     grid-area: s25;
 }
-
-#s26 {
-    grid-area: s26;
-}
-
 #f31 {
     grid-area: f31;
 }
-
 #f32 {
     grid-area: f32;
 }
-
 #f33 {
     grid-area: f33;
 }
-
 #f34 {
     grid-area: f34;
 }
-
 #f35 {
     grid-area: f35;
 }
-
-#f36 {
-    grid-area: f36;
-}
-
 #s31 {
     grid-area: s31;
 }
-
 #s32 {
     grid-area: s32;
 }
-
 #s33 {
     grid-area: s33;
 }
-
 #s34 {
     grid-area: s34;
 }
-
 #s35 {
     grid-area: s35;
 }
-
-#s36 {
-    grid-area: s36;
-}
-
 #f41 {
     grid-area: f41;
 }
-
 #f42 {
     grid-area: f42;
 }
-
 #f43 {
     grid-area: f43;
 }
-
 #f44 {
     grid-area: f44;
 }
-
-#f45 {
-    grid-area: f45;
-}
-
-#f46 {
-    grid-area: f46;
-}
-
 #s41 {
     grid-area: s41;
 }
-
 #s42 {
     grid-area: s42;
 }
-
 #s43 {
     grid-area: s43;
 }
-
 #s44 {
     grid-area: s44;
 }
 
-#s45 {
-    grid-area: s45;
+/* Arrows */
+.arrow {
+    position: absolute;
+    z-index: 1;
 }
-
-#s46 {
-    grid-area: s46;
+/* Example positions for arrows */
+#arrow1 {
+    width: 2.5%;
+    top: 27.5%;
+    left: 20%;
+    height: auto;
+}
+#arrow2{
+    width: 2.5%;
+    top:27.5%;
+    left: 31%;
+}
+#arrow3{
+    width: 2.5%;
+    top: 39.5%;
+    left: 20%;
+}
+#arrow17{
+    width: 30%;
+    
+    top: 25%;
+    left: 11%;
+}
+#arrow18{
+    width: 65%;
+    height: 55%;
+    top: 27.5%;
+    left: 10.5%;
 }
