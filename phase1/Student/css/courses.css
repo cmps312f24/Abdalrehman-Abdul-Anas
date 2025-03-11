@@ -41,6 +41,11 @@ h1{
     border-radius: 15px;
     box-shadow: 0px 0.477px 15.036px 0px rgba(0, 0, 0, 0.15);
     background-color: #f7f7f7;
+    transition: transform 0.3s ease-in-out;
+}
+
+.course-container:hover{
+    transform: scale(1.2);
 }
 
 #courseNumber{
