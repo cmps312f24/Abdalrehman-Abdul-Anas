@@ -24,12 +24,15 @@ a {
 
 /* Layout container */
 .layout-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "nav main";
     min-height: 100vh;
     width: 100%;
 }
 
 nav {
+    grid-area: nav;
     background-color: #101820;
     width: 75px;
     min-height: 100vh;
@@ -147,38 +150,4 @@ nav:hover .user-text {
 #user-username {
     font-size: 12px;
     color: rgba(255, 255, 255, 0.7);
-}
-
-/* Navigation tabs */
-.nav-tabs {
-    background-color: #1a1d21;
-    border-radius: 9999px;
-    padding: 0.25rem;
-    margin-bottom: 2rem;
-    display: flex;
-    gap: 0.5rem;
-    align-self: center;
-}
-
-.nav-button {
-    border: none;
-    border-radius: 9999px;
-    padding: 0.5rem 1.5rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.nav-button.active {
-    background-color: white;
-    color: black;
-}
-
-.nav-button:not(.active) {
-    background-color: transparent;
-    color: white;
-}
-
-.nav-button:not(.active):hover {
-    background-color: rgba(255, 255, 255, 0.1);
 }
