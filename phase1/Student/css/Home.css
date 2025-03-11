@@ -185,7 +185,7 @@ main{
     background-color: #FFF;
 }
 .backgroud{
-    background-image: url('../img/background.png');
+    background-image: url('/img/background.png');
     background-size:100% 145%;
     background-position:cover;
     background-repeat: no-repeat;
