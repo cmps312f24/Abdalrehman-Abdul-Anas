@@ -159,15 +159,22 @@ nav:hover .user-text {
     color: rgba(255, 255, 255, 0.7);
 }
 
+
+
+
 /* Navigation tabs */
 .nav-tabs {
     background-color: #1a1d21;
     border-radius: 9999px;
-    padding: 0.25rem;
-    margin-bottom: 2rem;
+    padding: 0.15rem;
+    margin-bottom: 1.5rem;
     display: flex;
     gap: 0.5rem;
     align-self: center;
+    
+
+ 
+
 }
 
 .nav-button {
@@ -196,12 +203,14 @@ nav:hover .user-text {
 /* Search form container */
 .search-container {
     width: 100%;
-    max-width: 900px;
+    max-width: 999px;
     background-color: white;
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    padding: 1.2rem;  /* Reduced from 2rem */
+    padding: 0.25rem;  /* Reduced from 2rem */
     border: 1px solid #f0f0f0;
+    padding-right:20px ;
+    padding-left: 20px;
 }
 
 /* Form grid layout */
@@ -356,6 +365,7 @@ nav:hover .user-text {
 }
 
 .campus-button:hover:not(.selected) {
+    color: rgb(255, 255, 255);
     background-color: #101820;
 }
 
@@ -363,22 +373,54 @@ nav:hover .user-text {
 
 
 
+/* Add button styling */
+.add-button {
+    background-color: #f1f2f3; 
+    color: rgb(0, 0, 0); 
+    border: none; 
+    border-radius: 9px; 
+    padding: 0.5rem 1rem; 
+    cursor: pointer; 
+    transition: background-color 0.2s, color 0.2s;
+    font-size: 1rem; 
+    display: flex; /* Add flexbox */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    text-align: center; 
+}
+
+.add-button span {
+    font-size: 3rem; 
+    
+}
+
+.add-button:hover {
+    background-color: #264563; 
+    color: #ffffff; 
+}
+
+
+
+
+
+
 /* Table container */
 .table-container {
-    margin-top: 2rem;
+    margin-top: 1rem;
     width: 100%;
-    overflow-x: auto;
+    max-height: 375px; /* Set a fixed height for the table container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
     background-color: #ffffff;
     border-radius: 10px;
-    padding: 1rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
+}   
 
 /* Search results table */
 table.search-results-table {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 0 0.75rem;
+    border-spacing: 0 0.75rem; /* Set border-spacing to 0 to avoid gaps */
     border: none;
 }
 
@@ -386,6 +428,9 @@ table.search-results-table {
 .search-results-table thead tr {
     background-color: #1a1d21;
     color: white;
+    position: sticky; /* Add this line */
+    top: 0; /* Add this line */
+    z-index: 1; /* Add this line to ensure the header stays on top */
 }
 
 .search-results-table th {
@@ -393,6 +438,7 @@ table.search-results-table {
     text-align: left;
     font-weight: 500;
     border-right: 1px solid #444; /* Add vertical divider between header cells */
+    border-bottom: 2px solid black; /* Add bottom border to header row */
 }
 
 .search-results-table th:last-child {
@@ -401,21 +447,20 @@ table.search-results-table {
 
 .search-results-table th:first-child {
     border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
 }
 
 .search-results-table th:last-child {
     border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
 }
 
 /* Data rows styling */
 .search-results-table tbody tr {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
-    border: 1px solid black; /* Add black border around each row */
-    border-radius: 8px;
-    
+    background-color: white; /* Ensure background color is white */
+}
+
+.search-results-table tbody tr:last-child {
+    border-bottom: 2px solid black; /* Make last row border thicker */
 }
 
 .search-results-table tbody tr:hover {
@@ -426,40 +471,24 @@ table.search-results-table {
 .search-results-table td {
     padding: 0.75rem;
     background-color: white;
-    border-right: 1px solid #e0e0e0; /* Add vertical divider between cells */
+    border: 1px solid rgb(217, 214, 214); /* Add border to all sides of each cell */
 }
 
 .search-results-table td:last-child {
     border-right: none; /* Remove right border from last cell */
 }
 
-.search-results-table tbody tr td:first-child {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+.search-results-table td:first-child {
+    border-left: 1px solid rgb(217, 214, 214); /* Add left border to first column */
 }
 
-.search-results-table tbody tr td:last-child {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+.search-results-table td:last-child {
+    border-right: 1px solid rgb(217, 214, 214); /* Add right border to last column */
 }
 
-/* Add button styling */
-.add-button {
-    background-color: #1a1d21;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
-    font-size: 1.25rem;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
+.add-box{
     display: flex;
-    align-items: center;
     justify-content: center;
-}
+    align-items: center;
 
-.add-button:hover {
-    background-color: black;
-    transform: scale(1.1);
 }
