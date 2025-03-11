@@ -14,6 +14,10 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
 }
 
 html {
@@ -27,11 +31,7 @@ a {
 }
 
 /* Layout container */
-.layout-container {
-    display: flex;
-    min-height: 100vh;
-    width: 100%;
-}
+
 
 /* Content area */
 .content-area {
@@ -204,8 +204,16 @@ nav:hover .user-text {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+
+
+
+
+
+
 /* Search form container */
 .search-container {
+
+
     width: 100%;
     max-width: 999px;
     background-color: white;
@@ -410,89 +418,85 @@ nav:hover .user-text {
 
 /* Table container */
 .table-container {
-    margin-top: 1rem;
     width: 100%;
-    max-height: 375px; /* Set a fixed height for the table container */
-    overflow-y: auto; /* Enable vertical scrolling */
-    overflow-x: auto; /* Enable horizontal scrolling if needed */
+    max-height: 375px;
+    overflow-x: auto;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}   
-
-/* Search results table */
-table.search-results-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 0.75rem; /* Set border-spacing to 0 to avoid gaps */
-    border: none;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    
 }
 
-/* Header styling */
-.search-results-table thead tr {
+
+
+
+
+
+
+
+/* Table Header */
+.table-header-container {
+    position: sticky;
+    top: 0;
     background-color: #1a1d21;
-    color: white;
-    position: sticky; /* Add this line */
-    top: 0; /* Add this line */
-    z-index: 1; /* Add this line to ensure the header stays on top */
+    z-index: 2;
 }
 
-.search-results-table th {
+.table-header-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-header-container th {
     padding: 0.75rem;
     text-align: left;
     font-weight: 500;
-    border-right: 1px solid #444; /* Add vertical divider between header cells */
-    border-bottom: 2px solid black; /* Add bottom border to header row */
+    color: white;
+    border-right: 1px solid #444;
 }
 
-.search-results-table th:last-child {
-    border-right: none; /* Remove right border from last header cell */
+.table-header-container th:last-child {
+    border-right: none;
 }
 
-.search-results-table th:first-child {
-    border-top-left-radius: 8px;
+/* Table Body */
+.table-body-container {
+    overflow-y: auto;
+    max-height: 330px; /* Adjust to fit within .table-container */
+    
+    
 }
 
-.search-results-table th:last-child {
-    border-top-right-radius: 8px;
+.table-body-container table {
+    padding: 0% 2% 0% 2%;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.75rem;
 }
 
-/* Data rows styling */
-.search-results-table tbody tr {
-    transition: transform 0.2s ease;
-    background-color: white; /* Ensure background color is white */
+.table-body-container td {
+    padding: 0.75rem;
+    border: 1px solid rgb(217, 214, 214);
+    background-color: white;
 }
 
-.search-results-table tbody tr:last-child {
-    border-bottom: 2px solid black; /* Make last row border thicker */
-}
-
-.search-results-table tbody tr:hover {
+.table-body-container tr:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.search-results-table td {
-    padding: 0.75rem;
-    background-color: white;
-    border: 1px solid rgb(217, 214, 214); /* Add border to all sides of each cell */
-}
-
-.search-results-table td:last-child {
-    border-right: none; /* Remove right border from last cell */
-}
-
-.search-results-table td:first-child {
-    border-left: 1px solid rgb(217, 214, 214); /* Add left border to first column */
-}
-
-.search-results-table td:last-child {
-    border-right: 1px solid rgb(217, 214, 214); /* Add right border to last column */
-}
-
-.add-box{
+/* Add button box */
+.add-box {
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+
+#test2{
+    border-radius: 5px;
+    background-color: black;
 }
