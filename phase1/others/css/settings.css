@@ -1,0 +1,29 @@
+.container {}
+
+.content {
+    height: 50%;
+    align-items: center;
+}
+
+.form-container {
+    justify-items: center;
+    row-gap: 30px;
+}
+
+.field-section {
+    min-width: 70%;
+}
+
+#scale {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: gray;
+    padding: 5px 10px;
+    width: 100%;
+}
+
+#progress {
+    width: 100%;
+
+}
