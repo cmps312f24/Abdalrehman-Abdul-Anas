@@ -55,6 +55,7 @@
     margin-right: 10px;
     min-width: 90%;
     min-height: 100%;
+    overflow: auto;
 }
 
 .content h2{

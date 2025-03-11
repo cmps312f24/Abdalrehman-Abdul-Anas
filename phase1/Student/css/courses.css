@@ -8,22 +8,55 @@
 .container{
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     border-radius: 15px;
     box-shadow: 0px 0.477px 15.036px 0px rgba(0, 0, 0, 0.15);
     background-color: #FFF;
-    padding: 20px;
+    padding: 30px;
     height: 85vh;
     margin-right: 10px;
-    min-width: 90%;
+    width: 95%;
     min-height: 100%;
+    overflow: auto;
 }
 
-.container h1{
+h1{
     min-width: 100%;
-    /* padding: 10px; */
+    padding-bottom: 20px;
+    font-size: 35px;
 }
 
 .content{
     display: grid;
+    grid-template-columns: repeat(3,minmax(20%,30%));
+    gap: 50px;
+    aspect-ratio: 1.25;
+}
+
+.course-cotainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0px 0.477px 15.036px 0px rgba(0, 0, 0, 0.15);
+    background-color: #f7f7f7;
+}
+
+#courseNumber{
+    color: #707070;
+    width: 100%;
+}
+
+#courseName{
+    font-weight: bold;
+}
+
+#status{
+    color: #707070;
+    border-bottom: #70707038 solid 2px;
+}
+
+#instructor{
+
 }
