@@ -118,10 +118,14 @@ nav:hover #img-user{
     text-transform: lowercase;
 }
 nav img{
-    width: 45px;
-    height: 45px;
+    width: 60%;
+    height: 40%;
+    max-width: 40px;
+    max-height: 45px;
 }
 #img-user{
+    max-width: none;
+    max-height: none;
     width: 65px;
     height: 65px;
     margin-bottom: 15%;
