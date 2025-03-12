@@ -40,11 +40,11 @@ a {
 /* Content area */
 .content-area {
     flex: 1;
-    height: 200%;
     padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: auto; /* Allow scrolling within the content area if needed */
 }
 
 /* Navigation Sidebar */
