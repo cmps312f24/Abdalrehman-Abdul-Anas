@@ -1,3 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+main{
+    width: 100%;
+    min-height: 100%;
+    max-height: 1024px;
+    background-color: rgb(255, 255, 255);
+}
+body {
+    background-color: rgb(255, 255, 255);
+    min-height: 100%;
+    max-height: 1024px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    max-width: 1440px;
+}
+
+html {
+    max-width: 1440px;
+    max-height: 1024px;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
 /* Layout container */
 nav {
     margin-right: 1.5%;
@@ -8,7 +42,7 @@ nav {
     justify-content: space-between;
     background-color: #101820;
     border-radius: 0px 15px 15px 0px;
-    transition: width 0.3s ease-in-out, min-height 0.3s ease-in-out;
+    transition: width 0.5s ease-in-out, min-height 0.5s ease-in-out;
     cursor: pointer;
 }
 
@@ -42,6 +76,7 @@ nav li {
     height: 100%;
     align-items: center;
     justify-content: center;
+    transition: all 0.5s ease-out;
 }
 
 .nav-lines {
@@ -73,6 +108,7 @@ nav:hover .menu-text {
     display: block;
     text-align: left;
     align-self: center;
+    transition: all 0.5s ease-in-out;
 }
 
 nav:hover .menu-element {
@@ -88,8 +124,8 @@ nav:hover .user-text {
 }
 
 nav:hover #img-user {
-    width: 125px;
-    height: 125px;
+    width: 90px;
+    height: 90px;
 }
 
 /* Inside menu hover */
@@ -104,6 +140,7 @@ nav:hover #img-user {
     font-size: x-large;
     display: none;
     color: white;
+    transition: all 0.5s ease-in-out;
 }
 
 .user-text {
@@ -111,6 +148,7 @@ nav:hover #img-user {
     text-align: center;
     display: none;
     color: white;
+    transition: all 0.5s ease-in-out;
 }
 
 #user-Name {
@@ -129,7 +167,7 @@ nav:hover #img-user {
 nav img {
     width: 60%;
     height: 40%;
-    max-width: 40px;
+    max-width: 33px;
     max-height: 45px;
 }
 
@@ -138,8 +176,8 @@ nav img {
     max-height: none;
     width: 65px;
     height: 65px;
-    margin-bottom: 15%;
-    transition: all 0.3s ease-out;
+    margin-bottom: 5%;
+    transition: all 0.5s ease-out;
 }
 
 /* Responsive Adjustments */

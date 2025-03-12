@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Course</title>
-    <link rel="stylesheet" href="/Administrator/css/addCourse.css">
-    <link rel="stylesheet" href="/others/css/generalStyle.css">
-    <link rel="stylesheet" href="css/settings.css">
+    <!-- <link rel="stylesheet" href="/Administrator/css/addCourse.css"> -->
+     <!-- <link rel="stylesheet" href="/others/css/nav-bar.css"> -->
+     <!-- <link rel="stylesheet" href="css/settings.css"> -->
+      <link rel="stylesheet" href="/Student/css/nav-bar.css">
 </head>
 
 <body>
-    <div class="layout-container">
         <nav>
             <!-- user info -->
             <span id="user-info">
@@ -53,23 +53,103 @@
         <main>
             <div class="container">
                 <div class="content" id="profile">
-                    <h2>Add New Course</h2>
                     <section class="form-container" action="">
-                        <article class="field-section">
+                        <div class="field-section">
                             <label for="fullName">FULL NAME</label>
 
-                            <input type="text" value="Fixed Value" id="fullName" name="fullName" class="field" readonly>
-                        </article>
+                            <input type="text" value="Anas Elrhmani" id="fullName" name="fullName" class="field"
+                                readonly>
+                        </div>
 
-                    </form>
+                        <div class="field-section">
+                            <label for="collageMajor">COLLAGE/MAJOR</label>
+
+                            <input type="text" value="Engineering/Computer Science" id="collageMajor"
+                                name="collageMajor" class="field" readonly>
+                        </div>
+
+                        <div class="field-section">
+                            <label for="phone">PHONE NUMBER</label>
+
+                            <input type="text" value="+974 12345678" id="phone" name="phone" class="field" readonly>
+                        </div>
+
+                        <div class="field-section">
+                            <label for="id">STUDENT ID</label>
+
+                            <input type="text" value="202203650" id="id" name="id" class="field" readonly>
+                        </div>
+
+                        <div class="field-section">
+                            <label for="email">EMAIL</label>
+
+                            <input type="text" value="ae22037889@qu.edu.qa" id="email" name="email" class="field"
+                                readonly>
+                        </div>
+
+
+                        <div class="field-section">
+                            <Label for="gpa">GPA</Label>
+                            <div class="field" id="progress">
+                                <div class="progress-bar"></div>
+                                <div id="scale">
+                                <span>0</span><span>0.5</span><span>1</span><span>1.5</span><span>2</span>
+                                <span>2.5</span><span>3</span><span>3.5</span><span>4</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
                 </div>
-                <div class="content" id="Preffrences">
+                <div class="content " id="">
+                    <section class="form-container" id="Preffrences" action="">
+                    <form action="" id="changePasswordForm" class="settingsForm">
+                        <div class="field-section">
+                            <label for="oldPassword">OLD PASSWORD</label>
 
+                            <input type="password" id="oldPassword" name="oldPassword" class="field" placeholder="old password">
+                        </div>
+                        <div class="field-section">
+                            <label for="newPassword">NEW PASSWORD</label>
+
+                            <input type="password" id="newPassword" name="newPassword" class="field" placeholder="new password" readonly>
+                        </div>
+                        <button type="submit" id="changePassword">changePassword</button>
+                    </form>
+                    <form action="" id="changeView" class="settingsForm">
+                        <div class="field-section">
+                            <label for="collageMajor">COLLAGE/MAJOR</label>
+
+                            <input type="text" value="Engineering/Computer Science" id="collageMajor"
+                                name="collageMajor" class="field" readonly>
+                        </div>
+
+                        <div class="field-section">
+                            <label for="theme" class="theme">
+                                <span>Light</span>
+                                <span class="theme__toggle-wrap">
+                                    <input id="theme" class="theme__toggle" type="checkbox" role="switch" name="theme" value="dark">
+                                    <span class="theme__fill"></span>
+                                    <span class="theme__icon">
+                                        <span class="theme__icon-part"></span>
+                                        <span class="theme__icon-part"></span>
+                                        <span class="theme__icon-part"></span>
+                                        <span class="theme__icon-part"></span>
+                                        <span class="theme__icon-part"></span>
+                                        <span class="theme__icon-part"></span>
+                                        <span class="theme__icon-part"></span>
+                                        <span class="theme__icon-part"></span>
+                                        <span class="theme__icon-part"></span>
+                                    </span>
+                                </span>
+                                <span>Dark</span>
+                            </label>
+                        </div>
+                    </form>
+                    </section>
                 </div>
             </div>
         </main>
-    </div>
 </body>
 
 </html>
