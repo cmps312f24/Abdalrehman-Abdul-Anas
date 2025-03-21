@@ -1,0 +1,10 @@
+[
+    {
+        "name": "Programming Concept",
+        "credit": "3",
+        "courseNo": "121",
+        "sections": ["L01","L02"],
+        "category": "lecture",
+        "collage": "Computer Science"
+    }
+]
