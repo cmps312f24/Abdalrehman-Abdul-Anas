@@ -1,20 +1,8 @@
 [
     {
-        "ID": "1",
-        "email": "student1@qu.edu.qa",
-        "password": "123",
-        "role": "student"
-    },
-    {
-        "ID": "2",
-        "email": "instructor1@qu.edu.qa",
+        "ID": "121",
+        "email": "my121@qu.edu.qa",
         "password": "123",
         "role": "instructor"
-    },
-    {
-        "ID": "3",
-        "email": "admin1@qu.edu.qa",
-        "password": "123",
-        "role": "admin"
     }
 ]
