@@ -1,155 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
+<main>
+    <div class="container">
+        <div class="content" id="profile">
+            <section class="form-container" action="">
+                <div class="field-section">
+                    <label for="fullName">FULL NAME</label>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Course</title>
-    <!-- <link rel="stylesheet" href="/Administrator/css/addCourse.css"> -->
-     <!-- <link rel="stylesheet" href="/others/css/nav-bar.css"> -->
-     <!-- <link rel="stylesheet" href="css/settings.css"> -->
-      <link rel="stylesheet" href="/Student/css/nav-bar.css">
-</head>
-
-<body>
-        <nav>
-            <!-- user info -->
-            <span id="user-info">
-                <img src="/img/User.png" alt="User" id="img-user">
-                <h2 id="user-Name" class="user-text">Anas Elrhmani</h2>
-                <p id="user-username" class="user-text">ae2203650</p>
-            </span>
-            <hr class="nav-lines">
-            <!-- main menu -->
-            <ul id="main-menu">
-                <li><a href="" class="menu-element"><img src="/img/famicons_home.png" alt="Home">
-                        <p class="menu-text">Home</p>
-                    </a></li>
-                <li><a href="" class="menu-element"><img src="/img/tdesign_course-filled.png" alt="Courses">
-                        <p class="menu-text">Courses</p>
-                    </a></li>
-                <li><a href="" class="menu-element"><img src="/img/game-icons_archive-register.png" alt="Registration">
-                        <p class="menu-text">Registration</p>
-                    </a></li>
-                <li><a href="" class="menu-element"><img src="/img/ph_path-bold.png" alt="Path">
-                        <p class="menu-text">Path</p>
-                    </a></li>
-            </ul>
-            <hr class="nav-lines">
-            <!-- secondary menu -->
-            <ul id="secondry-menu">
-                <li><a href="" class="menu-element"><img src="/img/material-symbols_settings.png" alt="Settings">
-                        <p class="menu-text">Settings</p>
-                    </a></li>
-                <li><a href="" class="menu-element"><img src="/img/clarity_help-info-solid.png" alt="Help">
-                        <p class="menu-text">Help & Support</p>
-                    </a></li>
-                <li><a href="" class="menu-element"><img src="/img/tabler_logout.png" alt="Logout">
-                        <p class="menu-text">Logout</p>
-                    </a></li>
-            </ul>
-        </nav>
-
-        <main>
-            <div class="container">
-                <div class="content" id="profile">
-                    <section class="form-container" action="">
-                        <div class="field-section">
-                            <label for="fullName">FULL NAME</label>
-
-                            <input type="text" value="Anas Elrhmani" id="fullName" name="fullName" class="field"
-                                readonly>
-                        </div>
-
-                        <div class="field-section">
-                            <label for="collageMajor">COLLAGE/MAJOR</label>
-
-                            <input type="text" value="Engineering/Computer Science" id="collageMajor"
-                                name="collageMajor" class="field" readonly>
-                        </div>
-
-                        <div class="field-section">
-                            <label for="phone">PHONE NUMBER</label>
-
-                            <input type="text" value="+974 12345678" id="phone" name="phone" class="field" readonly>
-                        </div>
-
-                        <div class="field-section">
-                            <label for="id">STUDENT ID</label>
-
-                            <input type="text" value="202203650" id="id" name="id" class="field" readonly>
-                        </div>
-
-                        <div class="field-section">
-                            <label for="email">EMAIL</label>
-
-                            <input type="text" value="ae22037889@qu.edu.qa" id="email" name="email" class="field"
-                                readonly>
-                        </div>
-
-
-                        <div class="field-section">
-                            <Label for="gpa">GPA</Label>
-                            <div class="field" id="progress">
-                                <div class="progress-bar"></div>
-                                <div id="scale">
-                                <span>0</span><span>0.5</span><span>1</span><span>1.5</span><span>2</span>
-                                <span>2.5</span><span>3</span><span>3.5</span><span>4</span>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
+                    <input type="text" value="Anas Elrhmani" id="fullName" name="fullName" class="field"
+                        readonly>
                 </div>
-                <div class="content " id="">
-                    <section class="form-container" id="Preffrences" action="">
-                    <form action="" id="changePasswordForm" class="settingsForm">
-                        <div class="field-section">
-                            <label for="oldPassword">OLD PASSWORD</label>
 
-                            <input type="password" id="oldPassword" name="oldPassword" class="field" placeholder="old password">
-                        </div>
-                        <div class="field-section">
-                            <label for="newPassword">NEW PASSWORD</label>
+                <div class="field-section">
+                    <label for="collageMajor">COLLAGE/MAJOR</label>
 
-                            <input type="password" id="newPassword" name="newPassword" class="field" placeholder="new password" readonly>
-                        </div>
-                        <button type="submit" id="changePassword">changePassword</button>
-                    </form>
-                    <form action="" id="changeView" class="settingsForm">
-                        <div class="field-section">
-                            <label for="collageMajor">COLLAGE/MAJOR</label>
-
-                            <input type="text" value="Engineering/Computer Science" id="collageMajor"
-                                name="collageMajor" class="field" readonly>
-                        </div>
-
-                        <div class="field-section">
-                            <label for="theme" class="theme">
-                                <span>Light</span>
-                                <span class="theme__toggle-wrap">
-                                    <input id="theme" class="theme__toggle" type="checkbox" role="switch" name="theme" value="dark">
-                                    <span class="theme__fill"></span>
-                                    <span class="theme__icon">
-                                        <span class="theme__icon-part"></span>
-                                        <span class="theme__icon-part"></span>
-                                        <span class="theme__icon-part"></span>
-                                        <span class="theme__icon-part"></span>
-                                        <span class="theme__icon-part"></span>
-                                        <span class="theme__icon-part"></span>
-                                        <span class="theme__icon-part"></span>
-                                        <span class="theme__icon-part"></span>
-                                        <span class="theme__icon-part"></span>
-                                    </span>
-                                </span>
-                                <span>Dark</span>
-                            </label>
-                        </div>
-                    </form>
-                    </section>
+                    <input type="text" value="Engineering/Computer Science" id="collageMajor"
+                        name="collageMajor" class="field" readonly>
                 </div>
-            </div>
-        </main>
-</body>
 
-</html>
+                <div class="field-section">
+                    <label for="phone">PHONE NUMBER</label>
+
+                    <input type="text" value="+974 12345678" id="phone" name="phone" class="field" readonly>
+                </div>
+
+                <div class="field-section">
+                    <label for="id">STUDENT ID</label>
+
+                    <input type="text" value="202203650" id="id" name="id" class="field" readonly>
+                </div>
+
+                <div class="field-section">
+                    <label for="email">EMAIL</label>
+
+                    <input type="text" value="ae22037889@qu.edu.qa" id="email" name="email" class="field"
+                        readonly>
+                </div>
+
+
+                <div class="field-section">
+                    <Label for="gpa">GPA</Label>
+                    <div class="field" id="progress">
+                        <div class="progress-bar"></div>
+                        <div id="scale">
+                        <span>0</span><span>0.5</span><span>1</span><span>1.5</span><span>2</span>
+                        <span>2.5</span><span>3</span><span>3.5</span><span>4</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        <div class="content " id="">
+            <section class="form-container" id="Preffrences" action="">
+            <form action="" id="changePasswordForm" class="settingsForm">
+                <div class="field-section">
+                    <label for="oldPassword">OLD PASSWORD</label>
+
+                    <input type="password" id="oldPassword" name="oldPassword" class="field" placeholder="old password">
+                </div>
+                <div class="field-section">
+                    <label for="newPassword">NEW PASSWORD</label>
+
+                    <input type="password" id="newPassword" name="newPassword" class="field" placeholder="new password" readonly>
+                </div>
+                <button type="submit" id="changePassword">changePassword</button>
+            </form>
+            <form action="" id="changeView" class="settingsForm">
+                <div class="field-section">
+                    <label for="collageMajor">COLLAGE/MAJOR</label>
+
+                    <input type="text" value="Engineering/Computer Science" id="collageMajor"
+                        name="collageMajor" class="field" readonly>
+                </div>
+
+                <div class="field-section">
+                    <label for="theme" class="theme">
+                        <span>Light</span>
+                        <span class="theme__toggle-wrap">
+                            <input id="theme" class="theme__toggle" type="checkbox" role="switch" name="theme" value="dark">
+                            <span class="theme__fill"></span>
+                            <span class="theme__icon">
+                                <span class="theme__icon-part"></span>
+                                <span class="theme__icon-part"></span>
+                                <span class="theme__icon-part"></span>
+                                <span class="theme__icon-part"></span>
+                                <span class="theme__icon-part"></span>
+                                <span class="theme__icon-part"></span>
+                                <span class="theme__icon-part"></span>
+                                <span class="theme__icon-part"></span>
+                                <span class="theme__icon-part"></span>
+                            </span>
+                        </span>
+                        <span>Dark</span>
+                    </label>
+                </div>
+            </form>
+            </section>
+        </div>
+    </div>
+</main>
+

@@ -1,174 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schedule</title>
-    <link rel="stylesheet" href="css/Schedule.css">
-</head>
-<body>
-    
-    <!-- Side Navigation -->
-    <nav>
-        <!-- user info -->
-        <span id="user-info">
-            <img src="/img/User.png" alt="User" id="img-user">
-            <h2 id="user-Name" class="user-text">Anas Elrhmani</h2>
-            <p id="user-username" class="user-text">ae2203650</p>
-        </span>
-        <hr class="nav-lines">
-        <!-- main menu -->
-        <ul id="main-menu">
-            <li><a href="" class="menu-element"><img src="/img/famicons_home.png" alt="Home"><p class="menu-text">Home</p></a></li>
-            <li><a href="" class="menu-element"><img src="/img/tdesign_course-filled.png" alt="Courses"><p class="menu-text">Courses</p></a></li>
-            <li><a href="" class="menu-element"><img src="/img/game-icons_archive-register.png" alt="Registration"><p class="menu-text">Registration</p></a></li>
-            <li><a href="" class="menu-element"><img src="/img/ph_path-bold.png" alt="Path"><p class="menu-text">Path</p></a></li>
-        </ul>
-        <hr class="nav-lines">
-        <!-- secondary menu -->
-        <ul id="secondry-menu">
-            <li><a href="" class="menu-element"><img src="/img/material-symbols_settings.png" alt="Settings"><p class="menu-text">Settings</p></a></li>
-            <li><a href="" class="menu-element"><img src="/img/clarity_help-info-solid.png" alt="Help"><p class="menu-text">Help & Support</p></a></li>
-            <li><a href="" class="menu-element"><img src="/img/tabler_logout.png" alt="Logout"><p class="menu-text">Logout</p></a></li>
-        </ul>
-    </nav>
+<!-- Main Content -->
+<main class="content-area">
+    <!-- Navigation Tabs -->
 
-    <!-- Main Content -->
-    <main class="content-area">
-        <!-- Navigation Tabs -->
-        <div class="nav-tabs">
-            <button class="nav-button">Search</button>
-            <button class="nav-button active">Schedule</button>
-            <button class="nav-button">Summary</button>
+    <div class="container">
+        <div class="header">
+            <h1>Schedule</h1>
         </div>
-
-        <div class="container">
-            <div class="header">
-                <h1>Schedule</h1>
-            </div>
-            <div class="content">
-                <div class="schedule-table-container">
-                    <table class="schedule-table">
-                        <thead>
-                            <tr>
-                                <th>Days</th>
-                                <th>Sunday</th>
-                                <th>Monday</th>
-                                <th>Tuesday</th>
-                                <th>Wednesday</th>
-                                <th>Thursday</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>8 am</td>
-                                <td class="event">Data Base</td>
-                                <td></td>
-                                <td class="event">Data Base</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>9 am</td>
-                                <td class="event" >Data Base</td>
-                                <td></td>
-                                <td class="event">Data Base</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>10 am</td>
-                                <td></td>
-                                <td></td>
-                                <td class="event">Data Base</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>11 am</td>
-                                <td class="event" rowspan="2">Data Base</td>
-                                <td class="event">Data Base</td>
-                                <td></td>
-                                <td class="event">Data Base</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>12 pm</td>
-                                <td></td>
-                                <td></td>
-                                <td class="event">Data Base Lab</td>
-                                <td></td>
-                                
-                            </tr>
-                            <tr>
-                                <td>1 pm</td>
-                                <td></td>
-                                <td></td>
-                                <td class="event">Data Base Lab</td>
-                                <td></td>
-                                <td class="event">Data Base Lab</td>
-                            </tr>
-                            <tr>
-                                <td>2 pm</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="event">Data Base Lab</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>3 pm</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="event">Data Base Lab</td>
-                            </tr>
-                            <tr>
-                                <td>4 pm</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>5 pm</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>6 pm</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>7 pm</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>8 pm</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div class="content">
+            <div class="schedule-table-container">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Days</th>
+                            <th>Sunday</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>8 am</td>
+                            <td class="event">Data Base</td>
+                            <td></td>
+                            <td class="event">Data Base</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>9 am</td>
+                            <td class="event" >Data Base</td>
+                            <td></td>
+                            <td class="event">Data Base</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>10 am</td>
+                            <td></td>
+                            <td></td>
+                            <td class="event">Data Base</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>11 am</td>
+                            <td class="event" rowspan="2">Data Base</td>
+                            <td class="event">Data Base</td>
+                            <td></td>
+                            <td class="event">Data Base</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>12 pm</td>
+                            <td></td>
+                            <td></td>
+                            <td class="event">Data Base Lab</td>
+                            <td></td>
+                            
+                        </tr>
+                        <tr>
+                            <td>1 pm</td>
+                            <td></td>
+                            <td></td>
+                            <td class="event">Data Base Lab</td>
+                            <td></td>
+                            <td class="event">Data Base Lab</td>
+                        </tr>
+                        <tr>
+                            <td>2 pm</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="event">Data Base Lab</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3 pm</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="event">Data Base Lab</td>
+                        </tr>
+                        <tr>
+                            <td>4 pm</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>5 pm</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>6 pm</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>7 pm</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>8 pm</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </main>
-</body>
-</html>
+    </div>
+</main>
