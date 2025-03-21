@@ -1,6 +1,4 @@
 * {
-
-   
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -21,6 +19,7 @@ body {
     padding: 0;
     display: flex;
     width: 100%;
+    max-width: 1440px;
 }
 
 html {
@@ -28,26 +27,21 @@ html {
     max-height: 1024px;
     height: 100%;
 }
-
 a {
     text-decoration: none;
     color: inherit;
 }
 
+
 /* Layout container */
-
-
-/* Content area */
 .content-area {
     flex: 1;
     padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: auto; /* Allow scrolling within the content area if needed */
+    overflow: auto;
 }
-
-
 /* Navigation Sidebar */
 nav {
     background-color: #101820;
@@ -59,16 +53,13 @@ nav {
     transition: width 0.3s ease-in-out;
     overflow: hidden;
 }
-
 nav:hover {
     width: 240px;
 }
-
 nav li {
     width: 100%;
     list-style-type: none;
 }
-
 nav ul {
     width: 100%;
     display: flex;
@@ -76,24 +67,20 @@ nav ul {
     padding: 0;
     margin: 0;
 }
-
 nav img {
     height: 24px;
     width: 24px;
 }
-
 #img-user {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin: 10px 0;
 }
-
 nav:hover #img-user {
     width: 60px;
     height: 60px;
 }
-
 .menu-element {
     display: flex;
     align-items: center;
@@ -101,17 +88,14 @@ nav:hover #img-user {
     width: 100%;
     color: white;
     transition: background-color 0.2s;
-    margin-bottom: 20px; /* Add margin-bottom to increase gap */
+    margin-bottom: 20px;
 }
-
 .menu-element:hover {
     background-color: #1A2734;
 }
-
 .menu-element img {
     margin-right: 15px;
 }
-
 #user-info {
     display: flex;
     flex-direction: column;
@@ -119,61 +103,46 @@ nav:hover #img-user {
     padding: 20px 0;
     width: 100%;
 }
-
 #main-menu {
     flex: 1;
     width: 100%;
-
-    
 }
-
 #secondry-menu {
     width: 100%;
     margin-bottom: 20px;
 }
-
 .nav-lines {
     width: 80%;
     border: none;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     margin: 10px 0;
 }
-
 .menu-text {
     display: none;
     color: white;
     margin-left: 10px;
 }
-
 nav:hover .menu-text {
     display: block;
 }
-
 .user-text {
     display: none;
     color: white;
     text-align: center;
     margin-top: 5px;
 }
-
 nav:hover .user-text {
     display: block;
 }
-
 #user-Name {
     font-size: 16px;
     font-weight: 500;
     margin-top: 10px;
 }
-
 #user-username {
     font-size: 12px;
     color: rgba(255, 255, 255, 0.7);
 }
-
-
-
-
 /* Navigation tabs */
 .nav-tabs {
     background-color: #1a1d21;
@@ -183,12 +152,7 @@ nav:hover .user-text {
     display: flex;
     gap: 0.5rem;
     align-self: center;
-    
-
- 
-
 }
-
 .nav-button {
     border: none;
     border-radius: 9999px;
@@ -197,17 +161,14 @@ nav:hover .user-text {
     cursor: pointer;
     transition: background-color 0.2s;
 }
-
 .nav-button.active {
     background-color: white;
     color: black;
 }
-
 .nav-button:not(.active) {
     background-color: transparent;
     color: white;
 }
-
 .nav-button:not(.active):hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
@@ -215,51 +176,96 @@ nav:hover .user-text {
 
 .container {
     width: 100%;
-    max-width: 999px;
-    height: 100%;
-    background-color: rgb(255, 0, 0);
+    max-width: 9999px;
+    height: auto; 
+    background-color: white;
     border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    
-    border: 1px solid #f0f0f0;
-    padding-right:20px ;
-    padding-left: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
 }
 
-
-.header{
+.header {
+    h1 {
+        color: white;
+    }
     width: 100%;
-    max-width:100%;
+    max-width: 100%;
+    height: 10%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0%;
     padding: 1.5rem;
-    background-color: blue;
-    border-radius: 0.5rem;
-    
+    background-color: rgb(9, 9, 37);
+    border-radius: 0.5rem 0.5rem 0 0;
 }
 
-
-
-.content{
+.content {
     width: 100%;
-    max-width: 999px;
+    max-width: 9999px;
     height: 100%;
-    max-height: fit-content;
     background-color: white;
-    border-radius: 0.5rem;
+    border-radius: 0 0 0.5rem 0.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    padding: 0.25rem; 
+    padding: 0.25rem;
     border: 1px solid #f0f0f0;
-    padding-right:20px ;
+    padding-right: 20px;
     padding-left: 20px;
     margin-bottom: 1rem;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;
-    background-color: rgb(234, 255, 0);
-    border-radius: 0.5rem;
-    margin: 0%;
+    flex-direction: column;
+    background-color: rgb(255, 255, 254);
+    overflow: hidden; 
+}
+
+
+.schedule-table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+}
+
+
+/* Table Styling */
+.schedule-table thead {
+    background-color: #1a1d21;
+    color: white;
+    text-transform: uppercase;
+}
+.schedule-table th, .schedule-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+}
+.schedule-table tbody tr:nth-child(even) {
+    background-color: #f3f4f6;
+}
+.schedule-table tbody tr:hover {
+    background-color: #e0e0e0;
+    transition: 0.3s;
+}
+
+/* Event Styling */
+.schedule-table .event {
+    background-color: #101820;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+/* Make Table Responsive */
+@media (max-width: 768px) {
+    .schedule-table th, .schedule-table td {
+        font-size: 12px;
+        padding: 8px;
+    }
 }
