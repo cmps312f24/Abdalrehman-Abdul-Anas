@@ -1,8 +1,107 @@
 [
     {
-        "ID": "121",
-        "email": "my121@qu.edu.qa",
-        "password": "123",
-        "role": "instructor"
+        "ID": "11",
+        "role": "admin",
+        "EmailID": "ah11@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "ID": "12",
+        "role": "admin",
+        "EmailID": "ls12@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "ID": "13",
+        "role": "admin",
+        "EmailID": "ok13@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "ID": "14",
+        "role": "admin",
+        "EmailID": "sa14@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "ID": "1001",
+        "role": "instructor",
+        "EmailID": "ak122@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "ID": "1002",
+        "role": "instructor",
+        "EmailID": "of123@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "ID": "1003",
+        "role": "instructor",
+        "EmailID": "sa124@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "ID": "1004",
+        "role": "instructor",
+        "EmailID": "yh125@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "ID": "1005",
+        "role": "instructor",
+        "EmailID": "nr126@qu.edu.qa",
+        "password": "123"
+    },
+
+    {
+        "ID": "101",
+        "email": "am123@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "ID": "102",
+        "email": "sa124@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "ID": "103",
+        "email": "yh125@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "ID": "104",
+        "email": "nr126@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "ID": "105",
+        "email": "ah127@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "ID": "106",
+        "email": "mh128@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "ID": "107",
+        "email": "ha129@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "ID": "108",
+        "email": "sh130@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "ID": "109",
+        "email": "fa131@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "ID": "110",
+        "email": "ba132@qu.edu.qa",
+        "password": "123"
     }
 ]

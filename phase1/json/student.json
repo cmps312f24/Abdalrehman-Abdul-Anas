@@ -1,13 +1,172 @@
 [
     {
-        "ID":"123",
-        "username":"am123",
-        "email":"am123@qu.edu.qa",
-        "gpa":"4",
-        "totalCreditHours":"50",
-        "major":"Computer Science",
-        "phoneNo":"12345678",
-        "currentSections":[{"courseNo":"cmps121","section":"L01","grade":"A"},{"courseNo":"cmps231","section":"L02","grade":"B"}],
-        "pendingSections":[{"courseNo":"cmps321","section":"L01"}]
+        "ID": "101",
+        "name": "Ahmed Mohamed",
+        "username": "am123",
+        "email": "am123@qu.edu.qa",
+        "gpa": "4.0",
+        "totalCreditHours": "50",
+        "major": "Computer Science",
+        "phoneNo": "12345678",
+        "currentSections": [
+            {"courseNo": "CMPS 151", "section": "L01", "grade": "A"},
+            {"courseNo": "MATH 101", "section": "L02", "grade": "B"}
+        ],
+        "pendingSections": [
+            {"courseNo": "CMPS 251", "section": "L01"}
+        ]
+    },
+    {
+        "ID": "102",
+        "name": "Sara Ali",
+        "username": "sa124",
+        "email": "sa124@qu.edu.qa",
+        "gpa": "3.8",
+        "totalCreditHours": "45",
+        "major": "Computer Science",
+        "phoneNo": "87654321",
+        "currentSections": [
+            {"courseNo": "CMPS 205", "section": "L01", "grade": "A-"},
+            {"courseNo": "MATH 102", "section": "L02", "grade": "B+"}
+        ],
+        "pendingSections": [
+            {"courseNo": "CMPS 303", "section": "L01"}
+        ]
+    },
+    {
+        "ID": "103",
+        "name": "Yusuf Hamdan",
+        "username": "yh125",
+        "email": "yh125@qu.edu.qa",
+        "gpa": "3.5",
+        "totalCreditHours": "60",
+        "major": "Mathematics",
+        "phoneNo": "11223344",
+        "currentSections": [
+            {"courseNo": "MATH 231", "section": "L01", "grade": "B"},
+            {"courseNo": "PHYS 191", "section": "L02", "grade": "C+"}
+        ],
+        "pendingSections": [
+            {"courseNo": "PHYS 193", "section": "L01"}
+        ]
+    },
+    {
+        "ID": "104",
+        "name": "Nadia Rahman",
+        "username": "nr126",
+        "email": "nr126@qu.edu.qa",
+        "gpa": "3.9",
+        "totalCreditHours": "55",
+        "major": "Physics",
+        "phoneNo": "33445566",
+        "currentSections": [
+            {"courseNo": "PHYS 191", "section": "L01", "grade": "A"},
+            {"courseNo": "MATH 102", "section": "L02", "grade": "A-"}
+        ],
+        "pendingSections": [
+            {"courseNo": "PHYS 193", "section": "L01"}
+        ]
+    },
+    {
+        "ID": "105",
+        "name": "Ali Hassan",
+        "username": "ah127",
+        "email": "ah127@qu.edu.qa",
+        "gpa": "3.7",
+        "totalCreditHours": "48",
+        "major": "Chemistry",
+        "phoneNo": "55667788",
+        "currentSections": [
+            {"courseNo": "CHEM 101", "section": "L01", "grade": "B+"},
+            {"courseNo": "CHEM 103", "section": "B01", "grade": "A-"}
+        ],
+        "pendingSections": [
+            {"courseNo": "PHYS 191", "section": "L01"}
+        ]
+    },
+    {
+        "ID": "106",
+        "name": "Mariam Hussein",
+        "username": "mh128",
+        "email": "mh128@qu.edu.qa",
+        "gpa": "3.2",
+        "totalCreditHours": "42",
+        "major": "History",
+        "phoneNo": "66778899",
+        "currentSections": [
+            {"courseNo": "HIST 121", "section": "L01", "grade": "B"},
+            {"courseNo": "ENGL 202", "section": "L02", "grade": "B+"}
+        ],
+        "pendingSections": [
+            {"courseNo": "ENGL 203", "section": "L01"}
+        ]
+    },
+    {
+        "ID": "107",
+        "name": "Hassan Ahmed",
+        "username": "ha129",
+        "email": "ha129@qu.edu.qa",
+        "gpa": "3.6",
+        "totalCreditHours": "50",
+        "major": "English",
+        "phoneNo": "77889900",
+        "currentSections": [
+            {"courseNo": "ENGL 202", "section": "L01", "grade": "A"},
+            {"courseNo": "ARAB 100", "section": "L02", "grade": "B"}
+        ],
+        "pendingSections": [
+            {"courseNo": "ENGL 203", "section": "L01"}
+        ]
+    },
+    {
+        "ID": "108",
+        "name": "Sami Haidar",
+        "username": "sh130",
+        "email": "sh130@qu.edu.qa",
+        "gpa": "3.1",
+        "totalCreditHours": "38",
+        "major": "Computer Science",
+        "phoneNo": "88990011",
+        "currentSections": [
+            {"courseNo": "CMPS 151", "section": "L02", "grade": "B"},
+            {"courseNo": "CMPS 205", "section": "L01", "grade": "C+"}
+        ],
+        "pendingSections": [
+            {"courseNo": "CMPS 251", "section": "L01"}
+        ]
+    },
+    {
+        "ID": "109",
+        "name": "Fatima Al-Khouri",
+        "username": "fa131",
+        "email": "fa131@qu.edu.qa",
+        "gpa": "3.4",
+        "totalCreditHours": "53",
+        "major": "Computer Engineering",
+        "phoneNo": "99001122",
+        "currentSections": [
+            {"courseNo": "CMPE 263", "section": "L01", "grade": "B+"},
+            {"courseNo": "GENG 200", "section": "L02", "grade": "A-"}
+        ],
+        "pendingSections": [
+            {"courseNo": "CMPS 323", "section": "L01"}
+        ]
+    },
+    {
+        "ID": "110",
+        "name": "Bilal Ameer",
+        "username": "ba132",
+        "email": "ba132@qu.edu.qa",
+        "gpa": "3.9",
+        "totalCreditHours": "57",
+        "major": "Computer Science",
+        "phoneNo": "00112233",
+        "currentSections": [
+            {"courseNo": "CMPS 351", "section": "L01", "grade": "A"},
+            {"courseNo": "CMPS 323", "section": "L02", "grade": "A-"}
+        ],
+        "pendingSections": [
+            {"courseNo": "CMPS 303", "section": "L01"}
+        ]
     }
 ]
