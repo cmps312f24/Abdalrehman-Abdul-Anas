@@ -1,0 +1,10 @@
+[
+    {
+        "sectionID": "L01",
+        "instructorID": "1",
+        "place": "C209",
+        "campus": "male",
+        "studentIDs": [{"1":"A"},{"2":"B"},{"3":"B+"}],
+        "courseNo":"cmps121"
+    }
+]

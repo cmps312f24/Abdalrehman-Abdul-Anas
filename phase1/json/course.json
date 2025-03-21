@@ -3,8 +3,27 @@
         "name": "Programming Concept",
         "credit": "3",
         "courseNo": "121",
-        "sections": ["L01","L02"],
+        "sectionsIDs": ["L01","L02"],
         "category": "lecture",
-        "collage": "Computer Science"
+        "collage": "Computer Science",
+        "status":"approved"
+    },
+    {
+        "name": "Object Orianted",
+        "credit": "4",
+        "courseNo": "cmps231",
+        "sectionsIDs": ["L01","L02"],
+        "category": "lecture",
+        "collage": "Computer Science",
+        "status":"pending"
+    },
+    {
+        "name": "Object Orianted",
+        "credit": "0",
+        "courseNo": "cmps231",
+        "sectionsIDs": ["B01","B02"],
+        "category": "Lab",
+        "collage": "Computer Science",
+        "status":"pending"
     }
 ]

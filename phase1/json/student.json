@@ -1,0 +1,13 @@
+[
+    {
+        "ID":"123",
+        "username":"am123",
+        "email":"am123@qu.edu.qa",
+        "gpa":"4",
+        "totalCreditHours":"50",
+        "major":"Computer Science",
+        "phoneNo":"12345678",
+        "currentSections":[{"courseNo":"cmps121","section":"L01","grade":"A"},{"courseNo":"cmps231","section":"L02","grade":"B"}],
+        "pendingSections":[{"courseNo":"cmps321","section":"L01"}]
+    }
+]
