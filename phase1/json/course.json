@@ -1,530 +1,1001 @@
 [
-    {
-        "name": "Programming Concepts",
-        "credit": 3,
-        "courseNo": "CMPS 151",
-        "category": "lecture",
-        "college": "Computer Science",
+  {
+    "name": "Programming Concepts",
+    "credit": 3,
+    "courseNo": "CMPS 151",
+    "category": "lecture",
+    "college": "Computer Science",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "122",
+        "place": "C209",
+        "campus": "male",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "122",
-                "place": "C209",
-                "campus": "male",
-                "studentIDs": [{"1": "A"}, {"2": "B"}, {"3": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "122",
-                "place": "C210",
-                "campus": "female",
-                "studentIDs": [{"4": "A-"}, {"5": "B+"}, {"6": "B"}]
-            }
+        "studentIDs": [
+          {
+            "1": "A"
+          },
+          {
+            "2": "B"
+          },
+          {
+            "3": "B+"
+          }
         ]
-    },
-    {
-        "name": "General Chemistry I",
-        "credit": 3,
-        "courseNo": "CHEM 101",
-        "category": "lecture",
-        "college": "Chemistry",
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "122",
+        "place": "C210",
+        "campus": "female",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "123",
-                "place": "C211",
-                "campus": "male",
-                "studentIDs": [{"7": "A"}, {"8": "B"}, {"9": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "123",
-                "place": "C212",
-                "campus": "female",
-                "studentIDs": [{"10": "A-"}, {"11": "B+"}, {"12": "B"}]
-            }
+        "studentIDs": [
+          {
+            "4": "A-"
+          },
+          {
+            "5": "B+"
+          },
+          {
+            "6": "B"
+          }
         ]
-    },
-    {
-        "name": "Experimental General Chemistry I",
-        "credit": 1,
-        "courseNo": "CHEM 103",
-        "category": "lab",
-        "college": "Chemistry",
+      }
+    ]
+  },
+  {
+    "name": "General Chemistry I",
+    "credit": 3,
+    "courseNo": "CHEM 101",
+    "category": "lecture",
+    "college": "Chemistry",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "123",
+        "place": "C211",
+        "campus": "male",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "B01",
-                "instructorID": "123",
-                "place": "C213",
-                "campus": "male",
-                "studentIDs": [{"13": "A"}, {"14": "B"}, {"15": "B+"}]
-            },
-            {
-                "sectionID": "B02",
-                "instructorID": "123",
-                "place": "C214",
-                "campus": "female",
-                "studentIDs": [{"16": "A-"}, {"17": "B+"}, {"18": "B"}]
-            }
+        "studentIDs": [
+          {
+            "7": "A"
+          },
+          {
+            "8": "B"
+          },
+          {
+            "9": "B+"
+          }
         ]
-    },
-    {
-        "name": "Calculus I",
-        "credit": 3,
-        "courseNo": "MATH 101",
-        "category": "lecture",
-        "college": "Mathematics",
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "123",
+        "place": "C212",
+        "campus": "female",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "124",
-                "place": "C215",
-                "campus": "male",
-                "studentIDs": [{"19": "A"}, {"20": "B"}, {"21": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "124",
-                "place": "C216",
-                "campus": "female",
-                "studentIDs": [{"22": "A-"}, {"23": "B+"}, {"24": "B"}]
-            }
+        "studentIDs": [
+          {
+            "10": "A-"
+          },
+          {
+            "11": "B+"
+          },
+          {
+            "12": "B"
+          }
         ]
-    },
-    {
-        "name": "English Language I Post Foundation",
-        "credit": 3,
-        "courseNo": "ENGL 202",
-        "category": "lecture",
-        "college": "English",
+      }
+    ]
+  },
+  {
+    "name": "Experimental General Chemistry I",
+    "credit": 1,
+    "courseNo": "CHEM 103",
+    "category": "lab",
+    "college": "Chemistry",
+    "sections": [
+      {
+        "sectionID": "B01",
+        "instructorID": "123",
+        "place": "C213",
+        "campus": "male",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "125",
-                "place": "C217",
-                "campus": "male",
-                "studentIDs": [{"25": "A"}, {"26": "B"}, {"27": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "125",
-                "place": "C218",
-                "campus": "female",
-                "studentIDs": [{"28": "A-"}, {"29": "B+"}, {"30": "B"}]
-            }
+        "studentIDs": [
+          {
+            "13": "A"
+          },
+          {
+            "14": "B"
+          },
+          {
+            "15": "B+"
+          }
         ]
-    },
-    {
-        "name": "History of Qatar",
-        "credit": 3,
-        "courseNo": "HIST 121",
-        "category": "lecture",
-        "college": "History",
+      },
+      {
+        "sectionID": "B02",
+        "instructorID": "123",
+        "place": "C214",
+        "campus": "female",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "126",
-                "place": "C219",
-                "campus": "male",
-                "studentIDs": [{"31": "A"}, {"32": "B"}, {"33": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "126",
-                "place": "C220",
-                "campus": "female",
-                "studentIDs": [{"34": "A-"}, {"35": "B+"}, {"36": "B"}]
-            }
+        "studentIDs": [
+          {
+            "16": "A-"
+          },
+          {
+            "17": "B+"
+          },
+          {
+            "18": "B"
+          }
         ]
-    },
-    {
-        "name": "Object-Oriented Programming",
-        "credit": 4,
-        "courseNo": "CMPS 251",
-        "category": "lecture",
-        "college": "Computer Science",
+      }
+    ]
+  },
+  {
+    "name": "Calculus I",
+    "credit": 3,
+    "courseNo": "MATH 101",
+    "category": "lecture",
+    "college": "Mathematics",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "124",
+        "place": "C215",
+        "campus": "male",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "127",
-                "place": "C221",
-                "campus": "male",
-                "studentIDs": [{"37": "A"}, {"38": "B"}, {"39": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "127",
-                "place": "C222",
-                "campus": "female",
-                "studentIDs": [{"40": "A-"}, {"41": "B+"}, {"42": "B"}]
-            }
+        "studentIDs": [
+          {
+            "19": "A"
+          },
+          {
+            "20": "B"
+          },
+          {
+            "21": "B+"
+          }
         ]
-    },
-    {
-        "name": "General Physics for Engineering I",
-        "credit": 3,
-        "courseNo": "PHYS 191",
-        "category": "lecture",
-        "college": "Physics",
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "124",
+        "place": "C216",
+        "campus": "female",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "128",
-                "place": "C223",
-                "campus": "male",
-                "studentIDs": [{"43": "A"}, {"44": "B"}, {"45": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "128",
-                "place": "C224",
-                "campus": "female",
-                "studentIDs": [{"46": "A-"}, {"47": "B+"}, {"48": "B"}]
-            }
+        "studentIDs": [
+          {
+            "22": "A-"
+          },
+          {
+            "23": "B+"
+          },
+          {
+            "24": "B"
+          }
         ]
-    },
-    {
-        "name": "Experimental General Physics for Engineering I",
-        "credit": 1,
-        "courseNo": "PHYS 192",
-        "category": "lab",
-        "college": "Physics",
+      }
+    ]
+  },
+  {
+    "name": "English Language I Post Foundation",
+    "credit": 3,
+    "courseNo": "ENGL 202",
+    "category": "lecture",
+    "college": "English",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "125",
+        "place": "C217",
+        "campus": "male",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "B01",
-                "instructorID": "128",
-                "place": "C225",
-                "campus": "male",
-                "studentIDs": [{"49": "A"}, {"50": "B"}, {"51": "B+"}]
-            },
-            {
-                "sectionID": "B02",
-                "instructorID": "128",
-                "place": "C226",
-                "campus": "female",
-                "studentIDs": [{"52": "A-"}, {"53": "B+"}, {"54": "B"}]
-            }
+        "studentIDs": [
+          {
+            "25": "A"
+          },
+          {
+            "26": "B"
+          },
+          {
+            "27": "B+"
+          }
         ]
-    },
-    {
-        "name": "Linear Algebra",
-        "credit": 3,
-        "courseNo": "MATH 231",
-        "category": "lecture",
-        "college": "Mathematics",
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "125",
+        "place": "C218",
+        "campus": "female",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "129",
-                "place": "C227",
-                "campus": "male",
-                "studentIDs": [{"55": "A"}, {"56": "B"}, {"57": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "129",
-                "place": "C228",
-                "campus": "female",
-                "studentIDs": [{"58": "A-"}, {"59": "B+"}, {"60": "B"}]
-            }
+        "studentIDs": [
+          {
+            "28": "A-"
+          },
+          {
+            "29": "B+"
+          },
+          {
+            "30": "B"
+          }
         ]
-    },
-    {
-        "name": "Calculus II",
-        "credit": 3,
-        "courseNo": "MATH 102",
-        "category": "lecture",
-        "college": "Mathematics",
+      }
+    ]
+  },
+  {
+    "name": "History of Qatar",
+    "credit": 3,
+    "courseNo": "HIST 121",
+    "category": "lecture",
+    "college": "History",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "126",
+        "place": "C219",
+        "campus": "male",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "130",
-                "place": "C229",
-                "campus": "male",
-                "studentIDs": [{"61": "A"}, {"62": "B"}, {"63": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "130",
-                "place": "C230",
-                "campus": "female",
-                "studentIDs": [{"64": "A-"}, {"65": "B+"}, {"66": "B"}]
-            }
+        "studentIDs": [
+          {
+            "31": "A"
+          },
+          {
+            "32": "B"
+          },
+          {
+            "33": "B+"
+          }
         ]
-    },
-    {
-        "name": "English Language II Post Foundation",
-        "credit": 3,
-        "courseNo": "ENGL 203",
-        "category": "lecture",
-        "college": "English",
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "126",
+        "place": "C220",
+        "campus": "female",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "131",
-                "place": "C231",
-                "campus": "male",
-                "studentIDs": [{"67": "A"}, {"68": "B"}, {"69": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "131",
-                "place": "C232",
-                "campus": "female",
-                "studentIDs": [{"70": "A-"}, {"71": "B+"}, {"72": "B"}]
-            }
+        "studentIDs": [
+          {
+            "34": "A-"
+          },
+          {
+            "35": "B+"
+          },
+          {
+            "36": "B"
+          }
         ]
-    },
-    {
-        "name": "Computer Ethics",
-        "credit": 1,
-        "courseNo": "CMPS 200",
-        "category": "lecture",
-        "college": "Computer Science",
+      }
+    ]
+  },
+  {
+    "name": "Object-Oriented Programming",
+    "credit": 4,
+    "courseNo": "CMPS 251",
+    "category": "lecture",
+    "college": "Computer Science",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "127",
+        "place": "C221",
+        "campus": "male",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "132",
-                "place": "C233",
-                "campus": "male",
-                "studentIDs": [{"73": "A"}, {"74": "B"}, {"75": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "132",
-                "place": "C234",
-                "campus": "female",
-                "studentIDs": [{"76": "A-"}, {"77": "B+"}, {"78": "B"}]
-            }
+        "studentIDs": [
+          {
+            "37": "A"
+          },
+          {
+            "38": "B"
+          },
+          {
+            "39": "B+"
+          }
         ]
-    },
-    {
-        "name": "Discrete Structures for Computing",
-        "credit": 3,
-        "courseNo": "CMPS 205",
-        "category": "lecture",
-        "college": "Computer Science",
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "127",
+        "place": "C222",
+        "campus": "female",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "133",
-                "place": "C235",
-                "campus": "male",
-                "studentIDs": [{"79": "A"}, {"80": "B"}, {"81": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "133",
-                "place": "C236",
-                "campus": "female",
-                "studentIDs": [{"82": "A-"}, {"83": "B+"}, {"84": "B"}]
-            }
+        "studentIDs": [
+          {
+            "40": "A-"
+          },
+          {
+            "41": "B+"
+          },
+          {
+            "42": "B"
+          }
         ]
-    },
-    {
-        "name": "Data Structures",
-        "credit": 4,
-        "courseNo": "CMPS 303",
-        "category": "lecture",
-        "college": "Computer Science",
+      }
+    ]
+  },
+  {
+    "name": "General Physics for Engineering I",
+    "credit": 3,
+    "courseNo": "PHYS 191",
+    "category": "lecture",
+    "college": "Physics",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "128",
+        "place": "C223",
+        "campus": "male",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "134",
-                "place": "C237",
-                "campus": "male",
-                "studentIDs": [{"85": "A"}, {"86": "B"}, {"87": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "134",
-                "place": "C238",
-                "campus": "female",
-                "studentIDs": [{"88": "A-"}, {"89": "B+"}, {"90": "B"}]
-            }
+        "studentIDs": [
+          {
+            "43": "A"
+          },
+          {
+            "44": "B"
+          },
+          {
+            "45": "B+"
+          }
         ]
-    },
-    {
-        "name": "General Physics for Engineering II",
-        "credit": 3,
-        "courseNo": "PHYS 193",
-        "category": "lecture",
-        "college": "Physics",
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "128",
+        "place": "C224",
+        "campus": "female",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "135",
-                "place": "C239",
-                "campus": "male",
-                "studentIDs": [{"91": "A"}, {"92": "B"}, {"93": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "135",
-                "place": "C240",
-                "campus": "female",
-                "studentIDs": [{"94": "A-"}, {"95": "B+"}, {"96": "B"}]
-            }
+        "studentIDs": [
+          {
+            "46": "A-"
+          },
+          {
+            "47": "B+"
+          },
+          {
+            "48": "B"
+          }
         ]
-    },
-    {
-        "name": "Experimental General Physics for Engineering II",
-        "credit": 1,
-        "courseNo": "PHYS 194",
-        "category": "lab",
-        "college": "Physics",
+      }
+    ]
+  },
+  {
+    "name": "Experimental General Physics for Engineering I",
+    "credit": 1,
+    "courseNo": "PHYS 192",
+    "category": "lab",
+    "college": "Physics",
+    "sections": [
+      {
+        "sectionID": "B01",
+        "instructorID": "128",
+        "place": "C225",
+        "campus": "male",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "B01",
-                "instructorID": "135",
-                "place": "C241",
-                "campus": "male",
-                "studentIDs": [{"97": "A"}, {"98": "B"}, {"99": "B+"}]
-            },
-            {
-                "sectionID": "B02",
-                "instructorID": "135",
-                "place": "C242",
-                "campus": "female",
-                "studentIDs": [{"100": "A-"}, {"101": "B+"}, {"102": "B"}]
-            }
+        "studentIDs": [
+          {
+            "49": "A"
+          },
+          {
+            "50": "B"
+          },
+          {
+            "51": "B+"
+          }
         ]
-    },
-    {
-        "name": "Arabic Language I",
-        "credit": 3,
-        "courseNo": "ARAB 100",
-        "category": "lecture",
-        "college": "Arabic",
+      },
+      {
+        "sectionID": "B02",
+        "instructorID": "128",
+        "place": "C226",
+        "campus": "female",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "136",
-                "place": "C243",
-                "campus": "male",
-                "studentIDs": [{"103": "A"}, {"104": "B"}, {"105": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "136",
-                "place": "C244",
-                "campus": "female",
-                "studentIDs": [{"106": "A-"}, {"107": "B+"}, {"108": "B"}]
-            }
+        "studentIDs": [
+          {
+            "52": "A-"
+          },
+          {
+            "53": "B+"
+          },
+          {
+            "54": "B"
+          }
         ]
-    },
-    {
-        "name": "Design and Analysis of Algorithms",
-        "credit": 3,
-        "courseNo": "CMPS 323",
-        "category": "lecture",
-        "college": "Computer Science",
+      }
+    ]
+  },
+  {
+    "name": "Linear Algebra",
+    "credit": 3,
+    "courseNo": "MATH 231",
+    "category": "lecture",
+    "college": "Mathematics",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "129",
+        "place": "C227",
+        "campus": "male",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "137",
-                "place": "C245",
-                "campus": "male",
-                "studentIDs": [{"109": "A"}, {"110": "B"}, {"111": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "137",
-                "place": "C246",
-                "campus": "female",
-                "studentIDs": [{"112": "A-"}, {"113": "B+"}, {"114": "B"}]
-            }
+        "studentIDs": [
+          {
+            "55": "A"
+          },
+          {
+            "56": "B"
+          },
+          {
+            "57": "B+"
+          }
         ]
-    },
-    {
-        "name": "Fundamentals of Database Systems",
-        "credit": 4,
-        "courseNo": "CMPS 351",
-        "category": "lecture",
-        "college": "Computer Science",
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "129",
+        "place": "C228",
+        "campus": "female",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "138",
-                "place": "C247",
-                "campus": "male",
-                "studentIDs": [{"115": "A"}, {"116": "B"}, {"117": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "138",
-                "place": "C248",
-                "campus": "female",
-                "studentIDs": [{"119": "A-"}, {"120": "B+"}, {"121": "B"}]
-            }
+        "studentIDs": [
+          {
+            "58": "A-"
+          },
+          {
+            "59": "B+"
+          },
+          {
+            "60": "B"
+          }
         ]
-    },
-    {
-        "name": "Computer Architecture and Organization I",
-        "credit": 3,
-        "courseNo": "CMPE 263",
-        "category": "lecture",
-        "college": "Computer Engineering",
+      }
+    ]
+  },
+  {
+    "name": "Calculus II",
+    "credit": 3,
+    "courseNo": "MATH 102",
+    "category": "lecture",
+    "college": "Mathematics",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "130",
+        "place": "C229",
+        "campus": "male",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "139",
-                "place": "C249",
-                "campus": "male",
-                "studentIDs": [{"122": "A"}, {"123": "B"}, {"124": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "139",
-                "place": "C250",
-                "campus": "female",
-                "studentIDs": [{"125": "A-"}, {"126": "B+"}, {"127": "B"}]
-            }
+        "studentIDs": [
+          {
+            "61": "A"
+          },
+          {
+            "62": "B"
+          },
+          {
+            "63": "B+"
+          }
         ]
-    },
-    {
-        "name": "Probability and Statistics for Engineers",
-        "credit": 3,
-        "courseNo": "GENG 200",
-        "category": "lecture",
-        "college": "Engineering",
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "130",
+        "place": "C230",
+        "campus": "female",
         "status": "approved",
-        "sections": [
-            {
-                "sectionID": "L01",
-                "instructorID": "140",
-                "place": "C251",
-                "campus": "male",
-                "studentIDs": [{"128": "A"}, {"129": "B"}, {"130": "B+"}]
-            },
-            {
-                "sectionID": "L02",
-                "instructorID": "140",
-                "place": "C252",
-                "campus": "female",
-                "studentIDs": [{"110": "A-"}, {"102": "B+"}, {"103": "B"}]
-            }
+        "studentIDs": [
+          {
+            "64": "A-"
+          },
+          {
+            "65": "B+"
+          },
+          {
+            "66": "B"
+          }
         ]
-    }
+      }
+    ]
+  },
+  {
+    "name": "English Language II Post Foundation",
+    "credit": 3,
+    "courseNo": "ENGL 203",
+    "category": "lecture",
+    "college": "English",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "131",
+        "place": "C231",
+        "campus": "male",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "67": "A"
+          },
+          {
+            "68": "B"
+          },
+          {
+            "69": "B+"
+          }
+        ]
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "131",
+        "place": "C232",
+        "campus": "female",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "70": "A-"
+          },
+          {
+            "71": "B+"
+          },
+          {
+            "72": "B"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Computer Ethics",
+    "credit": 1,
+    "courseNo": "CMPS 200",
+    "category": "lecture",
+    "college": "Computer Science",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "132",
+        "place": "C233",
+        "campus": "male",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "73": "A"
+          },
+          {
+            "74": "B"
+          },
+          {
+            "75": "B+"
+          }
+        ]
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "132",
+        "place": "C234",
+        "campus": "female",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "76": "A-"
+          },
+          {
+            "77": "B+"
+          },
+          {
+            "78": "B"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Discrete Structures for Computing",
+    "credit": 3,
+    "courseNo": "CMPS 205",
+    "category": "lecture",
+    "college": "Computer Science",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "133",
+        "place": "C235",
+        "campus": "male",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "79": "A"
+          },
+          {
+            "80": "B"
+          },
+          {
+            "81": "B+"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Data Structures",
+    "credit": 4,
+    "courseNo": "CMPS 303",
+    "category": "lecture",
+    "college": "Computer Science",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "134",
+        "place": "C237",
+        "campus": "male",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "85": "A"
+          },
+          {
+            "86": "B"
+          },
+          {
+            "87": "B+"
+          }
+        ]
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "134",
+        "place": "C238",
+        "campus": "female",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "88": "A-"
+          },
+          {
+            "89": "B+"
+          },
+          {
+            "90": "B"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "General Physics for Engineering II",
+    "credit": 3,
+    "courseNo": "PHYS 193",
+    "category": "lecture",
+    "college": "Physics",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "135",
+        "place": "C239",
+        "campus": "male",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "91": "A"
+          },
+          {
+            "92": "B"
+          },
+          {
+            "93": "B+"
+          }
+        ]
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "135",
+        "place": "C240",
+        "campus": "female",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "94": "A-"
+          },
+          {
+            "95": "B+"
+          },
+          {
+            "96": "B"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Experimental General Physics for Engineering II",
+    "credit": 1,
+    "courseNo": "PHYS 194",
+    "category": "lab",
+    "college": "Physics",
+    "sections": [
+      {
+        "sectionID": "B01",
+        "instructorID": "135",
+        "place": "C241",
+        "campus": "male",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "97": "A"
+          },
+          {
+            "98": "B"
+          },
+          {
+            "99": "B+"
+          }
+        ]
+      },
+      {
+        "sectionID": "B02",
+        "instructorID": "135",
+        "place": "C242",
+        "campus": "female",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "100": "A-"
+          },
+          {
+            "101": "B+"
+          },
+          {
+            "102": "B"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Arabic Language I",
+    "credit": 3,
+    "courseNo": "ARAB 100",
+    "category": "lecture",
+    "college": "Arabic",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "136",
+        "place": "C243",
+        "campus": "male",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "103": "A"
+          },
+          {
+            "104": "B"
+          },
+          {
+            "105": "B+"
+          }
+        ]
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "136",
+        "place": "C244",
+        "campus": "female",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "106": "A-"
+          },
+          {
+            "107": "B+"
+          },
+          {
+            "108": "B"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Design and Analysis of Algorithms",
+    "credit": 3,
+    "courseNo": "CMPS 323",
+    "category": "lecture",
+    "college": "Computer Science",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "137",
+        "place": "C245",
+        "campus": "male",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "109": "A"
+          },
+          {
+            "110": "B"
+          },
+          {
+            "111": "B+"
+          }
+        ]
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "137",
+        "place": "C246",
+        "campus": "female",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "112": "A-"
+          },
+          {
+            "113": "B+"
+          },
+          {
+            "114": "B"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Fundamentals of Database Systems",
+    "credit": 4,
+    "courseNo": "CMPS 351",
+    "category": "lecture",
+    "college": "Computer Science",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "138",
+        "place": "C247",
+        "campus": "male",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "115": "A"
+          },
+          {
+            "116": "B"
+          },
+          {
+            "117": "B+"
+          }
+        ]
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "138",
+        "place": "C248",
+        "campus": "female",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "119": "A-"
+          },
+          {
+            "120": "B+"
+          },
+          {
+            "121": "B"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Computer Architecture and Organization I",
+    "credit": 3,
+    "courseNo": "CMPE 263",
+    "category": "lecture",
+    "college": "Computer Engineering",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "139",
+        "place": "C249",
+        "campus": "male",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "122": "A"
+          },
+          {
+            "123": "B"
+          },
+          {
+            "124": "B+"
+          }
+        ]
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "139",
+        "place": "C250",
+        "campus": "female",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "125": "A-"
+          },
+          {
+            "126": "B+"
+          },
+          {
+            "127": "B"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Probability and Statistics for Engineers",
+    "credit": 3,
+    "courseNo": "GENG 200",
+    "category": "lecture",
+    "college": "Engineering",
+    "sections": [
+      {
+        "sectionID": "L01",
+        "instructorID": "140",
+        "place": "C251",
+        "campus": "male",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "128": "A"
+          },
+          {
+            "129": "B"
+          },
+          {
+            "130": "B+"
+          }
+        ]
+      },
+      {
+        "sectionID": "L02",
+        "instructorID": "140",
+        "place": "C252",
+        "campus": "female",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "110": "A-"
+          },
+          {
+            "102": "B+"
+          },
+          {
+            "103": "B"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Discrete Structures for Computing",
+    "credit": 3,
+    "courseNo": "CMPS 205",
+    "category": "lab",
+    "college": "Computer Science",
+    "sections": [
+      {
+        "sectionID": "L02",
+        "instructorID": "133",
+        "place": "C235",
+        "campus": "male",
+        "status": "approved",
+        "studentIDs": [
+          {
+            "79": "A"
+          },
+          {
+            "80": "B"
+          },
+          {
+            "81": "B+"
+          }
+        ]
+      }
+    ]
+  }
 ]
