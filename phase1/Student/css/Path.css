@@ -209,8 +209,8 @@ main{
 /* Example positions for arrows */
 #arrow1 {
     width: 2.5%;
-    top: 27.5%;
-    left: 20%;
+    top: 50%;
+    left: 25%;
     height: auto;
 }
 #arrow2{
