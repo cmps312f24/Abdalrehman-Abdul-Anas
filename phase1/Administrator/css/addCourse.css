@@ -1,64 +1,4 @@
-.layout-container {
-    align-items: center;
-    gap: 3%;
-}
-
-.nav-tabs {
-    background-color: #1a1d21;
-    border-radius: 9999px;
-    padding: 0.25rem;
-    display: flex;
-    gap: 0.5rem;
-    align-self: center;
-    width: fit-content;
-}
-
-.nav-button {
-    border: none;
-    border-radius: 9999px;
-    padding: 0.5rem 1.5rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.nav-button.active {
-    background-color: white;
-    color: black;
-}
-
-.nav-button:not(.active) {
-    background-color: transparent;
-    color: white;
-}
-
-.nav-button:not(.active):hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.content{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 15px;
-    box-shadow: 0px 0.477px 15.036px 0px rgba(0, 0, 0, 0.15);
-    background-color: #FFF;
-    padding: 10px;
-    height: 85vh;
-    margin-right: 10px;
-    min-width: 90%;
-    min-height: 100%;
-    overflow: auto;
-}
-
-.content h2{
+h2{
     min-width: 100%;
     padding: 10px;
 }
@@ -73,7 +13,7 @@
     height: 100%;
 }
 
-section{
+.field-section{
     display: flex;
     flex-direction: column;
     justify-items: start;
