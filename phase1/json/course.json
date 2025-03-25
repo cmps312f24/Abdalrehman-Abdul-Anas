@@ -10,17 +10,22 @@
         "sectionID": "L01",
         "instructorID": "122",
         "place": "C209",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "1": "A"
+            "id": "1",
+            "grade": "A"
           },
           {
-            "2": "B"
+            "id": "2",
+            "grade": "B"
           },
           {
-            "3": "B+"
+            "id": "3",
+            "grade": "B+"
           }
         ]
       },
@@ -28,17 +33,22 @@
         "sectionID": "L02",
         "instructorID": "122",
         "place": "C210",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "4": "A-"
+            "id": "4",
+            "grade": "A-"
           },
           {
-            "5": "B+"
+            "id": "5",
+            "grade": "B+"
           },
           {
-            "6": "B"
+            "id": "6",
+            "grade": "B"
           }
         ]
       }
@@ -55,17 +65,22 @@
         "sectionID": "L01",
         "instructorID": "123",
         "place": "C211",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "7": "A"
+            "id": "7",
+            "grade": "A"
           },
           {
-            "8": "B"
+            "id": "8",
+            "grade": "B"
           },
           {
-            "9": "B+"
+            "id": "9",
+            "grade": "B+"
           }
         ]
       },
@@ -73,17 +88,22 @@
         "sectionID": "L02",
         "instructorID": "123",
         "place": "C212",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "10": "A-"
+            "id": "10",
+            "grade": "A-"
           },
           {
-            "11": "B+"
+            "id": "11",
+            "grade": "B+"
           },
           {
-            "12": "B"
+            "id": "12",
+            "grade": "B"
           }
         ]
       }
@@ -100,17 +120,22 @@
         "sectionID": "B01",
         "instructorID": "123",
         "place": "C213",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "13": "A"
+            "id": "13",
+            "grade": "A"
           },
           {
-            "14": "B"
+            "id": "14",
+            "grade": "B"
           },
           {
-            "15": "B+"
+            "id": "15",
+            "grade": "B+"
           }
         ]
       },
@@ -118,17 +143,22 @@
         "sectionID": "B02",
         "instructorID": "123",
         "place": "C214",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "16": "A-"
+            "id": "16",
+            "grade": "A-"
           },
           {
-            "17": "B+"
+            "id": "17",
+            "grade": "B+"
           },
           {
-            "18": "B"
+            "id": "18",
+            "grade": "B"
           }
         ]
       }
@@ -145,17 +175,22 @@
         "sectionID": "L01",
         "instructorID": "124",
         "place": "C215",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "19": "A"
+            "id": "19",
+            "grade": "A"
           },
           {
-            "20": "B"
+            "id": "20",
+            "grade": "B"
           },
           {
-            "21": "B+"
+            "id": "21",
+            "grade": "B+"
           }
         ]
       },
@@ -163,17 +198,22 @@
         "sectionID": "L02",
         "instructorID": "124",
         "place": "C216",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "22": "A-"
+            "id": "22",
+            "grade": "A-"
           },
           {
-            "23": "B+"
+            "id": "23",
+            "grade": "B+"
           },
           {
-            "24": "B"
+            "id": "24",
+            "grade": "B"
           }
         ]
       }
@@ -190,17 +230,22 @@
         "sectionID": "L01",
         "instructorID": "125",
         "place": "C217",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "25": "A"
+            "id": "25",
+            "grade": "A"
           },
           {
-            "26": "B"
+            "id": "26",
+            "grade": "B"
           },
           {
-            "27": "B+"
+            "id": "27",
+            "grade": "B+"
           }
         ]
       },
@@ -208,17 +253,22 @@
         "sectionID": "L02",
         "instructorID": "125",
         "place": "C218",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "28": "A-"
+            "id": "28",
+            "grade": "A-"
           },
           {
-            "29": "B+"
+            "id": "29",
+            "grade": "B+"
           },
           {
-            "30": "B"
+            "id": "30",
+            "grade": "B"
           }
         ]
       }
@@ -235,17 +285,22 @@
         "sectionID": "L01",
         "instructorID": "126",
         "place": "C219",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "31": "A"
+            "id": "31",
+            "grade": "A"
           },
           {
-            "32": "B"
+            "id": "32",
+            "grade": "B"
           },
           {
-            "33": "B+"
+            "id": "33",
+            "grade": "B+"
           }
         ]
       },
@@ -253,17 +308,22 @@
         "sectionID": "L02",
         "instructorID": "126",
         "place": "C220",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "34": "A-"
+            "id": "34",
+            "grade": "A-"
           },
           {
-            "35": "B+"
+            "id": "35",
+            "grade": "B+"
           },
           {
-            "36": "B"
+            "id": "36",
+            "grade": "B"
           }
         ]
       }
@@ -280,17 +340,22 @@
         "sectionID": "L01",
         "instructorID": "127",
         "place": "C221",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "37": "A"
+            "id": "37",
+            "grade": "A"
           },
           {
-            "38": "B"
+            "id": "38",
+            "grade": "B"
           },
           {
-            "39": "B+"
+            "id": "39",
+            "grade": "B+"
           }
         ]
       },
@@ -298,17 +363,22 @@
         "sectionID": "L02",
         "instructorID": "127",
         "place": "C222",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "40": "A-"
+            "id": "40",
+            "grade": "A-"
           },
           {
-            "41": "B+"
+            "id": "41",
+            "grade": "B+"
           },
           {
-            "42": "B"
+            "id": "42",
+            "grade": "B"
           }
         ]
       }
@@ -325,17 +395,22 @@
         "sectionID": "L01",
         "instructorID": "128",
         "place": "C223",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "43": "A"
+            "id": "43",
+            "grade": "A"
           },
           {
-            "44": "B"
+            "id": "44",
+            "grade": "B"
           },
           {
-            "45": "B+"
+            "id": "45",
+            "grade": "B+"
           }
         ]
       },
@@ -343,17 +418,22 @@
         "sectionID": "L02",
         "instructorID": "128",
         "place": "C224",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "46": "A-"
+            "id": "46",
+            "grade": "A-"
           },
           {
-            "47": "B+"
+            "id": "47",
+            "grade": "B+"
           },
           {
-            "48": "B"
+            "id": "48",
+            "grade": "B"
           }
         ]
       }
@@ -370,17 +450,22 @@
         "sectionID": "B01",
         "instructorID": "128",
         "place": "C225",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "49": "A"
+            "id": "49",
+            "grade": "A"
           },
           {
-            "50": "B"
+            "id": "50",
+            "grade": "B"
           },
           {
-            "51": "B+"
+            "id": "51",
+            "grade": "B+"
           }
         ]
       },
@@ -388,17 +473,22 @@
         "sectionID": "B02",
         "instructorID": "128",
         "place": "C226",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "52": "A-"
+            "id": "52",
+            "grade": "A-"
           },
           {
-            "53": "B+"
+            "id": "53",
+            "grade": "B+"
           },
           {
-            "54": "B"
+            "id": "54",
+            "grade": "B"
           }
         ]
       }
@@ -415,17 +505,22 @@
         "sectionID": "L01",
         "instructorID": "129",
         "place": "C227",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "55": "A"
+            "id": "55",
+            "grade": "A"
           },
           {
-            "56": "B"
+            "id": "56",
+            "grade": "B"
           },
           {
-            "57": "B+"
+            "id": "57",
+            "grade": "B+"
           }
         ]
       },
@@ -433,17 +528,22 @@
         "sectionID": "L02",
         "instructorID": "129",
         "place": "C228",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "58": "A-"
+            "id": "58",
+            "grade": "A-"
           },
           {
-            "59": "B+"
+            "id": "59",
+            "grade": "B+"
           },
           {
-            "60": "B"
+            "id": "60",
+            "grade": "B"
           }
         ]
       }
@@ -460,17 +560,22 @@
         "sectionID": "L01",
         "instructorID": "130",
         "place": "C229",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "61": "A"
+            "id": "61",
+            "grade": "A"
           },
           {
-            "62": "B"
+            "id": "62",
+            "grade": "B"
           },
           {
-            "63": "B+"
+            "id": "63",
+            "grade": "B+"
           }
         ]
       },
@@ -478,17 +583,22 @@
         "sectionID": "L02",
         "instructorID": "130",
         "place": "C230",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "64": "A-"
+            "id": "64",
+            "grade": "A-"
           },
           {
-            "65": "B+"
+            "id": "65",
+            "grade": "B+"
           },
           {
-            "66": "B"
+            "id": "66",
+            "grade": "B"
           }
         ]
       }
@@ -505,17 +615,22 @@
         "sectionID": "L01",
         "instructorID": "131",
         "place": "C231",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "67": "A"
+            "id": "67",
+            "grade": "A"
           },
           {
-            "68": "B"
+            "id": "68",
+            "grade": "B"
           },
           {
-            "69": "B+"
+            "id": "69",
+            "grade": "B+"
           }
         ]
       },
@@ -523,17 +638,22 @@
         "sectionID": "L02",
         "instructorID": "131",
         "place": "C232",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "70": "A-"
+            "id": "70",
+            "grade": "A-"
           },
           {
-            "71": "B+"
+            "id": "71",
+            "grade": "B+"
           },
           {
-            "72": "B"
+            "id": "72",
+            "grade": "B"
           }
         ]
       }
@@ -550,17 +670,22 @@
         "sectionID": "L01",
         "instructorID": "132",
         "place": "C233",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "73": "A"
+            "id": "73",
+            "grade": "A"
           },
           {
-            "74": "B"
+            "id": "74",
+            "grade": "B"
           },
           {
-            "75": "B+"
+            "id": "75",
+            "grade": "B+"
           }
         ]
       },
@@ -568,17 +693,22 @@
         "sectionID": "L02",
         "instructorID": "132",
         "place": "C234",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "76": "A-"
+            "id": "76",
+            "grade": "A-"
           },
           {
-            "77": "B+"
+            "id": "77",
+            "grade": "B+"
           },
           {
-            "78": "B"
+            "id": "78",
+            "grade": "B"
           }
         ]
       }
@@ -595,17 +725,22 @@
         "sectionID": "L01",
         "instructorID": "133",
         "place": "C235",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "79": "A"
+            "id": "79",
+            "grade": "A"
           },
           {
-            "80": "B"
+            "id": "80",
+            "grade": "B"
           },
           {
-            "81": "B+"
+            "id": "81",
+            "grade": "C+"
           }
         ]
       }
@@ -622,17 +757,22 @@
         "sectionID": "L01",
         "instructorID": "134",
         "place": "C237",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "85": "A"
+            "id": "85",
+            "grade": "A"
           },
           {
-            "86": "B"
+            "id": "86",
+            "grade": "B"
           },
           {
-            "87": "B+"
+            "id": "87",
+            "grade": "B+"
           }
         ]
       },
@@ -640,17 +780,22 @@
         "sectionID": "L02",
         "instructorID": "134",
         "place": "C238",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "88": "A-"
+            "id": "88",
+            "grade": "A-"
           },
           {
-            "89": "B+"
+            "id": "89",
+            "grade": "B+"
           },
           {
-            "90": "B"
+            "id": "90",
+            "grade": "B"
           }
         ]
       }
@@ -667,17 +812,22 @@
         "sectionID": "L01",
         "instructorID": "135",
         "place": "C239",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "91": "A"
+            "id": "91",
+            "grade": "A"
           },
           {
-            "92": "B"
+            "id": "92",
+            "grade": "B"
           },
           {
-            "93": "B+"
+            "id": "93",
+            "grade": "B+"
           }
         ]
       },
@@ -685,17 +835,22 @@
         "sectionID": "L02",
         "instructorID": "135",
         "place": "C240",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "94": "A-"
+            "id": "94",
+            "grade": "A-"
           },
           {
-            "95": "B+"
+            "id": "95",
+            "grade": "B+"
           },
           {
-            "96": "B"
+            "id": "96",
+            "grade": "B"
           }
         ]
       }
@@ -712,37 +867,47 @@
         "sectionID": "B01",
         "instructorID": "135",
         "place": "C241",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "97": "A"
+            "id": "97",
+            "grade": "A"
           },
           {
-            "98": "B"
+            "id": "98",
+            "grade": "B"
           },
           {
-            "99": "B+"
+            "id": "99",
+            "grade": "B+"
           }
         ]
+      }
+    ]
+  },
+  {
+    "sectionID": "B02",
+    "instructorID": "135",
+    "place": "C242",
+    "timing": "9:00-10:00",
+    "dow": "sun/tue/thu",
+    "campus": "female",
+    "status": "approved",
+    "students": [
+      {
+        "id": "100",
+        "grade": "A-"
       },
       {
-        "sectionID": "B02",
-        "instructorID": "135",
-        "place": "C242",
-        "campus": "female",
-        "status": "approved",
-        "studentIDs": [
-          {
-            "100": "A-"
-          },
-          {
-            "101": "B+"
-          },
-          {
-            "102": "B"
-          }
-        ]
+        "id": "101",
+        "grade": "B+"
+      },
+      {
+        "id": "102",
+        "grade": "B"
       }
     ]
   },
@@ -757,17 +922,22 @@
         "sectionID": "L01",
         "instructorID": "136",
         "place": "C243",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "103": "A"
+            "id": "103",
+            "grade": "A"
           },
           {
-            "104": "B"
+            "id": "104",
+            "grade": "B"
           },
           {
-            "105": "B+"
+            "id": "105",
+            "grade": "B+"
           }
         ]
       },
@@ -775,17 +945,22 @@
         "sectionID": "L02",
         "instructorID": "136",
         "place": "C244",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "106": "A-"
+            "id": "106",
+            "grade": "A-"
           },
           {
-            "107": "B+"
+            "id": "107",
+            "grade": "B+"
           },
           {
-            "108": "B"
+            "id": "108",
+            "grade": "B"
           }
         ]
       }
@@ -802,17 +977,22 @@
         "sectionID": "L01",
         "instructorID": "137",
         "place": "C245",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "109": "A"
+            "id": "109",
+            "grade": "A"
           },
           {
-            "110": "B"
+            "id": "110",
+            "grade": "B"
           },
           {
-            "111": "B+"
+            "id": "111",
+            "grade": "B+"
           }
         ]
       },
@@ -820,17 +1000,22 @@
         "sectionID": "L02",
         "instructorID": "137",
         "place": "C246",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "112": "A-"
+            "id": "112",
+            "grade": "A-"
           },
           {
-            "113": "B+"
+            "id": "113",
+            "grade": "B+"
           },
           {
-            "114": "B"
+            "id": "114",
+            "grade": "B"
           }
         ]
       }
@@ -847,17 +1032,22 @@
         "sectionID": "L01",
         "instructorID": "138",
         "place": "C247",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "115": "A"
+            "id": "115",
+            "grade": "A"
           },
           {
-            "116": "B"
+            "id": "116",
+            "grade": "B"
           },
           {
-            "117": "B+"
+            "id": "117",
+            "grade": "B+"
           }
         ]
       },
@@ -865,17 +1055,22 @@
         "sectionID": "L02",
         "instructorID": "138",
         "place": "C248",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "119": "A-"
+            "id": "119",
+            "grade": "A-"
           },
           {
-            "120": "B+"
+            "id": "120",
+            "grade": "B+"
           },
           {
-            "121": "B"
+            "id": "121",
+            "grade": "B"
           }
         ]
       }
@@ -892,17 +1087,22 @@
         "sectionID": "L01",
         "instructorID": "139",
         "place": "C249",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "122": "A"
+            "id": "122",
+            "grade": "A"
           },
           {
-            "123": "B"
+            "id": "123",
+            "grade": "B"
           },
           {
-            "124": "B+"
+            "id": "124",
+            "grade": "B+"
           }
         ]
       },
@@ -910,17 +1110,22 @@
         "sectionID": "L02",
         "instructorID": "139",
         "place": "C250",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "125": "A-"
+            "id": "125",
+            "grade": "A-"
           },
           {
-            "126": "B+"
+            "id": "126",
+            "grade": "B+"
           },
           {
-            "127": "B"
+            "id": "127",
+            "grade": "B"
           }
         ]
       }
@@ -937,17 +1142,22 @@
         "sectionID": "L01",
         "instructorID": "140",
         "place": "C251",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "128": "A"
+            "id": "128",
+            "grade": "A"
           },
           {
-            "129": "B"
+            "id": "129",
+            "grade": "B"
           },
           {
-            "130": "B+"
+            "id": "130",
+            "grade": "B+"
           }
         ]
       },
@@ -955,17 +1165,22 @@
         "sectionID": "L02",
         "instructorID": "140",
         "place": "C252",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "female",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "110": "A-"
+            "id": "110",
+            "grade": "A-"
           },
           {
-            "102": "B+"
+            "id": "102",
+            "grade": "B+"
           },
           {
-            "103": "B"
+            "id": "103",
+            "grade": "B"
           }
         ]
       }
@@ -982,17 +1197,22 @@
         "sectionID": "L02",
         "instructorID": "133",
         "place": "C235",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
         "campus": "male",
         "status": "approved",
-        "studentIDs": [
+        "students": [
           {
-            "79": "A"
+            "id": "79",
+            "grade": "A"
           },
           {
-            "80": "B"
+            "id": "80",
+            "grade": "B"
           },
           {
-            "81": "B+"
+            "id": "81",
+            "grade": "B+"
           }
         ]
       }
