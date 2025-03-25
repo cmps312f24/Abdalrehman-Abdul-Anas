@@ -13,5 +13,5 @@ Student:
 path not done
 courses DONE
 Schedule DONE
-StudentReg not done
+StudentReg DONE
 Summary not done
