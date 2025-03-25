@@ -1,0 +1,17 @@
+Admin:
+addCourse DONE
+Approving not done
+
+-----------------------
+
+Instructor:
+Sections Grade not done
+
+-----------------------
+
+Student:
+path not done
+courses DONE
+Schedule not done
+StudentReg not done
+Summary not done
