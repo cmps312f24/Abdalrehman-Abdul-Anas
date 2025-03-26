@@ -885,29 +885,29 @@
             "grade": "B+"
           }
         ]
-      }
-    ]
-  },
-  {
-    "sectionID": "B02",
-    "instructorID": "135",
-    "place": "C242",
-    "timing": "9:00-10:00",
-    "dow": "sun/tue/thu",
-    "campus": "female",
-    "status": "approved",
-    "students": [
-      {
-        "id": "100",
-        "grade": "A-"
       },
       {
-        "id": "101",
-        "grade": "B+"
-      },
-      {
-        "id": "102",
-        "grade": "B"
+        "sectionID": "B02",
+        "instructorID": "135",
+        "place": "C242",
+        "timing": "9:00-10:00",
+        "dow": "sun/tue/thu",
+        "campus": "female",
+        "status": "approved",
+        "students": [
+          {
+            "id": "100",
+            "grade": "A-"
+          },
+          {
+            "id": "101",
+            "grade": "A"
+          },
+          {
+            "id": "102",
+            "grade": "B"
+          }
+        ]
       }
     ]
   },

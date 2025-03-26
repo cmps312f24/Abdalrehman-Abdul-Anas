@@ -1,7 +1,7 @@
 [
     {
         "name": "Aisha Khalid",
-        "ID": "1001",
+        "id": "1001",
         "sections": [
             {"courseNo": "CMPS 151", "section": "L01"},
             {"courseNo": "MATH 101", "section": "L02"}
@@ -13,7 +13,7 @@
     },
     {
         "name": "Omar Faisal",
-        "ID": "1002",
+        "id": "1002",
         "sections": [
             {"courseNo": "PHYS 191", "section": "L03"},
             {"courseNo": "CMPE 263", "section": "L04"}
@@ -25,7 +25,7 @@
     },
     {
         "name": "Sara Ahmed",
-        "ID": "1003",
+        "id": "1003",
         "sections": [
             {"courseNo": "CHEM 103", "section": "B01"},
             {"courseNo": "PHYS 192", "section": "B02"}
@@ -37,7 +37,7 @@
     },
     {
         "name": "Yusuf Hamdan",
-        "ID": "1004",
+        "id": "1004",
         "sections": [
             {"courseNo": "ENGL 202", "section": "L05"},
             {"courseNo": "GENG 200", "section": "L06"}
@@ -49,7 +49,7 @@
     },
     {
         "name": "Nadia Rahman",
-        "ID": "1005",
+        "id": "1005",
         "sections": [
             {"courseNo": "MATH 231", "section": "L07"},
             {"courseNo": "CMPS 323", "section": "L08"}

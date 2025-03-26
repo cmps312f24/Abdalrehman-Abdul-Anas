@@ -18,12 +18,21 @@
         "courseNo": "MATH 101",
         "section": "L02",
         "grade": "B"
+      },
+      {
+        "courseNo": "PHYS 194",
+        "section": "B02",
+        "grade": "A"
       }
     ],
     "pendingSections": [
       {
         "courseNo": "CMPS 251",
         "section": "L01"
+      },
+      {
+        "courseNo": "PHYS 194",
+        "section": "B02"
       }
     ]
   },

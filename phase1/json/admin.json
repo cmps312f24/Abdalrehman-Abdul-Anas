@@ -1,7 +1,7 @@
 [
     {
         "name": "Anas Hatem",
-        "ID": "11",
+        "id": "11",
         "sections": [
             {"courseNo": "CMPS 151", "section": "L01"},
             {"courseNo": "MATH 101", "section": "L02"}
@@ -16,7 +16,7 @@
     },
     {
         "name": "Layla Saeed",
-        "ID": "12",
+        "id": "12",
         "sections": [
             {"courseNo": "PHYS 191", "section": "L01"},
             {"courseNo": "CMPE 263", "section": "L02"}
@@ -31,7 +31,7 @@
     },
     {
         "name": "Omar Khalid",
-        "ID": "13",
+        "id": "13",
         "sections": [
             {"courseNo": "GENG 200", "section": "L01"},
             {"courseNo": "MATH 231", "section": "L02"}
@@ -46,7 +46,7 @@
     },
     {
         "name": "Sara Ahmed",
-        "ID": "14",
+        "id": "14",
         "sections": [
             {"courseNo": "CHEM 101", "section": "L01"},
             {"courseNo": "ENGL 202", "section": "L02"}
