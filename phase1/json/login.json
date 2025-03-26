@@ -1,106 +1,116 @@
 [
     {
-        "ID": "11",
+        "id": "11",
         "role": "admin",
-        "EmailID": "ah11@qu.edu.qa",
+        "email": "ah11@qu.edu.qa",
         "password": "123"
     },
     {
-        "ID": "12",
+        "id": "12",
         "role": "admin",
-        "EmailID": "ls12@qu.edu.qa",
+        "email": "ls12@qu.edu.qa",
         "password": "123"
     },
     {
-        "ID": "13",
+        "id": "13",
         "role": "admin",
-        "EmailID": "ok13@qu.edu.qa",
+        "email": "ok13@qu.edu.qa",
         "password": "123"
     },
     {
-        "ID": "14",
+        "id": "14",
         "role": "admin",
-        "EmailID": "sa14@qu.edu.qa",
+        "email": "sa14@qu.edu.qa",
         "password": "123"
     },
     {
-        "ID": "1001",
+        "id": "1001",
         "role": "instructor",
-        "EmailID": "ak122@qu.edu.qa",
+        "email": "ak122@qu.edu.qa",
         "password": "123"
     },
     {
-        "ID": "1002",
+        "id": "1002",
         "role": "instructor",
-        "EmailID": "of123@qu.edu.qa",
+        "email": "of123@qu.edu.qa",
         "password": "123"
     },
     {
-        "ID": "1003",
+        "id": "1003",
         "role": "instructor",
-        "EmailID": "sa124@qu.edu.qa",
-        "password": "123"
-    },
-    {
-        "ID": "1004",
-        "role": "instructor",
-        "EmailID": "yh125@qu.edu.qa",
-        "password": "123"
-    },
-    {
-        "ID": "1005",
-        "role": "instructor",
-        "EmailID": "nr126@qu.edu.qa",
-        "password": "123"
-    },
-
-    {
-        "ID": "101",
-        "email": "am123@qu.edu.qa",
-        "password": "123"
-    },
-    {
-        "ID": "102",
         "email": "sa124@qu.edu.qa",
         "password": "123"
     },
     {
-        "ID": "103",
+        "id": "1004",
+        "role": "instructor",
         "email": "yh125@qu.edu.qa",
         "password": "123"
     },
     {
-        "ID": "104",
+        "id": "1005",
+        "role": "instructor",
+        "email": "nr126@qu.edu.qa",
+        "password": "123"
+    },
+
+    {
+        "id": "101",
+        "email": "am123@qu.edu.qa",
+        "role": "student",
+        "password": "123"
+    },
+    {
+        "id": "102",
+        "role": "student",
+        "email": "sa124@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "103",
+        "role": "student",
+        "email": "yh125@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "104",
+        "role": "student",
         "email": "nr126@qu.edu.qa",
         "password": "123"
     },
     {
-        "ID": "105",
+        "id": "105",
+        "role": "student",
         "email": "ah127@qu.edu.qa",
         "password": "123"
     },
     {
-        "ID": "106",
+        "id": "106",
+        "role": "student",
         "email": "mh128@qu.edu.qa",
         "password": "123"
     },
     {
-        "ID": "107",
+        "id": "107",
+        "role": "student",
         "email": "ha129@qu.edu.qa",
         "password": "123"
     },
     {
-        "ID": "108",
+        "id": "108",
+        "role": "student",
         "email": "sh130@qu.edu.qa",
         "password": "123"
     },
     {
-        "ID": "109",
+        "id": "109",
+        "role": "student",
         "email": "fa131@qu.edu.qa",
         "password": "123"
     },
     {
-        "ID": "110",
+        "id": "110",
+        "role": "student",
         "email": "ba132@qu.edu.qa",
         "password": "123"
     }

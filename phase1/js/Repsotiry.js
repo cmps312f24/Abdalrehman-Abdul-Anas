@@ -27,11 +27,19 @@ async function getAdmins() {
 }
 
 // Instructors
-const instructorFilePath = 'json/course.json';
+const instructorFilePath = 'json/instructor.json';
 async function getInstructors() {
   const data = fs.readFileSync(instructorFilePath, 'utf8');
   const instructors = await JSON.parse(data);
   return instructors;
+}
+
+// Login 
+const loginFilePath = 'json/login.json';
+async function getLogins() {
+  const data = fs.readFileSync(loginFilePath, 'utf8');
+  const logins = await JSON.parse(data);
+  return logins;
 }
 
 
@@ -257,4 +265,41 @@ async function approveSection(course) {
   fs.writeFileSync(studentFilePath, JSON.stringify(students, null, 2), 'utf8');
 }
 
+
+
+///           LOGIN           ///
+
+// get user info
+export async function getUser(email,pass) {
+  // login list
+  const logins =await getLogins(); 
+
+  // user login info
+  const login= logins.find((u)=> u.email==email && u.password==pass);
+
+  let user;
+  if (login){
+      switch (login.role){
+          case "admin": {
+              const admins=await getAdmins();
+              user= admins.find((a)=>a.id==login.id);
+              break;
+          } 
+          case "instructor":{
+              const instructors=await getInstructors();
+              user= instructors.find((i)=>i.id==login.id);
+              break;
+          }
+          case "student":{
+              const students=await getStudents();
+              user=students.find((s)=>s.id==login.id)
+              break;
+          }
+          default: user=null;
+      }
+  }else{user=null}
+  
+  // Save user to localStorge
+  localStorage.user=user;
+}
 
