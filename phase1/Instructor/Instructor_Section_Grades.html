@@ -1,46 +1,38 @@
-<!-- Main Content -->
-<main class="content-area">
-    <!-- Navigation Tabs -->
-    <div class="bage-header">
+<div class="container">
+    <div class="page-header">
         <h1>Web development Fundamentals L01</h1>
     </div>
-
     <!-- Search Form -->
-    <div class="search-container">
-        <div class="form-row">
-            <!-- Student Name Field -->
+    <div class="search-container grade-search">
+        <form class="form-student-search">
             <div class="form-group">
-                <label class="form-label">Student Name :</label>
+                <label class="form-label">College:</label>
                 <div class="input-wrapper">
-                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <input type="text" id="student-name-input" class="form-input with-icon" placeholder="Student name">
-                    <button id="clear-student-name" class="clear-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                    </button>
+                    <input type="text" id="college-input" class="form-input with-icon" placeholder="College name">
+                    <button id="clear-college" class="clear-button"></button>
                 </div>
             </div>
-
-            <!-- Student ID Field -->
             <div class="form-group">
-                <label class="form-label">Student ID :</label>
+                <label class="form-label">Course Number:</label>
                 <div class="input-wrapper">
-                    <input type="text" id="student-id-input" class="form-input" placeholder="Student ID">
+                    <input type="text" class="form-input" placeholder="Course number">
                 </div>
             </div>
 
-            <!-- Search Button -->
-            <button class="search-button">Search</button>
-        </div>
+            <div class="button-container">
+                <button class="search-button">Search</button>
+            </div>
+
+        </form>
     </div>
 
     <!-- Table Container -->
-    <div class="table-container">
+    <div class="table-container grade-table">
         <table class="search-results-table">
             <thead>
                 <tr class="table-header">
@@ -50,72 +42,72 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="course-result">
+                <tr class="student-grade">
                     <td>Abdul Mahmoud</td>
                     <td>2018000000</td>
                     <td><input type="text" class="grade-input" value="A"></td>
                 </tr>
-                <tr class="course-result">
+                <tr class="student-grade">
                     <td>Abdul Mahmoud</td>
                     <td>2018000000</td>
                     <td><input type="text" class="grade-input" value="A"></td>
                 </tr>
-                <tr class="course-result">
+                <tr class="student-grade">
                     <td>Abdul Mahmoud</td>
                     <td>2018000000</td>
                     <td><input type="text" class="grade-input" value="A"></td>
                 </tr>
-                <tr class="course-result">
+                <tr class="student-grade">
                     <td>Abdul Mahmoud</td>
                     <td>2018000000</td>
                     <td><input type="text" class="grade-input" value="A"></td>
                 </tr>
-                <tr class="course-result">
+                <tr class="student-grade">
                     <td>Abdul Mahmoud</td>
                     <td>2018000000</td>
                     <td><input type="text" class="grade-input" value="A"></td>
                 </tr>
-                <tr class="course-result">
+                <tr class="student-grade">
                     <td>Abdul Mahmoud</td>
                     <td>2018000000</td>
                     <td><input type="text" class="grade-input" value="A"></td>
                 </tr>
-                <tr class="course-result">
+                <tr class="student-grade">
                     <td>Abdul Mahmoud</td>
                     <td>2018000000</td>
                     <td><input type="text" class="grade-input" value="A"></td>
                 </tr>
-                <tr class="course-result">
+                <tr class="student-grade">
                     <td>Abdul Mahmoud</td>
                     <td>2018000000</td>
                     <td><input type="text" class="grade-input" value="A"></td>
                 </tr>
-                <tr class="course-result">
+                <tr class="student-grade">
                     <td>Abdul Mahmoud</td>
                     <td>2018000000</td>
                     <td><input type="text" class="grade-input" value="A"></td>
                 </tr>
-                <tr class="course-result">
+                <tr class="student-grade">
                     <td>Abdul Mahmoud</td>
                     <td>2018000000</td>
                     <td><input type="text" class="grade-input" value="A"></td>
                 </tr>
-                <tr class="course-result">
+                <tr class="student-grade">
                     <td>Abdul Mahmoud</td>
                     <td>2018000000</td>
                     <td><input type="text" class="grade-input" value="A"></td>
                 </tr>
-                <tr class="course-result">
+                <tr class="student-grade">
                     <td>Abdul Mahmoud</td>
                     <td>2018000000</td>
                     <td><input type="text" class="grade-input" value="A"></td>
                 </tr>
-                <tr class="course-result">
+                <tr class="student-grade">
                     <td>Abdul Mahmoud</td>
                     <td>2018000000</td>
                     <td><input type="text" class="grade-input" value="A"></td>
                 </tr>
-                <tr class="course-result">
+                <tr class="student-grade">
                     <td>Abdul Mahmoud</td>
                     <td>2018000000</td>
                     <td><input type="text" class="grade-input" value="A"></td>
@@ -126,22 +118,4 @@
     </div>
 
     <button class="submit-button">Submit</button>
-
-
-
-</main>
-
-<script>
-    // Clear button functionality for Student Name input
-    const studentNameInput = document.getElementById('student-name-input');
-    const clearStudentNameButton = document.getElementById('clear-student-name');
-    
-    studentNameInput.addEventListener('input', function() {
-        clearStudentNameButton.style.display = this.value ? 'block' : 'none';
-    });
-    
-    clearStudentNameButton.addEventListener('click', function() {
-        studentNameInput.value = '';
-        this.style.display = 'none';
-    });
-</script>
+</div>

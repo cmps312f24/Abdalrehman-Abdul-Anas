@@ -5,7 +5,7 @@ Approving not done
 -----------------------
 
 Instructor:
-Sections Grade not done
+Sections Grade DONE
 
 -----------------------
 
@@ -14,4 +14,7 @@ path not done
 courses DONE
 Schedule DONE
 StudentReg DONE
-Summary not done
+Summary DONE
+
+
+For nav we have to put minmax because the nav is so ugly in small screens
