@@ -1,4 +1,4 @@
-import Repository from "@/app/repository/Repository";
+import Repository from "@/app/repository/Repsotiry.js";
 export async function GET(req) {
     const student = await Repository.getStudent(req);
     return Response.json(student, {status:200})

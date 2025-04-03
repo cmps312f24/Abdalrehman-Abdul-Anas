@@ -8,7 +8,7 @@ class Repo {
     this.instructorFilePath = path.join(process.cwd(), 'app/data/instructor.json');
     this.loginFilePath = path.join(process.cwd(), 'app/data/login.json');
     this.studentFilePath = path.join(process.cwd(), 'app/data/student.json');
-    this.uni = path.join(process.cwd(), 'app/data/uni.json');  
+    this.uniFilePath = path.join(process.cwd(), 'app/data/uni.json');  
   }
 
   // Saving Methods 
@@ -33,7 +33,7 @@ class Repo {
 
   // Admins
   async getAdmins() {
-    const admins = await fse.readJSON(adminFilePath);
+    const admins = await fse.readJSON(this.adminFilePath);
     return admins;
   }
   
@@ -49,7 +49,7 @@ class Repo {
   async updateAdmin(admin) {
     const admins = await this.getAdmins();
   
-    const index = instructors.findIndex((a) => a.id == admin.id);
+    const index = admins.findIndex((a) => a.id == admin.id);
   
     if (index < 0) {
         return { error: 'Admin not found' };
@@ -78,7 +78,7 @@ class Repo {
   async addCourse(course) {
     const courses = await this.getCourses();
     courses.push(course);
-    await this.saveAccounts(courses);
+    await this.saveCourses(courses);
     return course;
   }
 
@@ -152,7 +152,7 @@ async updateStudent(student) {
   }
   students[index] = { ...students[index], ...student};
 
-  await this.saveCourses(students);
+  await this.saveStudents(students);
   return students[index];
 }
 
@@ -196,7 +196,7 @@ async getUsers(){
 // get user info
 async getUser(email,pass) {
   // login list
-  const logins = await this.getCourses();
+  const logins = await this.getUsers();
 
   // user login info
   const login= logins.find((u)=> u.email==email && u.password==pass);
@@ -210,12 +210,12 @@ async getUser(email,pass) {
               break;
           } 
           case "instructor":{
-              const instructors=await getInstructors();
+              const instructors=await this.getInstructors();
               user= instructors.find((i)=>i.id==login.id);
               break;
           }
           case "student":{
-              const students=await getStudents();
+              const students=await this.getStudents();
               user=students.find((s)=>s.id==login.id)
               break;
           }
