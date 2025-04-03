@@ -125,8 +125,75 @@ async deleteSection(nums){
 
 // Student
 
+async getStudents(){
+  const students = await fse.readJSON(this.studentFilePath);
+  return students;
+}
 
+async getStudent(id){
+  const students = this.getStudents();
+  const student = students.find((s)=> s.id == id);
+    if(!student){
+      return { error: 'Admin not found' };
+    }
+    return student;
+}
 
+// Register course
+async registerCourse(id,course) {
+  // Student list
+  const students=await this.getStudents();
+  
+  // Find student by id
+  const student=students.find((s)=>s.id==id);
+
+  // Courses list
+  const courses= await getCourses();
+
+  // find section list
+  const sections=courses.find((c)=>c.courseNo==course.courseNo && c.category==course.category).sections;
+
+  // find section
+  const section = sections.find((s)=> s.sectionID==course.sections[0].sectionID);
+  
+  // Add student to section
+  section.students.push({"id":student.id,"grade":""});
+
+  // Add section to student pendding sections
+  student.pendingSections.push({"courseNo":course.courseNo,"section":section.sectionID});
+
+  // update json file
+  await this.saveCourses();
+  await this.saveStudents();
+}
+
+// Withdraw from a pending course
+async WithdrawCourse(id,course) {
+  // Student list
+  const students=await this.getStudents();
+   
+  // Find student by id
+  let student=students.find((s)=>s.id==id);
+
+  // Courses list
+  const courses= await getCourses();
+
+  // find section list
+  const sections=courses.find((c)=>c.courseNo==course.courseNo && c.category==course.category).sections;
+
+  // find section
+  let section = sections.find((s)=> s.sectionID==course.sections[0].sectionID);
+  
+  // Remove student from section
+  section.students=section.students.filter((s)=> s.id!=id);
+
+  // Remove section from student pendding sections
+  student.pendingSections=student.pendingSections.filter((s)=> !(s.courseNo==course.courseNo && s.section==section.sectionID));
+
+  // update json file
+  await this.saveCourses();
+  await this.saveStudents();
+}
 
 
 
@@ -159,7 +226,8 @@ async deleteSection(nums){
     return { message: 'Account deleted successfully' };
   }
 
-  // Instructor6
+  // Instructor
+
   async getInstructors() {
     const instructors = await fse.readJSON(this.instructorFilePath);
     return instructors;
@@ -173,102 +241,82 @@ async deleteSection(nums){
     }
     return instructor;
   }
-  
 
-  // 
+  // Submit grade
+async submitGrade(id,course,grade) {
+  // Student list
+  const students=await this.getStudents();
+    
+  // Find student by id
+  let student=students.find((s)=>s.id==id);
+
+  // Courses list
+  const courses= await this.getCourses();
+
+  // find section list
+  const sections=courses.find((c)=>c.courseNo==course.courseNo && c.category==course.category).sections;
+
+  // find section
+  let section = sections.find((s)=> s.sectionID==course.sections[0].sectionID);
+  
+  // Add grade to section
+  section.students.find((s)=> s.id==id).grade=grade;
+
+  // Add grade to student
+  student.currentSections.find((s)=>s.courseNo==course.courseNo && s.section==section.sectionID).grade=grade;
+
+  // update json file
+  fs.writeFileSync(courseFilePath, JSON.stringify(courses, null, 2), 'utf8');
+  fs.writeFileSync(studentFilePath, JSON.stringify(students, null, 2), 'utf8');
+}
+
+  
+///           LOGIN           ///
+
+// get user info
+async getUser(email,pass) {
+  // login list
+  const logins = await fse.readJSON(this.loginFilePath) 
+
+  // user login info
+  const login= logins.find((u)=> u.email==email && u.password==pass);
+
+  let user;
+  if (login){
+      switch (login.role){
+          case "admin": {
+              const admins=await this.getAdmins();
+              user= admins.find((a)=>a.id==login.id);
+              break;
+          } 
+          case "instructor":{
+              const instructors=await getInstructors();
+              user= instructors.find((i)=>i.id==login.id);
+              break;
+          }
+          case "student":{
+              const students=await getStudents();
+              user=students.find((s)=>s.id==login.id)
+              break;
+          }
+          default: user=null;
+      }
+  }else{user=null}
+  
+  return user;
+}
+
 }
 
 
 
-// ///           STUDENT           ///
 
-// // Register course
-// async function registerCourse(id,course) {
-//     // Student list
-//     const students=await getStudents();
-    
-//     // Find student by id
-//     const student=students.find((s)=>s.id==id);
-
-//     // Courses list
-//     const courses= await getCourses();
-
-//     // find section list
-//     const sections=courses.find((c)=>c.courseNo==course.courseNo && c.category==course.category).sections;
-
-//     // find section
-//     const section = sections.find((s)=> s.sectionID==course.sections[0].sectionID);
-    
-//     // Add student to section
-//     section.students.push({"id":student.id,"grade":""});
-
-//     // Add section to student pendding sections
-//     student.pendingSections.push({"courseNo":course.courseNo,"section":section.sectionID});
-
-//     // update json file
-//     fs.writeFileSync(courseFilePath, JSON.stringify(courses, null, 2), 'utf8');
-//     fs.writeFileSync(studentFilePath, JSON.stringify(students, null, 2), 'utf8');
-// }
-
-// // Withdraw from a pending course
-// async function WithdrawCourse(id,course) {
-//    // Student list
-//    const students=await getStudents();
-    
-//    // Find student by id
-//    let student=students.find((s)=>s.id==id);
-
-//    // Courses list
-//    const courses= await getCourses();
-
-//    // find section list
-//    const sections=courses.find((c)=>c.courseNo==course.courseNo && c.category==course.category).sections;
-
-//    // find section
-//    let section = sections.find((s)=> s.sectionID==course.sections[0].sectionID);
-   
-//    // Remove student from section
-//    section.students=section.students.filter((s)=> s.id!=id);
-
-//    // Remove section from student pendding sections
-//    student.pendingSections=student.pendingSections.filter((s)=> !(s.courseNo==course.courseNo && s.section==section.sectionID));
-
-//    // update json file
-//    fs.writeFileSync(courseFilePath, JSON.stringify(courses, null, 2), 'utf8');
-//    fs.writeFileSync(studentFilePath, JSON.stringify(students, null, 2), 'utf8');
-// }
 
 
 
 // ///           INSTRUCTOR            ///
 
-// // Submit grade
-// async function submitGrade(id,course,grade) {
-//   // Student list
-//   const students=await getStudents();
-    
-//   // Find student by id
-//   let student=students.find((s)=>s.id==id);
 
-//   // Courses list
-//   const courses= await getCourses();
-
-//   // find section list
-//   const sections=courses.find((c)=>c.courseNo==course.courseNo && c.category==course.category).sections;
-
-//   // find section
-//   let section = sections.find((s)=> s.sectionID==course.sections[0].sectionID);
-  
-//   // Add grade to section
-//   section.students.find((s)=> s.id==id).grade=grade;
-
-//   // Add grade to student
-//   student.currentSections.find((s)=>s.courseNo==course.courseNo && s.section==section.sectionID).grade=grade;
-
-//   // update json file
-//   fs.writeFileSync(courseFilePath, JSON.stringify(courses, null, 2), 'utf8');
-//   fs.writeFileSync(studentFilePath, JSON.stringify(students, null, 2), 'utf8');
-// }
 
 
 
@@ -337,39 +385,5 @@ async deleteSection(nums){
 
 
 
-// ///           LOGIN           ///
 
-// // get user info
-// export async function getUser(email,pass) {
-//   // login list
-//   const logins =await getLogins(); 
-
-//   // user login info
-//   const login= logins.find((u)=> u.email==email && u.password==pass);
-
-//   let user;
-//   if (login){
-//       switch (login.role){
-//           case "admin": {
-//               const admins=await getAdmins();
-//               user= admins.find((a)=>a.id==login.id);
-//               break;
-//           } 
-//           case "instructor":{
-//               const instructors=await getInstructors();
-//               user= instructors.find((i)=>i.id==login.id);
-//               break;
-//           }
-//           case "student":{
-//               const students=await getStudents();
-//               user=students.find((s)=>s.id==login.id)
-//               break;
-//           }
-//           default: user=null;
-//       }
-//   }else{user=null}
-  
-//   // Save user to localStorge
-//   localStorage.user=user;
-// }
 
