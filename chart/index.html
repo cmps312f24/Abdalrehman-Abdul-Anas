@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plotly Graph</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+    <div id="myGraph" style="width:600px;height:400px;"></div>
+
+    <script>
+        // Define the data
+        var data = [
+            {
+                x: [1, 2, 3, 4, 5],  // X-axis values
+                y: [10, 15, 7, 20, 12],  // Y-axis values
+                mode: 'lines+markers',
+                type: 'scatter'
+            }
+        ];
+
+        // Define the layout
+        var layout = {
+            title: 'My Plotly Graph',
+            xaxis: { title: 'X Axis Label' },
+            yaxis: { title: 'Y Axis Label' }
+        };
+        var config = {
+            displayModeBar: true,
+            modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'autoScale2d', 'resetScale2d']
+        };
+        // Render the graph
+        Plotly.newPlot('myGraph', data, layout,config);
+    </script>
+
+</body>
+</html>

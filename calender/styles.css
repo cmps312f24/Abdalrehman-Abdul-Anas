@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.calendar {
+    width: 300px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.days, .dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.days div {
+    font-weight: bold;
+    padding: 5px;
+}
+
+.dates div {
+    padding: 10px;
+    background: #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.dates div:hover {
+    background: #bbb;
+    cursor: pointer;
+}
+
+.today {
+    background-color: grey !important;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+}
+
+.event {
+    background-color: #3498db !important;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.event:hover {
+    background-color: #2980b9 !important;
+}
+
+
+.legend {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.legend-box {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+.legend-item .today {
+    background-color: #ff6347;
+}
+
+.legend-item .event {
+    background-color: #3498db;
+}

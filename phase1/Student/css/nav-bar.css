@@ -154,6 +154,19 @@ nav:hover #img-user {
     box-shadow: -5px 5px 10px #0A0F14;
 }
 
+/* selected menu element */
+.menu-element.selected{
+    background-color: white;
+    color: black;
+    
+}
+.menu-element.selected .menu-text {
+    color: black !important;
+}
+.menu-element.selected img {
+    filter: invert(1);
+}
+
 /* Content area */
 .menu-text {
     font-size: x-large;
@@ -826,3 +839,7 @@ h2 {
         height: 70%;
     }
 }
+
+
+
+
