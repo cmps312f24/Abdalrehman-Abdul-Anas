@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Anas Hatem",
+        "id": "11",
+        "sections": [
+            {"courseNo": "CMPS 151", "section": "L01"},
+            {"courseNo": "MATH 101", "section": "L02"}
+        ],
+        "Username": "ah11",
+        "collage": "Engineering",
+        "role": "admin",
+        "EmailID": "ah11@qu.edu.qa",
+        "pendingSections": [
+            {"courseNo": "CMPS 303", "section": "L01"}
+        ]
+    },
+    {
+        "name": "Layla Saeed",
+        "id": "12",
+        "sections": [
+            {"courseNo": "PHYS 191", "section": "L01"},
+            {"courseNo": "CMPE 263", "section": "L02"}
+        ],
+        "Username": "ls12",
+        "collage": "Engineering",
+        "role": "admin",
+        "EmailID": "ls12@qu.edu.qa",
+        "pendingSections": [
+            {"courseNo": "CMPS 303", "section": "L01"}
+        ]
+    },
+    {
+        "name": "Omar Khalid",
+        "id": "13",
+        "sections": [
+            {"courseNo": "GENG 200", "section": "L01"},
+            {"courseNo": "MATH 231", "section": "L02"}
+        ],
+        "Username": "ok13",
+        "collage": "Engineering",
+        "role": "admin",
+        "EmailID": "ok13@qu.edu.qa",
+        "pendingSections": [
+            {"courseNo": "CMPS 303", "section": "L01"}
+        ]
+    },
+    {
+        "name": "Sara Ahmed",
+        "id": "14",
+        "sections": [
+            {"courseNo": "CHEM 101", "section": "L01"},
+            {"courseNo": "ENGL 202", "section": "L02"}
+        ],
+        "Username": "sa14",
+        "collage": "Engineering",
+        "role": "admin",
+        "EmailID": "sa14@qu.edu.qa",
+        "pendingSections": [
+            {"courseNo": "CMPS 303", "section": "L01"}
+        ]
+    }
+]
