@@ -68,31 +68,20 @@ class Repo {
     return course;
   }
 
-  async addSection(course) {
-  // Courses list / Instructors list / admin list
-  const courses= await getCourses();
-  const instructors=await getInstructors();
-  const admins=await getAdmins();
-  
-  // Find instructor
-  const instructor= instructors.find((i)=> i.id==course.instructorID) || admins.find((a)=> a.id==course.instructorID);
+  //To update the course if there is any update on its sections
+  async updateCourse(course) {
+    const courses = await this.getCourses();
 
-  // Add section to instructor TODO: 
-  instructor.sections.push({"courseNo":course.courseNo,"section":course.sections[0].sectionID});
+    const index = courses.findIndex(course => course.accountNo == course.courseNo);
 
-  // Check if the course exist 
-  if (!courses.find((c)=>c.courseNo.toLowerCase()==course.courseNo.toLowerCase() && c.category.toLowerCase()==course.category.toLowerCase())){
-      addCourse(course);
-  }else{
-      const sections=courses.find((c)=>c.courseNo.toLowerCase()==course.courseNo.toLowerCase() && c.category.toLowerCase()==course.category.toLowerCase()).sections;
-      sections.push(...course.sections);
+    if (index < 0) {
+        return { error: 'Course not found' };
+    }
+    courses[index] = { ...courses[index], ...course};
+
+    await this.saveCourses(courses);
+    return courses[index];
   }
-
-  // update json file
-  await this.saveAdmins(admins);
-  await this.saveInstructors(instructors);
-  await this.saveCourses(courses);
-}
 
 // Delete section
 async deleteSection(nums){
@@ -139,94 +128,21 @@ async getStudent(id){
     return student;
 }
 
-// Register course
-async registerCourse(id,course) {
-  // Student list
-  const students=await this.getStudents();
-  
-  // Find student by id
-  const student=students.find((s)=>s.id==id);
+async updateStudent(student) {
+  const students = await this.getStudents();
 
-  // Courses list
-  const courses= await getCourses();
+  const index = students.findIndex((s) => s.id == student.id);
 
-  // find section list
-  const sections=courses.find((c)=>c.courseNo==course.courseNo && c.category==course.category).sections;
+  if (index < 0) {
+      return { error: 'Course not found' };
+  }
+  students[index] = { ...students[index], ...student};
 
-  // find section
-  const section = sections.find((s)=> s.sectionID==course.sections[0].sectionID);
-  
-  // Add student to section
-  section.students.push({"id":student.id,"grade":""});
-
-  // Add section to student pendding sections
-  student.pendingSections.push({"courseNo":course.courseNo,"section":section.sectionID});
-
-  // update json file
-  await this.saveCourses();
-  await this.saveStudents();
+  await this.saveCourses(students);
+  return students[index];
 }
 
-// Withdraw from a pending course
-async WithdrawCourse(id,course) {
-  // Student list
-  const students=await this.getStudents();
-   
-  // Find student by id
-  let student=students.find((s)=>s.id==id);
-
-  // Courses list
-  const courses= await getCourses();
-
-  // find section list
-  const sections=courses.find((c)=>c.courseNo==course.courseNo && c.category==course.category).sections;
-
-  // find section
-  let section = sections.find((s)=> s.sectionID==course.sections[0].sectionID);
-  
-  // Remove student from section
-  section.students=section.students.filter((s)=> s.id!=id);
-
-  // Remove section from student pendding sections
-  student.pendingSections=student.pendingSections.filter((s)=> !(s.courseNo==course.courseNo && s.section==section.sectionID));
-
-  // update json file
-  await this.saveCourses();
-  await this.saveStudents();
-}
-
-
-
-
-
-
-
-  async updateAccount(accountNo, account) {
-    const accounts = await this.getAccounts();
-
-    const index = accounts.findIndex(account => account.accountNo == accountNo);
-
-    if (index < 0) {
-        return { error: 'Account not found' };
-    }
-    accounts[index] = { ...accounts[index], ...account };
-
-    await this.saveAccounts(accounts);
-    return accounts[index];
-  }
-
-  async deleteAccount(accountNo) {
-    const accounts = await this.getAccounts();
-    const index = accounts.findIndex(account => account.accountNo == accountNo);
-    if (index < 0) {
-        return { error: 'Account not found' };
-    }
-    accounts.splice(index, 1);
-    await this.saveAccounts(accounts);
-    return { message: 'Account deleted successfully' };
-  }
-
-  // Instructor
+///           Instructor           ///
 
   async getInstructors() {
     const instructors = await fse.readJSON(this.instructorFilePath);
@@ -240,43 +156,33 @@ async WithdrawCourse(id,course) {
       return { error: 'Instructor not found' };
     }
     return instructor;
-  }
+  } 
 
-  // Submit grade
-async submitGrade(id,course,grade) {
-  // Student list
-  const students=await this.getStudents();
-    
-  // Find student by id
-  let student=students.find((s)=>s.id==id);
-
-  // Courses list
-  const courses= await this.getCourses();
-
-  // find section list
-  const sections=courses.find((c)=>c.courseNo==course.courseNo && c.category==course.category).sections;
-
-  // find section
-  let section = sections.find((s)=> s.sectionID==course.sections[0].sectionID);
+  async updateinstructor(instructor) {
+    const instructors = await this.getInstructors();
   
-  // Add grade to section
-  section.students.find((s)=> s.id==id).grade=grade;
-
-  // Add grade to student
-  student.currentSections.find((s)=>s.courseNo==course.courseNo && s.section==section.sectionID).grade=grade;
-
-  // update json file
-  fs.writeFileSync(courseFilePath, JSON.stringify(courses, null, 2), 'utf8');
-  fs.writeFileSync(studentFilePath, JSON.stringify(students, null, 2), 'utf8');
-}
-
+    const index = instructors.findIndex((i) => i.id == instructor.id);
+  
+    if (index < 0) {
+        return { error: 'Course not found' };
+    }
+    instructors[index] = { ...instructors[index], ...instructor};
+  
+    await this.saveInstructors(instructors);
+    return instructors[index];
+  }
   
 ///           LOGIN           ///
+
+async getUsers(){
+  const logins = await fse.readJSON(this.loginFilePath)
+  return logins; 
+}
 
 // get user info
 async getUser(email,pass) {
   // login list
-  const logins = await fse.readJSON(this.loginFilePath) 
+  const logins = await this.getCourses();
 
   // user login info
   const login= logins.find((u)=> u.email==email && u.password==pass);
@@ -307,81 +213,6 @@ async getUser(email,pass) {
 }
 
 }
-
-
-
-
-
-
-
-// ///           INSTRUCTOR            ///
-
-
-
-
-
-// ///           ADMIN           ///
-
-// // Add section
-// async function addSection(course) {
-//   // Courses list
-//   const courses= await getCourses();
-
-//   // Instructors list / admin list
-//   const instructors=await getInstructors();
-//   const admins=await getAdmins();
-  
-//   // Find instructor
-//   const instructor= instructors.find((i)=> i.id==course.instructorID) || admins.find((a)=> a.id==course.instructorID);
-
-//   // Add section to instructor
-//   instructor.sections.push({"courseNo":course.courseNo,"section":course.sections[0].sectionID});
-
-//   // Check if the course exist 
-//   if (!courses.find((c)=>c.courseNo==course.courseNo && c.category==course.category)){
-//       addCourse(course);
-//   }else{
-//       const sections=courses.find((c)=>c.courseNo==course.courseNo && c.category==course.category).sections;
-//       sections.push(...course.sections);
-//   }
-
-//   // update json file
-//   fs.writeFileSync(courseFilePath, JSON.stringify(courses, null, 2), 'utf8');
-// }
-
-
-
-// // Approve section
-// async function approveSection(course) {
-//   // Courses list
-//   const courses= await getCourses();
-
-//   // find section list
-//   const sections=courses.find((c)=>c.courseNo==course.courseNo && c.category==course.category).sections;
-
-//   // find section
-//   const section = sections.find((s)=> s.sectionID==course.sections[0].sectionID);
-  
-//   // All students list
-//   const students=await getStudents();
-    
-//   // Find students have this course pendding
-//   let student=students.filter((s)=> s.pendingSections.find((s)=> s.courseNo==course.courseNo && s.section==section.sectionID));
-
-//   //new status value
-//   section.status="approved";
-
-//   // Transfrom the course from pendding list to current
-//   student.forEach((temp)=> {
-//     let index=temp.pendingSections.findIndex((s)=> s.courseNo==course.courseNo && s.section==section.sectionID);
-//     temp.currentSections.push({...temp.pendingSections[index],"grade":""});
-//     temp.pendingSections.splice(index,1);
-//   })
-
-//   // update json file
-//   fs.writeFileSync(courseFilePath, JSON.stringify(courses, null, 2), 'utf8');
-//   fs.writeFileSync(studentFilePath, JSON.stringify(students, null, 2), 'utf8');
-// }
 
 
 
