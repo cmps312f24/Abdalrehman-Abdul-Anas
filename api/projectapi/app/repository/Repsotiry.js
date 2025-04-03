@@ -46,13 +46,27 @@ class Repo {
     return admin;
   }
 
+  async updateAdmin(admin) {
+    const admins = await this.getAdmins();
+  
+    const index = instructors.findIndex((a) => a.id == admin.id);
+  
+    if (index < 0) {
+        return { error: 'Admin not found' };
+    }
+    admins[index] = { ...admins[index], ...admin};
+  
+    await this.saveAdmins(admins);
+    return admins[index];
+  }
+
   //Courses
   async getCourses() {
     const courses = await fse.readJSON(this.courseFilePath);
     return courses;
   }
   
-  async getcourse(courseNo) {
+  async getCourse(courseNo) {
     const courses = await this.getCourses();
     const course = courses.find((course)=> course.courseNo == courseNo);
     if(!course){
@@ -84,30 +98,30 @@ class Repo {
   }
 
 // Delete section
-async deleteSection(nums){
-  // Courses list
-  const courses= await getCourses();
-  //Define IDs
-  const courseNo = nums[0];
-  const sectionID = nums[1];
+// async deleteSection(nums){
+//   // Courses list
+//   const courses= await getCourses();
+//   //Define IDs
+//   const courseNo = nums[0];
+//   const sectionID = nums[1];
 
-  // find sections list
-  const sections=courses.find((c)=>c.courseNo.toLowerCase()==courseNo.toLowerCase()).sections;
-  if (sections < 0) {
-    return { error: 'Course not found' };
-  }
-  // section index
-  const sectionIndex=sections.findIndex((s)=>s.sectionID.toLowerCase()==sectionID.toLowerCase());
-  if (index < 0) {
-    return { error: 'Section not found' };
-  }
-  //delete from sections list 
-  sections.splice(sectionIndex,1);
+//   // find sections list
+//   const sections=courses.find((c)=>c.courseNo.toLowerCase()==courseNo.toLowerCase()).sections;
+//   if (sections < 0) {
+//     return { error: 'Course not found' };
+//   }
+//   // section index
+//   const sectionIndex=sections.findIndex((s)=>s.sectionID.toLowerCase()==sectionID.toLowerCase());
+//   if (index < 0) {
+//     return { error: 'Section not found' };
+//   }
+//   //delete from sections list 
+//   sections.splice(sectionIndex,1);
 
-  // update json file
-  await this.saveCourses();
-  return { message: 'Account deleted successfully' }; 
-}
+//   // update json file
+//   await this.saveCourses();
+//   return { message: 'Account deleted successfully' }; 
+// }
 
 
 
@@ -212,9 +226,30 @@ async getUser(email,pass) {
   return user;
 }
 
+
+async updateUser(user){
+  const users = await this.getUsers();
+  
+  const index = users.findIndex((u) => u.id == user.id);
+
+  if (index < 0) {
+      return { error: 'User not found' };
+  }
+  users[index] = { ...users[index], ...user};
+
+  await this.saveAdmins(users);
+  return users[index];
+}
+
+// Home page data
+async getUni(){
+  const uni = await fse.readJSON(this.uniFilePath)
+  return uni
+}
+
 }
 
 
 
-
+export default Repo;
 
