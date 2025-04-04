@@ -1,10 +1,11 @@
-import Repository from "@/app/repository/Repository";
-export async function GET(req) {
-    const admin = await Repository.getAdmin(req);
+import Repository from "@/app/repository/Repo.js";
+export async function GET(req, {params}) {
+    const admin = await Repository.getAdmin(params.id);
     return Response.json(admin, {status:200});
 }
 
-export async function PUT(req) {
-    const response = await Repository.updateAdmin(req);
+export async function PUT(req, {params}) {
+    const adminUpdates = await req.json();
+    const response = await Repository.updateAdmin(adminUpdates);
     return Response.json(response, { status: 200 });
 }

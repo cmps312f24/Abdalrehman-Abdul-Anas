@@ -1,11 +1,12 @@
-import Repository from "@/app/repository/Repository";
-export async function GET(req) {
-    const course = await Repository.getCourse(req);
+import Repository from "@/app/repository/Repo.js";
+export async function GET(req, {params}) {
+    const course = await Repository.getCourse(params.nums);
     return Response.json(course, {status:200});
 }
 
-export async function PUT(req) {
-    const response = await Repository.updateCourse(req);
+export async function PUT(req, {params}) {
+    const courseUpdates = await req.json();
+    const response = await Repository.updateCourse(courseUpdates);
     return Response.json(response, { status: 200 });
 }
 
