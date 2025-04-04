@@ -56,31 +56,38 @@ async function login(){
   console.log(login);
   
   let user;
+  let pageUrl;
   if (login){
       switch (login.role){
           case "admin": {
-              const admins=await getAdmins();
-              user= admins.find((a)=>a.id==login.id);
-              break;
+            const admins=await getAdmins();
+            user= admins.find((a)=>a.id==login.id);
+            pageUrl="/Administrator/index.html";
+            break;
           } 
           case "instructor":{
-              const instructors=await getInstructors();
-              user= instructors.find((i)=>i.id==login.id);
-              break;
+            const instructors=await getInstructors();
+            user= instructors.find((i)=>i.id==login.id);
+            pageUrl="/Instructor/index.html";
+            break;
           }
           case "student":{
-              const students=await getStudents();
-              user=students.find((s)=>s.id==login.id)
-              break;
+            const students=await getStudents();
+            user=students.find((s)=>s.id==login.id);
+            pageUrl="/Student/index.html";
+            break;
           }
           default: user=null;
       }
-  }else{user=null}
-  
-  // Save user to localStorge
-  localStorage.user=JSON.stringify(user);
+    }else{user=null}
+
+    // prompt inccorrect email or password
     
-    console.log(localStorage.user);
-    console.log("Login button clicked");
+  
+    // Save user to localStorge
+    localStorage.user=JSON.stringify(user);
+
+    // Load the page
+    window.location.href=pageUrl;
 }
 
