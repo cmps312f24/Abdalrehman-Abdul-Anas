@@ -1,12 +1,18 @@
 import fs from 'fs';
 
-/// Base URL ///
+/// URLs ///
 const baseUrl = "https://project-api-iota-beryl.vercel.app/api/";
+const coursesUrl=baseUrl + "courses";
+const studentsUrl=baseUrl + "students";
+const adminsUrl=baseUrl + "admins"
+const instructorsUrl=baseUrl + "instructors";
+const loginsUrl=baseUrl + "logins";
+
 /// Json to lists for: students,course,admin,instructor ///
 
 // Courses
 async function getCourses() {
-  const response = await fetch(baseUrl + "courses");
+  const response = await fetch(coursesUrl);
   if (!response.ok) {
     throw new Error("Failed to fetch courses: ");
   }
@@ -15,7 +21,7 @@ async function getCourses() {
 }
 // Students
 async function getStudents() {
-  const response = await fetch(baseUrl + "students");
+  const response = await fetch(studentsUrl);
   if (!response.ok) {
     throw new Error("Failed to fetch students: ");
   }
@@ -25,7 +31,7 @@ async function getStudents() {
 
 // Admins
 async function getAdmins() {
-  const response = await fetch(baseUrl + "admins");
+  const response = await fetch(adminsUrl);
   if (!response.ok) {
     throw new Error("Failed to fetch admins: ");
   }
@@ -35,7 +41,7 @@ async function getAdmins() {
 
 // Instructors
 async function getInstructors() {
-  const response = await fetch(baseUrl + "instructors");
+  const response = await fetch(instructorsUrl);
   if (!response.ok) {
     throw new Error("Failed to fetch instructors: ");
   }
@@ -45,7 +51,7 @@ async function getInstructors() {
 
 // Login 
 async function getLogins() {
-  const response = await fetch(baseUrl + "logins");
+  const response = await fetch(loginsUrl);
   if (!response.ok) {
     throw new Error("Failed to fetch logins: ");
   }
