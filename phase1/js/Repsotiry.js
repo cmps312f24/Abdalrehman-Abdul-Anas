@@ -67,7 +67,7 @@ async function getLogins() {
 let courseT={
   "name": "Experimental General Physics for Engineering II",
   "credit": 1,
-  "courseNo": "PHYS 194",
+  "courseNo": "TEST",
   "category": "lab",
   "college": "Physics",
   "sections": [
@@ -98,16 +98,17 @@ let courseT={
 }
 
 // Add a new course
-async function addCourse(course) {
-    // courses list
-    const courses= await getCourses();
-
-    // Add new course to the data
-    courses.push(course);
-
-    // update json file
-    fs.writeFileSync(courseFilePath, JSON.stringify(courses, null, 2), 'utf8');
+function addCourse(course) {
+    fetch(coursesUrl,{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(course)
+    });
 }
+
+addCourse(courseT);
 
 
 
