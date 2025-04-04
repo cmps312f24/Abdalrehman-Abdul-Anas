@@ -1066,11 +1066,11 @@ iframe {
 
 
 /* setting */
-.content {
+.content-settings {
     height: 50%;
 }
 
-.content h2{
+.content-settings h2{
     min-width: 100%;
     padding: 10px;
 }
