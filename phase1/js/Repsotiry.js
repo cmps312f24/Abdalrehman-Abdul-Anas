@@ -1,45 +1,56 @@
 import fs from 'fs';
 
+/// Base URL ///
+const baseUrl = "https://project-api-iota-beryl.vercel.app/api/";
 /// Json to lists for: students,course,admin,instructor ///
 
 // Courses
-const courseFilePath = 'json/course.json';
 async function getCourses() {
-  const data = fs.readFileSync(courseFilePath, 'utf8');
-  const courses = await JSON.parse(data);
-  return courses;
+  const response = await fetch(baseUrl + "courses");
+  if (!response.ok) {
+    throw new Error("Failed to fetch courses: ");
+  }
+  const data = await response.json();
+  return data;
 }
-
 // Students
-const studentFilePath = 'json/student.json';
 async function getStudents() {
-  const data = fs.readFileSync(studentFilePath, 'utf8');
-  const students = await JSON.parse(data);
-  return students;
+  const response = await fetch(baseUrl + "students");
+  if (!response.ok) {
+    throw new Error("Failed to fetch students: ");
+  }
+  const data = await response.json();
+  return data;
 }
 
 // Admins
-const adminFilePath = 'json/admin.json';
 async function getAdmins() {
-  const data = fs.readFileSync(adminFilePath, 'utf8');
-  const admins = await JSON.parse(data);
-  return admins;
+  const response = await fetch(baseUrl + "admins");
+  if (!response.ok) {
+    throw new Error("Failed to fetch admins: ");
+  }
+  const data = await response.json();
+  return data;
 }
 
 // Instructors
-const instructorFilePath = 'json/instructor.json';
 async function getInstructors() {
-  const data = fs.readFileSync(instructorFilePath, 'utf8');
-  const instructors = await JSON.parse(data);
-  return instructors;
+  const response = await fetch(baseUrl + "instructors");
+  if (!response.ok) {
+    throw new Error("Failed to fetch instructors: ");
+  }
+  const data = await response.json();
+  return data;
 }
 
 // Login 
-const loginFilePath = 'json/login.json';
 async function getLogins() {
-  const data = fs.readFileSync(loginFilePath, 'utf8');
-  const logins = await JSON.parse(data);
-  return logins;
+  const response = await fetch(baseUrl + "logins");
+  if (!response.ok) {
+    throw new Error("Failed to fetch logins: ");
+  }
+  const data = await response.json();
+  return data;
 }
 
 
