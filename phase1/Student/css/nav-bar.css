@@ -327,6 +327,11 @@ h2 {
     overflow-x: hidden;
 }
 
+.courses{
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
 .course-cotainer {
     display: flex;
     flex-direction: column;
