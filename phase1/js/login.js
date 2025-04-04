@@ -1,4 +1,4 @@
-const baseUrl = "https://project-api-iota-beryl.vercel.app/api/";
+const baseUrl = "https://project-api-eta.vercel.app/api/";
 const loginsUrl=baseUrl + "logins";
 const studentsUrl=baseUrl + "students";
 const adminsUrl=baseUrl + "admins"
@@ -45,16 +45,16 @@ async function getLogins() {
 
 //login validation
 async function login(){
-    // Get email and pass from user input
-    const email=document.getElementById("user-email").value;
-    const pass=document.getElementById("user-password").value;
+   // Get email and pass from user input
+  const email=document.getElementById("user-email").value;
+  const pass=document.getElementById("user-password").value;
 
-    // login list
-  const logins =await getLogins(); 
-
+  // login list
+  const logins =await getLogins();
   // user login info
   const login= logins.find((u)=> u.email==email && u.password==pass);
-
+  console.log(login);
+  
   let user;
   if (login){
       switch (login.role){
@@ -78,10 +78,9 @@ async function login(){
   }else{user=null}
   
   // Save user to localStorge
-  localStorage.user=user;
+  localStorage.user=JSON.stringify(user);
     
     console.log(localStorage.user);
     console.log("Login button clicked");
 }
-
 
