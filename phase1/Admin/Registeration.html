@@ -1,7 +1,7 @@
 <div class="nav-tabs">
-    <button class="nav-button active" onclick="loadSubPage('Administrator_Reg_Under.html',this)">Under Process</button>
-    <button class="nav-button" onclick="loadSubPage('Administrator_Reg_Approved.html',this)">Approved</button>
-    <button class="nav-button" onclick="loadSubPage('admin-addCourse.html',this)">Add Course</button>
+    <button class="nav-button active" onclick="displaypending(this)">Under Process</button>
+    <button class="nav-button" onclick="displayApproved(this)">Approved</button>
+    <button class="nav-button" onclick="loadSubPage('addCourse.html',this)">Add Course</button>
 </div>
 
 <div class="container">
@@ -21,7 +21,7 @@
                     <th>Approve</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="tbody">
                 <tr class="table-body-row">
                     <td>course no</td>
                     <td>Title</td>

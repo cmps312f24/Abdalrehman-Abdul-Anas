@@ -67,16 +67,16 @@ async function displayRegisteration(button){
     await loadPage('/Student/Registeration.html',button);
     const data = await fetch(baseUrl+`courses`);
     const courses = await data.json();
-    await displayallCourses(courses);
+    await displayRegisterCourses(courses);
 }
-async function displayRegisteration2(button){
+async function displayRegister(button){
     await loadSubPage('/Student/Search.html',button);
     const data = await fetch(baseUrl+`courses`);
     const courses = await data.json();
-    await displayallCourses(courses);
+    await displayRegisterCourses(courses);
 }
 
-async function displayallCourses(courses){
+async function displayRegisterCourses(courses){
     document.querySelector(".tbody").innerHTML="";
     let html='';
     for (const c of courses) {
