@@ -62,7 +62,7 @@ async function login(){
           case "admin": {
             const admins=await getAdmins();
             user= admins.find((a)=>a.id==login.id);
-            pageUrl="/Administrator/index.html";
+            pageUrl="/Admin/index.html";
             break;
           } 
           case "instructor":{

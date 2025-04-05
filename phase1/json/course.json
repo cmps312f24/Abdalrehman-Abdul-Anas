@@ -8,7 +8,7 @@
     "sections": [
       {
         "sectionID": "L01",
-        "instructorID": "122",
+        "instructorID": "11",
         "place": "C209",
         "timing": "9:00-10:00",
         "dow": "sun/tue/thu",
@@ -196,7 +196,7 @@
       },
       {
         "sectionID": "L02",
-        "instructorID": "124",
+        "instructorID": "11",
         "place": "C216",
         "timing": "9:00-10:00",
         "dow": "sun/tue/thu",
