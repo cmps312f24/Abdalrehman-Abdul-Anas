@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 /// URLs ///
-const baseUrl = "https://project-api-iota-beryl.vercel.app/api/";
+const baseUrl = "http://localhost:3000/api/";
 const coursesUrl=baseUrl + "courses";
 const studentsUrl=baseUrl + "students";
 const adminsUrl=baseUrl + "admins"

@@ -1,4 +1,4 @@
-const baseUrl = "https://project-api-eta.vercel.app/api/";
+const baseUrl = "http://localhost:3000/api/";
 const loginsUrl=baseUrl + "logins";
 const studentsUrl=baseUrl + "students";
 const adminsUrl=baseUrl + "admins"
