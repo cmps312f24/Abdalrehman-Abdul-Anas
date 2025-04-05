@@ -24,10 +24,12 @@ async function loadSubPage(pageUrl,button){
 
 
 async function getInstructorName(id){
-    const instructor= await fetch((baseUrl+`instructors/${id}`) || await fetch(baseUrl+`admins/${id}`)).then (res => res.json());
+    let instructor= await fetch(baseUrl+`instructors/${id}`).then (res => res.json());
+    if(instructor=="none"){
+        instructor=await fetch(baseUrl+`admins/${id}`).then (res => res.json());
+    }
     return instructor.name;
 }
-
 
 
 // Display courses
@@ -65,26 +67,38 @@ async function displayRegisteration(button){
     await loadPage('/Student/Registeration.html',button);
     const data = await fetch(baseUrl+`courses`);
     const courses = await data.json();
-    displayallCourses(courses);
+    await displayallCourses(courses);
+}
+async function displayRegisteration2(button){
+    await loadSubPage('/Student/Search.html',button);
+    const data = await fetch(baseUrl+`courses`);
+    const courses = await data.json();
+    await displayallCourses(courses);
 }
 
-function displayallCourses(courses){
-    document.getElementsByTagName("tbody").innerHTML=courses.forEach((c)=>{c.sections.map((s)=>{
-        return `
-            <tr class="table-body-row">
-                <td>${c.courseNo}</td>
-                <td>${c.name}</td>
-                <td>${s.sectionID}</td>
-                <td>${c.credit}</td>
-                <td>${getInstructorName(s.instructorID)}</td>
-                <td>${c.college}</td>
-                <td>${s.timing}/${s.place}</td>
-                <td>${s.status}</td>
-                <td>${s.campus}</td>
-                <td class="add-box"><button class="add-button">+</button></td>
-            </tr>
-        `
-    })});
+async function displayallCourses(courses){
+    document.querySelector(".tbody").innerHTML="";
+    let html='';
+    for (const c of courses) {
+        for (const s of c.sections) {
+            const instructorName = await getInstructorName(s.instructorID);
+            html+= `
+                <tr class="table-body-row">
+                    <td>${c.courseNo}</td>
+                    <td>${c.name}</td>
+                    <td>${s.sectionID}</td>
+                    <td>${c.credit}</td>
+                    <td>${instructorName}</td>
+                    <td>${c.college}</td>
+                    <td>${s.timing}/${s.place}</td>
+                    <td>${s.status}</td>
+                    <td>${s.campus}</td>
+                    <td class="add-box"><button class="add-button">+</button></td>
+                </tr>
+            `;
+        }
+    }
+    document.querySelector(".tbody").innerHTML=html;
 }
 
 
@@ -100,34 +114,27 @@ async function displaySchedule(button){
 
 async function displaySummary(button){
     loadSubPage('/Student/Summary.html',button);
+    const data = await fetch(baseUrl+`courses`);
+    const courses = await data.json();
     const user= JSON.parse(localStorage.user);
     const sections= user.pendingSections;
-    document.getElementsByTagName("tbody").innerHTML="";
+    document.querySelector(".tbody").innerHTML="";
     for (const s of sections) {
         // Fetch course data
-        const data = await fetch(baseUrl+`courses/${s.courseNo}`);
-        const course = await data.json();
+        const course=await courses.find((c)=>c.courseNo==s.courseNo); 
         // get section
-        const section = course.sections.find((sc)=> sc.sectionID==s.section);
-        
-        
-        //
-        console.log(section)
-        console.log(course)
-        //
-        
-        
-        
+        const section = await course.sections.find((sc)=> sc.sectionID==s.section);
+
         // display course
-        document.getElementsByTagName("tbody").innerHTML += `
+        document.querySelector(".tbody").innerHTML += `
             <tr class="table-body-row">
                     <td>${course.courseNo}</td>
                     <td>${course.name}</td>
                     <td>${section.sectionID}</td>
                     <td>${course.credit}</td>
-                    <td>${getInstructorName(section.instructorID)}</td>
+                    <td>${await getInstructorName(section.instructorID)}</td>
                     <td>${course.college}</td>
-                    <td>${section.timing}/${s.place}</td>
+                    <td>${section.timing}/${section.place}</td>
                     <td>${section.status}</td>
                     <td>${section.campus}</td>
                     <td class="add-box"><button class="add-button">+</button></td>

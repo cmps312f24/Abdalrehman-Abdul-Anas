@@ -24,9 +24,10 @@ async function loadSubPage(pageUrl,button){
 
 
 async function getInstructorName(id){
-    console.log(id);
-    const instructor= await fetch((baseUrl+`instructors/${id}`) || await fetch(baseUrl+`admins/${id}`)).then (res => res.json());
-    console.log(instructor);
+    let instructor= await fetch(baseUrl+`instructors/${id}`).then (res => res.json());
+    if(instructor=="none"){
+        instructor=await fetch(baseUrl+`admins/${id}`).then (res => res.json());
+    }
     return instructor.name;
 }
 
@@ -62,3 +63,7 @@ async function displayCourses(button){
     }
     
 }
+
+
+
+
