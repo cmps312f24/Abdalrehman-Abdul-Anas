@@ -42,11 +42,10 @@ async function getStudentName(id){
 
 
 
-
 // Display courses
 async function displayCourses(button){
     //load the courses page
-    await loadPage('/Admin/courses.html',button);
+    await loadPage('/Instructor/courses.html',button);
     // get user
     const user= JSON.parse(localStorage.user);
     //get userr sections
@@ -78,7 +77,7 @@ async function displayGrades(courseNo,sectionID){
     const course = await data.json();
     const section = course.sections.find((s)=> s.sectionID==sectionID);
 
-    await loadSubPage('/Admin/Grade.html');
+    await loadSubPage('/Instructor/Grade.html');
    
     document.querySelector(".page-header").innerHTML=`<h1>${course.name} ${course.courseNo}</h1>`;
     let html = '';
@@ -98,75 +97,3 @@ async function displayGrades(courseNo,sectionID){
 
 
 
-
-async function displayRegisteration(button){
-    await loadPage('/Admin/Registeration.html',button);
-    const data = await fetch(baseUrl+`courses?status=pending`);
-    const courses = await data.json();
-    await displayPendingCourses(courses);
-}
-async function displaypending(button){
-    await loadSubPage('/Admin/pending.html',button);
-    const data = await fetch(baseUrl+`courses?status=pending`);
-    const courses = await data.json();
-    await displayPendingCourses(courses);
-}
-
-
-async function displayPendingCourses(courses){
-    document.querySelector(".tbody").innerHTML="";
-    let html='';
-    for (const c of courses) {
-        for (const s of c.sections) {
-            const instructorName = await getInstructorName(s.instructorID);
-            html+= `
-                <tr class="table-body-row">
-                    <td>${c.courseNo}</td>
-                    <td>${c.name}</td>
-                    <td>${s.sectionID}</td>
-                    <td>${c.credit}</td>
-                    <td>${instructorName}</td>
-                    <td>${c.college}</td>
-                    <td>${s.timing}/${s.place}</td>
-                    <td>${s.status}</td>
-                    <td>${c.category}</td>
-                    <td class="add-box"><button class="add-button">+</button></td>
-                </tr>
-            `;
-        }
-    }
-    document.querySelector(".tbody").innerHTML=html;
-}
-
-
-async function displayApproved(button){
-    await loadSubPage('/Admin/approved.html',button);
-    const data = await fetch(baseUrl+`courses?status=approved`);
-    const courses = await data.json();
-    await displayApprovedCourses(courses);
-}
-
-async function displayApprovedCourses(courses){
-    document.querySelector(".tbody").innerHTML="";
-    let html='';
-    for (const c of courses) {
-        for (const s of c.sections) {
-            const instructorName = await getInstructorName(s.instructorID);
-            html+= `
-                <tr class="table-body-row">
-                    <td>${c.courseNo}</td>
-                    <td>${c.name}</td>
-                    <td>${s.sectionID}</td>
-                    <td>${c.credit}</td>
-                    <td>${instructorName}</td>
-                    <td>${c.college}</td>
-                    <td>${s.timing}/${s.place}</td>
-                    <td>${s.status}</td>
-                    <td>${c.category}</td>
-                    <td class="add-box"><button class="add-button">-</button></td>
-                </tr>
-            `;
-        }
-    }
-    document.querySelector(".tbody").innerHTML=html;
-}
