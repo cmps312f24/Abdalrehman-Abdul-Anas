@@ -659,6 +659,10 @@ h2 {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+.hide {
+    display: none;
+}
+
 /* Instructor - Section_Grade */
 
 .grade-table {
@@ -746,6 +750,362 @@ h2 {
 .submit-button:hover {
     background-color: rgb(51, 41, 141);
 }
+
+
+/* Student - Path */
+
+.path{
+    z-index: 1;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    
+    padding-bottom: 30px;
+    min-height: 600px;
+    overflow-x: auto;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    background-color: #1a1a1a;
+    color: white;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+}
+
+.year {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    border-right: 1px solid #333;
+}
+
+.year:last-child {
+    border-right: none;
+}
+
+
+
+
+#Flowchart-content {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas: 
+        "f11 s11 f21 s21 f31 s31 f41 s41"
+        "f12 s12 f22 s22 f32 s32 f42 s42"
+        "f13 s13 f23 s23 f33 em3 em4 em6"
+        "f14 s14 f24 em1 f34 s33 f43 s43"
+        "f15 s15 f25 s24 f35 s34 f44 s44"
+        "f16 s16 f26 s25 em2 s35 em5 em7";
+    column-gap: 2%;
+    row-gap: 10.2%;
+    place-items: center;
+    padding: 15px; /* Padding around the content */
+    box-sizing: border-box;
+    margin-top: 35px;
+    margin-left: -5px;
+    margin-right: 30px;
+    margin-bottom: 60px; /* Add significant margin to the bottom */
+}
+
+.course {
+    width: 120px; /* Adjusted width */
+    height: 74px; /* Adjusted height */
+    background-color: #101820;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-size: 12px; /* Adjusted font size */
+    padding: 10px; /* Adjusted padding */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: relative;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
+}
+
+
+
+.course-details {
+    display: none; /* Initially hidden */
+    font-size: 12px;
+    margin-top: 1px;
+    text-align: start;
+}
+
+.course:hover {
+    transform: scale(1.9);
+    z-index: 1;
+}
+
+.course-details {
+
+    display: none; /* Initially hidden */
+    font-size: 10px;
+    margin-top: 1px;
+    text-align: start;
+}
+
+.course:hover .course-details {
+    display: block; /* Show on hover */
+}
+
+
+
+
+.empty {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* assigning grid template area */
+#f11 { grid-area: f12; } /* Object Oriented Programming */
+#f12 { grid-area: f11; } /* Programming Concepts */
+#f13 { grid-area: f21; } /* Data Structure */
+#f14 { grid-area: s21; } /* Design & Analysis of Algorithms */
+#f15 { grid-area: f31; } /* Software Engineering */
+#f16 { grid-area: f16; }
+#s11 { grid-area: s11; }
+#s12 { grid-area: s12; }
+#s13 { grid-area: s13; }
+#s14 { grid-area: s14; }
+#s15 { grid-area: s15; }
+#s16 { grid-area: s16; }
+#f21 { grid-area: f13; } /* History of Qatar */
+#f22 { grid-area: f22; }
+#f23 { grid-area: f23; }
+#f24 { grid-area: f24; }
+#f25 { grid-area: f25; }
+#f26 { grid-area: f26; }
+#s21 { grid-area: f14; } /* General Chemistry I */
+#s22 { grid-area: s22; }
+#s23 { grid-area: s23; }
+#s24 { grid-area: s24; }
+#s25 { grid-area: s25; }
+#f31 { grid-area: f15; } /* Software Engineering */
+#f32 { grid-area: f32; }
+#f33 { grid-area: f33; }
+#f34 { grid-area: f34; }
+#f35 { grid-area: f35; }
+#s31 { grid-area: s31; }
+#s32 { grid-area: s32; }
+#s33 { grid-area: s33; }
+#s34 { grid-area: s34; }
+#s35 { grid-area: s35; }
+#f41 { grid-area: f41; }
+#f42 { grid-area: f42; }
+#f43 { grid-area: f43; }
+#f44 { grid-area: f44; }
+#s41 { grid-area: s41; }
+#s42 { grid-area: s42; }
+#s43 { grid-area: s43; }
+#s44 { grid-area: s44; }
+
+
+
+
+
+
+/* Arrows */
+.arrow {
+    position: absolute;
+    z-index: -1; 
+}
+
+#arrow1 {
+    width: 2.5%;
+    top: 20%;
+    left: 11.5%;
+    height: auto;
+
+}
+#arrow2{
+    width: 2.5%;
+    top:20%;
+    left: 36.4%;
+
+}
+#arrow3{
+    width: 2.5%;
+    top: 20%;
+    left: 24%;
+
+}
+#arrow17{
+    width: 43%;
+    height: 55.5%;
+    top: 18%;
+    left: 1.2%;
+   
+}
+#arrow18{
+    width: 65%;
+    height: 107%;
+    top: 16%;
+    left: 0.7%;
+   
+}
+#arrow4{
+    top:11.5%;
+    left: 18%;
+    width: 38%;
+}
+#arrow5{
+    top: 12.5%;
+    left: 18.7%;
+    width: 56.9%;
+    height: 30%;
+}
+#arrow6{
+    top: 26%;
+    left: 18.5%;
+    width: 26%;
+    height: 11%;
+}
+#arrow7{
+    top: 26%;
+    left: 31%;
+    width: 26%;
+    height: 11%;
+}
+#arrow8{
+    top: 13%;
+    left: 30%;
+    width: 38%;
+    height: 2.5%;
+}
+#arrow9{
+    top: 27.3%;
+    left: 57%;
+    width: 25%;
+    height: 2.5%;
+}
+#arrow10{
+    width: 2.5%;
+    top: 20%;
+    left: 85.74%;
+    height: auto;
+}
+#arrow11{
+    width: 2.5%;
+    top: 42%;
+    left: 11.5%;
+    height: auto;
+}
+#arrow12{
+    
+    top: 23%;
+    left: 36.4%;
+    width: 2.6%;
+    height: 16%;
+ 
+}
+#arrow13{
+    top: 46%;
+    left: 36.4%;
+    width: 2.6%;
+    height: 16%;
+}
+
+
+
+#arrow14{
+    top: 64%;
+    left: 24%;
+    width: 2.6%;
+    height: 20%;
+}
+
+#arrow15{
+    width: 2.5%;
+    top: 64%;
+    left: 48.7%;
+    height: auto;
+}
+
+#arrow16{
+  
+    top: 135%;
+    left: 19%;
+    width: 50%;
+  
+}
+
+#arrow20{
+    top: 23%;
+    left: 48.7%;
+    width: 15%;
+    height: 40%;
+
+}
+
+#arrow19{
+    top: 69%;
+    left: 18.5%;
+    height: 11%;
+
+
+}
+#arrow30{
+    top: 90.5%;
+    left: 6%;
+    height: 11%;
+
+
+}
+#arrow31{
+    top: 90.5%;
+    left: 31%;
+    height: 11%;
+
+
+}
+#arrow32{
+    top: 112%;
+    left: 15%;
+    width:55%;
+    height: 11%;
+   
+}
+#arrow33{
+    top: 127%;
+    left: 10.56%;
+
+   
+}
+#arrow34{
+    top: 64%;
+    left: 10.56%;
+    height: 62%;
+
+}
+#arrow35{
+    top: 120.45%;
+    left: 18%;
+    width: 27%;
+ 
+}
+#arrow36{
+    top: 85%;
+    left: 48.5%;
+    height: 45%;
+  
+}
+
+
+
+
 
 /* Responsive Adjustments */
 @media (max-height: 800px) {
