@@ -10,28 +10,28 @@
     "phoneNo": "12345678",
     "currentSections": [
       {
-        "courseNo": "CMPS 151",
+        "courseNo": "CMPS151",
         "section": "L01",
         "grade": "A"
       },
       {
-        "courseNo": "MATH 101",
+        "courseNo": "MATH101",
         "section": "L02",
         "grade": "B"
       },
       {
-        "courseNo": "PHYS 194",
+        "courseNo": "PHYS194",
         "section": "B02",
         "grade": "A"
       }
     ],
     "pendingSections": [
       {
-        "courseNo": "CMPS 251",
+        "courseNo": "CMPS251",
         "section": "L01"
       },
       {
-        "courseNo": "PHYS 194",
+        "courseNo": "PHYS194",
         "section": "B02"
       }
     ]
@@ -47,19 +47,19 @@
     "phoneNo": "87654321",
     "currentSections": [
       {
-        "courseNo": "CMPS 205",
+        "courseNo": "CMPS205",
         "section": "L01",
         "grade": "A-"
       },
       {
-        "courseNo": "MATH 102",
+        "courseNo": "MATH102",
         "section": "L02",
         "grade": "B+"
       }
     ],
     "pendingSections": [
       {
-        "courseNo": "CMPS 303",
+        "courseNo": "CMPS303",
         "section": "L01"
       }
     ]
@@ -75,19 +75,19 @@
     "phoneNo": "11223344",
     "currentSections": [
       {
-        "courseNo": "MATH 231",
+        "courseNo": "MATH231",
         "section": "L01",
         "grade": "B"
       },
       {
-        "courseNo": "PHYS 191",
+        "courseNo": "PHYS191",
         "section": "L02",
         "grade": "C+"
       }
     ],
     "pendingSections": [
       {
-        "courseNo": "PHYS 193",
+        "courseNo": "PHYS193",
         "section": "L01"
       }
     ]
@@ -103,19 +103,19 @@
     "phoneNo": "33445566",
     "currentSections": [
       {
-        "courseNo": "PHYS 191",
+        "courseNo": "PHYS191",
         "section": "L01",
         "grade": "A"
       },
       {
-        "courseNo": "MATH 102",
+        "courseNo": "MATH102",
         "section": "L02",
         "grade": "A-"
       }
     ],
     "pendingSections": [
       {
-        "courseNo": "PHYS 193",
+        "courseNo": "PHYS193",
         "section": "L01"
       }
     ]
@@ -131,19 +131,19 @@
     "phoneNo": "55667788",
     "currentSections": [
       {
-        "courseNo": "CHEM 101",
+        "courseNo": "CHEM101",
         "section": "L01",
         "grade": "B+"
       },
       {
-        "courseNo": "CHEM 103",
+        "courseNo": "CHEM103",
         "section": "B01",
         "grade": "A-"
       }
     ],
     "pendingSections": [
       {
-        "courseNo": "PHYS 191",
+        "courseNo": "PHYS191",
         "section": "L01"
       }
     ]
@@ -159,19 +159,19 @@
     "phoneNo": "66778899",
     "currentSections": [
       {
-        "courseNo": "HIST 121",
+        "courseNo": "HIST121",
         "section": "L01",
         "grade": "B"
       },
       {
-        "courseNo": "ENGL 202",
+        "courseNo": "ENGL202",
         "section": "L02",
         "grade": "B+"
       }
     ],
     "pendingSections": [
       {
-        "courseNo": "ENGL 203",
+        "courseNo": "ENGL203",
         "section": "L01"
       }
     ]
@@ -187,19 +187,19 @@
     "phoneNo": "77889900",
     "currentSections": [
       {
-        "courseNo": "ENGL 202",
+        "courseNo": "ENGL202",
         "section": "L01",
         "grade": "A"
       },
       {
-        "courseNo": "ARAB 100",
+        "courseNo": "ARAB100",
         "section": "L02",
         "grade": "B"
       }
     ],
     "pendingSections": [
       {
-        "courseNo": "ENGL 203",
+        "courseNo": "ENGL203",
         "section": "L01"
       }
     ]
@@ -215,19 +215,19 @@
     "phoneNo": "88990011",
     "currentSections": [
       {
-        "courseNo": "CMPS 151",
+        "courseNo": "CMPS151",
         "section": "L02",
         "grade": "B"
       },
       {
-        "courseNo": "CMPS 205",
+        "courseNo": "CMPS205",
         "section": "L01",
         "grade": "C+"
       }
     ],
     "pendingSections": [
       {
-        "courseNo": "CMPS 251",
+        "courseNo": "CMPS251",
         "section": "L01"
       }
     ]
@@ -243,19 +243,19 @@
     "phoneNo": "99001122",
     "currentSections": [
       {
-        "courseNo": "CMPE 263",
+        "courseNo": "CMPE263",
         "section": "L01",
         "grade": "B+"
       },
       {
-        "courseNo": "GENG 200",
+        "courseNo": "GENG200",
         "section": "L02",
         "grade": "A-"
       }
     ],
     "pendingSections": [
       {
-        "courseNo": "CMPS 323",
+        "courseNo": "CMPS323",
         "section": "L01"
       }
     ]
@@ -271,19 +271,19 @@
     "phoneNo": "00112233",
     "currentSections": [
       {
-        "courseNo": "CMPS 351",
+        "courseNo": "CMPS351",
         "section": "L01",
         "grade": "A"
       },
       {
-        "courseNo": "CMPS 323",
+        "courseNo": "CMPS323",
         "section": "L02",
         "grade": "A-"
       }
     ],
     "pendingSections": [
       {
-        "courseNo": "CMPS 303",
+        "courseNo": "CMPS303",
         "section": "L01"
       }
     ]
