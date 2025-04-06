@@ -1,6 +1,6 @@
     
     <!-- main content -->
-    <main class="content-area-home">
+  
         <!-- background -->
         <div class="backgroud-home"></div>
         <!-- content -->
@@ -16,11 +16,11 @@
                     <h2 class="header">Student Information</h2>
                     <p id="stu-info-text">Major : Computer Science <br>GPA : 3.4 <br>CH : 81</p>
                 </span>
-                <img src="/img/Line Chart.png" alt="student-gragh" id="gra">
+                <div id="myGraph" style="width:600px;height:400px;"></div>
             </span>
             <!-- event calender & upcoming events -->
-            <span class="calender">
-                <div class="header-calender">
+            <div class="calendar" class="content-home">
+                <div class="header-calendar">
                     <button id="prevMonth">◀</button>
                     <h2 id="monthYear"></h2>
                     <button id="nextMonth">▶</button>
@@ -38,7 +38,7 @@
                         <span class="legend-box event-calendar"></span> Event
                     </div>
                 </div>
-            </span>
+            </div>
             <span id="events">
                 <p class="event">day1</p>
                 <p class="event">day2</p>
@@ -48,4 +48,5 @@
                 <p class="event">day6</p>
             </span>
         </section>
-    </main>
+
+        <!-- <script src="/Student/js/calender.js"></script> -->
