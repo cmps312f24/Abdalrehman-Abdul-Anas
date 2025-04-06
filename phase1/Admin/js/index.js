@@ -22,6 +22,10 @@ async function loadSubPage(pageUrl,button){
     button.classList.add('active');
 }
 
+async function logout(){
+    window.location.href="/Login/index.html";
+    localStorage.clear();
+}
 
 async function getInstructorName(id){
     let instructor= await fetch(baseUrl+`instructors/${id}`).then (res => res.json());
@@ -168,3 +172,6 @@ document.querySelector("#addCourse").addEventListener("click",()=>{
     const formData = new FormData(form);
     
 })
+
+
+

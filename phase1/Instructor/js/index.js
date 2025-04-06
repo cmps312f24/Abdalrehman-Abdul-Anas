@@ -26,6 +26,10 @@ async function loadSubPage(pageUrl,button){
     }
 }
 
+async function logout(){
+    window.location.href="/Login/index.html";
+    localStorage.clear();
+}
 
 async function getInstructorName(id){
     let instructor= await fetch(baseUrl+`instructors/${id}`).then (res => res.json());

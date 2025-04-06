@@ -82,7 +82,10 @@ async function login(){
     }else{user=null}
 
     // prompt inccorrect email or password
-
+    if (!user){
+        alert("Incorrect email or password");
+        return;
+    }
   
     // Save user to localStorge
     localStorage.user=JSON.stringify(user);
