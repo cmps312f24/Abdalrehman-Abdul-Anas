@@ -80,8 +80,8 @@ async function displayGrades(courseNo,sectionID){
     const course = await data.json();
     const section = course.sections.find((s)=> s.sectionID==sectionID);
 
-    await loadSubPage('/Instructor/Grade.html');
-   
+    await loadSubPage('/Admin/Grade.html');
+
     document.querySelector(".page-header").innerHTML=`<h1>${course.name} ${course.courseNo}</h1>`;
     let html = '';
     for (const s of section.students) {
@@ -95,8 +95,35 @@ async function displayGrades(courseNo,sectionID){
         `;
     }
     document.querySelector(".tbody").innerHTML = html;
+    document.getElementById("name-input").addEventListener("keyup",()=>{sortGrade(courseNo,sectionID)});
+    document.getElementById("id-input").addEventListener("keyup",()=>{sortGrade(courseNo,sectionID)});
+    document.querySelector(".search-button").addEventListener("click",(e)=>{e.preventDefault();sortGrade(courseNo,sectionID)});   
 }
 
+
+async function sortGrade(courseNo,sectionID){
+    const data = await fetch(baseUrl+`courses/${courseNo}`);
+    const course = await data.json();
+    const section = course.sections.find((s)=> s.sectionID==sectionID);
+
+    document.querySelector(".page-header").innerHTML=`<h1>${course.name} ${course.courseNo}</h1>`;
+    let html = '';
+    const students= section.students.filter((s)=> s.id.includes(document.getElementById("id-input").value));
+    for (const s of students) {
+        const studentName = await getStudentName(s.id);
+        if(studentName.toLowerCase().includes(document.getElementById("name-input").value.toLowerCase())){
+        html += `
+            <tr class="student-grade">
+                    <td>${studentName}</td>
+                    <td>${s.id}</td>
+                    <td><input type="text" class="grade-input" value="${s.grade}" onchange="changeGrade('${s.id}', this.value)"></td>
+                </tr>
+        `;
+        }
+    }
+    document.querySelector(".tbody").innerHTML = html;
+    
+}
 
 
 
@@ -176,11 +203,11 @@ async function displayApprovedCourses(courses){
 }
 
 // Adding new course
-document.querySelector("#addCourse").addEventListener("click",()=>{
-    const form = document.querySelector(".form-container");
-    const formData = new FormData(form);
+// document.querySelector("#addCourse").addEventListener("click",()=>{
+//     const form = document.querySelector(".form-container");
+//     const formData = new FormData(form);
     
-})
+// })
 
 
 
