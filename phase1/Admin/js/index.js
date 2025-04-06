@@ -132,13 +132,13 @@ async function sortGrade(courseNo,sectionID){
 
 async function displayRegisteration(button){
     await loadPage('/Admin/Registeration.html',button);
-    const data = await fetch(baseUrl+`courses`);
+    const data = await fetch(baseUrl+`courses?status=pending`);
     const courses = await data.json();
     await displayPendingCourses(courses);
 }
 async function displaypending(button){
     await loadSubPage('/Admin/pending.html',button);
-    const data = await fetch(baseUrl+`courses`);
+    const data = await fetch(baseUrl+`courses?status=pending`);
     const courses = await data.json();
     await displayPendingCourses(courses);
 }
@@ -172,7 +172,7 @@ async function displayPendingCourses(courses){
 
 async function displayApproved(button){
     await loadSubPage('/Admin/approved.html',button);
-    const data = await fetch(baseUrl+`courses`);
+    const data = await fetch(baseUrl+`courses?status=approved`);
     const courses = await data.json();
     await displayApprovedCourses(courses);
 }
