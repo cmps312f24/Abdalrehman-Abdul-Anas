@@ -5,7 +5,7 @@ const adminsUrl=baseUrl + "admins"
 const instructorsUrl=baseUrl + "instructors";
 
 // Validate login when clicking the btn
-document.getElementById("Login-btn").addEventListener("click",login);
+document.getElementById("Login-btn").addEventListener("click",(e)=>{e.preventDefault();login();});
 async function getStudents() {
     const response = await fetch(studentsUrl);
     if (!response.ok) {
