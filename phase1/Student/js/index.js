@@ -125,7 +125,7 @@ async function displayRegisterCourses(courses){
     document.querySelector(".tbody").innerHTML=html;
     
     // button handler
-    regbuttons()
+    regbuttons(courses);
 
     document.getElementById("college-input").addEventListener("keyup",()=>{sortRegisteration(courses)});
     document.getElementById("id-input").addEventListener("keyup",()=>{sortRegisteration(courses)});
@@ -144,7 +144,7 @@ async function sortRegisteration(courses){
     for (const c of courses) {
         for (const s of c.sections) {
             const instructorName = await getInstructorName(s.instructorID);
-            if (c.college.toLowerCase().includes(college.toLowerCase()) && c.courseNo.toLowerCase().includes(id.toLowerCase()) && (searchInObject(c,keyword) || instructorName.toLowerCase().includes(keyword.toLowerCase()) || s.sectionID.toLowerCase().includes(keyword.toLowerCase()))) {
+            if (c.college.toLowerCase().includes(college.toLowerCase()) && c.courseNo.toLowerCase().includes(id.toLowerCase()) && (searchInObject(c,keyword) || instructorName.toLowerCase().includes(keyword.toLowerCase()) || s.sectionID.toLowerCase().includes(keyword.toLowerCase())) && (getSelectedCampus() == s.campus || getSelectedCampus() == null)) {
                 html+= `
                     <tr class="table-body-row">
                         <td>${c.courseNo}</td>
@@ -210,7 +210,7 @@ async function displaySummary(button){
 
 
 
-function regbuttons(){
+function regbuttons(courses){
     // Toggle expand/collapse functionality
     const toggleButton = document.getElementById('toggle-expand');
     const expandIcon = document.getElementById('expand-icon');
@@ -219,6 +219,10 @@ function regbuttons(){
     
     toggleButton.addEventListener('click', (e)=> {
         e.preventDefault();
+        clearSelectedCampus();
+        document.getElementById("keyword-input").value="";
+        sortRegisteration(courses);
+
         expandableSection.forEach(section => {
             const isExpanded = section.style.display != 'none';
             section.style.display = isExpanded ? 'none' : 'block';
@@ -229,18 +233,33 @@ function regbuttons(){
 
     // Campus selection functionality
     const campusButtons = document.querySelectorAll('.campus-button');
-    
+
     campusButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
             e.preventDefault();
-            // Remove selected class from all buttons
-            campusButtons.forEach(btn => btn.classList.remove('selected'));
-            // Add selected class to clicked button
-            this.classList.add('selected');
+            sortRegisteration(courses);
+
+            // If already selected, unselect it
+            if (this.classList.contains('selected')) {
+                this.classList.remove('selected');
+            } else {
+                // Deselect all, then select this one
+                campusButtons.forEach(btn => btn.classList.remove('selected'));
+                this.classList.add('selected');
+            }
         });
     }); 
 }
 
+function clearSelectedCampus() {
+    const campusButtons = document.querySelectorAll('.campus-button');
+    campusButtons.forEach(btn => btn.classList.remove('selected'));
+}
+
+function getSelectedCampus() {
+    const selectedButton = document.querySelector('.campus-button.selected');
+    return selectedButton ? selectedButton.dataset.campus : null;
+}
 
 async function displayHome(button){
     await loadPage('/Student/Home-index.html',button);
