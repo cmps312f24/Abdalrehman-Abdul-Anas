@@ -72,13 +72,13 @@ async function displayCourses(button){
 
 async function displayRegisteration(button){
     await loadPage('/Student/Registeration.html',button);
-    const data = await fetch(baseUrl+`courses`);
+    const data = await fetch(baseUrl+`courses?status=pending`);
     const courses = await data.json();
     await displayRegisterCourses(courses);
 }
 async function displayRegister(button){
     await loadSubPage('/Student/Search.html',button);
-    const data = await fetch(baseUrl+`courses`);
+    const data = await fetch(baseUrl+`courses?status=pending`);
     const courses = await data.json();
     await displayRegisterCourses(courses);
 }
