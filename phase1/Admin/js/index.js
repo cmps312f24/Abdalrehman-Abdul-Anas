@@ -5,21 +5,25 @@ async function loadPage(pageUrl,button) {
     const data = await page.text();
     document.querySelector(".content-area").innerHTML = data;
 
-    // Remove 'selected' class from all buttons
-    document.querySelectorAll('.menu-element').forEach(btn => btn.classList.remove('selected'));
-    // Add 'selected' class to the clicked button
-    button.classList.add('selected');
+    if (button){
+        // Remove 'selected' class from all buttons
+        document.querySelectorAll('.menu-element').forEach(btn => btn.classList.remove('selected'));
+        // Add 'selected' class to the clicked button
+        button.classList.add('selected');
+    }
 }
+
 
 async function loadSubPage(pageUrl,button){
     const page = await fetch(pageUrl);
     const data = await page.text();
     document.querySelector(".container").innerHTML = data;
-
-    // Remove 'active' class from all buttons
-    document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
-    // Add 'active' class to the clicked button
-    button.classList.add('active');
+    if(button){
+        // Remove 'active' class from all buttons
+        document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
+        // Add 'active' class to the clicked button
+        button.classList.add('active');
+    }
 }
 
 async function logout(){
@@ -35,13 +39,16 @@ async function getInstructorName(id){
     return instructor.name;
 }
 
-
+async function getStudentName(id){
+    let student= await fetch(baseUrl+`students/${id}`).then (res => res.json());
+    return await student.name;
+}
 
 
 // Display courses
 async function displayCourses(button){
     //load the courses page
-    await loadPage('/Admin/courses.html',button);
+    await loadPage('/Instructor/courses.html',button);
     // get user
     const user= JSON.parse(localStorage.user);
     //get userr sections
@@ -58,7 +65,7 @@ async function displayCourses(button){
 
         // display course
         document.querySelector(".content").innerHTML += `
-            <section class="course-cotainer" onclick="displayGrades("CMPS151")">
+            <section class="course-cotainer" onclick="displayGrades('${s.courseNo}', '${s.section}')">
                 <p id="courseNumber">${course.courseNo}</p>
                 <p id="courseName">${course.name}</p>
                 <p id="status">${section.status}</p>
@@ -68,24 +75,26 @@ async function displayCourses(button){
     
 }
 
-async function displayGrades(courseNo){
-    console.log(courseNo);
-    
-    // const data = await fetch(baseUrl+`courses/${courseNo}`);
-    // const course = await data.json();
-    // const section = course.sections.find((s)=> s.sectionID==sectionID);
-    // await loadSubPage('/Admin/Grade.html');
-    // document.querySelector(".page-header").innerHTML=`<h1>${course.name} ${course.courseNo}</h1>`;
-    
-    // document.querySelector(".tbody").innerHTML=section.students.map((s)=>{
-    //     return `
-    //         <tr class="student-grade">
-    //                 <td>${s.name}</td>
-    //                 <td>${s.id}</td>
-    //                 <td><input type="text" class="grade-input" value="${s.grade}" onchange="changeGrade('${s.id}', this.value)"></td>
-    //             </tr>
-    //     `;
-    // }).join('');;
+async function displayGrades(courseNo,sectionID){
+    const data = await fetch(baseUrl+`courses/${courseNo}`);
+    const course = await data.json();
+    const section = course.sections.find((s)=> s.sectionID==sectionID);
+
+    await loadSubPage('/Instructor/Grade.html');
+   
+    document.querySelector(".page-header").innerHTML=`<h1>${course.name} ${course.courseNo}</h1>`;
+    let html = '';
+    for (const s of section.students) {
+        const studentName = await getStudentName(s.id);
+        html += `
+            <tr class="student-grade">
+                    <td>${studentName}</td>
+                    <td>${s.id}</td>
+                    <td><input type="text" class="grade-input" value="${s.grade}" onchange="changeGrade('${s.id}', this.value)"></td>
+                </tr>
+        `;
+    }
+    document.querySelector(".tbody").innerHTML = html;
 }
 
 
