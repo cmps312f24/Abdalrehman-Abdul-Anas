@@ -15,19 +15,19 @@
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <input type="text" id="college-input" class="form-input with-icon"
+                    <input type="search" id="college-input" class="form-input with-icon"
                         placeholder="College name">
                 </div>
             </div>
             <div class="form-group">
                 <label class="form-label">Course Number:</label>
                 <div class="input-wrapper">
-                    <input type="text" class="form-input" placeholder="Course number">
+                    <input type="search" class="form-input" id="id-input" placeholder="Course number">
                 </div>
             </div>
     
             <div class="button-container">
-                <button id="toggle-expand" class="toggle-button">
+                <button id="toggle-expand" class="toggle-button" type="button">
                     <svg id="expand-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -43,7 +43,7 @@
                 <button class="search-button">Search</button>
             </div>
             
-                <div class="form-group">
+                <div class="form-group expandable-section" style="display: none;">
                     <label class="form-label">Keyword:</label>
                     <div class="input-wrapper">
                         <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -51,7 +51,7 @@
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
-                        <input type="text" id="keyword-input" class="form-input with-icon" placeholder="Keyword">
+                        <input type="search" id="keyword-input" class="form-input with-icon" placeholder="Keyword">
                         <button id="clear-keyword" class="clear-button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -63,11 +63,11 @@
                     </div>
                 </div>
     
-                <div class="form-group">
+                <div class="form-group expandable-section" style="display: none;">
                     <label class="form-label">Campus:</label>
                     <div class="campus-options">
-                        <button class="campus-button male" data-campus="male" name="campus" value="male">Male</button>
-                        <button class="campus-button female" data-campus="female" name="campus" value="female">Female</button>
+                        <button class="campus-button male" data-campus="male" name="campus" value="male" type="button">Male</button>
+                        <button class="campus-button female" data-campus="female" name="campus" value="female" type="button">Female</button>
                     </div>
                 </div>
         
@@ -239,58 +239,35 @@
         </table>
     </div>
     
-    <script>
-        // Toggle expand/collapse functionality
+    <!-- <script>
+       // Toggle expand/collapse functionality
         const toggleButton = document.getElementById('toggle-expand');
         const expandIcon = document.getElementById('expand-icon');
         const collapseIcon = document.getElementById('collapse-icon');
-        const expandableSection = document.getElementById('expandable-section');
+        const expandableSection = document.querySelectorAll('.expandable-section');
         
-        toggleButton.addEventListener('click', function() {
-            const isExpanded = expandableSection.style.display === 'block';
-            expandableSection.style.display = isExpanded ? 'none' : 'block';
-            expandIcon.style.display = isExpanded ? 'block' : 'none';
-            collapseIcon.style.display = isExpanded ? 'none' : 'block';
+        toggleButton.addEventListener('click', (e)=> {
+            e.preventDefault();
+            expandableSection.forEach(section => {
+                const isExpanded = section.style.display != 'none';
+                section.style.display = isExpanded ? 'none' : 'block';
+                expandIcon.style.display = isExpanded ? 'block' : 'none';
+                collapseIcon.style.display = isExpanded ? 'none' : 'block';
+            });
         });
-    
-        // Clear button functionality for College input
-        const collegeInput = document.getElementById('college-input');
-        const clearCollegeButton = document.getElementById('clear-college');
-        
-        collegeInput.addEventListener('input', function() {
-            clearCollegeButton.style.display = this.value ? 'block' : 'none';
-        });
-        
-        clearCollegeButton.addEventListener('click', function() {
-            collegeInput.value = '';
-            this.style.display = 'none';
-        });
-    
-        // Clear button functionality for Keyword input
-        const keywordInput = document.getElementById('keyword-input');
-        const clearKeywordButton = document.getElementById('clear-keyword');
-        
-        keywordInput.addEventListener('input', function() {
-            clearKeywordButton.style.display = this.value ? 'block' : 'none';
-        });
-        
-        clearKeywordButton.addEventListener('click', function() {
-            keywordInput.value = '';
-            this.style.display = 'none';
-        });
-    
+
         // Campus selection functionality
         const campusButtons = document.querySelectorAll('.campus-button');
         
         campusButtons.forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
                 // Remove selected class from all buttons
                 campusButtons.forEach(btn => btn.classList.remove('selected'));
                 // Add selected class to clicked button
                 this.classList.add('selected');
             });
-        });
-        
+        });    
     </script>
-    
+     -->
 </div>

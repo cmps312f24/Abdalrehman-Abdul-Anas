@@ -30,6 +30,23 @@ async function logout(){
     localStorage.clear();
 }
 
+function searchInObject(obj, keyword) {
+    const lowerKeyword = keyword.toLowerCase();
+  
+    function recursiveSearch(value) {
+      if (typeof value === 'string') {
+        return value.toLowerCase().includes(lowerKeyword);
+      } else if (Array.isArray(value)) {
+        return value.some(item => recursiveSearch(item));
+      } else if (typeof value === 'object' && value !== null) {
+        return Object.values(value).some(val => recursiveSearch(val));
+      }
+      return false;
+    }
+  
+    return recursiveSearch(obj);
+}
+
 async function getInstructorName(id){
     let instructor= await fetch(baseUrl+`instructors/${id}`).then (res => res.json());
     if(instructor=="none"){
@@ -106,6 +123,46 @@ async function displayRegisterCourses(courses){
         }
     }
     document.querySelector(".tbody").innerHTML=html;
+    
+    // button handler
+    regbuttons()
+
+    document.getElementById("college-input").addEventListener("keyup",()=>{sortRegisteration(courses)});
+    document.getElementById("id-input").addEventListener("keyup",()=>{sortRegisteration(courses)});
+    document.getElementById("keyword-input").addEventListener("keyup",()=>{sortRegisteration(courses)});
+    document.querySelector(".search-button").addEventListener("click",(e)=>{e.preventDefault();sortRegisteration(courses)});
+}
+
+async function sortRegisteration(courses){
+    
+    const college= document.getElementById("college-input").value;
+    const id= document.getElementById("id-input").value;
+    const keyword= document.getElementById("keyword-input").value;
+
+    document.querySelector(".tbody").innerHTML="";
+    let html='';
+    for (const c of courses) {
+        for (const s of c.sections) {
+            const instructorName = await getInstructorName(s.instructorID);
+            if (c.college.toLowerCase().includes(college.toLowerCase()) && c.courseNo.toLowerCase().includes(id.toLowerCase()) && (searchInObject(c,keyword) || instructorName.toLowerCase().includes(keyword.toLowerCase()) || s.sectionID.toLowerCase().includes(keyword.toLowerCase()))) {
+                html+= `
+                    <tr class="table-body-row">
+                        <td>${c.courseNo}</td>
+                        <td>${c.name}</td>
+                        <td>${s.sectionID}</td>
+                        <td>${c.credit}</td>
+                        <td>${instructorName}</td>
+                        <td>${c.college}</td>
+                        <td>${s.timing}/${s.place}</td>
+                        <td>${s.status}</td>
+                        <td>${s.campus}</td>
+                        <td class="add-box"><button class="add-button">+</button></td>
+                    </tr>
+                `;
+            }
+        }
+    }
+    document.querySelector(".tbody").innerHTML=html;
 }
 
 
@@ -153,3 +210,33 @@ async function displaySummary(button){
 
 
 
+function regbuttons(){
+    // Toggle expand/collapse functionality
+    const toggleButton = document.getElementById('toggle-expand');
+    const expandIcon = document.getElementById('expand-icon');
+    const collapseIcon = document.getElementById('collapse-icon');
+    const expandableSection = document.querySelectorAll('.expandable-section');
+    
+    toggleButton.addEventListener('click', (e)=> {
+        e.preventDefault();
+        expandableSection.forEach(section => {
+            const isExpanded = section.style.display != 'none';
+            section.style.display = isExpanded ? 'none' : 'block';
+            expandIcon.style.display = isExpanded ? 'block' : 'none';
+            collapseIcon.style.display = isExpanded ? 'none' : 'block';
+        });
+    });
+
+    // Campus selection functionality
+    const campusButtons = document.querySelectorAll('.campus-button');
+    
+    campusButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Remove selected class from all buttons
+            campusButtons.forEach(btn => btn.classList.remove('selected'));
+            // Add selected class to clicked button
+            this.classList.add('selected');
+        });
+    }); 
+}
