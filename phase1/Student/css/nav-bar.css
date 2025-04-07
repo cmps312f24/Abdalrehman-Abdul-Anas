@@ -1115,27 +1115,38 @@ h2 {
     background-color: #f7f7f7;
 }
 
-.backgroud-home {
+.backgroud-home{
     background-image: url('/img/background.png');
-    background-size: cover;
-    background-position: center;
+    background-size:100% 145%;
+    background-position:cover;
     background-repeat: no-repeat;
     position: relative;
-    width: 100%;
-    height: 250px;
-    margin: 0;
+    width: 104.8%;
+    height: 40%;
+    margin-top: -2%;
+    margin-right: -1.5%;
+    margin-left: -1.5%;
+    margin-bottom: -2%;
+    aspect-ratio: 654/305;
     z-index: 0;
+    background-color: lightgray;
 }
-
 .backgroud-home::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    top: 50%;
     left: 0;
     width: 100%;
-    height: 70%;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+    height: 50%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.359), rgba(255, 255, 255, 0.782), rgb(255, 255, 255));
 }
+
+/* Ensures content inside doesn't get hidden behind fade */
+.backgroud-home * {
+    position: relative;
+    z-index: 2;
+}
+
 
 #content-home {
     width: 100%;
@@ -1170,12 +1181,13 @@ h2 {
 }
 
 #stu-info {
+    
     grid-area: stu-info;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    height: 100%;
+    height: 130%;
 }
 
 #student-text {
@@ -1183,11 +1195,7 @@ h2 {
     padding-right: 20px;
 }
 
-#gra {
-    width: 200px;
-    height: auto;
-    object-fit: contain;
-}
+
 
 /* Calendar */
 
@@ -1195,35 +1203,42 @@ h2 {
     grid-area: calendar;
     width: 100%;
     background: white;
-    padding: 20px;
+    padding: 10px; 
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
+    font-size: 12px;
 }
 
 .header-calendar {
+    width: 90%; 
+    height: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px; 
 }
 
 .days, .dates {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
+    gap: 3px;
 }
 
 .days div {
     font-weight: bold;
-    padding: 5px;
+    padding: 2px;
+    font-size: 12px;
+    
 }
 
 .dates div {
-    padding: 10px;
+    padding: 4px;
     background: #ddd;
-    border-radius: 5px;
+    border-radius: 3px;
     text-align: center;
+    font-size: 12px;
+    height: 100%;
 }
 
 .dates div:hover {
@@ -1250,42 +1265,37 @@ h2 {
     background-color: #2980b9 !important;
 }
 
-
 .legend {
-    margin-top: 15px;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 10px;
+    
 }
 
 .legend-item {
     display: flex;
     align-items: center;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .legend-box {
-    width: 15px;
-    height: 15px;
-    border-radius: 3px;
-    margin-right: 5px;
+    
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    margin-right: 4px;
 }
 
 .legend-item .today {
     background-color: #ff6347;
 }
 
-.legend-item .event-calender {
+.legend-box .event-calender {
     background-color: #3498db;
 }
 
-#events {
-    grid-area: events;
-    width: 100%;
-    max-width: 350px;
-   
-    justify-self: end;
-}
+
 
 .header-home, .header {
     color: #101820;
@@ -1303,6 +1313,19 @@ h2 {
     line-height: 1.8;
 }
 
+#events {
+    grid-area: events;
+    width: 100%;
+    justify-self: end;
+}
+
+.event-container {
+    scrollbar-width: none;
+    max-height: 135px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
 .event {
     background-color: #fff;
     border-radius: 8px;
@@ -1313,11 +1336,13 @@ h2 {
     color: #333;
 }
 
+
 #img-cal {
     width: 100%;
     border-radius: 15px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
+
 
 
 
