@@ -42,13 +42,7 @@ form{
     width: 85%;
     height: 55%;
     border-radius: 25px;
-    background: url(/img/login-box-background.png);
-    background-color:rgb(184, 200, 206);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    /* filter: blur(1px); */
+    background-color: #101820;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     z-index: 1;
     padding-top: 5%;
@@ -59,7 +53,7 @@ form{
     height: 18%;
     justify-content: center;
     align-items: center;
-    background-color: #B7B7BD;
+    background-color: #fff;
     margin: 1%;
     border: none;
     border-radius: 20px;
@@ -75,7 +69,7 @@ form{
 .Login-input{
     height: 100%;
     width: 100%;
-    background-color: #B7B7BD;
+    background-color: #fff;
     border: none;
     border-radius: 20px;
     font-size: x-large;
@@ -90,13 +84,8 @@ form{
     z-index: 0;
     position: relative;
     top: -2%;
-    background: url(/img/login-box-background.png);
-    background-color:rgb(184, 200, 206);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    /* filter: blur(1px); */
+    background-color: #101820;
+    cursor: pointer;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 #user-img{

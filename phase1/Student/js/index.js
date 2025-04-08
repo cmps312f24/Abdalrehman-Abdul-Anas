@@ -104,6 +104,7 @@ async function displayRegisterCourses(courses){
     document.querySelector(".tbody").innerHTML="";
     let html='';
     for (const c of courses) {
+        let index=0;
         for (const s of c.sections) {
             const instructorName = await getInstructorName(s.instructorID);
             html+= `
@@ -117,9 +118,10 @@ async function displayRegisterCourses(courses){
                     <td>${s.timing}/${s.place}</td>
                     <td>${s.status}</td>
                     <td>${s.campus}</td>
-                    <td class="add-box"><button class="add-button">+</button></td>
+                    <td class="add-box"><button class="add-button" onclick="registerCourse('${c.courseNo}','${index}')">+</button></td>
                 </tr>
             `;
+            index++;
         }
     }
     document.querySelector(".tbody").innerHTML=html;
@@ -156,7 +158,7 @@ async function sortRegisteration(courses){
                         <td>${s.timing}/${s.place}</td>
                         <td>${s.status}</td>
                         <td>${s.campus}</td>
-                        <td class="add-box"><button class="add-button">+</button></td>
+                        <td class="add-box"><button class="add-button" onclick="registerCourse('${c.courseNo}','${index}')">+</button></td>
                     </tr>
                 `;
             }
@@ -201,7 +203,7 @@ async function displaySummary(button){
                     <td>${section.timing}/${section.place}</td>
                     <td>${section.status}</td>
                     <td>${section.campus}</td>
-                    <td class="add-box"><button class="add-button">+</button></td>
+                    <td class="add-box"><button class="add-button">-</button></td>
             </tr>
             `;
     }
@@ -366,3 +368,48 @@ function calender(){
 
     generateCalendar(currentMonth, currentYear);
 }
+
+
+async function registerCourse(courseNo, sectionIndex) {
+    const studentsUrl= baseUrl + "students/";
+    // getting section by index
+    const course= await fetch(`${baseUrl}courses/${courseNo}`).then(res => res.json());
+    const section = course.sections[sectionIndex]
+    //getting student from local storage(user)
+    const student = JSON.parse(localStorage.user);
+  
+    //Check if student already registered in same course --> checking if same course and same category
+    let inSections = student.sections.find((sec) => sec.courseNo == course.courseNo && sec.section[0] == section.sectionID[0]) ? true : false;
+    let inPendingSection = student.pendingSections.find((sec) => sec.courseNo == course.courseNo && sec.section[0] == section.sectionID[0]) ? true : false;
+    if (inSections || inPendingSection) {
+      alert("Course is already registered");
+      return;
+    }
+  
+    // Add student to section
+    section.students.push({ "id": student.id, "grade": "" });
+  
+    // Add section to student pendding sections
+    student.pendingSections.push({ "courseNo": course.courseNo, "section": section.sectionID });
+  
+    //update course in API
+    await fetch(baseUrl + `courses/${course.courseNo}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(course)
+    });
+  
+    //update user in API
+    await fetch(`${studentsUrl}${student.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(student)
+    });
+    //update user in local storage
+    localStorage.user = JSON.stringify(student);
+    alert("Course has registered successfully")
+  }

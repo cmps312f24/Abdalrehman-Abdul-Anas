@@ -76,9 +76,14 @@ async function displayCourses(button) {
 }
 
 async function displayGrades(courseNo, sectionID) {
+
     const data = await fetch(baseUrl + `courses/${courseNo}`);
     const course = await data.json();
     const section = course.sections.find((s) => s.sectionID == sectionID);
+    
+    if (section.status == "pending" || section.status == "completed") {
+        return alert("You can't grade this course");
+    }
 
     await loadSubPage('/Admin/Grade.html');
 
