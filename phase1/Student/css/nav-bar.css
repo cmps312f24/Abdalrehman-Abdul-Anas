@@ -755,7 +755,7 @@ h2 {
 /* Student - Path */
 .path{
     z-index: 1;
-    width: 1000px; /* Fixed width */
+    width: 1200px !important; /* Fixed width */
     height: 700px;
     align-self: center;
     align-items: center;
@@ -769,6 +769,9 @@ h2 {
 .header-path {
     width: 1200px;
     align-self: flex-start;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 1.5%;
     display: flex;
     background-color: #1a1a1a;
     color: white;
@@ -777,6 +780,7 @@ h2 {
     position: sticky;
     top: 0;
     z-index: 10;
+    align-items: center;
 }
 
 .year {
@@ -808,8 +812,8 @@ h2 {
         "f14 s14 f24 em1 f34 s33 f43 s43"
         "f15 s15 f25 s24 f35 s34 f44 s44"
         "f16 s16 f26 s25 em2 s35 em5 em7";
-    column-gap: 2%;
-    row-gap: 10.2%;
+    column-gap: 25px;
+    row-gap: 55px;
     place-items: center;
     padding: 4% 0% 0% 3.5%;
     box-sizing: border-box;
@@ -840,15 +844,17 @@ h2 {
 
 .course-details {
     display: none;
-    font-size: 10px;
+    font-size: 8px;
     margin-top: 1px;
     text-align: start;
 }
 
 .course:hover {
-    transform: scale(1.9);
+    transform: scale(2.4);
     z-index: 5;
+    font-size: 8.8px;
 }
+
 
 .course:hover .course-details {
     display: block;
@@ -872,61 +878,61 @@ h2 {
 #arrow1 {
     width: 30px;
     top: 68px; 
-    left: 138px;
+    left: 140px;
 }
 #arrow2 {
     width: 30px;
     top: 68px; 
-    left: 434px;
+    left: 437px;
 }
 #arrow3 {
     width: 30px;
     top: 68px;
-    left: 286px;
+    left: 288px;
 }
 #arrow17 {
     width: 516px;
     height: 350px;
-    top: 44px;
-    left: 14px;
+    top: 49px;
+    left: 16px;
 }
 #arrow18 {
     width: 780px;
     height: 667px;
     top: 24px;
-    left: 8px;
+    left: 10px;
 }
 #arrow4 {
-    top: 14px;
+    top: 22px;
     left: 216px;
     width: 456px;
 }
 #arrow5 {
-    top: 28px;
+    top: 26px;
     left: 224px;
     width: 680px;
     height: 200px;
 }
 #arrow6 {
-    top: 83px;
+    top: 88px;
     left: 222px;
     width: 312px;
     height: 88px;
 }
 #arrow7 {
-    top: 83px;
+    top: 88px;
     left: 372px;
     width: 312px;
     height: 88px;
 }
 #arrow8 {
-    top: 21px;
+    top: 30px;
     left: 360px;
     width: 456px;
     height: 20px;
 }
 #arrow9 {
-    top: 112px;
+    top: 119px;
     left: 684px;
     width: 300px;
     height: 20px;
@@ -942,20 +948,20 @@ h2 {
     left: 138px;
 }
 #arrow12 {
-    top: 84px; /* moved down */
-    left: 433px;
+    top: 84px;
+    left: 436px;
     width: 31px;
     height: 110px;
 }
 #arrow13 {
-    top: 220px; /* moved down */
-    left: 432.6px;
+    top: 220px;
+    left: 437px;
     width: 31px;
     height: 128px;
 }
 #arrow14 {
     top: 330px; 
-    left: 285px;
+    left: 289px;
     width: 31px;
     height: 130px;
 }
@@ -976,42 +982,42 @@ h2 {
     height: 250px;
 }
 #arrow19 {
-    top: 343px; /* moved down */
+    top: 343px;
     left: 215px;
     height: 88px;
 }
 #arrow30 {
-    top: 472.5px; /* moved down */
+    top: 472.5px;
     left: 65px;
     height: 88px;
 }
 #arrow31 {
-    top: 472.5px; /* moved down */
+    top: 472.5px;
     left: 364px;
     height: 88px;
 }
 #arrow32 {
-    top: 628.5px; /* moved down */
+    top: 628.5px;
     left: 180px;
     width: 660px;
     height: 64px;
 }
 #arrow33 {
-    top: 720px; /* moved down */
+    top: 720px;
     left: 127px;
 }
 #arrow34 {
-    top: 335px; /* moved down */
+    top: 335px;
     left: 127px;
     height: 380px;
 }
 #arrow35 {
-    top: 675px; /* moved down */
+    top: 675px;
     left: 216px;
     width: 324px;
 }
 #arrow36 {
-    top: 349px; /* moved down */
+    top: 349px;
     left: 570px;
     height: 380px;
 }
