@@ -1,11 +1,11 @@
 const baseUrl = "http://localhost:3000/api/";
 
-async function loadPage(pageUrl,button) {
+async function loadPage(pageUrl, button) {
     const page = await fetch(pageUrl);
     const data = await page.text();
     document.querySelector(".content-area").innerHTML = data;
 
-    if (button){
+    if (button) {
         // Remove 'selected' class from all buttons
         document.querySelectorAll('.menu-element').forEach(btn => btn.classList.remove('selected'));
         // Add 'selected' class to the clicked button
@@ -14,11 +14,11 @@ async function loadPage(pageUrl,button) {
 }
 
 
-async function loadSubPage(pageUrl,button){
+async function loadSubPage(pageUrl, button) {
     const page = await fetch(pageUrl);
     const data = await page.text();
     document.querySelector(".container").innerHTML = data;
-    if(button){
+    if (button) {
         // Remove 'active' class from all buttons
         document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
         // Add 'active' class to the clicked button
@@ -26,42 +26,42 @@ async function loadSubPage(pageUrl,button){
     }
 }
 
-async function logout(){
-    window.location.href="/Login/index.html";
+async function logout() {
+    window.location.href = "/Login/index.html";
     localStorage.clear();
 }
 
-async function getInstructorName(id){
-    let instructor= await fetch(baseUrl+`instructors/${id}`).then (res => res.json());
-    if(instructor=="none"){
-        instructor=await fetch(baseUrl+`admins/${id}`).then (res => res.json());
+async function getInstructorName(id) {
+    let instructor = await fetch(baseUrl + `instructors/${id}`).then(res => res.json());
+    if (instructor == "none") {
+        instructor = await fetch(baseUrl + `admins/${id}`).then(res => res.json());
     }
     return instructor.name;
 }
 
-async function getStudentName(id){
-    let student= await fetch(baseUrl+`students/${id}`).then (res => res.json());
+async function getStudentName(id) {
+    let student = await fetch(baseUrl + `students/${id}`).then(res => res.json());
     return await student.name;
 }
 
 
 // Display courses
-async function displayCourses(button){
+async function displayCourses(button) {
     //load the courses page
-    await loadPage('/Instructor/courses.html',button);
+    await loadPage('/Instructor/courses.html', button);
     // get user
-    const user= JSON.parse(localStorage.user);
+    const user = JSON.parse(localStorage.user);
     //get userr sections
-    const sections= user.sections;
+    const sections = user.sections;
 
-    document.querySelector(".content").innerHTML="";
-    
+    document.querySelector(".content").innerHTML = "";
+
     for (const s of sections) {
         // Fetch course data
-        const data = await fetch(baseUrl+`courses/${s.courseNo}`);
+        const data = await fetch(baseUrl + `courses/${s.courseNo}`);
         const course = await data.json();
         // get section
-        const section = course.sections.find((sc)=> sc.sectionID==s.section);
+        const section = course.sections.find((sc) => sc.sectionID == s.section);
 
         // display course
         document.querySelector(".content").innerHTML += `
@@ -72,17 +72,17 @@ async function displayCourses(button){
                 <p id="instructor">${await getInstructorName(section.instructorID)}</p>
             </section>`;
     }
-    
+
 }
 
-async function displayGrades(courseNo,sectionID){
-    const data = await fetch(baseUrl+`courses/${courseNo}`);
+async function displayGrades(courseNo, sectionID) {
+    const data = await fetch(baseUrl + `courses/${courseNo}`);
     const course = await data.json();
-    const section = course.sections.find((s)=> s.sectionID==sectionID);
+    const section = course.sections.find((s) => s.sectionID == sectionID);
 
     await loadSubPage('/Admin/Grade.html');
 
-    document.querySelector(".page-header").innerHTML=`<h1>${course.name} ${course.courseNo}</h1>`;
+    document.querySelector(".page-header").innerHTML = `<h1>${course.name} ${course.courseNo}</h1>`;
     let html = '';
     for (const s of section.students) {
         const studentName = await getStudentName(s.id);
@@ -95,24 +95,24 @@ async function displayGrades(courseNo,sectionID){
         `;
     }
     document.querySelector(".tbody").innerHTML = html;
-    document.getElementById("name-input").addEventListener("keyup",()=>{sortGrade(courseNo,sectionID)});
-    document.getElementById("id-input").addEventListener("keyup",()=>{sortGrade(courseNo,sectionID)});
-    document.querySelector(".search-button").addEventListener("click",(e)=>{e.preventDefault();sortGrade(courseNo,sectionID)});   
+    document.getElementById("name-input").addEventListener("keyup", () => { sortGrade(courseNo, sectionID) });
+    document.getElementById("id-input").addEventListener("keyup", () => { sortGrade(courseNo, sectionID) });
+    document.querySelector(".search-button").addEventListener("click", (e) => { e.preventDefault(); sortGrade(courseNo, sectionID) });
 }
 
 
-async function sortGrade(courseNo,sectionID){
-    const data = await fetch(baseUrl+`courses/${courseNo}`);
+async function sortGrade(courseNo, sectionID) {
+    const data = await fetch(baseUrl + `courses/${courseNo}`);
     const course = await data.json();
-    const section = course.sections.find((s)=> s.sectionID==sectionID);
+    const section = course.sections.find((s) => s.sectionID == sectionID);
 
-    document.querySelector(".page-header").innerHTML=`<h1>${course.name} ${course.courseNo}</h1>`;
+    document.querySelector(".page-header").innerHTML = `<h1>${course.name} ${course.courseNo}</h1>`;
     let html = '';
-    const students= section.students.filter((s)=> s.id.includes(document.getElementById("id-input").value));
+    const students = section.students.filter((s) => s.id.includes(document.getElementById("id-input").value));
     for (const s of students) {
         const studentName = await getStudentName(s.id);
-        if(studentName.toLowerCase().includes(document.getElementById("name-input").value.toLowerCase())){
-        html += `
+        if (studentName.toLowerCase().includes(document.getElementById("name-input").value.toLowerCase())) {
+            html += `
             <tr class="student-grade">
                     <td>${studentName}</td>
                     <td>${s.id}</td>
@@ -122,7 +122,7 @@ async function sortGrade(courseNo,sectionID){
         }
     }
     document.querySelector(".tbody").innerHTML = html;
-    
+
 }
 
 
@@ -130,27 +130,27 @@ async function sortGrade(courseNo,sectionID){
 
 
 
-async function displayRegisteration(button){
-    await loadPage('/Admin/Registeration.html',button);
-    const data = await fetch(baseUrl+`courses?status=pending`);
+async function displayRegisteration(button) {
+    await loadPage('/Admin/Registeration.html', button);
+    const data = await fetch(baseUrl + `courses?status=pending`);
     const courses = await data.json();
     await displayPendingCourses(courses);
 }
-async function displaypending(button){
-    await loadSubPage('/Admin/pending.html',button);
-    const data = await fetch(baseUrl+`courses?status=pending`);
+async function displaypending(button) {
+    await loadSubPage('/Admin/pending.html', button);
+    const data = await fetch(baseUrl + `courses?status=pending`);
     const courses = await data.json();
     await displayPendingCourses(courses);
 }
 
 
-async function displayPendingCourses(courses){
-    document.querySelector(".tbody").innerHTML="";
-    let html='';
+async function displayPendingCourses(courses) {
+    document.querySelector(".tbody").innerHTML = "";
+    let html = '';
     for (const c of courses) {
         for (const s of c.sections) {
             const instructorName = await getInstructorName(s.instructorID);
-            html+= `
+            html += `
                 <tr class="table-body-row">
                     <td>${c.courseNo}</td>
                     <td>${c.name}</td>
@@ -166,24 +166,24 @@ async function displayPendingCourses(courses){
             `;
         }
     }
-    document.querySelector(".tbody").innerHTML=html;
+    document.querySelector(".tbody").innerHTML = html;
 }
 
 
-async function displayApproved(button){
-    await loadSubPage('/Admin/approved.html',button);
-    const data = await fetch(baseUrl+`courses?status=approved`);
+async function displayApproved(button) {
+    await loadSubPage('/Admin/approved.html', button);
+    const data = await fetch(baseUrl + `courses?status=approved`);
     const courses = await data.json();
     await displayApprovedCourses(courses);
 }
 
-async function displayApprovedCourses(courses){
-    document.querySelector(".tbody").innerHTML="";
-    let html='';
+async function displayApprovedCourses(courses) {
+    document.querySelector(".tbody").innerHTML = "";
+    let html = '';
     for (const c of courses) {
         for (const s of c.sections) {
             const instructorName = await getInstructorName(s.instructorID);
-            html+= `
+            html += `
                 <tr class="table-body-row">
                     <td>${c.courseNo}</td>
                     <td>${c.name}</td>
@@ -199,15 +199,95 @@ async function displayApprovedCourses(courses){
             `;
         }
     }
-    document.querySelector(".tbody").innerHTML=html;
+    document.querySelector(".tbody").innerHTML = html;
 }
 
-// Adding new course
-// document.querySelector("#addCourse").addEventListener("click",()=>{
-//     const form = document.querySelector(".form-container");
-//     const formData = new FormData(form);
-    
-// })
+
+// // Add section
+// async function addSection(course, section) {
+
+//     // Courses list
+//     const courses = await getCourses();
+
+//     // Instructors list / admin list
+//     const instructors = await getInstructors();
+//     const admins = await getAdmins();
+
+//     // Find instructor
+//     const instructor = instructors.find((i) => i.id == course.instructorID) || admins.find((a) => a.id == course.instructorID);
+
+//     // Add section to instructor
+//     instructor.sections.push({ "courseNo": course.courseNo, "section": course.sections[0].sectionID });
+
+//     // Check if the course exist 
+//     if (!courses.find((c) => c.courseNo == course.courseNo && c.category == course.category)) {
+//         addCourse(course);
+//     } else {
+//         const sections = courses.find((c) => c.courseNo == course.courseNo && c.category == course.category).sections;
+//         sections.push(...course.sections);
+//     }
+
+//     // update json file
+//     fs.writeFileSync(courseFilePath, JSON.stringify(courses, null, 2), 'utf8');
+// }
 
 
 
+// Add new course or section :
+async function displayAddCourse(pageUrl, button){
+    //Load add course screeen
+    await loadSubPage(pageUrl, button);
+    // adding course
+    document.querySelector(".form-container").addEventListener("submit", async function (event) {
+        event.preventDefault(); // Stop submitting
+        const formData = new FormData(event.target);
+        // retrieve the course if it exist
+        const courseResponse = (await fetch(baseUrl + `courses/${formData.get("courseNumber")}`));
+        console.log(courseResponse);
+        
+        // creating the section
+        const section = {
+            sectionID: formData.get("courseSection"),
+            instructorID: formData.get("instructorID"),
+            place: formData.get("place"),
+            timing: formData.get("timing"),
+            dow: formData.get("category") == "lecture" ? "sun/tue/thu" : "mon/wed",
+            campus: formData.get("campus"),
+            status: "pending",
+            students: []
+        };
+        // if the course already exist => add the new section
+        if (courseResponse.ok) {
+            const course = await courseResponse.json();
+            course.sections.push(section);
+            await fetch(baseUrl + `courses/${course.courseNo}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(course)
+            });
+        }
+        // if the course doesn't exist => create new course
+        else {
+            const course = {
+                name: formData.get("courseName"),
+                credit: formData.get("credit"),
+                courseNo: formData.get("courseNumber"),
+                category: formData.get("category"),
+                college: formData.get("college"),
+                sections: [section]
+            };
+            await fetch(baseUrl+`courses`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(course)
+              });
+        }
+        alert("The course has been added successfully");
+        displaypending(document.getElementById("pending-button"));
+    });
+
+}

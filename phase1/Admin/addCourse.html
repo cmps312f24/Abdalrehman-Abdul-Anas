@@ -29,10 +29,10 @@
                     placeholder="Credit"></input>
             </section>
 
-            <section class="field-section"><label for="instructor">Instructor</label>
+            <section class="field-section"><label for="instructorID">Instructor</label>
 
 
-                <input type="text" id="instructor" name="instructor" class="field" placeholder="Instructor"></input>
+                <input type="text" id="instructorID" name="instructorID" class="field" placeholder="InstructorID"></input>
             </section>
 
             <section class="field-section">
@@ -57,16 +57,17 @@
                 <input type="text" id="place" name="place" class="field" placeholder="Place">
             </section>
             <section class="field-section">
-                <label for="">Campuse</label>
-                <div class="campuse">
-                    <button class="campus-button male" data-campus="male">Male</button>
-                    <button class="campus-button female" data-campus="female">Female</button>
-                </div>
+                <label for="campus">Campus</label>
+
+                <select name="campus" id="campus" class="field" placeholder="Select campus">
+                    <option value="male" selected>Male</option>
+                    <option value="female">Female</option>
+                </select>
             </section>
 
             <section class="field-section">
-                <label for="College">Timing</label>
-                <input type="text" id="College" name="College" class="field" placeholder="Collage">
+                <label for="college">College</label>
+                <input type="text" id="college" name="college" class="field" placeholder="College">
             </section>
 
             <button type="submit" id="addCourse">Add Course</button>

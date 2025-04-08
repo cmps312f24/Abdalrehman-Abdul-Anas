@@ -258,34 +258,34 @@ async function submitGrade(course, section, id, grade) {
 
 ///           ADMIN           ///
 
-// Add section
-async function addSection(course, sectionIndex) {
-  // getting section by index
-  const section = course.sections[sectionIndex]
-  // Courses list
-  const courses = await getCourses();
+// // Add section
+// async function addSection(course, sectionIndex) {
+//   // getting section by index
+//   const section = course.sections[sectionIndex]
+//   // Courses list
+//   const courses = await getCourses();
 
-  // Instructors list / admin list
-  const instructors = await getInstructors();
-  const admins = await getAdmins();
+//   // Instructors list / admin list
+//   const instructors = await getInstructors();
+//   const admins = await getAdmins();
 
-  // Find instructor
-  const instructor = instructors.find((i) => i.id == course.instructorID) || admins.find((a) => a.id == course.instructorID);
+//   // Find instructor
+//   const instructor = instructors.find((i) => i.id == course.instructorID) || admins.find((a) => a.id == course.instructorID);
 
-  // Add section to instructor
-  instructor.sections.push({ "courseNo": course.courseNo, "section": course.sections[0].sectionID });
+//   // Add section to instructor
+//   instructor.sections.push({ "courseNo": course.courseNo, "section": course.sections[0].sectionID });
 
-  // Check if the course exist 
-  if (!courses.find((c) => c.courseNo == course.courseNo && c.category == course.category)) {
-    addCourse(course);
-  } else {
-    const sections = courses.find((c) => c.courseNo == course.courseNo && c.category == course.category).sections;
-    sections.push(...course.sections);
-  }
+//   // Check if the course exist 
+//   if (!courses.find((c) => c.courseNo == course.courseNo && c.category == course.category)) {
+//     addCourse(course);
+//   } else {
+//     const sections = courses.find((c) => c.courseNo == course.courseNo && c.category == course.category).sections;
+//     sections.push(...course.sections);
+//   }
 
-  // update json file
-  fs.writeFileSync(courseFilePath, JSON.stringify(courses, null, 2), 'utf8');
-}
+//   // update json file
+//   fs.writeFileSync(courseFilePath, JSON.stringify(courses, null, 2), 'utf8');
+// }
 
 // Delete section
 async function deleteSection(course) {
