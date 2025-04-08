@@ -101,11 +101,13 @@ async function displayRegister(button){
 }
 
 async function displayRegisterCourses(courses){
+    const student= JSON.parse(localStorage.user);
     document.querySelector(".tbody").innerHTML="";
     let html='';
     for (const c of courses) {
         let index=0;
-        for (const s of c.sections) {
+        const sections=c.sections.filter((section) =>  student.pendingSections.find((s) => s.courseNo == c.courseNo && s.section == section.sectionID) == undefined);
+        for (const s of sections) {
             const instructorName = await getInstructorName(s.instructorID);
             html+= `
                 <tr class="table-body-row">
@@ -136,7 +138,7 @@ async function displayRegisterCourses(courses){
 }
 
 async function sortRegisteration(courses){
-    
+    const student= JSON.parse(localStorage.user);
     const college= document.getElementById("college-input").value;
     const id= document.getElementById("id-input").value;
     const keyword= document.getElementById("keyword-input").value;
@@ -144,7 +146,9 @@ async function sortRegisteration(courses){
     document.querySelector(".tbody").innerHTML="";
     let html='';
     for (const c of courses) {
-        for (const s of c.sections) {
+        const sections=c.sections.filter((section) =>  student.pendingSections.find((s) => s.courseNo == c.courseNo && s.section == section.sectionID) == undefined);
+        let index=0;
+        for (const s of sections) {
             const instructorName = await getInstructorName(s.instructorID);
             if (c.college.toLowerCase().includes(college.toLowerCase()) && c.courseNo.toLowerCase().includes(id.toLowerCase()) && (searchInObject(c,keyword) || instructorName.toLowerCase().includes(keyword.toLowerCase()) || s.sectionID.toLowerCase().includes(keyword.toLowerCase())) && (getSelectedCampus() == s.campus || getSelectedCampus() == null)) {
                 html+= `
@@ -161,6 +165,7 @@ async function sortRegisteration(courses){
                         <td class="add-box"><button class="add-button" onclick="registerCourse('${c.courseNo}','${index}')">+</button></td>
                     </tr>
                 `;
+                index++;
             }
         }
     }
@@ -185,12 +190,12 @@ async function displaySummary(button){
     const user= JSON.parse(localStorage.user);
     const sections= user.pendingSections;
     document.querySelector(".tbody").innerHTML="";
-    for (const s of sections) {
+    for (const s of sections) {    
         // Fetch course data
-        const course=await courses.find((c)=>c.courseNo==s.courseNo); 
+        const course=await courses.find((c)=>c.courseNo==s.courseNo);
         // get section
-        const section = await course.sections.find((sc)=> sc.sectionID==s.section);
-
+        const index = await course.sections.findIndex((sc)=> sc.sectionID==s.section);
+        const section = course.sections[index];
         // display course
         document.querySelector(".tbody").innerHTML += `
             <tr class="table-body-row">
@@ -203,7 +208,7 @@ async function displaySummary(button){
                     <td>${section.timing}/${section.place}</td>
                     <td>${section.status}</td>
                     <td>${section.campus}</td>
-                    <td class="add-box"><button class="add-button">-</button></td>
+                    <td class="add-box"><button class="add-button" onclick="WithdrawCourse('${course.courseNo}','${index}')">-</button></td>
             </tr>
             `;
     }
@@ -411,5 +416,55 @@ async function registerCourse(courseNo, sectionIndex) {
     });
     //update user in local storage
     localStorage.user = JSON.stringify(student);
-    alert("Course has registered successfully")
+    alert("Course has registered successfully");
+    displayRegister(document.querySelector(".nav-button.active"));
   }
+
+async function WithdrawCourse(courseNo, sectionIndex) {
+    const studentsUrl= baseUrl + "students/";
+    // getting section by index
+    const course= await fetch(`${baseUrl}courses/${courseNo}`).then(res => res.json());
+    const section = course.sections[sectionIndex]
+    //getting student from local storage(user)
+    const student = JSON.parse(localStorage.user);
+    //Find the index of the section to remove
+    const index = student.pendingSections.findIndex((sec) => sec.courseNo == course.courseNo && sec.section == section.sectionID);
+  
+    if (index === -1) {
+      alert("Course is not registered");
+      return;
+    }
+  
+    // Remove student from section
+    section.students = section.students.filter((s) => s.id != student.id);
+  
+    // Remove section from student pendding sections
+    student.pendingSections.splice(index, 1);
+  
+    //update course in API
+    await fetch(baseUrl + `courses/${course.courseNo}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(course)
+    });
+  
+    //update user in API
+    await fetch(`${studentsUrl}${student.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(student)
+    });
+  
+    //update user in local storage
+    localStorage.user = JSON.stringify(student);
+  
+    alert("Course has withdrawn successfully");
+
+    
+    displaySummary(document.querySelector(".nav-button.active"));
+
+}
