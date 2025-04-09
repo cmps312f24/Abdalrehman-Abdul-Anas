@@ -80,7 +80,7 @@ async function displayCourses(button) {
                 <p id="courseNumber">${course.courseNo}</p>
                 <p id="courseName">${course.name}</p>
                 <p id="status">${s.status}</p>
-                <p id="instructor">${await getInstructorName(instructorID)}</p>
+                <p id="instructor">${await getInstructorName(section.instructorID)}</p>
             </section>`;
     }
 
@@ -424,13 +424,13 @@ async function displaySummary(button) {
             <tr class="table-body-row">
                     <td>${course.courseNo}</td>
                     <td>${course.name}</td>
-                    <td>${sectionID}</td>
+                    <td>${section.sectionID}</td>
                     <td>${course.credit}</td>
-                    <td>${await getInstructorName(instructorID)}</td>
+                    <td>${await getInstructorName(section.instructorID)}</td>
                     <td>${course.college}</td>
-                    <td>h${timing}/${place}</td>
-                    <td>${status}</td>
-                    <td>${campus}</td>
+                    <td>h${section.timing}/${section.place}</td>
+                    <td>${section.status}</td>
+                    <td>${section.campus}</td>
                     <td class="add-box"><button class="add-button" onclick="WithdrawCourse('${course.courseNo}','${index}')">-</button></td>
             </tr>
             `;
