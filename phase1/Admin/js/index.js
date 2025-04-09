@@ -298,33 +298,36 @@ async function displayAddCourse(pageUrl, button) {
 
 }
 
-// async function approveCourse(courseNo, sectionID) {
-//     const courseResponse = await fetch(baseUrl + `courses/${courseNo}`);
-//     const course = await courseResponse.json();
-//     const section = course.sections.find(s => s.sectionID == sectionID);
-//     section.status == "current";
-//     for (std of section.students) {
-//         const studentResponse = await fetch(baseUrl + `students/${std.id}`);
-//         const student = studentResponse.json();
-//         student.sections.push({
-//             "courseNo": courseNo,
-//             "section": sectionID,
-//             "status": "current",
-//             "grade": ""
-//         })
-//         await fetch(baseUrl + `students/${std.id}`, {
-//             method: 'PUT',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(student)
-//         });
-//     }
-//     await fetch(baseUrl + `courses/${courseNo}`, {
-//         method: 'PUT',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(course)
-//     });
-// }
+async function approveCourse(courseNo, sectionID) {
+    const courseResponse = await fetch(baseUrl + `courses/${courseNo}`);
+    const course = await courseResponse.json();
+    const section = course.sections.find(s => s.sectionID == sectionID);
+    section.status == "current";
+    for (std of section.students) {
+        const studentResponse = await fetch(baseUrl + `students/${std.id}`);
+        const student = await studentResponse.json();
+        student.sections.push(
+            {
+            "courseNo": courseNo,
+            "section": sectionID,
+            "status": "current",
+            "grade": ""
+        }
+    );
+        await fetch(baseUrl + `students/${std.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(student)
+        });
+    }
+    await fetch(baseUrl + `courses/${courseNo}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(course)
+    });
+}
+ 
