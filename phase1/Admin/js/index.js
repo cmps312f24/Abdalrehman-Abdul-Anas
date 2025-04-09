@@ -197,12 +197,11 @@ async function displayApprovedCourses(courses) {
                     <td>${s.timing}/${s.place}</td>
                     <td>${s.status}</td>
                     <td>${c.category}</td>
-                    <td class="add-box"><button class="add-button">-</button></td>
+                    <td class="add-box"><button class="complete-button" onclick="completeCourse('${c.courseNo}','${s.sectionID}')">complete</button></td>
                 </tr>
             `;
         }
     }
-    // document.querySelector(".tbody").innerHTML = html;
 }
 
 
@@ -217,7 +216,6 @@ async function displayAddCourse(pageUrl, button) {
         const formData = new FormData(event.target);
         // retrieve the course if it exist
         const courseResponse = (await fetch(baseUrl + `courses/${formData.get("courseNumber")}`));
-        console.log(courseResponse);
 
         // creating the section
         const section = {
@@ -300,4 +298,31 @@ async function approveCourse(courseNo, sectionID) {
     alert(`${courseNo}_${sectionID} has been approved`);
     displaypending(document.getElementById("pending-button"));
 }
- 
+
+async function completeCourse(courseNo, sectionID) {
+    const courseResponse = await fetch(baseUrl + `courses/${courseNo}`);
+    const course = await courseResponse.json();
+    const section = course.sections.find(s => s.sectionID == sectionID);
+    section.status = "complete";
+    for (std of section.students) {
+        const studentResponse = await fetch(baseUrl + `students/${std.id}`);
+        const student = await studentResponse.json();
+        student.sections.find(s=> s.courseNo == courseNo).status="completed";
+        await fetch(baseUrl + `students/${std.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(student)
+        });
+    }
+    await fetch(baseUrl + `courses/${courseNo}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(course)
+    });
+    alert(`${courseNo}_${sectionID} is now completed`);
+    displayApproved(document.getElementById("approved-button"));
+}

@@ -455,6 +455,16 @@ h2 {
     color: rgb(38, 163, 38);
 }
 
+.complete-button{
+    font-weight: bold;
+    color: #101820;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.complete-button:hover{
+    color:rgb(38, 163, 38);
+}
 .summary-container {
     display: flex;
     justify-content: end;
