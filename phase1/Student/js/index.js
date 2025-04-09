@@ -172,218 +172,25 @@ async function sortRegisteration(courses) {
     document.querySelector(".tbody").innerHTML = html;
 }
 
-const courses = [{
-    "name": "Programming Concepts",
-    "credit": 3,
-    "courseNo": "CMPS151",
-    "category": "lecture",
-    "college": "Computer Science",
-    "sections": [
-        {
-            "sectionID": "L01",
-            "instructorID": "11",
-            "place": "C209",
-            "timing": "9am",
-            "dow": "sun/tue/thu",
-            "campus": "male",
-            "status": "pending",
-            "students": [
-                {
-                    "id": "102",
-                    "grade": "B"
-                },
-                {
-                    "id": "103",
-                    "grade": "B+"
-                }
-            ]
-        },
-        {
-            "sectionID": "L02",
-            "instructorID": "122",
-            "place": "C210",
-            "timing": "9:00-10:00",
-            "dow": "sun/tue/thu",
-            "campus": "female",
-            "status": "current",
-            "students": [
-                {
-                    "id": "4",
-                    "grade": "A-"
-                },
-                {
-                    "id": "5",
-                    "grade": "B+"
-                },
-                {
-                    "id": "6",
-                    "grade": "B"
-                }
-            ]
-        }
-    ]
-},
-{
-    "name": "General Chemistry I",
-    "credit": 3,
-    "courseNo": "CHEM101",
-    "category": "lecture",
-    "college": "Chemistry",
-    "sections": [
-        {
-            "sectionID": "L01",
-            "instructorID": "1001",
-            "place": "C211",
-            "timing": "11am",
-            "dow": "sun/tue/thu",
-            "campus": "male",
-            "status": "current",
-            "students": [
-                {
-                    "id": "7",
-                    "grade": "A"
-                },
-                {
-                    "id": "8",
-                    "grade": "B"
-                },
-                {
-                    "id": "9",
-                    "grade": "B+"
-                }
-            ]
-        },
-        {
-            "sectionID": "L02",
-            "instructorID": "123",
-            "place": "C212",
-            "timing": "9:00-10:00",
-            "dow": "sun/tue/thu",
-            "campus": "female",
-            "status": "current",
-            "students": [
-                {
-                    "id": "10",
-                    "grade": "A-"
-                },
-                {
-                    "id": "11",
-                    "grade": "B+"
-                },
-                {
-                    "id": "12",
-                    "grade": "B"
-                }
-            ]
-        }
-    ]
-},
-{
-    "name": "Experimental General Chemistry I",
-    "credit": 1,
-    "courseNo": "CHEM103",
-    "category": "lab",
-    "college": "Chemistry",
-    "sections": [
-        {
-            "sectionID": "B01",
-            "instructorID": "1002",
-            "place": "C213",
-            "timing": "4pm",
-            "dow": "mon",
-            "campus": "male",
-            "status": "current",
-            "students": [
-                {
-                    "id": "13",
-                    "grade": "A"
-                },
-                {
-                    "id": "14",
-                    "grade": "B"
-                },
-                {
-                    "id": "15",
-                    "grade": "B+"
-                }
-            ]
-        },
-        {
-            "sectionID": "B02",
-            "instructorID": "123",
-            "place": "C214",
-            "timing": "9:00-10:00",
-            "dow": "sun/tue/thu",
-            "campus": "female",
-            "status": "current",
-            "students": [
-                {
-                    "id": "16",
-                    "grade": "A-"
-                },
-                {
-                    "id": "17",
-                    "grade": "B+"
-                },
-                {
-                    "id": "18",
-                    "grade": "B"
-                }
-            ]
-        }
-    ]
-},]
 
-const user = {
-    "id": "101",
-    "name": "Ahmed Mohamed",
-    "username": "am123",
-    "email": "am123@qu.edu.qa",
-    "gpa": "4.0",
-    "totalCreditHours": "50",
-    "major": "Computer Science",
-    "phoneNo": "12345678",
-    "sections": [
-      {
-        "courseNo": "CMPS151",
-        "section": "L01",
-        "status": "completed",
-        "grade": "B"
-      },
-      {
-        "courseNo": "CHEM101",
-        "section": "L01",
-        "status": "completed",
-        "grade": "A"
-      },
-      {
-        "courseNo": "CHEM103",
-        "section": "B01",
-        "status": "completed",
-        "grade": "A"
-      }
-    ]
-  };
-// The function is done but on testing. should be changed to practical
 async function displaySchedule(button) {
     await loadSubPage('/Student/Schedule.html', button);
     //a map to find the child index to be modified
     const hoursIndex={"8am":1,"9am":2,"10am":3,"11am":4,"12pm":5,"1pm":6,"2pm":7,"3pm":8,"4pm":9,"5pm":10,"6pm":11,"7pm":12,"8pm":13}
-    // get user
-    // const user = JSON.parse(localStorage.user);
-    //get userr sections
-    const sections = user.sections;
+    //get user
+    const user = JSON.parse(localStorage.user);
+    //get user sections
+    const sections = user.pendingSections;
     for (const s of sections) {
         // Fetch course data
-        // const data = await fetch(baseUrl + `courses/${s.courseNo}`);
-        // const course = await data.json();
-        const course = courses.find(c=> c.courseNo==s.courseNo); //Delete
+        const data = await fetch(baseUrl + `courses/${s.courseNo}`);
+        const course = await data.json();
         // get section
         const section = course.sections.find((sc) => sc.sectionID == s.section);
         const timing = section.timing;
         const days = section.dow;
         if (course.category == "lecture") {            
-            //select the days columns            
+            //select the days columns           
             const cells = document.querySelectorAll(`tbody tr:nth-child(${hoursIndex[timing]}) .sun, tbody tr:nth-child(${hoursIndex[timing]}) .tue, tbody tr:nth-child(${hoursIndex[timing]}) .thu`);
             cells.forEach(cell => {
                 cell.classList.add("schedualed-cell"); //To add styling
