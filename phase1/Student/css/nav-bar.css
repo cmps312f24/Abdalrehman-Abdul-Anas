@@ -1081,6 +1081,20 @@ h2 {
 }
 
 /* Home */
+
+#Home-box{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+  
+}
 .content-area-home {
     flex: 1;
     padding: 0;
@@ -1091,20 +1105,9 @@ h2 {
     position: relative;
     z-index: 0;
     overflow: hidden;
+    
 }
 
-.backgroud-home {
-    background-image: url('/img/new-backround.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
 
 #content-home {
     width: 100%;
@@ -1137,6 +1140,28 @@ h2 {
 #uni-info {
     grid-area: uni-info;
     width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+    scrollbar-width: none;
+    padding: 0;
+    margin: 0;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+}
+
+#uni-info .header-home {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 10;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
 }
 
 #stu-info {
@@ -1145,7 +1170,7 @@ h2 {
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    height: 72%;
+    height: 71%;
 }
 
 #student-text {
@@ -1229,6 +1254,9 @@ h2 {
 .event-calender:hover {
     background-color: #2980b9 !important;
 }
+.today:hover {
+    background-color: #555 !important;
+}
 
 .legend {
     margin-top: 10px;
@@ -1270,7 +1298,25 @@ h2 {
     margin-bottom: 15px;
 }
 
-#uni-info-text, #stu-info-text {
+#uni-info-text{
+    color: #333;
+    font-family: Inter, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.8;
+    line-height: 1.8; /* Increases the spacing between lines */
+    margin-top: 10px; 
+
+
+}
+
+#uni-info-text br {
+    margin-bottom: 10px; /* Adds spacing after each line break */
+    display: block; /* Ensures the spacing is applied */
+    content: ""; /* Ensures the spacing is visible */
+}
+
+#stu-info-text {
     color: #333;
     font-family: Inter, sans-serif;
     font-size: 15px;
