@@ -1120,7 +1120,7 @@ h2 {
         "stu-info calendar"
         "stu-info events";
     grid-template-columns: 3fr 2fr;
-    grid-template-rows: auto auto auto minmax(min-content, 80px);
+    grid-template-rows: 1.5fr 1.5fr 1.5fr minmax(min-content, 80px); /* Adjust row heights */
     gap: 15px;
     position: relative;
     z-index: 1;
@@ -1194,10 +1194,9 @@ h2 {
     position: relative;
     z-index: 1;
     overflow: auto;
-    /* Increase the height to fit content better */
-    min-height: 350px; /* Add this line */
-    display: flex; /* Add this line */
-    flex-direction: column; /* Add this line */
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
 }
 
 .header-calendar {
@@ -1304,16 +1303,16 @@ h2 {
     font-size: 15px;
     font-weight: 400;
     line-height: 1.8;
-    line-height: 1.8; /* Increases the spacing between lines */
+    line-height: 1.8;
     margin-top: 10px; 
 
 
 }
 
 #uni-info-text br {
-    margin-bottom: 10px; /* Adds spacing after each line break */
-    display: block; /* Ensures the spacing is applied */
-    content: ""; /* Ensures the spacing is visible */
+    margin-bottom: 10px;
+    display: block;
+    content: "";
 }
 
 #stu-info-text {
@@ -1361,7 +1360,7 @@ h2 {
 
 #myGraph{
     width:190%;
-    height: 100%;
+    height: 280px;
     justify-self: start;
     overflow: hidden;
 }
@@ -1477,10 +1476,6 @@ h2 {
 
 
 /* help & support */
-
-
-
-
 .support-card {
     width: 100%;
     text-align: center;
@@ -1608,7 +1603,13 @@ iframe {
 
 /* setting */
 .content-settings {
-    height: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f9fafb;
+    width: 100%;
+    height: auto;
 }
 
 .content-settings h2{
@@ -1617,8 +1618,12 @@ iframe {
 }
 
 .form-container-settings {
-    justify-items: center;
-    row-gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    align-items: start;
+    margin: 0; /* Remove unnecessary margin */
+    padding: 0; /* Remove unnecessary padding */
 }
 
 .field-section-settings {
@@ -1656,9 +1661,22 @@ iframe {
     background-color: #101820;
     color: white;
 }
-#changePassword:hover{
-    background-color: rgb(205, 205, 205);
-    color: #101820;
+#changePassword {
+    justify-self: start; /* Aligns the button to the left */
+    align-self: flex-start; /* Ensures vertical alignment at the top */
+    padding: 10px 20px;
+    border-radius: 9999px;
+    background-color: #101820;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background-color 0.2s, color 0.2s;
+    margin-top: 10px; /* Optional: Adds spacing from the top */
+}
+#changePassword:hover {
+    background-color: rgb(51, 69, 169);
+    color: #ffffff;
 }
 
 
