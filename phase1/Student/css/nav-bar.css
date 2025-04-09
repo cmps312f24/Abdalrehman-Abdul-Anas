@@ -804,6 +804,7 @@ h2 {
     position: relative;
     width: 1200px; /* Fixed width */
     height: 800px; /* Fixed height */
+    background-color:inherit;
 
    
     display: grid;
@@ -854,9 +855,12 @@ h2 {
 }
 
 .course:hover {
-    transform: scale(2.4);
+    transform: scale(2.2);
     z-index: 5;
     font-size: 8.8px;
+    border-radius: 15px;
+    box-shadow: 0px 0.477px 15.036px 0px rgba(0, 0, 0, 0.434);
+    background-color: #18324c;
 }
 
 
@@ -1606,19 +1610,27 @@ iframe {
 
 
 /* setting */
-.content-settings {
+.settings {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 20px;
-    background-color: #f9fafb;
     width: 100%;
     height: auto;
+    
+    
+}
+
+#settings-container{
+    overflow-y: auto;
+    scrollbar-width: none;
+
 }
 
 .content-settings h2{
     min-width: 100%;
     padding: 10px;
+
 }
 
 .form-container-settings {
@@ -1626,14 +1638,45 @@ iframe {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     align-items: start;
-    margin: 0; /* Remove unnecessary margin */
-    padding: 0; /* Remove unnecessary padding */
+    position: relative;
+   
+    border-radius: 10px;
+    padding: 70px 20px 20px;
+    margin-top: 60px;
+    box-shadow: 0px 0.477px 15.036px 0px rgba(0, 0, 0, 0.15);
+    background-color: #f7f7f7d1;
 }
-
 .field-section-settings {
     width: 80%;
     min-width: 270px;
+    
 }
+
+
+  
+
+#Profile::before {
+    content: "PROFILE";
+    position: absolute;
+    top: -30px;
+    left: 0;
+    color: #888;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+#Preffrences::before {
+    content: "Preffrences";
+    position: absolute;
+    top: -30px;
+    left: 0;
+    color: #888;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
 
 #scale {
     display: flex;
