@@ -47,22 +47,22 @@ async function getStudentName(id){
 
 
 // Display courses
-async function displayCourses(button){
+async function displayCourses(button) {
     //load the courses page
-    await loadPage('/Instructor/courses.html',button);
+    await loadPage('/Instructor/courses.html', button);
     // get user
-    const user= JSON.parse(localStorage.user);
+    const user = JSON.parse(localStorage.user);
     //get userr sections
-    const sections= user.sections;
+    const sections = user.sections;
 
-    document.querySelector(".content").innerHTML="";
-    
+    document.querySelector(".content").innerHTML = "";
+
     for (const s of sections) {
         // Fetch course data
-        const data = await fetch(baseUrl+`courses/${s.courseNo}`);
+        const data = await fetch(baseUrl + `courses/${s.courseNo}`);
         const course = await data.json();
         // get section
-        const section = course.sections.find((sc)=> sc.sectionID==s.section);
+        const section = course.sections.find((sc) => sc.sectionID == s.section);
 
         // display course
         document.querySelector(".content").innerHTML += `
@@ -73,18 +73,22 @@ async function displayCourses(button){
                 <p id="instructor">${await getInstructorName(section.instructorID)}</p>
             </section>`;
     }
-    
+
 }
 
+async function displayGrades(courseNo, sectionID) {
 
-async function displayGrades(courseNo,sectionID){
-    const data = await fetch(baseUrl+`courses/${courseNo}`);
+    const data = await fetch(baseUrl + `courses/${courseNo}`);
     const course = await data.json();
-    const section = course.sections.find((s)=> s.sectionID==sectionID);
+    const section = course.sections.find((s) => s.sectionID == sectionID);
+
+    if (section.status == "pending" || section.status == "completed") {
+        return alert("You can't grade this course");
+    }
 
     await loadSubPage('/Admin/Grade.html');
 
-    document.querySelector(".page-header").innerHTML=`<h1>${course.name} ${course.courseNo}</h1>`;
+    document.querySelector(".page-header").innerHTML = `<h1>${course.name} ${course.courseNo}</h1>`;
     let html = '';
     for (const s of section.students) {
         const studentName = await getStudentName(s.id);
@@ -97,9 +101,9 @@ async function displayGrades(courseNo,sectionID){
         `;
     }
     document.querySelector(".tbody").innerHTML = html;
-    document.getElementById("name-input").addEventListener("keyup",()=>{sortGrade(courseNo,sectionID)});
-    document.getElementById("id-input").addEventListener("keyup",()=>{sortGrade(courseNo,sectionID)});
-    document.querySelector(".search-button").addEventListener("click",(e)=>{e.preventDefault();sortGrade(courseNo,sectionID)});   
+    document.getElementById("name-input").addEventListener("keyup", () => { sortGrade(courseNo, sectionID) });
+    document.getElementById("id-input").addEventListener("keyup", () => { sortGrade(courseNo, sectionID) });
+    document.querySelector(".search-button").addEventListener("click", (e) => { e.preventDefault(); sortGrade(courseNo, sectionID) });
 }
 
 

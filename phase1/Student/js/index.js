@@ -691,3 +691,4 @@ async function WithdrawCourse(courseNo, sectionIndex) {
     displaySummary(document.querySelector(".nav-button.active"));
 
 }
+
