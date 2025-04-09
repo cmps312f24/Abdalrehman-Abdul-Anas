@@ -176,7 +176,7 @@ async function sortRegisteration(courses) {
 async function displaySchedule(button) {
     await loadSubPage('/Student/Schedule.html', button);
     //a map to find the child index to be modified
-    const hoursIndex={"8am":1,"9am":2,"10am":3,"11am":4,"12pm":5,"1pm":6,"2pm":7,"3pm":8,"4pm":9,"5pm":10,"6pm":11,"7pm":12,"8pm":13}
+    const hoursIndex={"8:00am":1,"9:00am":2,"10:00am":3,"11:00am":4,"12:00pm":5,"1:00pm":6,"2:00pm":7,"3:00pm":8,"4:00pm":9,"5:00pm":10,"6:00pm":11,"7:00pm":12,"8:00pm":13}
     //get user
     const user = JSON.parse(localStorage.user);
     //get user sections
@@ -187,10 +187,11 @@ async function displaySchedule(button) {
         const course = await data.json();
         // get section
         const section = course.sections.find((sc) => sc.sectionID == s.section);
-        const timing = section.timing;
+        const timing = section.timing.substring(0,6);
         const days = section.dow;
         if (course.category == "lecture") {            
-            //select the days columns           
+            //select the days columns      
+            console.log(timing);
             const cells = document.querySelectorAll(`tbody tr:nth-child(${hoursIndex[timing]}) .sun, tbody tr:nth-child(${hoursIndex[timing]}) .tue, tbody tr:nth-child(${hoursIndex[timing]}) .thu`);
             cells.forEach(cell => {
                 cell.classList.add("schedualed-cell"); //To add styling
@@ -235,7 +236,7 @@ async function displaySummary(button) {
                     <td>${course.credit}</td>
                     <td>${await getInstructorName(section.instructorID)}</td>
                     <td>${course.college}</td>
-                    <td>h${section.timing}/${section.place}</td>
+                    <td>${section.timing}/${section.place}</td>
                     <td>${section.status}</td>
                     <td>${section.campus}</td>
                     <td class="add-box"><button class="add-button" onclick="WithdrawCourse('${course.courseNo}','${index}')">-</button></td>
