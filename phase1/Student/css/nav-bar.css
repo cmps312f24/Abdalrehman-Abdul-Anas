@@ -473,6 +473,10 @@ h2 {
     text-align: center;
 }
 
+.schedual{
+    max-height: 100%;
+}
+
 .schedual-body-row {
     text-align: center;
     border: solid black 0.07rem;

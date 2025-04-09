@@ -80,7 +80,7 @@ async function displayGrades(courseNo, sectionID) {
     const data = await fetch(baseUrl + `courses/${courseNo}`);
     const course = await data.json();
     const section = course.sections.find((s) => s.sectionID == sectionID);
-    
+
     if (section.status == "pending" || section.status == "completed") {
         return alert("You can't grade this course");
     }
@@ -166,7 +166,7 @@ async function displayPendingCourses(courses) {
                     <td>${s.timing}/${s.place}</td>
                     <td>${s.status}</td>
                     <td>${c.category}</td>
-                    <td class="add-box"><button class="add-button">+</button></td>
+                    <td class="add-box"><button class="add-button" onclick="approveCourse('${c.courseNo}','${s.sectionID}')">+</button></td>
                 </tr>
             `;
         }
@@ -177,18 +177,19 @@ async function displayPendingCourses(courses) {
 
 async function displayApproved(button) {
     await loadSubPage('/Admin/approved.html', button);
-    const data = await fetch(baseUrl + `courses?status=approved`);
+    const data = await fetch(baseUrl + `courses?status=current`);
     const courses = await data.json();
     await displayApprovedCourses(courses);
 }
 
 async function displayApprovedCourses(courses) {
+    await courses;
     document.querySelector(".tbody").innerHTML = "";
     let html = '';
     for (const c of courses) {
         for (const s of c.sections) {
             const instructorName = await getInstructorName(s.instructorID);
-            html += `
+            document.querySelector(".tbody").innerHTML += `
                 <tr class="table-body-row">
                     <td>${c.courseNo}</td>
                     <td>${c.name}</td>
@@ -204,7 +205,7 @@ async function displayApprovedCourses(courses) {
             `;
         }
     }
-    document.querySelector(".tbody").innerHTML = html;
+    // document.querySelector(".tbody").innerHTML = html;
 }
 
 
@@ -239,7 +240,7 @@ async function displayApprovedCourses(courses) {
 
 
 // Add new course or section :
-async function displayAddCourse(pageUrl, button){
+async function displayAddCourse(pageUrl, button) {
     //Load add course screeen
     await loadSubPage(pageUrl, button);
     // adding course
@@ -249,7 +250,7 @@ async function displayAddCourse(pageUrl, button){
         // retrieve the course if it exist
         const courseResponse = (await fetch(baseUrl + `courses/${formData.get("courseNumber")}`));
         console.log(courseResponse);
-        
+
         // creating the section
         const section = {
             sectionID: formData.get("courseSection"),
@@ -283,16 +284,47 @@ async function displayAddCourse(pageUrl, button){
                 college: formData.get("college"),
                 sections: [section]
             };
-            await fetch(baseUrl+`courses`, {
+            await fetch(baseUrl + `courses`, {
                 method: 'POST',
                 headers: {
-                  'Content-Type': 'application/json'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(course)
-              });
+            });
         }
         alert("The course has been added successfully");
         displaypending(document.getElementById("pending-button"));
     });
 
 }
+
+// async function approveCourse(courseNo, sectionID) {
+//     const courseResponse = await fetch(baseUrl + `courses/${courseNo}`);
+//     const course = await courseResponse.json();
+//     const section = course.sections.find(s => s.sectionID == sectionID);
+//     section.status == "current";
+//     for (std of section.students) {
+//         const studentResponse = await fetch(baseUrl + `students/${std.id}`);
+//         const student = studentResponse.json();
+//         student.sections.push({
+//             "courseNo": courseNo,
+//             "section": sectionID,
+//             "status": "current",
+//             "grade": ""
+//         })
+//         await fetch(baseUrl + `students/${std.id}`, {
+//             method: 'PUT',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify(student)
+//         });
+//     }
+//     await fetch(baseUrl + `courses/${courseNo}`, {
+//         method: 'PUT',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(course)
+//     });
+// }
