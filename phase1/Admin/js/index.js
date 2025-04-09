@@ -150,12 +150,11 @@ async function displaypending(button) {
 
 
 async function displayPendingCourses(courses) {
-    document.querySelector(".tbody").innerHTML = "";
-    let html = '';
+    document.querySelector(".tbody-pending").innerHTML = "";
     for (const c of courses) {
         for (const s of c.sections) {
             const instructorName = await getInstructorName(s.instructorID);
-            html += `
+            document.querySelector(".tbody-pending").innerHTML+= `
                 <tr class="table-body-row">
                     <td>${c.courseNo}</td>
                     <td>${c.name}</td>
@@ -171,7 +170,6 @@ async function displayPendingCourses(courses) {
             `;
         }
     }
-    document.querySelector(".tbody").innerHTML = html;
 }
 
 
@@ -184,12 +182,11 @@ async function displayApproved(button) {
 
 async function displayApprovedCourses(courses) {
     await courses;
-    document.querySelector(".tbody").innerHTML = "";
-    let html = '';
+    document.querySelector(".tbody-approved").innerHTML = "";
     for (const c of courses) {
         for (const s of c.sections) {
             const instructorName = await getInstructorName(s.instructorID);
-            document.querySelector(".tbody").innerHTML += `
+            document.querySelector(".tbody-approved").innerHTML += `
                 <tr class="table-body-row">
                     <td>${c.courseNo}</td>
                     <td>${c.name}</td>
@@ -207,35 +204,6 @@ async function displayApprovedCourses(courses) {
     }
     // document.querySelector(".tbody").innerHTML = html;
 }
-
-
-// // Add section
-// async function addSection(course, section) {
-
-//     // Courses list
-//     const courses = await getCourses();
-
-//     // Instructors list / admin list
-//     const instructors = await getInstructors();
-//     const admins = await getAdmins();
-
-//     // Find instructor
-//     const instructor = instructors.find((i) => i.id == course.instructorID) || admins.find((a) => a.id == course.instructorID);
-
-//     // Add section to instructor
-//     instructor.sections.push({ "courseNo": course.courseNo, "section": course.sections[0].sectionID });
-
-//     // Check if the course exist 
-//     if (!courses.find((c) => c.courseNo == course.courseNo && c.category == course.category)) {
-//         addCourse(course);
-//     } else {
-//         const sections = courses.find((c) => c.courseNo == course.courseNo && c.category == course.category).sections;
-//         sections.push(...course.sections);
-//     }
-
-//     // update json file
-//     fs.writeFileSync(courseFilePath, JSON.stringify(courses, null, 2), 'utf8');
-// }
 
 
 
@@ -302,7 +270,7 @@ async function approveCourse(courseNo, sectionID) {
     const courseResponse = await fetch(baseUrl + `courses/${courseNo}`);
     const course = await courseResponse.json();
     const section = course.sections.find(s => s.sectionID == sectionID);
-    section.status == "current";
+    section.status = "current";
     for (std of section.students) {
         const studentResponse = await fetch(baseUrl + `students/${std.id}`);
         const student = await studentResponse.json();
@@ -329,5 +297,7 @@ async function approveCourse(courseNo, sectionID) {
         },
         body: JSON.stringify(course)
     });
+    alert(`${courseNo}_${sectionID} has been approved`);
+    displaypending(document.getElementById("pending-button"));
 }
  
