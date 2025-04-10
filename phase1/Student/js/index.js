@@ -500,3 +500,37 @@ async function WithdrawCourse(courseNo, sectionIndex) {
 
 }
 
+
+
+// path implementation
+async function displayPath(button){
+    await loadSubPage('/Student/Path.html', button);
+    const student = JSON.parse(localStorage.user);
+    const data =await fetch(baseUrl + `uni/paths/${student.major.replace(/\s+/g, '')}`);
+    const courses= await (await data.json()).courses;
+    console.log(courses);
+
+    const content= document.querySelector(".Flowchart-content");
+
+
+    for (const c of courses){
+        const section= student.sections.find((s)=> s.courseNo==c.courseNo);
+        if (!section){
+            section={"status":"uncompleted","grade":"N/A"};
+        }
+        if (c.name!="empty"){
+            content.innerHTML += `
+            <span class="course" id="c${courses.indexOf(c)}">
+                ${c.name}<br>${c.courseNo}
+                <div class="course-details">
+                    <div>Credits: ${c.credit}</div>
+                    <div>Status: ${section.status}</div>
+                    <div>Grade: ${section.grade}</div>
+                </div>
+            </span>
+            `;
+        }
+        
+    }
+
+}
