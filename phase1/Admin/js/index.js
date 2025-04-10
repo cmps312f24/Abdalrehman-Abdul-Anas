@@ -31,6 +31,23 @@ async function logout() {
     localStorage.clear();
 }
 
+function searchInObject(obj, keyword) {
+    const lowerKeyword = keyword.toLowerCase();
+
+    function recursiveSearch(value) {
+        if (typeof value === 'string') {
+            return value.toLowerCase().includes(lowerKeyword);
+        } else if (Array.isArray(value)) {
+            return value.some(item => recursiveSearch(item));
+        } else if (typeof value === 'object' && value !== null) {
+            return Object.values(value).some(val => recursiveSearch(val));
+        }
+        return false;
+    }
+
+    return recursiveSearch(obj);
+}
+
 async function getInstructorName(id) {
     let instructor = await fetch(baseUrl + `instructors/${id}`).then(res => res.json());
     if (instructor == "none") {
@@ -136,51 +153,89 @@ async function sortGrade(courseNo, sectionID) {
 
 
 
-
+// Display pending courses
 async function displayRegisteration(button) {
     await loadPage('/Admin/Registeration.html', button);
     const data = await fetch(baseUrl + `courses?status=pending`);
     const courses = await data.json();
+    
     await displayPendingCourses(courses);
 }
 async function displaypending(button) {
     await loadSubPage('/Admin/pending.html', button);
     const data = await fetch(baseUrl + `courses?status=pending`);
     const courses = await data.json();
+
     await displayPendingCourses(courses);
 }
 
-
 async function displayPendingCourses(courses) {
+    await courses;
     document.querySelector(".tbody-pending").innerHTML = "";
     for (const c of courses) {
         for (const s of c.sections) {
             const instructorName = await getInstructorName(s.instructorID);
-            document.querySelector(".tbody-pending").innerHTML+= `
-                <tr class="table-body-row">
-                    <td>${c.courseNo}</td>
-                    <td>${c.name}</td>
-                    <td>${s.sectionID}</td>
-                    <td>${c.credit}</td>
-                    <td>${instructorName}</td>
-                    <td>${c.college}</td>
-                    <td>${s.timing}/${s.place}</td>
-                    <td>${s.status}</td>
-                    <td>${c.category}</td>
-                    <td class="add-box"><button class="add-button" onclick="approveCourse('${c.courseNo}','${s.sectionID}')">+</button></td>
-                </tr>
-            `;
+                document.querySelector(".tbody-pending").innerHTML+= `
+                    <tr class="table-body-row">
+                        <td>${c.courseNo}</td>
+                        <td>${c.name}</td>
+                        <td>${s.sectionID}</td>
+                        <td>${c.credit}</td>
+                        <td>${instructorName}</td>
+                        <td>${c.college}</td>
+                        <td>${s.timing}/${s.place}</td>
+                        <td>${s.status}</td>
+                        <td>${c.category}</td>
+                        <td class="add-box"><button class="add-button" onclick="approveCourse('${c.courseNo}','${s.sectionID}')">+</button></td>
+                    </tr>
+                `;
+        }
+    }
+    document.getElementById("college-input").addEventListener("keyup", () => { sortPending(courses) });
+    document.getElementById("id-input").addEventListener("keyup", () => { sortPending(courses) });
+    document.querySelector(".search-button").addEventListener("click", (e) => { e.preventDefault(); sortPending(courses) });
+}
+
+async function sortPending(courses) {
+    await courses;
+    // filters
+    const college = document.getElementById("college-input").value;
+    const id = document.getElementById("id-input").value;
+
+    document.querySelector(".tbody-pending").innerHTML = "";
+    for (const c of courses) {
+        for (const s of c.sections) {
+            const instructorName = await getInstructorName(s.instructorID);
+            if (c.college.toLowerCase().includes(college.toLowerCase()) && c.courseNo.toLowerCase().includes(id.toLowerCase()) ) {
+                document.querySelector(".tbody-pending").innerHTML+= `
+                    <tr class="table-body-row">
+                        <td>${c.courseNo}</td>
+                        <td>${c.name}</td>
+                        <td>${s.sectionID}</td>
+                        <td>${c.credit}</td>
+                        <td>${instructorName}</td>
+                        <td>${c.college}</td>
+                        <td>${s.timing}/${s.place}</td>
+                        <td>${s.status}</td>
+                        <td>${c.category}</td>
+                        <td class="add-box"><button class="add-button" onclick="approveCourse('${c.courseNo}','${s.sectionID}')">+</button></td>
+                    </tr>
+                `;
+            }
         }
     }
 }
 
-
+// Display approved courses
 async function displayApproved(button) {
     await loadSubPage('/Admin/approved.html', button);
     const data = await fetch(baseUrl + `courses?status=current`);
     const courses = await data.json();
-    await displayApprovedCourses(courses);
+
+    await displayApprovedCourses(courses);    
 }
+
+
 
 async function displayApprovedCourses(courses) {
     await courses;
@@ -188,7 +243,7 @@ async function displayApprovedCourses(courses) {
     for (const c of courses) {
         for (const s of c.sections) {
             const instructorName = await getInstructorName(s.instructorID);
-            document.querySelector(".tbody-approved").innerHTML += `
+                document.querySelector(".tbody-approved").innerHTML += `
                 <tr class="table-body-row">
                     <td>${c.courseNo}</td>
                     <td>${c.name}</td>
@@ -204,8 +259,39 @@ async function displayApprovedCourses(courses) {
             `;
         }
     }
+    document.getElementById("college-input").addEventListener("keyup", () => { sortApproved(courses) });
+    document.getElementById("id-input").addEventListener("keyup", () => { sortApproved(courses) });
+    document.querySelector(".search-button").addEventListener("click", (e) => { e.preventDefault(); sortApproved(courses) });
 }
-
+async function sortApproved(courses) {
+    await courses;
+    // filters
+    const college = document.getElementById("college-input").value;
+    const id = document.getElementById("id-input").value;
+ 
+    document.querySelector(".tbody-approved").innerHTML = "";
+    for (const c of courses) {
+        for (const s of c.sections) {
+            const instructorName = await getInstructorName(s.instructorID);
+            if (c.college.toLowerCase().includes(college.toLowerCase()) && c.courseNo.toLowerCase().includes(id.toLowerCase())) {    
+                document.querySelector(".tbody-approved").innerHTML += `
+                    <tr class="table-body-row">
+                        <td>${c.courseNo}</td>
+                        <td>${c.name}</td>
+                        <td>${s.sectionID}</td>
+                        <td>${c.credit}</td>
+                        <td>${instructorName}</td>
+                        <td>${c.college}</td>
+                        <td>${s.timing}/${s.place}</td>
+                        <td>${s.status}</td>
+                        <td>${c.category}</td>
+                        <td class="add-box"><button class="complete-button" onclick="completeCourse('${c.courseNo}','${s.sectionID}')">complete</button></td>
+                    </tr>
+                `;
+            }
+        }
+    }
+}
 
 
 // Add new course or section :
@@ -371,7 +457,7 @@ async function displayProfile() {
     document.querySelector("#fullName").value=user.name;
     document.querySelector("#phone").value=user.phoneNo;
     document.querySelector("#id").value=user.id;
-    document.querySelector("#email").value=user.EmailID;
+    document.querySelector("#email").value=user.email;
     if (user.role=="admin" || user.role=="instructor"){
         document.querySelector("#gpa-section").style="display:none";
         document.querySelector("#collageMajor").value=user.collage;
@@ -409,3 +495,7 @@ async function changePassword() {
     document.getElementById("oldPassword").value="";
     document.getElementById("newPassword").value="";
 }
+
+
+
+

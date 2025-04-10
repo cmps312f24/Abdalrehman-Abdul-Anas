@@ -553,7 +553,7 @@ async function displayProfile() {
     document.querySelector("#fullName").value=user.name;
     document.querySelector("#phone").value=user.phoneNo;
     document.querySelector("#id").value=user.id;
-    document.querySelector("#email").value=user.EmailID;
+    document.querySelector("#email").value=user.email;
     if (user.role=="admin" || user.role=="instructor"){
         document.querySelector("#gpa-section").style="display:none";
         document.querySelector("#collageMajor").value=user.collage;
