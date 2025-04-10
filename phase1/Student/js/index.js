@@ -261,9 +261,9 @@ function regbuttons(courses) {
         document.getElementById("keyword-input").value = "";
         sortRegisteration(courses);
 
-        expandableforEach(section => {
-            const isExpanded = style.display != 'none';
-            style.display = isExpanded ? 'none' : 'block';
+        expandableSection.forEach(section => {
+            const isExpanded = section.style.display != 'none';
+            section.style.display = isExpanded ? 'none' : 'block';
             expandIcon.style.display = isExpanded ? 'block' : 'none';
             collapseIcon.style.display = isExpanded ? 'none' : 'block';
         });
@@ -510,21 +510,15 @@ async function displayPath(button){
     const student = JSON.parse(localStorage.user);
     const data =await fetch(baseUrl + `uni/paths/${student.major.replace(/\s+/g, '')}`);
     const courses= await (await data.json()).courses;
-    console.log(courses);
 
     const content= document.querySelector("#Flowchart-content");
 
     let index=1;
     for (const c of courses){
-        console.log(c.courseNo);
-        console.log(student.sections[0].courseNo);
 
         const section= student.sections.find((s)=> s.courseNo==c.courseNo) || (student.pendingSections.find((s)=> s.courseNo==c.courseNo)? {"status":"pending","grade":"N/A"}:{"status":"uncompleted","grade":"N/A"});
-        console.log(section);
-        console.log(index);
         
         if (c.name!="empty"){
-            console.log(c.name);
             content.innerHTML += `
             <span class="course" id="c${index}">
                 ${c.name}<br>${c.courseNo}
@@ -539,5 +533,4 @@ async function displayPath(button){
         }
         
     }
-
 }
