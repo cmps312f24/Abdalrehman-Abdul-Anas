@@ -91,53 +91,32 @@ async function displayRegisteration(button) {
     await loadPage('/Student/Registeration.html', button);
     const data = await fetch(baseUrl + `courses?status=pending`);
     const courses = await data.json();
+
+    // button handler
+    regbuttons(courses);
+
+    document.getElementById("college-input").addEventListener("keyup", () => { displayRegisterCourses(courses) });
+    document.getElementById("id-input").addEventListener("keyup", () => { displayRegisterCourses(courses) });
+    document.getElementById("keyword-input").addEventListener("keyup", () => { displayRegisterCourses(courses) });
+    document.querySelector(".search-button").addEventListener("click", (e) => { e.preventDefault(); displayRegisterCourses(courses) });
     await displayRegisterCourses(courses);
 }
 async function displayRegister(button) {
     await loadSubPage('/Student/Search.html', button);
     const data = await fetch(baseUrl + `courses?status=pending`);
     const courses = await data.json();
-    await displayRegisterCourses(courses);
-}
-
-async function displayRegisterCourses(courses) {
-    const student = JSON.parse(localStorage.user);
-    document.querySelector(".tbody").innerHTML = "";
-    let html = '';
-    for (const c of courses) {
-        let index = 0;
-        const sections = c.sections.filter((section) => student.pendingSections.find((s) => s.courseNo == c.courseNo && s.section == sectionID) == undefined);
-        for (const s of sections) {
-            const instructorName = await getInstructorName(s.instructorID);
-            html += `
-                <tr class="table-body-row">
-                    <td>${c.courseNo}</td>
-                    <td>${c.name}</td>
-                    <td>${s.sectionID}</td>
-                    <td>${c.credit}</td>
-                    <td>${instructorName}</td>
-                    <td>${c.college}</td>
-                    <td>${s.timing}/${s.place}</td>
-                    <td>${s.status}</td>
-                    <td>${s.campus}</td>
-                    <td class="add-box"><button class="add-button" onclick="registerCourse('${c.courseNo}','${index}')">+</button></td>
-                </tr>
-            `;
-            index++;
-        }
-    }
-    document.querySelector(".tbody").innerHTML = html;
 
     // button handler
     regbuttons(courses);
 
-    document.getElementById("college-input").addEventListener("keyup", () => { sortRegisteration(courses) });
-    document.getElementById("id-input").addEventListener("keyup", () => { sortRegisteration(courses) });
-    document.getElementById("keyword-input").addEventListener("keyup", () => { sortRegisteration(courses) });
-    document.querySelector(".search-button").addEventListener("click", (e) => { e.preventDefault(); sortRegisteration(courses) });
+    document.getElementById("college-input").addEventListener("keyup", () => { displayRegisterCourses(courses) });
+    document.getElementById("id-input").addEventListener("keyup", () => { displayRegisterCourses(courses) });
+    document.getElementById("keyword-input").addEventListener("keyup", () => { displayRegisterCourses(courses) });
+    document.querySelector(".search-button").addEventListener("click", (e) => { e.preventDefault(); displayRegisterCourses(courses) });
+    await displayRegisterCourses(courses);
 }
 
-async function sortRegisteration(courses) {
+async function displayRegisterCourses(courses) {
     const student = JSON.parse(localStorage.user);
     const college = document.getElementById("college-input").value;
     const id = document.getElementById("id-input").value;
@@ -146,7 +125,7 @@ async function sortRegisteration(courses) {
     document.querySelector(".tbody").innerHTML = "";
     let html = '';
     for (const c of courses) {
-        const sections = c.sections.filter((section) => student.pendingSections.find((s) => s.courseNo == c.courseNo && s.section == sectionID) == undefined);
+        const sections = c.sections.filter((section) => student.pendingSections.find((s) => s.courseNo == c.courseNo && s.section == section.sectionID) == undefined);
         let index = 0;
         for (const s of sections) {
             const instructorName = await getInstructorName(s.instructorID);
@@ -259,7 +238,7 @@ function regbuttons(courses) {
         e.preventDefault();
         clearSelectedCampus();
         document.getElementById("keyword-input").value = "";
-        sortRegisteration(courses);
+        displayRegisterCourses(courses);
 
         expandableSection.forEach(section => {
             const isExpanded = section.style.display != 'none';
@@ -275,7 +254,7 @@ function regbuttons(courses) {
     campusButtons.forEach(button => {
         button.addEventListener('click', function (e) {
             e.preventDefault();
-            sortRegisteration(courses);
+            displayRegisterCourses(courses);
 
             // If already selected, unselect it
             if (this.classList.contains('selected')) {

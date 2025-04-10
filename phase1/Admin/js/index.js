@@ -158,56 +158,33 @@ async function displayRegisteration(button) {
     await loadPage('/Admin/Registeration.html', button);
     const data = await fetch(baseUrl + `courses?status=pending`);
     const courses = await data.json();
-    
+    document.getElementById("college-input").addEventListener("keyup", () => { displayPendingCourses(courses) });
+    document.getElementById("id-input").addEventListener("keyup", () => { displayPendingCourses(courses) });
+    document.querySelector(".search-button").addEventListener("click", (e) => { e.preventDefault(); displayPendingCourses(courses) });
     await displayPendingCourses(courses);
 }
 async function displaypending(button) {
     await loadSubPage('/Admin/pending.html', button);
     const data = await fetch(baseUrl + `courses?status=pending`);
     const courses = await data.json();
-
+    document.getElementById("college-input").addEventListener("keyup", () => { displayPendingCourses(courses) });
+    document.getElementById("id-input").addEventListener("keyup", () => { displayPendingCourses(courses) });
+    document.querySelector(".search-button").addEventListener("click", (e) => { e.preventDefault(); displayPendingCourses(courses) });
     await displayPendingCourses(courses);
 }
 
 async function displayPendingCourses(courses) {
     await courses;
-    document.querySelector(".tbody-pending").innerHTML = "";
-    for (const c of courses) {
-        for (const s of c.sections) {
-            const instructorName = await getInstructorName(s.instructorID);
-                document.querySelector(".tbody-pending").innerHTML+= `
-                    <tr class="table-body-row">
-                        <td>${c.courseNo}</td>
-                        <td>${c.name}</td>
-                        <td>${s.sectionID}</td>
-                        <td>${c.credit}</td>
-                        <td>${instructorName}</td>
-                        <td>${c.college}</td>
-                        <td>${s.timing}/${s.place}</td>
-                        <td>${s.status}</td>
-                        <td>${c.category}</td>
-                        <td class="add-box"><button class="add-button" onclick="approveCourse('${c.courseNo}','${s.sectionID}')">+</button></td>
-                    </tr>
-                `;
-        }
-    }
-    document.getElementById("college-input").addEventListener("keyup", () => { sortPending(courses) });
-    document.getElementById("id-input").addEventListener("keyup", () => { sortPending(courses) });
-    document.querySelector(".search-button").addEventListener("click", (e) => { e.preventDefault(); sortPending(courses) });
-}
-
-async function sortPending(courses) {
-    await courses;
     // filters
     const college = document.getElementById("college-input").value;
     const id = document.getElementById("id-input").value;
-
-    document.querySelector(".tbody-pending").innerHTML = "";
+    document.querySelector(".tbody-pending").innerHTML= "loading...";
+    let html = '';
     for (const c of courses) {
         for (const s of c.sections) {
             const instructorName = await getInstructorName(s.instructorID);
             if (c.college.toLowerCase().includes(college.toLowerCase()) && c.courseNo.toLowerCase().includes(id.toLowerCase()) ) {
-                document.querySelector(".tbody-pending").innerHTML+= `
+                html+= `
                     <tr class="table-body-row">
                         <td>${c.courseNo}</td>
                         <td>${c.name}</td>
@@ -224,6 +201,7 @@ async function sortPending(courses) {
             }
         }
     }
+    document.querySelector(".tbody-pending").innerHTML= html;
 }
 
 // Display approved courses
@@ -232,49 +210,26 @@ async function displayApproved(button) {
     const data = await fetch(baseUrl + `courses?status=current`);
     const courses = await data.json();
 
-    await displayApprovedCourses(courses);    
+    document.getElementById("college-input").addEventListener("keyup", () => { displayApprovedCourses(courses) });
+    document.getElementById("id-input").addEventListener("keyup", () => { displayApprovedCourses(courses) });
+    document.querySelector(".search-button").addEventListener("click", (e) => { e.preventDefault(); displayApprovedCourses(courses) });
+    await displayApprovedCourses(courses);
 }
 
 
 
 async function displayApprovedCourses(courses) {
     await courses;
-    document.querySelector(".tbody-approved").innerHTML = "";
-    for (const c of courses) {
-        for (const s of c.sections) {
-            const instructorName = await getInstructorName(s.instructorID);
-                document.querySelector(".tbody-approved").innerHTML += `
-                <tr class="table-body-row">
-                    <td>${c.courseNo}</td>
-                    <td>${c.name}</td>
-                    <td>${s.sectionID}</td>
-                    <td>${c.credit}</td>
-                    <td>${instructorName}</td>
-                    <td>${c.college}</td>
-                    <td>${s.timing}/${s.place}</td>
-                    <td>${s.status}</td>
-                    <td>${c.category}</td>
-                    <td class="add-box"><button class="complete-button" onclick="completeCourse('${c.courseNo}','${s.sectionID}')">complete</button></td>
-                </tr>
-            `;
-        }
-    }
-    document.getElementById("college-input").addEventListener("keyup", () => { sortApproved(courses) });
-    document.getElementById("id-input").addEventListener("keyup", () => { sortApproved(courses) });
-    document.querySelector(".search-button").addEventListener("click", (e) => { e.preventDefault(); sortApproved(courses) });
-}
-async function sortApproved(courses) {
-    await courses;
     // filters
     const college = document.getElementById("college-input").value;
     const id = document.getElementById("id-input").value;
- 
-    document.querySelector(".tbody-approved").innerHTML = "";
+    document.querySelector(".tbody-approved").innerHTML = "loading...";
+    let html = '';
     for (const c of courses) {
         for (const s of c.sections) {
             const instructorName = await getInstructorName(s.instructorID);
             if (c.college.toLowerCase().includes(college.toLowerCase()) && c.courseNo.toLowerCase().includes(id.toLowerCase())) {    
-                document.querySelector(".tbody-approved").innerHTML += `
+                html += `
                     <tr class="table-body-row">
                         <td>${c.courseNo}</td>
                         <td>${c.name}</td>
@@ -291,6 +246,7 @@ async function sortApproved(courses) {
             }
         }
     }
+    document.querySelector(".tbody-approved").innerHTML = html;
 }
 
 
