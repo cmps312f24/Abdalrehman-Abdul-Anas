@@ -504,7 +504,7 @@ async function WithdrawCourse(courseNo, sectionIndex) {
 
 // path implementation
 async function displayPath(button){
-    await loadSubPage('/Student/Path.html', button);
+    await loadPage('/Student/Path.html', button);
     const student = JSON.parse(localStorage.user);
     const data =await fetch(baseUrl + `uni/paths/${student.major.replace(/\s+/g, '')}`);
     const courses= await (await data.json()).courses;
