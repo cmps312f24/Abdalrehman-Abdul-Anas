@@ -1134,18 +1134,21 @@ nav img {
     overflow-y: auto;
     position: relative;
     scrollbar-width: none;
-    padding: 10px;
+    padding: 0; /* Remove padding to avoid gaps */
+    padding-left: 10px;
+    padding-bottom: 10px;
 }
 
 #uni-info .header-home {
     position: sticky;
-    top: 0;
+    top: 0; /* Ensure the header sticks to the very top */
     left: 0;
     right: 0;
     width: 100%;
     background-color: #fff;
     z-index: 10;
-    padding: 10px;
+    padding: 10px; /* Adjust padding as needed */
+    margin: 0; /* Remove any margin to avoid gaps */
     border-bottom: 1px solid #ddd;
     box-sizing: border-box;
 }
@@ -1192,7 +1195,7 @@ nav img {
 }
 
 .header-calendar {
-    width: 90%;
+    width: 100%;
     height: auto;
     display: flex;
     justify-content: space-between;
@@ -1453,6 +1456,8 @@ nav img {
     bottom: 40%;
     transform: translateY(-50%);
     padding: 40px; /* Increase the padding */
+    overflow-y: auto;
+    scrollbar-width: none;
 }
 
 
