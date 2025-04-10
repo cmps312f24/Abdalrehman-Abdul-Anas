@@ -416,18 +416,19 @@ async function registerCourse(courseNo, sectionIndex) {
     const student = JSON.parse(localStorage.user);
 
     //Check if student already registered in same course --> checking if same course and same category
-    let inSections = student.sections.find((sec) => sec.courseNo == course.courseNo && sec.section[0] == sectionID[0]) ? true : false;
-    let inPendingSection = student.pendingSections.find((sec) => sec.courseNo == course.courseNo && sec.section[0] == sectionID[0]) ? true : false;
+    let inSections = student.sections.find((sec) => sec.courseNo == course.courseNo && sec.section[0] == section.sectionID[0]) ? true : false;
+    let inPendingSection = student.pendingSections.find((sec) => sec.courseNo == course.courseNo && sec.section[0] == section.sectionID[0]) ? true : false;
     if (inSections || inPendingSection) {
         alert("Course is already registered");
         return;
     }
 
+
     // Add student to section
     students.push({ "id": student.id, "grade": "" });
 
     // Add section to student pendding sections
-    student.pendingSections.push({ "courseNo": course.courseNo, "section": sectionID });
+    student.pendingSections.push({ "courseNo": course.courseNo, "section": section.sectionID });
 
     //update course in API
     await fetch(baseUrl + `courses/${course.courseNo}`, {
@@ -461,7 +462,7 @@ async function WithdrawCourse(courseNo, sectionIndex) {
     //getting student from local storage(user)
     const student = JSON.parse(localStorage.user);
     //Find the index of the section to remove
-    const index = student.pendingSections.findIndex((sec) => sec.courseNo == course.courseNo && sec.section == sectionID);
+    const index = student.pendingSections.findIndex((sec) => sec.courseNo == course.courseNo && sec.section == section.sectionID);
 
     if (index === -1) {
         alert("Course is not registered");
