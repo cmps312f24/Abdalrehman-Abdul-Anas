@@ -61,8 +61,10 @@ async function displayCourses(button) {
         const data = await fetch(baseUrl + `courses/${s.courseNo}`);
         const course = await data.json();
         // get section
-        const section = course.sections.find((sc) => sc.sectionID == s.section);
-
+        const section = (course.sections.find((sc) => sc.sectionID == s.section));
+        if (section.status=="pending") {
+            continue;
+        }
         // display course
         document.querySelector(".content").innerHTML += `
             <section class="course-cotainer" onclick="displayGrades('${s.courseNo}', '${s.section}')">

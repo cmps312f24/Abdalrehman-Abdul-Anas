@@ -63,7 +63,7 @@ async function displayCourses(button) {
     // get user
     const user = JSON.parse(localStorage.user);
     //get userr sections
-    const sections = user.sections;
+    const sections = user.sections.sort((a, b) => b.status.localeCompare(a.status));
 
     document.querySelector(".content").innerHTML = "";
 
@@ -408,6 +408,7 @@ nextMonthBtn.addEventListener("click", () => {
 
 async function registerCourse(courseNo, sectionIndex) {
     const studentsUrl = baseUrl + "students/";
+    const students = await fetch(studentsUrl).then(res => res.json());
     // getting section by index
     const course = await fetch(`${baseUrl}courses/${courseNo}`).then(res => res.json());
     const section = course.sections[sectionIndex]
@@ -453,6 +454,7 @@ async function registerCourse(courseNo, sectionIndex) {
 
 async function WithdrawCourse(courseNo, sectionIndex) {
     const studentsUrl = baseUrl + "students/";
+    const students = await fetch(studentsUrl).then(res => res.json());
     // getting section by index
     const course = await fetch(`${baseUrl}courses/${courseNo}`).then(res => res.json());
     const section = course.sections[sectionIndex]
@@ -510,17 +512,21 @@ async function displayPath(button){
     const courses= await (await data.json()).courses;
     console.log(courses);
 
-    const content= document.querySelector(".Flowchart-content");
+    const content= document.querySelector("#Flowchart-content");
 
-
+    let index=1;
     for (const c of courses){
-        const section= student.sections.find((s)=> s.courseNo==c.courseNo);
-        if (!section){
-            section={"status":"uncompleted","grade":"N/A"};
-        }
+        console.log(c.courseNo);
+        console.log(student.sections[0].courseNo);
+
+        const section= student.sections.find((s)=> s.courseNo==c.courseNo) || (student.pendingSections.find((s)=> s.courseNo==c.courseNo)? {"status":"pending","grade":"N/A"}:{"status":"uncompleted","grade":"N/A"});
+        console.log(section);
+        console.log(index);
+        
         if (c.name!="empty"){
+            console.log(c.name);
             content.innerHTML += `
-            <span class="course" id="c${courses.indexOf(c)}">
+            <span class="course" id="c${index}">
                 ${c.name}<br>${c.courseNo}
                 <div class="course-details">
                     <div>Credits: ${c.credit}</div>
@@ -529,6 +535,7 @@ async function displayPath(button){
                 </div>
             </span>
             `;
+            index++;
         }
         
     }

@@ -53,7 +53,7 @@ async function displayCourses(button) {
     // get user
     const user = JSON.parse(localStorage.user);
     //get userr sections
-    const sections = user.sections;
+    const sections = user.sections.sort((a, b) => b.courseNo.localeCompare(a.courseNo));
 
     document.querySelector(".content").innerHTML = "";
 
@@ -63,7 +63,9 @@ async function displayCourses(button) {
         const course = await data.json();
         // get section
         const section = course.sections.find((sc) => sc.sectionID == s.section);
-
+        if (section.status=="pending") {
+            continue;
+        }
         // display course
         document.querySelector(".content").innerHTML += `
             <section class="course-cotainer" onclick="displayGrades('${s.courseNo}', '${s.section}')">
