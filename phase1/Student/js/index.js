@@ -534,3 +534,60 @@ async function displayPath(button){
         
     }
 }
+
+
+
+
+
+
+//settings
+
+async function displaytSettings(button) {
+    await loadPage('/others/settings.html', button);
+    displayProfile();
+    document.getElementById("changePassword").addEventListener("click", (e) => { e.preventDefault(); changePassword() });
+}
+
+async function displayProfile() {
+    const user = JSON.parse(localStorage.user);
+    document.querySelector("#fullName").value=user.name;
+    document.querySelector("#phone").value=user.phoneNo;
+    document.querySelector("#id").value=user.id;
+    document.querySelector("#email").value=user.EmailID;
+    if (user.role=="admin" || user.role=="instructor"){
+        document.querySelector("#gpa-section").style="display:none";
+        document.querySelector("#collageMajor").value=user.collage;
+    }else{
+        document.querySelector("#collageMajor").value=user.major;
+    }
+
+}
+
+async function changePassword() {
+    const user= JSON.parse(localStorage.user);
+    const data= await fetch(baseUrl+'logins');
+    const logins=await data.json();
+    const userPass= logins.find((u)=> u.id==user.id).password;
+    const newPass= document.getElementById("newPassword").value;
+    const oldPass= document.getElementById("oldPassword").value;
+    if(userPass==oldPass){
+        user.password=newPass;
+        const response = await fetch(baseUrl+`logins/${user.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        });
+        if (response.ok) {
+            alert("Password changed successfully");
+        } else {
+            alert("Failed to change password");
+        }
+    }
+    else{
+        alert("Old password is incorrect");
+    }
+    document.getElementById("oldPassword").value="";
+    document.getElementById("newPassword").value="";
+}

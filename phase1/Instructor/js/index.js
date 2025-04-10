@@ -98,7 +98,7 @@ async function displayGrades(courseNo, sectionID) {
             <tr class="student-grade">
                     <td>${studentName}</td>
                     <td>${s.id}</td>
-                    <td><input type="text" class="grade-input" value="${s.grade}" onchange="changeGrade('${s.id}', this.value)"></td>
+                    <td><input type="text" class="grade-input" value="${s.grade}" onchange="changeGrade('${s.id}', this.value, ${courseNo},${sectionID})"></td>
                 </tr>
         `;
     }
@@ -124,11 +124,95 @@ async function sortGrade(courseNo,sectionID){
             <tr class="student-grade">
                     <td>${studentName}</td>
                     <td>${s.id}</td>
-                    <td><input type="text" class="grade-input" value="${s.grade}" onchange="changeGrade('${s.id}', this.value)"></td>
+                    <td><input type="text" class="grade-input" value="${s.grade}" onchange="changeGrade('${s.id}', this.value, ${courseNo},${sectionID})"></td>
                 </tr>
         `;
         }
     }
     document.querySelector(".tbody").innerHTML = html;
-    
+}
+
+
+
+
+// change grade
+async function changeGrade(id, grade, courseNo, sectionID) {
+    const studentResponse = await fetch(baseUrl + `students/${id}`);
+    const student = await studentResponse.json();
+    student.sections.find((s) => s.courseNo == courseNo && s.section==sectionID).grade = grade;
+    const courseResponse = await fetch(baseUrl + `courses/${courseNo}`);
+    const course = await courseResponse.json();
+    const section = course.sections.find((s) => s.sectionID == sectionID);
+    section.students.find((s) => s.id == id).grade = grade;
+    await fetch(baseUrl + `students/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(student)
+    });
+    await fetch(baseUrl + `courses/${courseNo}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(course)
+    });
+    alert("The grade has been changed successfully");
+}
+
+
+
+
+
+//settings
+
+async function displaytSettings(button) {
+    await loadPage('/others/settings.html', button);
+    displayProfile();
+    document.getElementById("changePassword").addEventListener("click", (e) => { e.preventDefault(); changePassword() });
+}
+
+async function displayProfile() {
+    const user = JSON.parse(localStorage.user);
+    document.querySelector("#fullName").value=user.name;
+    document.querySelector("#phone").value=user.phoneNo;
+    document.querySelector("#id").value=user.id;
+    document.querySelector("#email").value=user.email;
+    if (user.role=="admin" || user.role=="instructor"){
+        document.querySelector("#gpa-section").style="display:none";
+        document.querySelector("#collageMajor").value=user.collage;
+    }else{
+        document.querySelector("#collageMajor").value=user.major;
+    }
+
+}
+
+async function changePassword() {
+    const user= JSON.parse(localStorage.user);
+    const data= await fetch(baseUrl+'logins');
+    const logins=await data.json();
+    const userPass= logins.find((u)=> u.id==user.id).password;
+    const newPass= document.getElementById("newPassword").value;
+    const oldPass= document.getElementById("oldPassword").value;
+    if(userPass==oldPass){
+        user.password=newPass;
+        const response = await fetch(baseUrl+`logins/${user.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        });
+        if (response.ok) {
+            alert("Password changed successfully");
+        } else {
+            alert("Failed to change password");
+        }
+    }
+    else{
+        alert("Old password is incorrect");
+    }
+    document.getElementById("oldPassword").value="";
+    document.getElementById("newPassword").value="";
 }
