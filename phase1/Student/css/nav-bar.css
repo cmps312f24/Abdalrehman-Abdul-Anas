@@ -1992,6 +1992,18 @@ nav a:hover{
     .field-section-settings{
         width: 100%;
     }
+    .nav-button {
+        padding: 0.25rem 1rem;
+        font-size: 0.75rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+    .form-student-search{
+        grid-template-columns: 1fr;
+    }
+    .button-container{
+        grid-row: 5 ;
+    }
 }
 
 @media screen and (min-width: 767px){
