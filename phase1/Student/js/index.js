@@ -2,10 +2,22 @@ displayHome(document.getElementById("home-btn"));
 
 const baseUrl = "http://localhost:3000/api/";
 
+
+//Display Nav-mobile
+async function showMobileNav(){
+    document.querySelector('.nav').classList.add("show");
+}
+//Closing Nav-mobile
+async function hideMobileNav() {
+    document.querySelector('.nav').classList.remove("show");
+}
+
 async function loadPage(pageUrl, button) {
     const page = await fetch(pageUrl);
     const data = await page.text();
+    hideMobileNav();
     document.querySelector(".content-area").innerHTML = data;
+    
 
     if (button) {
         // Remove 'selected' class from all buttons
