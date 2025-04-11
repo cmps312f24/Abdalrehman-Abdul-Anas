@@ -436,7 +436,6 @@ async function registerCourse(courseNo, sectionID) {
         const sc = course.sections.find((sc) => sc.sectionID == s.section);
         return (sc.timing==section.timing && sc.dow === section.dow);
     })
-    console.log(timeConflict);
     if (timeConflict) {
         alert("Time conflict with other courses");
         return;
