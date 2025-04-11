@@ -20,7 +20,7 @@
         <i class="fa-solid fa-arrow-left back-button-mobile" onclick="hideMobileNav()"></i>
         <!-- user info -->
         <span id="user-info">
-            <img src="/img\profile.png" alt="User" id="img-user" onclick="displaytSettings(document.querySelector('Settings'))">
+            <img src="/img\profile.png" alt="User" id="img-user" onclick="displaytSettings(document.querySelector('#Settings-btn'))">
             <h2 id="user-Name" class="user-text">Anas Elrhmani</h2>
             <p id="user-username" class="user-text">ae2203650</p>
         </span>
@@ -40,7 +40,7 @@
         <hr class="nav-lines">
         <!-- secondry menu -->
         <ul id="secondry-menu">
-            <li><a onclick="displaytSettings(this)" class="menu-element"><img src="/img/material-symbols_settings.png" alt="Settings">
+            <li><a onclick="displaytSettings(this)" class="menu-element" id="Settings-btn"><img src="/img/material-symbols_settings.png" alt="Settings">
                     <p class="menu-text">Settings</p>
                 </a></li>
             <li><a onclick="loadPage('/others/Help_Support.html',this)" class="menu-element"><img src="/img/clarity_help-info-solid.png" alt="Help">

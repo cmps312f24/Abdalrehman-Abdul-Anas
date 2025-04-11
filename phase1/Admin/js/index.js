@@ -496,6 +496,11 @@ async function displayUserInfo() {
     const user= JSON.parse(localStorage.user);
     if (user.role=="admin" || user.role=="instructor"){
         document.getElementById("stu-info").style="display:none";
+        document.getElementById("content-home").style.gridTemplateAreas = `
+        "uni-info calendar"
+        "uni-info calendar"
+      `;
+        document.getElementById("uni-info").style="align-self:center";
     }else{
         graph();
         document.getElementById("stu-info-text").innerHTML=`Major : ${user.major} <br>GPA : ${user.gpa[user.gpa.length-1].gpa} <br>CH : ${user.gpa[user.gpa.length-1].CH}`;
