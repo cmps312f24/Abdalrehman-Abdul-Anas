@@ -128,7 +128,6 @@ async function displayRegisterCourses(courses) {
     let html = '';
     for (const c of courses) {
         const sections = c.sections.filter((section) => student.pendingSections.find((s) => s.courseNo == c.courseNo && s.section == section.sectionID) == undefined);
-        let index = 0;
         for (const s of sections) {
             const instructorName = await getInstructorName(s.instructorID);
             if (c.college.toLowerCase().includes(college.toLowerCase()) && c.courseNo.toLowerCase().includes(id.toLowerCase()) && (searchInObject(c, keyword) || instructorName.toLowerCase().includes(keyword.toLowerCase()) || s.sectionID.toLowerCase().includes(keyword.toLowerCase())) && (getSelectedCampus() == s.campus || getSelectedCampus() == null)) {
@@ -143,10 +142,9 @@ async function displayRegisterCourses(courses) {
                         <td>${s.timing}/${s.place}</td>
                         <td>${s.status}</td>
                         <td>${s.campus}</td>
-                        <td class="add-box"><button class="add-button" onclick="registerCourse('${c.courseNo}','${index}')">+</button></td>
+                        <td class="add-box"><button class="add-button" onclick="registerCourse('${c.courseNo}','${s.sectionID}')">+</button></td>
                     </tr>
                 `;
-                index++;
             }
         }
     }
@@ -417,13 +415,12 @@ async function calender() {
 }
 
 
-async function registerCourse(courseNo, sectionIndex) {
+async function registerCourse(courseNo, sectionID) {
     const studentsUrl = baseUrl + "students/";
     // getting section by index
-
-    const course = await fetch(`${baseUrl}courses/${courseNo}`).then(res => res.json());
-
-    const section = course.sections[sectionIndex];
+    const courses=await fetch(`${baseUrl}courses`).then(res => res.json());
+    const course = await courses.find((c) => c.courseNo == courseNo);
+    const section = course.sections.find((sc) => sc.sectionID == sectionID);
     //getting student from local storage(user)
     const student = JSON.parse(localStorage.user);
     //Check if student already registered in same course --> checking if same course and same category
@@ -431,6 +428,23 @@ async function registerCourse(courseNo, sectionIndex) {
     let inPendingSection = student.pendingSections.find((sec) => sec.courseNo == course.courseNo && sec.section[0] == section.sectionID[0]) ? true : false;
     if (inSections || inPendingSection) {
         alert("Course is already registered");
+        return;
+    }
+    // Check if time conflict with other courses
+    const timeConflict = student.pendingSections.some((s) => {
+        const course = courses.find((c) => c.courseNo == s.courseNo);
+        const sc = course.sections.find((sc) => sc.sectionID == s.section);
+        return (sc.timing==section.timing && sc.dow === section.dow);
+    })
+    console.log(timeConflict);
+    if (timeConflict) {
+        alert("Time conflict with other courses");
+        return;
+    }
+
+    // check gender with campus
+    if (student.gender!=section.campus){
+        alert("You are not allowed to register in this section");
         return;
     }
 
