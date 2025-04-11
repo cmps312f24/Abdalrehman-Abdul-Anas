@@ -5,12 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://kit.fontawesome.com/2ddf4c0450.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/Student/css/nav-bar.css">
 </head>
 
 <body>
+    <div class="mobile-header">
+        <i class="fa-solid fa-bars nav-button-mobile" onclick="showMobileNav()"></i>
+        <h2 class="header-page-name">Home</h2>
+        <img src="/img\profile.png" alt="User" id="mobile-img-user">
+    </div>
     <!-- menu bar -->
-    <nav>
+    <nav class="nav">
+        <i class="fa-solid fa-arrow-left back-button-mobile" onclick="hideMobileNav()"></i>
         <!-- user info -->
         <span id="user-info">
             <img src="/img\profile.png" alt="User" id="img-user">

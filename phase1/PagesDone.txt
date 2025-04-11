@@ -1,18 +1,22 @@
 Admin:
 addCourse DONE
-Approving not done
+Approving DONE
+courses DONE
+Grade Done 
+Pending Done
+Registeration Done
 
 -----------------------
 
 Instructor:
-Sections Grade DONE
+ALL DONE 
 
 -----------------------
 
 Student:
-path not done
+path 
 courses DONE
-Schedule DONE
+Schedule 
 StudentReg DONE
 Summary DONE
 

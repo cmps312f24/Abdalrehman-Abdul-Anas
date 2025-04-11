@@ -46,10 +46,19 @@ async function getStudentName(id){
     return await student.name;
 }
 
+//Display Nav-mobile
+async function showMobileNav(){
+    document.querySelector('.nav').classList.add("show");
+}
+//Closing Nav-mobile
+async function hideMobileNav() {
+    document.querySelector('.nav').classList.remove("show");
+}
 
 
 // Display courses
 async function displayCourses(button) {
+    hideMobileNav()
     //load the courses page
     await loadPage('/Instructor/courses.html', button);
     // get user
@@ -223,6 +232,7 @@ async function changePassword() {
 
 
 async function displayHome(button) {
+    hideMobileNav()
     await loadPage('/others/Home.html', button);
     displayUserInfo();
     displayUniInfo()

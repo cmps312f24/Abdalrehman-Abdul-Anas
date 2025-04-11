@@ -63,9 +63,18 @@ async function getStudentName(id) {
     return await student.name;
 }
 
+//Display Nav-mobile
+async function showMobileNav(){
+    document.querySelector('.nav').classList.add("show");
+}
+//Closing Nav-mobile
+async function hideMobileNav() {
+    document.querySelector('.nav').classList.remove("show");
+}
 
 // Display courses
 async function displayCourses(button) {
+    hideMobileNav()
     //load the courses page
     await loadPage('/Instructor/courses.html', button);
     // get user
@@ -157,6 +166,7 @@ async function sortGrade(courseNo, sectionID) {
 
 // Display pending courses
 async function displayRegisteration(button) {
+    hideMobileNav()
     await loadPage('/Admin/Registeration.html', button);
     const data = await fetch(baseUrl + `courses?status=pending`);
     const courses = await data.json();
@@ -405,6 +415,7 @@ async function changeGrade(id, grade, courseNo, sectionID) {
 //settings
 
 async function displaytSettings(button) {
+    hideMobileNav()
     await loadPage('/others/settings.html', button);
     displayProfile();
     document.getElementById("changePassword").addEventListener("click", (e) => { e.preventDefault(); changePassword() });
@@ -457,6 +468,7 @@ async function changePassword() {
 
 
 async function displayHome(button) {
+    hideMobileNav()
     await loadPage('/others/Home.html', button);
     displayUserInfo();
     displayUniInfo()

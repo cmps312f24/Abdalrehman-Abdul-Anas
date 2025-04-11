@@ -57,9 +57,19 @@ async function getInstructorName(id) {
     return instructor.name;
 }
 
+//Display Nav-mobile
+async function showMobileNav(){
+    document.querySelector('.nav').classList.add("show");
+}
+//Closing Nav-mobile
+async function hideMobileNav() {
+    document.querySelector('.nav').classList.remove("show");
+}
+
 
 // Display courses
 async function displayCourses(button) {
+    hideMobileNav()
     //load the courses page
     await loadPage('/Student/courses.html', button);
     // get user
@@ -90,6 +100,7 @@ async function displayCourses(button) {
 
 
 async function displayRegisteration(button) {
+    hideMobileNav()
     await loadPage('/Student/Registeration.html', button);
     const data = await fetch(baseUrl + `courses?status=pending`);
     const courses = await data.json();
@@ -281,6 +292,7 @@ function getSelectedCampus() {
 }
 
 async function displayHome(button) {
+    hideMobileNav()
     await loadPage('/others/Home.html', button);
     displayUserInfo();
     displayUniInfo()
@@ -522,6 +534,7 @@ async function WithdrawCourse(courseNo, sectionIndex) {
 
 // path implementation
 async function displayPath(button){
+    hideMobileNav()
     await loadPage('/Student/Path.html', button);
     const student = JSON.parse(localStorage.user);
     const data =await fetch(baseUrl + `uni/paths/${student.major.replace(/\s+/g, '')}`);
