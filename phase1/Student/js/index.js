@@ -443,21 +443,28 @@ async function registerCourse(courseNo, sectionID) {
         return;
     }
     // Check if time conflict with other courses
+    let CH=0;
     const timeConflict = student.pendingSections.some((s) => {
         const course = courses.find((c) => c.courseNo == s.courseNo);
         const sc = course.sections.find((sc) => sc.sectionID == s.section);
-        return (sc.timing==section.timing && sc.dow === section.dow);
+        CH+=course.credit;
+        return (sc.timing==section.timing && sc.dow === section.dow );
     })
     if (timeConflict) {
         alert("Time conflict with other courses");
         return;
     }
-
+    if(CH+course.credit>18){
+        alert("You can't register more than 18 CH");
+        return;
+    }
     // check gender with campus
     if (student.gender!=section.campus){
         alert("You are not allowed to register in this section");
         return;
     }
+
+
 
     // Add student to section
     section.students.push({ "id": student.id, "grade": "" });
