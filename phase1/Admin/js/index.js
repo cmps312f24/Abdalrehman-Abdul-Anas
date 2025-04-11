@@ -205,7 +205,7 @@ async function displayPendingCourses(courses) {
                         <td>${instructorName}</td>
                         <td>${c.college}</td>
                         <td>${s.timing}/${s.place}</td>
-                        <td>${s.status}</td>
+                        <td>${s.students.length}/${s.capacity}</td>
                         <td>${c.category}</td>
                         <td class="add-box"><button class="add-button" onclick="approveCourse('${c.courseNo}','${s.sectionID}')">+</button></td>
                     </tr>

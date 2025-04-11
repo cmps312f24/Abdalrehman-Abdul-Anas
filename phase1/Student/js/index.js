@@ -152,7 +152,7 @@ async function displayRegisterCourses(courses) {
                         <td>${instructorName}</td>
                         <td>${c.college}</td>
                         <td>${s.timing}/${s.place}</td>
-                        <td>${s.status}</td>
+                        <td>${s.students.length}/${s.capacity}</td>
                         <td>${s.campus}</td>
                         <td class="add-box"><button class="add-button" onclick="registerCourse('${c.courseNo}','${s.sectionID}')">+</button></td>
                     </tr>
@@ -227,7 +227,7 @@ async function displaySummary(button) {
                     <td>${await getInstructorName(section.instructorID)}</td>
                     <td>${course.college}</td>
                     <td>${section.timing}/${section.place}</td>
-                    <td>${section.status}</td>
+                    <td>${section.students.length}/${section.capacity}</td>
                     <td>${section.campus}</td>
                     <td class="add-box"><button class="add-button" onclick="WithdrawCourse('${course.courseNo}','${index}')">-</button></td>
             </tr>
@@ -472,6 +472,10 @@ async function registerCourse(courseNo, sectionID) {
         return;
     }
 
+    if (section.capacity <= section.students.length) {
+        alert("Section is full");
+        return;
+    }
 
     // Add student to section
     section.students.push({ "id": student.id, "grade": "" });
