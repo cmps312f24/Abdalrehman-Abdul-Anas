@@ -464,6 +464,13 @@ async function registerCourse(courseNo, sectionID) {
         return;
     }
 
+    // check prerequit
+    const data= await fetch(baseUrl + `uni/paths/${student.major.replace(/\s+/g, '')}`);
+    const pre= await (await data.json()).courses.find((c)=> c.courseNo==course.courseNo).prerequests;
+    if(pre && pre.find((p)=> student.sections.find((s)=> s.courseNo==p && s.status=="completed")==undefined)){
+        alert("You have to register the prerequest first");
+        return;
+    }
 
 
     // Add student to section
