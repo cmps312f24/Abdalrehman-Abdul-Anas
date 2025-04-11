@@ -57,19 +57,9 @@ async function getInstructorName(id) {
     return instructor.name;
 }
 
-//Display Nav-mobile
-async function showMobileNav(){
-    document.querySelector('.nav').classList.add("show");
-}
-//Closing Nav-mobile
-async function hideMobileNav() {
-    document.querySelector('.nav').classList.remove("show");
-}
-
 
 // Display courses
 async function displayCourses(button) {
-    hideMobileNav()
     //load the courses page
     await loadPage('/Student/courses.html', button);
     // get user
@@ -100,7 +90,6 @@ async function displayCourses(button) {
 
 
 async function displayRegisteration(button) {
-    hideMobileNav()
     await loadPage('/Student/Registeration.html', button);
     const data = await fetch(baseUrl + `courses?status=pending`);
     const courses = await data.json();
@@ -183,7 +172,6 @@ async function displaySchedule(button) {
         const days = section.dow;
         if (course.category == "lecture") {            
             //select the days columns      
-            console.log(timing);
             const cells = document.querySelectorAll(`tbody tr:nth-child(${hoursIndex[timing]}) .sun, tbody tr:nth-child(${hoursIndex[timing]}) .tue, tbody tr:nth-child(${hoursIndex[timing]}) .thu`);
             cells.forEach(cell => {
                 cell.classList.add("schedualed-cell"); //To add styling
@@ -292,7 +280,6 @@ function getSelectedCampus() {
 }
 
 async function displayHome(button) {
-    hideMobileNav()
     await loadPage('/others/Home.html', button);
     displayUserInfo();
     displayUniInfo()
@@ -323,8 +310,6 @@ function graph() {
         gpaList.push(gpa.gpa);
         CHList.push(gpa.CH);
     });
-    console.log(gpaList);
-    console.log(CHList);
     // Define the data
     var data = [
         {
@@ -364,7 +349,6 @@ async function calender() {
     let today = date.getDate();
     let todayMonth = date.getMonth();
     let todayYear = date.getFullYear();
-    console.log(events);
     const specialEvents = events;
 
     function generateCalendar(month, year) {
@@ -435,13 +419,13 @@ async function calender() {
 
 async function registerCourse(courseNo, sectionIndex) {
     const studentsUrl = baseUrl + "students/";
-    const students = await fetch(studentsUrl).then(res => res.json());
     // getting section by index
+
     const course = await fetch(`${baseUrl}courses/${courseNo}`).then(res => res.json());
-    const section = course.sections[sectionIndex]
+
+    const section = course.sections[sectionIndex];
     //getting student from local storage(user)
     const student = JSON.parse(localStorage.user);
-
     //Check if student already registered in same course --> checking if same course and same category
     let inSections = student.sections.find((sec) => sec.courseNo == course.courseNo && sec.section[0] == section.sectionID[0]) ? true : false;
     let inPendingSection = student.pendingSections.find((sec) => sec.courseNo == course.courseNo && sec.section[0] == section.sectionID[0]) ? true : false;
@@ -450,9 +434,8 @@ async function registerCourse(courseNo, sectionIndex) {
         return;
     }
 
-
     // Add student to section
-    students.push({ "id": student.id, "grade": "" });
+    section.students.push({ "id": student.id, "grade": "" });
 
     // Add section to student pendding sections
     student.pendingSections.push({ "courseNo": course.courseNo, "section": section.sectionID });
@@ -482,7 +465,6 @@ async function registerCourse(courseNo, sectionIndex) {
 
 async function WithdrawCourse(courseNo, sectionIndex) {
     const studentsUrl = baseUrl + "students/";
-    const students = await fetch(studentsUrl).then(res => res.json());
     // getting section by index
     const course = await fetch(`${baseUrl}courses/${courseNo}`).then(res => res.json());
     const section = course.sections[sectionIndex]
@@ -497,7 +479,7 @@ async function WithdrawCourse(courseNo, sectionIndex) {
     }
 
     // Remove student from section
-    students = students.filter((s) => s.id != student.id);
+    section.students = section.students.filter((s) => s.id != student.id);
 
     // Remove section from student pendding sections
     student.pendingSections.splice(index, 1);
@@ -534,7 +516,6 @@ async function WithdrawCourse(courseNo, sectionIndex) {
 
 // path implementation
 async function displayPath(button){
-    hideMobileNav()
     await loadPage('/Student/Path.html', button);
     const student = JSON.parse(localStorage.user);
     const data =await fetch(baseUrl + `uni/paths/${student.major.replace(/\s+/g, '')}`);
