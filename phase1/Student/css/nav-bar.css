@@ -1647,7 +1647,7 @@ iframe {
 
 .progress-bar {
     height: 50%;
-    width: 100%;
+    width: 75%;
     background: linear-gradient(to right, #a0c4ff, #0038ff);
     transition: width 0.5s ease-in-out;
     border-radius: 100px

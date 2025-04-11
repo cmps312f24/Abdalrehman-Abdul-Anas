@@ -181,8 +181,20 @@ async function changeGrade(id, grade, courseNo, sectionID) {
 async function displaytSettings(button) {
     await loadPage('/others/settings.html', button);
     displayProfile();
+    displayGpa();
     document.getElementById("changePassword").addEventListener("click", (e) => { e.preventDefault(); changePassword() });
 }
+
+async function displayGpa() {
+    const user= JSON.parse(localStorage.user);
+    if (user.role=="admin" || user.role=="instructor"){
+        document.getElementById("gpa-section").style="display:none";
+        return;
+    }
+    document.getElementById("gpa-bar").innerHTML+=`: ${user.gpa[user.gpa.length-1].gpa}`;
+    document.querySelector(".progress-bar").style.width=`${((user.gpa[user.gpa.length-1].gpa)/4)*100}%`;
+}
+
 
 async function displayProfile() {
     const user = JSON.parse(localStorage.user);
