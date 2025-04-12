@@ -754,6 +754,20 @@ nav img {
     background-color: rgb(51, 41, 141);
 }
 
+.back-button{
+    font-size: 24px;
+    margin-top: 5px;
+}
+
+.back-button:hover{
+    color: #415262;
+    cursor: pointer;
+}
+
+#grade-h{
+    text-align: center;
+}
+
 /* Student - Path */
 .path{
     z-index: 1;

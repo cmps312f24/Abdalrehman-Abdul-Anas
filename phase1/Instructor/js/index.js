@@ -103,7 +103,10 @@ async function displayGrades(courseNo, sectionID) {
 
     await loadSubPage('/Admin/Grade.html');
 
-    document.querySelector(".page-header").innerHTML = `<h1>${course.name} ${course.courseNo}</h1>`;
+    document.querySelector(".page-header").innerHTML = `
+    <i class="fa-solid fa-arrow-left back-button" onclick="displayCourses()"></i>
+    <h1 id="grade-h">${course.name} ${course.courseNo}</h1>
+    `;
     let html = '';
     for (const s of section.students) {
         const studentName = await getStudentName(s.id);
