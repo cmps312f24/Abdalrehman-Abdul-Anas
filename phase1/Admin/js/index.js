@@ -291,10 +291,12 @@ async function addCourse() {
             }
         }
         //section timing
-        const startTiming = Number(formData.get("timing"))>12 ? `${Number(formData.get("timing"))-12}:00pm` : `${formData.get("timing")}:00am`;
-        const LectureEndTiming = Number(formData.get("timing"))+1>12 ? `${Number(formData.get("timing"))+1-12}:00pm` : `${Number(formData.get("timing"))+1}:00am`;
-        const LabEndTiming = Number(formData.get("timing"))+3 >12 ? `${Number(formData.get("timing"))+3-12}:00pm` : `${Number(formData.get("timing"))+3}am`;
-
+        let startTiming = Number(formData.get("timing"))>=12 ? `${Number(formData.get("timing"))-12}:00pm` : `${formData.get("timing")}:00am`;
+        let LectureEndTiming = Number(formData.get("timing"))+1>=12 ? `${Number(formData.get("timing"))+1-12}:00pm` : `${Number(formData.get("timing"))+1}:00am`;
+        let LabEndTiming = Number(formData.get("timing"))+3 >=12 ? `${Number(formData.get("timing"))+3-12}:00pm` : `${Number(formData.get("timing"))+3}:00am`;
+        startTiming = startTiming=="0:00pm" ? "12:00pm" : startTiming;
+        LectureEndTiming = LectureEndTiming=="0:00pm" ? "12:00pm" : LectureEndTiming;
+        LabEndTiming = LabEndTiming=="0:00pm" ? "12:00pm" : LabEndTiming;
 
         // creating the section
         const section = {
