@@ -7,6 +7,8 @@ async function loadPage(pageUrl, button) {
     const data = await page.text();
     hideMobileNav();
     document.querySelector(".content-area").innerHTML = data;
+    console.log(button.querySelector("p").innerHTML);
+    document.querySelector(".header-page-name").innerHTML=button.querySelector("p").innerHTML;
 
     if (button) {
         // Remove 'selected' class from all buttons
