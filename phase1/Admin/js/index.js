@@ -300,7 +300,7 @@ async function addCourse() {
 
         // creating the section
         const section = {
-            sectionID: `${formData.get("category")[0]}${formData.get("courseSection").length == 1 ? "0" + formData.get("courseSection") : formData.get("courseSection")}`,
+            sectionID: `${formData.get("category")=="Lecture"?"L":"B"}${formData.get("courseSection").length == 1 ? "0" + formData.get("courseSection") : formData.get("courseSection")}`,
             instructorID: formData.get("instructorID"),
             place: formData.get("place"),
             timing: `${startTiming}-${formData.get("category") == "Lecture" ? LectureEndTiming : LabEndTiming}`,
