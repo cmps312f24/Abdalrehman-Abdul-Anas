@@ -267,26 +267,49 @@ async function displayAddCourse(pageUrl, button) {
     //Load add course screeen
     await loadSubPage(pageUrl, button);
     // adding course
+    addCourse();
+}
+
+async function addCourse() {
     document.querySelector(".form-container").addEventListener("submit", async function (event) {
         event.preventDefault(); // Stop submitting
         const formData = new FormData(event.target);
         // retrieve the course if it exist
-        const courseResponse = (await fetch(baseUrl + `courses/${formData.get("courseNumber")}`));
+        const courseResponse = await fetch(baseUrl + `courses/${formData.get("courseNumber")}`);
 
+        //Check the Instructor
+        let instructor = await fetch(baseUrl + `instructors/${formData.get("instructorID")}`).then(res => res.json());
+                
+        if (instructor == "none") {
+            instructor = await fetch(baseUrl + `admins/${formData.get("instructorID")}`).then(res => res.json());
+            
+            if (instructor == "none") {
+                
+            alert("Instructor not found.\n Please enter valid instructor ID");
+            return;
+            }
+        }
         // creating the section
         const section = {
-            sectionID: formData.get("courseSection"),
+            sectionID: `${formData.get("category")[0]}${formData.get("courseSection").length == 1 ? "0" + formData.get("courseSection") : formData.get("courseSection")}`,
             instructorID: formData.get("instructorID"),
             place: formData.get("place"),
             timing: formData.get("timing"),
-            dow: formData.get("category") == "lecture" ? "sun/tue/thu" : "mon/wed",
+            dow: formData.get("days"),
             campus: formData.get("campus"),
+            capacity: formData.get("capacity"),
             status: "pending",
             students: []
         };
         // if the course already exist => add the new section
         if (courseResponse.ok) {
             const course = await courseResponse.json();
+            //check if the section already exist
+            const sectionExist = course.sections.find(s => s.sectionID == section.sectionID);
+            if (sectionExist) {
+                alert("This section already exist. Change the section ID.");
+                return;
+            }
             course.sections.push(section);
             await fetch(baseUrl + `courses/${course.courseNo}`, {
                 method: 'PUT',
@@ -314,12 +337,43 @@ async function displayAddCourse(pageUrl, button) {
                 body: JSON.stringify(course)
             });
         }
+
+        //Assign the new section to the instructor
+        instructor.sections.push({"courseNo": formData.get("courseNumber"), "section": formData.get("courseSection")});
+        await fetch(baseUrl + `${instructor.role}s/${instructor.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(instructor)
+        });
+
         alert("The course has been added successfully");
         displaypending(document.getElementById("pending-button"));
     });
-
 }
 
+async function categoryChange(value) {
+        if (value == "lecture") {
+            document.querySelector(".prefix").innerHTML = "L";
+            document.querySelector("#days").innerHTML =`
+            <option value="sun/tue/thu" selected>Sunday-Tuesday-Thursday</option>
+            <option value="mon/wed">Monday-Wednesday</option>
+            `
+        }
+        else if (value == "lab") {
+            document.querySelector(".prefix").innerHTML = "B";
+            document.querySelector("#days").innerHTML =`
+            <option value="sun" selected>Sunday</option>
+            <option value="mon">Monday</option>
+            <option value="tue">Tuesday</option>
+            <option value="wed">Wednesday</option>
+            <option value="thu">Thursday</option>
+            `
+        }
+}
+
+//--- Approve Course ---
 async function approveCourse(courseNo, sectionID) {
     const courseResponse = await fetch(baseUrl + `courses/${courseNo}`);
     const course = await courseResponse.json();

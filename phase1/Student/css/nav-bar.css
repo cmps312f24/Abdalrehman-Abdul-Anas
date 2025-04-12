@@ -235,7 +235,6 @@ nav img {
     display: flex;
     flex-direction: column;
     justify-items: start;
-    justify-content: end;
     gap: 5px;
 }
 
@@ -284,6 +283,25 @@ nav img {
     background-color: rgb(205, 205, 205);
     color: #101820;
 }
+
+.input-prefix-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .input-prefix-wrapper .prefix {
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    pointer-events: none;
+    color: #555;
+  }
+  
+  .input-prefix-wrapper input {
+    padding-left: 30px;
+  }
 
 /* Student - Courses */
 #coursesH1 {
