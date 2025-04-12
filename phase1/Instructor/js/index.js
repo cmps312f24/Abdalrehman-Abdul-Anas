@@ -1,4 +1,4 @@
-displayHome(document.getElementById("home-btn"));
+displayHome();
 
 const baseUrl = "http://localhost:3000/api/";
 
@@ -7,16 +7,16 @@ async function loadPage(pageUrl, button) {
     const data = await page.text();
     hideMobileNav();
     document.querySelector(".content-area").innerHTML = data;
-    console.log(button.querySelector("p").innerHTML);
-    document.querySelector(".header-page-name").innerHTML=button.querySelector("p").innerHTML;
 
     if (button) {
         // Remove 'selected' class from all buttons
         document.querySelectorAll('.menu-element').forEach(btn => btn.classList.remove('selected'));
         // Add 'selected' class to the clicked button
         button.classList.add('selected');
+        document.querySelector(".header-page-name").innerHTML=button.querySelector("p").innerHTML;
     }
 }
+
 
 
 async function loadSubPage(pageUrl,button){
