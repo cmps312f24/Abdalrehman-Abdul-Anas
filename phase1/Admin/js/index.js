@@ -320,8 +320,8 @@ async function addCourse() {
             students: []
         };
         // if the course already exist => add the new section
-        if (courseResponse.ok) {
-            const course = await courseResponse.json();
+        const course = await courseResponse.json();
+        if (course!="none") {
             //check if the section already exist
             const sectionExist = course.sections.find(s => s.sectionID == section.sectionID);
             if (sectionExist) {
@@ -451,7 +451,7 @@ async function removeCourse(courseNo, sectionID) {
             body: JSON.stringify(student)
         });
     }
-    
+
     await fetch(baseUrl + `${instructor.role}s/${instructor.id}`, {
         method: 'PUT',
         headers: {
