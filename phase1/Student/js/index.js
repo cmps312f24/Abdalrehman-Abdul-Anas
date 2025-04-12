@@ -187,21 +187,25 @@ async function displaySchedule(button) {
         // get section
         const section = course.sections.find((sc) => sc.sectionID == s.section);
         const timing = section.timing.substring(0,6);
+        console.log(hoursIndex[timing]);
         const days = section.dow;
         if (course.category == "Lecture") {            
             //select the days columns 
             if(days.length=="sun/tue/thu"){     
                 const cells = document.querySelectorAll(`tbody tr:nth-child(${hoursIndex[timing]}) .sun, tbody tr:nth-child(${hoursIndex[timing]}) .tue, tbody tr:nth-child(${hoursIndex[timing]}) .thu`);
-            }
-            else{
-                const cells = document.querySelectorAll(`tbody tr:nth-child(${hoursIndex[timing]}) .mon, tbody tr:nth-child(${hoursIndex[timing]}) .wed`);
-            }
-            cells.forEach(cell => {
+                cells.forEach(cell => {
                 cell.classList.add("schedualed-cell"); //To add styling
                 cell.innerHTML = `${course.name}`; //Add course name
             });
-        }
-        else {
+            }
+            else{
+                const cells = document.querySelectorAll(`tbody tr:nth-child(${hoursIndex[timing]}) .mon, tbody tr:nth-child(${hoursIndex[timing]}) .wed`);
+                cells.forEach(cell => {
+                    cell.classList.add("schedualed-cell"); //To add styling
+                    cell.innerHTML = `${course.name}`; //Add course name
+                });
+            }
+        } else {
             const cell = document.querySelector(`tbody tr:nth-child(${hoursIndex[timing]}) .${days}`);
             //removing the next 2 rows to prevent overflow
             document.querySelector(`tbody tr:nth-child(${hoursIndex[timing]+1}) .${days}`).remove();
