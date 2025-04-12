@@ -215,7 +215,7 @@ async function displayPendingCourses(courses) {
                         <td>${c.college}</td>
                         <td>${s.timing}/${s.place}</td>
                         <td>${s.students.length}/${s.capacity}</td>
-                        <td>${c.category}</td>
+                        <td>${c.category=="Lecture"&&s.sectionID[0]=="L"?c.category:"Lab"}</td>
                         <td class="add-box"><button class="add-button" onclick="removeCourse('${c.courseNo}','${s.sectionID}')">-</button></td>
                         <td class="add-box"><button class="add-button" onclick="approveCourse('${c.courseNo}','${s.sectionID}')">+</button></td>
                     </tr>
@@ -261,7 +261,7 @@ async function displayApprovedCourses(courses) {
                         <td>${c.college}</td>
                         <td>${s.timing}/${s.place}</td>
                         <td>${s.status}</td>
-                        <td>${c.category}</td>
+                        <td>${c.category=="Lecture"&&s.sectionID[0]=="L"?c.category:"Lab"}</td>
                         <td class="add-box"><button class="complete-button" onclick="completeCourse('${c.courseNo}','${s.sectionID}')">complete</button></td>
                     </tr>
                 `;
@@ -357,7 +357,7 @@ async function addCourse() {
         }
 
         //Assign the new section to the instructor
-        instructor.sections.push({"courseNo": formData.get("courseNumber"), "section": formData.get("courseSection")});
+        instructor.sections.push({"courseNo": course.courseNo, "section": section.sectionID});
         await fetch(baseUrl + `${instructor.role}s/${instructor.id}`, {
             method: 'PUT',
             headers: {
@@ -431,7 +431,7 @@ async function removeCourse(courseNo, sectionID) {
     const course = await fetch(baseUrl + `courses/${courseNo}`).then(res => res.json());
     const sectionIndex = course.sections.findIndex(s => s.sectionID == sectionID);
     const section = course.sections[sectionIndex];
-    let instructor = await fetch(baseUrl + `instructors/${formData.get("instructorID")}`).then(res => res.json());     
+    let instructor = await fetch(baseUrl + `instructors/${section.instructorID}`).then(res => res.json());     
     if (instructor == "none") {
         instructor = await fetch(baseUrl + `admins/${formData.get("instructorID")}`).then(res => res.json());
     }
