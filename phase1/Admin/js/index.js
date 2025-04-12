@@ -207,6 +207,7 @@ async function displayPendingCourses(courses) {
                         <td>${s.timing}/${s.place}</td>
                         <td>${s.students.length}/${s.capacity}</td>
                         <td>${c.category}</td>
+                        <td class="add-box"><button class="add-button" onclick="removeCourse('${c.courseNo}','${s.sectionID}')">-</button></td>
                         <td class="add-box"><button class="add-button" onclick="approveCourse('${c.courseNo}','${s.sectionID}')">+</button></td>
                     </tr>
                 `;
@@ -416,7 +417,34 @@ async function approveCourse(courseNo, sectionID) {
     alert(`${courseNo}_${sectionID} has been approved`);
     displaypending(document.getElementById("pending-button"));
 }
+//--- Remove Course ---
+async function removeCourse(courseNo, sectionID) {
+    const course = await fetch(baseUrl + `courses/${courseNo}`).then(res => res.json());
+    const sectionIndex = course.sections.findIndex(s => s.sectionID == sectionID);
+    const section = course.sections[sectionIndex];
+    course.sections.splice(sectionIndex, 1);
+    for (std of section.students) {
+        const student = await fetch(baseUrl + `students/${std.id}`).then(res => res.json());
+        student.pendingSections.filter(s => s.courseNo != courseNo);
+        await fetch(baseUrl + `students/${std.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(student)
+        });
+    }
+    
+    await fetch(baseUrl + `courses/${courseNo}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(course)
+    });
+}
 
+// --- complete course ---
 async function completeCourse(courseNo, sectionID) {
     const courseResponse = await fetch(baseUrl + `courses/${courseNo}`);
     const course = await courseResponse.json();
