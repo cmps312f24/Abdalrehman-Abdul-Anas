@@ -290,12 +290,18 @@ async function addCourse() {
             return;
             }
         }
+        //section timing
+        const startTiming = Number(formData.get("timing"))>12 ? `${Number(formData.get("timing"))-12}:00pm` : `${formData.get("timing")}:00am`;
+        const LectureEndTiming = Number(formData.get("timing"))+1>12 ? `${Number(formData.get("timing"))+1-12}:00pm` : `${Number(formData.get("timing"))+1}:00am`;
+        const LabEndTiming = Number(formData.get("timing"))+3 >12 ? `${Number(formData.get("timing"))+3-12}:00pm` : `${Number(formData.get("timing"))+3}am`;
+
+
         // creating the section
         const section = {
             sectionID: `${formData.get("category")[0]}${formData.get("courseSection").length == 1 ? "0" + formData.get("courseSection") : formData.get("courseSection")}`,
             instructorID: formData.get("instructorID"),
             place: formData.get("place"),
-            timing: formData.get("timing"),
+            timing: `${startTiming}-${formData.get("category") == "Lecture" ? LectureEndTiming : LabEndTiming}`,
             dow: formData.get("days"),
             campus: formData.get("campus"),
             capacity: formData.get("capacity"),
@@ -355,14 +361,14 @@ async function addCourse() {
 }
 
 async function categoryChange(value) {
-        if (value == "lecture") {
+        if (value == "Lecture") {
             document.querySelector(".prefix").innerHTML = "L";
             document.querySelector("#days").innerHTML =`
             <option value="sun/tue/thu" selected>Sunday-Tuesday-Thursday</option>
             <option value="mon/wed">Monday-Wednesday</option>
             `
         }
-        else if (value == "lab") {
+        else if (value == "Lab") {
             document.querySelector(".prefix").innerHTML = "B";
             document.querySelector("#days").innerHTML =`
             <option value="sun" selected>Sunday</option>
