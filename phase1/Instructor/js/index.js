@@ -121,8 +121,18 @@ async function displayGrades(courseNo, sectionID) {
             <tr class="student-grade">
                     <td>${studentName}</td>
                     <td>${s.id}</td>
-                    <td><input type="text" class="grade-input" value="${s.grade}" onchange="changeGrade('${s.id}', this.value, ${courseNo},${sectionID})"></td>
-                </tr>
+                    <td><select class="grade-input" onchange="changeGrade('${s.id}', this.value, ${courseNo}, ${sectionID})">
+                    <option value="A">A</option>
+                    <option value="B+">B+</option>
+                    <option value="B">B</option>
+                    <option value="C+">C+</option>
+                    <option value="C">C</option>
+                    <option value="D+">D+</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                    </select>
+                </td>
+            </tr>
         `;
     }
     document.querySelector(".tbody").innerHTML = html;
