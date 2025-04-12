@@ -1465,53 +1465,51 @@ nav img {
 
 /* help & support */
 .support-card {
-    width: 100%;
-    text-align: center;
-    margin: auto; 
-    position: relative;
-    top: 40%;
-    bottom: 40%;
-    transform: translateY(-50%);
-    padding: 40px; /* Increase the padding */
-    overflow-y: auto;
-    scrollbar-width: none;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+  position: relative;
+  height: 80vh;
+  padding: 0;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
-
 .support-header {
-    h2{
-        font-size: 30px;
-        margin-bottom: 10px;
-        color: #ffffff;
-    }
-    p{
-        font-size: 18px;
-        color: #ffffff;
-    }
-    background-color: #101820; /* Add background color */
-    padding: 20px;
-    border-radius: 15px 15px 0 0; /* Round top corners */
-    color: white;
-    text-align: left;
-    width: calc(100% + 80px); /* Ensure it takes full width of the card, including padding */
-    margin: -40px -40px 20px -40px; /* Remove margin and adjust for padding */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #101820;
+  padding: 20px;
+  border-radius: 15px 15px 0 0;
+  color: white;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .support-header h2 {
-    margin: 0; /* Remove margin */
+  font-size: 30px;
+  margin-bottom: 10px;
+  color: #ffffff;
+  margin-top: 0;
 }
 
 .support-header p {
-    margin: 0; /* Remove margin */
+  font-size: 18px;
+  color: #ffffff;
+  margin: 0;
 }
+
+
+
 
 .support-content {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
     flex-wrap: wrap;
-    padding: 20px; /* Add padding */
+    padding: 20px;
 }
 
 .contact-info {
@@ -1557,6 +1555,7 @@ iframe {
 
 .social-media {
     position: absolute;
+    margin-left: 20px;
 
     text-align: left;
     display: flex; /* Use flexbox */
@@ -1573,7 +1572,7 @@ iframe {
 .social-media .icons {
     display: flex; /* Use flexbox */
     flex-direction: row; /* Arrange items in a row */
-    gap: 20px; /* Add space between icons */
+    gap: 20px;
 }
 
 .social-media a {
