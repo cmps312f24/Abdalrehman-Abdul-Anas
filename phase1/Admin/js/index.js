@@ -1,5 +1,11 @@
 displayHome();
+displayNav();
 
+async function displayNav() {
+    const user= JSON.parse(localStorage.user);
+    document.getElementById("user-Name").innerHTML=user.name;
+    document.getElementById("user-username").innerHTML=user.email.split("@")[0];
+}
 const baseUrl = "http://localhost:3000/api/";
 
 async function loadPage(pageUrl, button) {
