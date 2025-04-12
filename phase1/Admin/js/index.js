@@ -353,14 +353,14 @@ async function addCourse() {
 }
 
 async function categoryChange(value) {
-        if (value == "lecture") {
+        if (value == "Lecture") {
             document.querySelector(".prefix").innerHTML = "L";
             document.querySelector("#days").innerHTML =`
             <option value="sun/tue/thu" selected>Sunday-Tuesday-Thursday</option>
             <option value="mon/wed">Monday-Wednesday</option>
             `
         }
-        else if (value == "lab") {
+        else if (value == "Lab") {
             document.querySelector(".prefix").innerHTML = "B";
             document.querySelector("#days").innerHTML =`
             <option value="sun" selected>Sunday</option>
