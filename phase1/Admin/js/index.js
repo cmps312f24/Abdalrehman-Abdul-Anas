@@ -290,8 +290,8 @@ async function addCourse() {
         }
         //section timing
         const startTiming = Number(formData.get("timing"))>12 ? `${Number(formData.get("timing"))-12}:00pm` : `${formData.get("timing")}:00am`;
-        const LectureEndTiming = Number(formData.get("timing"))+1>12 ? `${Number(formData.get("timing"))+1-12}:00pm` : `${formData.get("timing")+1}:00am`;
-        const LabEndTiming = Number(formData.get("timing"))+3 >12 ? `${Number(formData.get("timing"))+3-12}:00pm` : `${formData.get("timing")+3}am`;
+        const LectureEndTiming = Number(formData.get("timing"))+1>12 ? `${Number(formData.get("timing"))+1-12}:00pm` : `${Number(formData.get("timing"))+1}:00am`;
+        const LabEndTiming = Number(formData.get("timing"))+3 >12 ? `${Number(formData.get("timing"))+3-12}:00pm` : `${Number(formData.get("timing"))+3}am`;
 
 
         // creating the section
