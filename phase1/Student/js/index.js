@@ -583,10 +583,15 @@ async function displayPath(button){
     for (const c of courses){
 
         const section= student.sections.find((s)=> s.courseNo==c.courseNo) || (student.pendingSections.find((s)=> s.courseNo==c.courseNo)? {"status":"pending","grade":"N/A"}:{"status":"uncompleted","grade":"N/A"});
-        
+        const mapColor={
+            "completed": "#359A6C",
+            "pending": "#E9DC78",
+            "current": "#F19A2F",
+            "uncompleted": "#101820"
+        }
         if (c.name!="empty"){
             content.innerHTML += `
-            <span class="course" id="c${index}">
+            <span class="course" id="c${index}" style="background-color: ${mapColor[section.status]};">
                 ${c.name}<br>${c.courseNo}
                 <div class="course-details">
                     <div>Credits: ${c.credit}</div>
