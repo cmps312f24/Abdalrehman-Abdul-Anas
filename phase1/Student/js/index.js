@@ -181,8 +181,13 @@ async function displaySchedule(button) {
         const timing = section.timing.substring(0,6);
         const days = section.dow;
         if (course.category == "lecture") {            
-            //select the days columns      
+            //select the days columns 
+            if(days.length=="sun/tue/thu"){     
             const cells = document.querySelectorAll(`tbody tr:nth-child(${hoursIndex[timing]}) .sun, tbody tr:nth-child(${hoursIndex[timing]}) .tue, tbody tr:nth-child(${hoursIndex[timing]}) .thu`);
+            }
+            else if(days.length=="mon/wed"){
+            const cells = document.querySelectorAll(`tbody tr:nth-child(${hoursIndex[timing]}) .mon, tbody tr:nth-child(${hoursIndex[timing]}) .wed`);
+            }
             cells.forEach(cell => {
                 cell.classList.add("schedualed-cell"); //To add styling
                 cell.innerHTML = `${course.name}`; //Add course name
