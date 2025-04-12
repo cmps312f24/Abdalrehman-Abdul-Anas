@@ -426,6 +426,23 @@ async function completeCourse(courseNo, sectionID) {
         const studentResponse = await fetch(baseUrl + `students/${std.id}`);
         const student = await studentResponse.json();
         student.sections.find(s=> s.courseNo == courseNo).status="completed";
+        const gradeMap = {
+            "A": 4.0,
+            "B+": 3.5,
+            "B": 3.0,
+            "C+": 2.5,
+            "C": 2.0,
+            "D+": 1.5,
+            "D": 1.0,
+            "F": 0.0
+        };
+        const grade=gradeMap[student.sections.find(s=> s.courseNo == courseNo).grade];
+        const currentgpa=student.gpa[student.gpa.length-1];
+        const credit=sectionID[0]!="B"&&course.credit!=3? currentgpa.CH+course.credit : currentgpa.CH;
+        student.gpa.push({
+            "CH": credit,
+            "gpa": credit!=currentgpa.CH? (currentgpa.gpa+grade)/(credit) : currentgpa.gpa
+        })
         await fetch(baseUrl + `students/${std.id}`, {
             method: 'PUT',
             headers: {
