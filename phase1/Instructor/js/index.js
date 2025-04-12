@@ -5,6 +5,7 @@ const baseUrl = "http://localhost:3000/api/";
 async function loadPage(pageUrl,button) {
     const page = await fetch(pageUrl);
     const data = await page.text();
+    hideMobileNav();
     document.querySelector(".content-area").innerHTML = data;
 
     if (button){
@@ -58,7 +59,6 @@ async function hideMobileNav() {
 
 // Display courses
 async function displayCourses(button) {
-    hideMobileNav()
     //load the courses page
     await loadPage('/Instructor/courses.html', button);
     // get user
@@ -244,7 +244,6 @@ async function changePassword() {
 
 
 async function displayHome(button) {
-    hideMobileNav()
     await loadPage('/others/Home.html', button);
     displayUserInfo();
     displayUniInfo()
