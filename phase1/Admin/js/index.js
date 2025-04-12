@@ -425,7 +425,7 @@ async function removeCourse(courseNo, sectionID) {
     course.sections.splice(sectionIndex, 1);
     for (std of section.students) {
         const student = await fetch(baseUrl + `students/${std.id}`).then(res => res.json());
-        student.pendingSections.filter(s => s.courseNo != courseNo);
+        student.pendingSections.findIndex(s => s.courseNo == courseNo);
         await fetch(baseUrl + `students/${std.id}`, {
             method: 'PUT',
             headers: {
@@ -442,6 +442,8 @@ async function removeCourse(courseNo, sectionID) {
         },
         body: JSON.stringify(course)
     });
+    alert(`${courseNo}_${sectionID} has been removed`);
+    displaypending(document.getElementById("pending-button"));
 }
 
 // --- complete course ---
