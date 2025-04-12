@@ -356,10 +356,11 @@ nav img {
 }
 
 /* Student - Summary */
-
+.registration-container{
+    overflow-y: auto;
+}
 .table-container {
     padding: 0px;
-    padding-bottom: 40px;
     width: 100%;
     scrollbar-width: none;
     margin: 1rem 0;
