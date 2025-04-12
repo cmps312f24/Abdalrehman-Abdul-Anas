@@ -617,6 +617,7 @@ nav img {
     border: 1px solid #d1d5db;
     background-color: white;
     color: black;
+    border-radius: 9999px;
 }
 
 .campus-button.selected {
@@ -782,6 +783,10 @@ nav img {
     overflow-y: auto;
     scrollbar-width: none;
     padding: 0px;
+    overflow-x: auto;
+    overflow-y: auto;
+    
+    
 }
 
 .header-path {
@@ -841,7 +846,6 @@ nav img {
     box-sizing: border-box;
     align-self: flex-start;
     
-    
 }
 
 .course {
@@ -873,11 +877,17 @@ nav img {
 
 .course:hover {
     transform: scale(2.2);
+    transform-origin: left center;
     z-index: 5;
     font-size: 8.8px;
     border-radius: 15px;
     box-shadow: 0px 0.477px 15.036px 0px rgba(0, 0, 0, 0.434);
-    background-color: #18324c;
+}
+
+#Flowchart-content .course:nth-child(8n+1):hover {
+    transform: scale(2.2) translateX(-10%);
+    transform-origin: left center;
+    z-index: 10;
 }
 
 
@@ -885,7 +895,7 @@ nav img {
     display: block;
 }
 
-/* Arrows with absolute positioning */
+/* Arrows with absolute positioning  */
 #Arrows {
     position: absolute;
     top: 0;

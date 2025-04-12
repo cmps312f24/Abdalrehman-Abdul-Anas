@@ -215,7 +215,7 @@ async function displayPendingCourses(courses) {
                         <td>${c.college}</td>
                         <td>${s.timing}/${s.place}</td>
                         <td>${s.students.length}/${s.capacity}</td>
-                        <td>${c.category}</td>
+                        <td>${c.category=="Lecture"&&s.sectionID[0]=="L"?c.category:"Lab"}</td>
                         <td class="add-box"><button class="add-button" onclick="removeCourse('${c.courseNo}','${s.sectionID}')">-</button></td>
                         <td class="add-box"><button class="add-button" onclick="approveCourse('${c.courseNo}','${s.sectionID}')">+</button></td>
                     </tr>
@@ -261,7 +261,7 @@ async function displayApprovedCourses(courses) {
                         <td>${c.college}</td>
                         <td>${s.timing}/${s.place}</td>
                         <td>${s.status}</td>
-                        <td>${c.category}</td>
+                        <td>${c.category=="Lecture"&&s.sectionID[0]=="L"?c.category:"Lab"}</td>
                         <td class="add-box"><button class="complete-button" onclick="completeCourse('${c.courseNo}','${s.sectionID}')">complete</button></td>
                     </tr>
                 `;
@@ -320,8 +320,8 @@ async function addCourse() {
             students: []
         };
         // if the course already exist => add the new section
-        if (courseResponse.ok) {
-            const course = await courseResponse.json();
+        const course = await courseResponse.json();
+        if (course!="none") {
             //check if the section already exist
             const sectionExist = course.sections.find(s => s.sectionID == section.sectionID);
             if (sectionExist) {
@@ -357,7 +357,7 @@ async function addCourse() {
         }
 
         //Assign the new section to the instructor
-        instructor.sections.push({"courseNo": formData.get("courseNumber"), "section": formData.get("courseSection")});
+        instructor.sections.push({"courseNo": course.courseNo, "section": section.sectionID});
         await fetch(baseUrl + `${instructor.role}s/${instructor.id}`, {
             method: 'PUT',
             headers: {
@@ -431,10 +431,18 @@ async function removeCourse(courseNo, sectionID) {
     const course = await fetch(baseUrl + `courses/${courseNo}`).then(res => res.json());
     const sectionIndex = course.sections.findIndex(s => s.sectionID == sectionID);
     const section = course.sections[sectionIndex];
+    let instructor = await fetch(baseUrl + `instructors/${section.instructorID}`).then(res => res.json());     
+    if (instructor == "none") {
+        instructor = await fetch(baseUrl + `admins/${formData.get("instructorID")}`).then(res => res.json());
+    }
+    const indexi=instructor.sections.findIndex(s => s.section == sectionID && s.courseNo == courseNo);
+    instructor.sections.splice(indexi,1);
+
     course.sections.splice(sectionIndex, 1);
     for (std of section.students) {
         const student = await fetch(baseUrl + `students/${std.id}`).then(res => res.json());
-        student.pendingSections.findIndex(s => s.courseNo == courseNo);
+        const index=student.pendingSections.findIndex(s => s.courseNo == courseNo);
+        student.pendingSections.splice(index,1);
         await fetch(baseUrl + `students/${std.id}`, {
             method: 'PUT',
             headers: {
@@ -443,6 +451,14 @@ async function removeCourse(courseNo, sectionID) {
             body: JSON.stringify(student)
         });
     }
+
+    await fetch(baseUrl + `${instructor.role}s/${instructor.id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(instructor)
+    });
     
     await fetch(baseUrl + `courses/${courseNo}`, {
         method: 'PUT',
@@ -451,6 +467,8 @@ async function removeCourse(courseNo, sectionID) {
         },
         body: JSON.stringify(course)
     });
+
+
     alert(`${courseNo}_${sectionID} has been removed`);
     displaypending(document.getElementById("pending-button"));
 }
