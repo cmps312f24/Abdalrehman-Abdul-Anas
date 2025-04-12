@@ -188,7 +188,7 @@ async function displaySchedule(button) {
         const section = course.sections.find((sc) => sc.sectionID == s.section);
         const timing = section.timing.substring(0,6);
         const days = section.dow;
-        if (course.category == "lecture") {            
+        if (course.category == "Lecture") {            
             //select the days columns 
             if(days.length=="sun/tue/thu"){     
             const cells = document.querySelectorAll(`tbody tr:nth-child(${hoursIndex[timing]}) .sun, tbody tr:nth-child(${hoursIndex[timing]}) .tue, tbody tr:nth-child(${hoursIndex[timing]}) .thu`);
