@@ -793,6 +793,7 @@ nav img {
     height: 37px;
     font-weight: bold;
     border-right: 1px solid #333;
+    padding-top: 5px;
 }
 
 .year:last-child {
