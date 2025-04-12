@@ -118,22 +118,22 @@ async function displayGrades(courseNo, sectionID) {
     for (const s of section.students) {
         const studentName = await getStudentName(s.id);
         html += `
-            <tr class="student-grade">
-                    <td>${studentName}</td>
-                    <td>${s.id}</td>
-                    <td><select class="grade-input" onchange="changeGrade('${s.id}', this.value, ${courseNo}, ${sectionID})">
-                    <option value="A">A</option>
-                    <option value="B+">B+</option>
-                    <option value="B">B</option>
-                    <option value="C+">C+</option>
-                    <option value="C">C</option>
-                    <option value="D+">D+</option>
-                    <option value="D">D</option>
-                    <option value="F">F</option>
-                    </select>
-                </td>
-            </tr>
-        `;
+        <tr class="student-grade">
+            <td>${studentName}</td>
+            <td>${s.id}</td>
+            <td>
+                <select class="grade-input" onchange="changeGrade('${s.id}', this.value, '${courseNo}', '${sectionID}')">
+                    <option value="A" ${s.grade === 'A' ? 'selected' : ''}>A</option>
+                    <option value="B+" ${s.grade === 'B+' ? 'selected' : ''}>B+</option>
+                    <option value="B" ${s.grade === 'B' ? 'selected' : ''}>B</option>
+                    <option value="C+" ${s.grade === 'C+' ? 'selected' : ''}>C+</option>
+                    <option value="C" ${s.grade === 'C' ? 'selected' : ''}>C</option>
+                    <option value="D+" ${s.grade === 'D+' ? 'selected' : ''}>D+</option>
+                    <option value="D" ${s.grade === 'D' ? 'selected' : ''}>D</option>
+                    <option value="F" ${s.grade === 'F' ? 'selected' : ''}>F</option>
+                </select>
+            </td>
+        </tr>`;;
     }
     document.querySelector(".tbody").innerHTML = html;
     document.getElementById("name-input").addEventListener("keyup", () => { sortGrade(courseNo, sectionID) });
@@ -155,11 +155,21 @@ async function sortGrade(courseNo,sectionID){
         if(studentName.toLowerCase().includes(document.getElementById("name-input").value.toLowerCase())){
         html += `
             <tr class="student-grade">
-                    <td>${studentName}</td>
-                    <td>${s.id}</td>
-                    <td><input type="text" class="grade-input" value="${s.grade}" onchange="changeGrade('${s.id}', this.value, ${courseNo},${sectionID})"></td>
-                </tr>
-        `;
+                <td>${studentName}</td>
+                <td>${s.id}</td>
+                <td>
+                    <select class="grade-input" onchange="changeGrade('${s.id}', this.value, '${courseNo}', '${sectionID}')">
+                        <option value="A" ${s.grade === 'A' ? 'selected' : ''}>A</option>
+                        <option value="B+" ${s.grade === 'B+' ? 'selected' : ''}>B+</option>
+                        <option value="B" ${s.grade === 'B' ? 'selected' : ''}>B</option>
+                        <option value="C+" ${s.grade === 'C+' ? 'selected' : ''}>C+</option>
+                        <option value="C" ${s.grade === 'C' ? 'selected' : ''}>C</option>
+                        <option value="D+" ${s.grade === 'D+' ? 'selected' : ''}>D+</option>
+                        <option value="D" ${s.grade === 'D' ? 'selected' : ''}>D</option>
+                        <option value="F" ${s.grade === 'F' ? 'selected' : ''}>F</option>
+                    </select>
+                </td>
+            </tr>`;
         }
     }
     document.querySelector(".tbody").innerHTML = html;

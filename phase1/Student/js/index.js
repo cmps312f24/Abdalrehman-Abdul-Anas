@@ -188,13 +188,13 @@ async function displaySchedule(button) {
         const section = course.sections.find((sc) => sc.sectionID == s.section);
         const timing = section.timing.substring(0,6);
         const days = section.dow;
-        if (course.category == "lecture") {            
+        if (course.category == "Lecture") {            
             //select the days columns 
             if(days.length=="sun/tue/thu"){     
-            const cells = document.querySelectorAll(`tbody tr:nth-child(${hoursIndex[timing]}) .sun, tbody tr:nth-child(${hoursIndex[timing]}) .tue, tbody tr:nth-child(${hoursIndex[timing]}) .thu`);
+                const cells = document.querySelectorAll(`tbody tr:nth-child(${hoursIndex[timing]}) .sun, tbody tr:nth-child(${hoursIndex[timing]}) .tue, tbody tr:nth-child(${hoursIndex[timing]}) .thu`);
             }
-            else if(days.length=="mon/wed"){
-            const cells = document.querySelectorAll(`tbody tr:nth-child(${hoursIndex[timing]}) .mon, tbody tr:nth-child(${hoursIndex[timing]}) .wed`);
+            else{
+                const cells = document.querySelectorAll(`tbody tr:nth-child(${hoursIndex[timing]}) .mon, tbody tr:nth-child(${hoursIndex[timing]}) .wed`);
             }
             cells.forEach(cell => {
                 cell.classList.add("schedualed-cell"); //To add styling
@@ -460,14 +460,14 @@ async function registerCourse(courseNo, sectionID) {
     const timeConflict = student.pendingSections.some((s) => {
         const course = courses.find((c) => c.courseNo == s.courseNo);
         const sc = course.sections.find((sc) => sc.sectionID == s.section);
-        CH+=course.credit;
+        CH+=Number(course.credit);
         return (sc.timing==section.timing && sc.dow === section.dow );
     })
     if (timeConflict) {
         alert("Time conflict with other courses");
         return;
     }
-    if(CH+course.credit>18){
+    if(CH+Number(course.credit)>18){
         alert("You can't register more than 18 CH");
         return;
     }

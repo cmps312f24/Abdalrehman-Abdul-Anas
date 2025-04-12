@@ -132,12 +132,22 @@ async function displayGrades(courseNo, sectionID) {
     for (const s of section.students) {
         const studentName = await getStudentName(s.id);
         html += `
-            <tr class="student-grade">
-                    <td>${studentName}</td>
-                    <td>${s.id}</td>
-                    <td><input type="text" class="grade-input" value="${s.grade}" onchange="changeGrade('${s.id}', this.value, '${courseNo}','${sectionID}')"></td>
-                </tr>
-        `;
+        <tr class="student-grade">
+            <td>${studentName}</td>
+            <td>${s.id}</td>
+            <td>
+                <select class="grade-input" onchange="changeGrade('${s.id}', this.value, '${courseNo}', '${sectionID}')">
+                    <option value="A" ${s.grade === 'A' ? 'selected' : ''}>A</option>
+                    <option value="B+" ${s.grade === 'B+' ? 'selected' : ''}>B+</option>
+                    <option value="B" ${s.grade === 'B' ? 'selected' : ''}>B</option>
+                    <option value="C+" ${s.grade === 'C+' ? 'selected' : ''}>C+</option>
+                    <option value="C" ${s.grade === 'C' ? 'selected' : ''}>C</option>
+                    <option value="D+" ${s.grade === 'D+' ? 'selected' : ''}>D+</option>
+                    <option value="D" ${s.grade === 'D' ? 'selected' : ''}>D</option>
+                    <option value="F" ${s.grade === 'F' ? 'selected' : ''}>F</option>
+                </select>
+            </td>
+        </tr>`;
     }
     document.querySelector(".tbody").innerHTML = html;
     document.getElementById("name-input").addEventListener("keyup", () => { sortGrade(courseNo, sectionID) });
@@ -159,11 +169,21 @@ async function sortGrade(courseNo, sectionID) {
         if (studentName.toLowerCase().includes(document.getElementById("name-input").value.toLowerCase())) {
             html += `
             <tr class="student-grade">
-                    <td>${studentName}</td>
-                    <td>${s.id}</td>
-                    <td><input type="text" class="grade-input" value="${s.grade}" onchange="changeGrade('${s.id}', this.value, '${courseNo}','${sectionID}')"></td>
-                </tr>
-        `;
+                <td>${studentName}</td>
+                <td>${s.id}</td>
+                <td>
+                    <select class="grade-input" onchange="changeGrade('${s.id}', this.value, '${courseNo}', '${sectionID}')">
+                        <option value="A" ${s.grade === 'A' ? 'selected' : ''}>A</option>
+                        <option value="B+" ${s.grade === 'B+' ? 'selected' : ''}>B+</option>
+                        <option value="B" ${s.grade === 'B' ? 'selected' : ''}>B</option>
+                        <option value="C+" ${s.grade === 'C+' ? 'selected' : ''}>C+</option>
+                        <option value="C" ${s.grade === 'C' ? 'selected' : ''}>C</option>
+                        <option value="D+" ${s.grade === 'D+' ? 'selected' : ''}>D+</option>
+                        <option value="D" ${s.grade === 'D' ? 'selected' : ''}>D</option>
+                        <option value="F" ${s.grade === 'F' ? 'selected' : ''}>F</option>
+                    </select>
+                </td>
+            </tr>`;
         }
     }
     document.querySelector(".tbody").innerHTML = html;
@@ -400,12 +420,13 @@ async function approveCourse(courseNo, sectionID) {
     for (std of section.students) {
         const studentResponse = await fetch(baseUrl + `students/${std.id}`);
         const student = await studentResponse.json();
+        student.pendingSections.splice(student.pendingSections.findIndex(s=>s.section==sectionID&&s.courseNo==courseNo),1);
         student.sections.push(
             {
             "courseNo": courseNo,
             "section": sectionID,
             "status": "current",
-            "grade": ""
+            "grade": "F"
         }
     );
         await fetch(baseUrl + `students/${std.id}`, {
