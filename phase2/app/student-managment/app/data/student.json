@@ -1,0 +1,133 @@
+[
+    {
+        "id": "101",
+        "name": "Ahmed Mohamed",
+        "gender": "male",
+        "email": "am101@qu.edu.qa",
+        "gpa": [
+            {
+                "CH": "3",
+                "gpa": 2.5
+            }
+        ],
+        "major": "Computer Science",
+        "phoneNo": "12345678",
+        "sections": [
+            {
+                "courseNo": "MATH101",
+                "section": "L03",
+                "status": "completed",
+                "grade": "C+"
+            }
+        ],
+        "pendingSections": [
+            {
+                "courseNo": "MATH102",
+                "section": "L08"
+            },
+            {
+                "courseNo": "CHEM103",
+                "section": "B02"
+            }
+        ]
+    },
+    {
+        "id": "102",
+        "name": "Sara Ali",
+        "gender": "male",
+        "email": "sa102@qu.edu.qa",
+        "gpa": [],
+        "major": "Computer Science",
+        "phoneNo": "87654321",
+        "sections": [],
+        "pendingSections": []
+    },
+    {
+        "id": "103",
+        "name": "Yusuf Hamdan",
+        "gender": "male",
+        "email": "yh103@qu.edu.qa",
+        "gpa": [],
+        "major": "Mathematics",
+        "phoneNo": "11223344",
+        "sections": [],
+        "pendingSections": []
+    },
+    {
+        "id": "104",
+        "name": "Nadia Rahman",
+        "gender": "male",
+        "email": "nr104@qu.edu.qa",
+        "gpa": [],
+        "major": "Physics",
+        "phoneNo": "33445566",
+        "sections": [],
+        "pendingSections": []
+    },
+    {
+        "id": "105",
+        "name": "Ali Hassan",
+        "gender": "male",
+        "email": "ah105@qu.edu.qa",
+        "gpa": [],
+        "major": "Chemistry",
+        "phoneNo": "55667788",
+        "sections": [],
+        "pendingSections": []
+    },
+    {
+        "id": "106",
+        "name": "Mariam Hussein",
+        "gender": "male",
+        "email": "mh106@qu.edu.qa",
+        "gpa": [],
+        "major": "History",
+        "phoneNo": "66778899",
+        "sections": [],
+        "pendingSections": []
+    },
+    {
+        "id": "107",
+        "name": "Hassan Ahmed",
+        "gender": "male",
+        "email": "ha107@qu.edu.qa",
+        "gpa": [],
+        "major": "English",
+        "phoneNo": "77889900",
+        "sections": [],
+        "pendingSections": []
+    },
+    {
+        "id": "108",
+        "name": "Sami Haidar",
+        "gender": "male",
+        "email": "sh108@qu.edu.qa",
+        "gpa": [],
+        "major": "Computer Science",
+        "phoneNo": "88990011",
+        "sections": [],
+        "pendingSections": []
+    },
+    {
+        "id": "109",
+        "name": "Fatima Al-Khouri",
+        "gender": "male",
+        "email": "fa109@qu.edu.qa",
+        "gpa": [],
+        "major": "Computer Engineering",
+        "phoneNo": "99001122",
+        "sections": [],
+        "pendingSections": []
+    },
+    {
+        "id": "110",
+        "name": "Bilal Ameer",
+        "gender": "male",
+        "email": "ba110@qu.edu.qa",
+        "gpa": [],
+        "major": "Computer Science",
+        "phoneNo": "00112233",
+        "sections": [],
+        "pendingSections": []
+    }
+]

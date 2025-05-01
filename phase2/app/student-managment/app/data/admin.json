@@ -1,0 +1,48 @@
+[
+    {
+        "name": "Anas Hatem",
+        "id": "11",
+        "phoneNo": "123456789",
+        "sections": [
+            {
+                "courseNo": "CMPS251",
+                "section": "L01"
+            }
+        ],
+        "collage": "Engineering",
+        "role": "admin",
+        "email": "ah11@qu.edu.qa"
+    },
+    {
+        "name": "Layla Saeed",
+        "id": "12",
+        "phoneNo": "123456789",
+        "sections": [],
+        "collage": "Engineering",
+        "role": "admin",
+        "email": "ls12@qu.edu.qa"
+    },
+    {
+        "name": "Omar Khalid",
+        "id": "13",
+        "phoneNo": "123456789",
+        "sections": [
+            {
+                "courseNo": "ENGL202",
+                "section": "L02"
+            }
+        ],
+        "collage": "Engineering",
+        "role": "admin",
+        "email": "ok13@qu.edu.qa"
+    },
+    {
+        "name": "Sara Ahmed",
+        "id": "14",
+        "phoneNo": "123456789",
+        "sections": [],
+        "collage": "Engineering",
+        "role": "admin",
+        "email": "sa14@qu.edu.qa"
+    }
+]

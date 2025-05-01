@@ -1,0 +1,116 @@
+[
+    {
+        "id": "11",
+        "role": "admin",
+        "email": "ah11@qu.edu.qa",
+        "password": "1234"
+    },
+    {
+        "id": "12",
+        "role": "admin",
+        "email": "ls12@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "13",
+        "role": "admin",
+        "email": "ok13@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "14",
+        "role": "admin",
+        "email": "sa14@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "1001",
+        "role": "instructor",
+        "email": "ak1001@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "1002",
+        "role": "instructor",
+        "email": "of1002@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "1003",
+        "role": "instructor",
+        "email": "sa1003@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "1004",
+        "role": "instructor",
+        "email": "yh1004@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "1005",
+        "role": "instructor",
+        "email": "nr1005@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "101",
+        "email": "am101@qu.edu.qa",
+        "role": "student",
+        "password": "123"
+    },
+    {
+        "id": "102",
+        "role": "student",
+        "email": "sa102@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "103",
+        "role": "student",
+        "email": "yh103@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "104",
+        "role": "student",
+        "email": "nr104@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "105",
+        "role": "student",
+        "email": "ah105@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "106",
+        "role": "student",
+        "email": "mh106@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "107",
+        "role": "student",
+        "email": "ha107@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "108",
+        "role": "student",
+        "email": "sh108@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "109",
+        "role": "student",
+        "email": "fa109@qu.edu.qa",
+        "password": "123"
+    },
+    {
+        "id": "110",
+        "role": "student",
+        "email": "ba110@qu.edu.qa",
+        "password": "123"
+    }
+]

@@ -1,0 +1,73 @@
+[
+    {
+        "name": "Aisha Khalid",
+        "id": "1001",
+        "phoneNo": "123456789",
+        "sections": [
+            {
+                "courseNo": "CMPS151",
+                "section": "L01"
+            },
+            {
+                "courseNo": "CMPS151",
+                "section": "B01"
+            },
+            {
+                "section": "B02"
+            }
+        ],
+        "collage": "Engineering",
+        "role": "instructor",
+        "email": "ak1001@qu.edu.qa"
+    },
+    {
+        "name": "Omar Faisal",
+        "id": "1002",
+        "phoneNo": "123456789",
+        "sections": [
+            {
+                "courseNo": "MATH101",
+                "section": "L03"
+            },
+            {
+                "courseNo": "MATH102",
+                "section": "L08"
+            }
+        ],
+        "collage": "Engineering",
+        "role": "instructor",
+        "email": "of1002@qu.edu.qa"
+    },
+    {
+        "name": "Sara Ahmed",
+        "id": "1003",
+        "phoneNo": "123456789",
+        "sections": [],
+        "collage": "Engineering",
+        "role": "instructor",
+        "email": "sa1003@qu.edu.qa"
+    },
+    {
+        "name": "Yusuf Hamdan",
+        "id": "1004",
+        "phoneNo": "123456789",
+        "sections": [],
+        "collage": "Engineering",
+        "role": "instructor",
+        "email": "yh1004@qu.edu.qa"
+    },
+    {
+        "name": "Nadia Rahman",
+        "id": "1005",
+        "phoneNo": "123456789",
+        "sections": [
+            {
+                "courseNo": "CMPS350",
+                "section": "L022"
+            }
+        ],
+        "collage": "Engineering",
+        "role": "instructor",
+        "email": "nr1005@qu.edu.qa"
+    }
+]

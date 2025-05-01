@@ -1,0 +1,71 @@
+[
+    {
+        "name": "Programming Concepts",
+        "credit": "3",
+        "courseNo": "CMPS151",
+        "category": "Lecture",
+        "college": "Computer Science",
+        "sections": [
+
+        ]
+    },
+    {
+        "name": "Object-Oriented Programming ",
+        "credit": "4",
+        "courseNo": "CMPS251",
+        "category": "Lecture",
+        "college": "Computer Science",
+        "sections": [
+        ]
+    },
+    {
+        "name": "Calculus I",
+        "credit": "3",
+        "courseNo": "MATH101",
+        "category": "Lecture",
+        "college": "Mathematics",
+        "sections": [
+
+        ]
+    },
+    {
+        "name": "Calculus II",
+        "credit": "3",
+        "courseNo": "MATH102",
+        "category": "Lecture",
+        "college": "Mathematics",
+        "sections": [
+
+        ]
+    },
+    {
+        "name": "Web Development Fundamentals",
+        "credit": "3",
+        "courseNo": "CMPS350",
+        "category": "Lecture",
+        "college": "Computer Science",
+        "sections": [
+
+        ]
+    },
+    {
+        "name": "English Language I",
+        "credit": "3",
+        "courseNo": "ENGL202",
+        "category": "Lecture",
+        "college": "English",
+        "sections": [
+
+        ]
+    },
+    {
+        "name": "Experimental General Chemistry I",
+        "credit": "1",
+        "courseNo": "CHEM103",
+        "category": "Lab",
+        "college": "Physics",
+        "sections": [
+
+        ]
+    }
+]

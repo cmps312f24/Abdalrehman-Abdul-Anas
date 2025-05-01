@@ -1,0 +1,161 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Course {
+  courseNo String @id
+  name     String
+  credit   String
+  category String
+  college  String
+
+  sections   Section[]
+  PathCourse PathCourse[]
+}
+
+model Section {
+  courseNo String
+  section  String
+  place    String
+  timing   String
+  dow      String
+  campus   Gender
+  capacity String
+  status   String
+
+  course      Course              @relation(fields: [courseNo], references: [courseNo])
+  instructors SectionInstructor[]
+  enrollments Enrollment[]
+
+  @@id([courseNo, section])
+}
+
+model SectionInstructor {
+  courseNo String
+  section  String
+  userId   String
+  role     Role
+
+  sectionRef Section     @relation(fields: [courseNo, section], references: [courseNo, section])
+  admin      admin?      @relation("AdminSections", fields: [userId], references: [id])
+  instructor instructor? @relation("InstructorSections", fields: [userId], references: [id])
+
+  @@id([userId, courseNo, section])
+}
+
+model Enrollment {
+  studentId String
+  courseNo  String
+  section   String
+  status    String
+  grade     String?
+
+  student    Student @relation(fields: [studentId], references: [id])
+  sectionRef Section @relation(fields: [courseNo, section], references: [courseNo, section])
+
+  @@id([studentId, courseNo, section])
+}
+
+model GPARecord {
+  ch        String
+  gpa       Float
+  studentId String
+
+  student Student @relation(fields: [studentId], references: [id])
+
+  @@id([studentId, ch])
+}
+
+model admin {
+  id      String @id
+  name    String
+  phoneNo String
+  collage String
+  role    String
+  email   String
+
+  sections SectionInstructor[] @relation("AdminSections")
+  Login    Login?
+}
+
+model instructor {
+  id      String @id
+  name    String
+  phoneNo String
+  collage String
+  role    String
+  email   String
+
+  sections SectionInstructor[] @relation("InstructorSections")
+  Login    Login?
+}
+
+model Student {
+  id      String @id
+  name    String
+  gender  Gender
+  email   String
+  major   String
+  phoneNo String
+
+  gpa         GPARecord[]
+  enrollments Enrollment[]
+  Login       Login?
+}
+
+enum Role {
+  ADMIN
+  INSTRUCTOR
+  STUDENT
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+model Login {
+  email    String @id
+  password String
+  role     Role
+
+  adminId      String? @unique
+  instructorId String? @unique
+  studentId    String? @unique
+
+  admin      admin?      @relation(fields: [adminId], references: [id])
+  instructor instructor? @relation(fields: [instructorId], references: [id])
+  student    Student?    @relation(fields: [studentId], references: [id])
+
+  @@map("login")
+}
+
+model University {
+  name   String @id
+  info   String
+  events String
+
+  paths Path[]
+}
+
+model Path {
+  name           String @id
+  universityName String
+
+  university University   @relation(fields: [universityName], references: [name])
+  courses    PathCourse[]
+}
+
+model PathCourse {
+  pathName    String  @id
+  courseNo    String
+  prerequests String?
+
+  path   Path   @relation(fields: [pathName], references: [name])
+  course Course @relation(fields: [courseNo], references: [courseNo])
+}
