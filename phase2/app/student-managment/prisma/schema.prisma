@@ -99,6 +99,7 @@ model Student {
   id      String @id
   name    String
   gender  Gender
+  role    Role
   email   String
   major   String
   phoneNo String

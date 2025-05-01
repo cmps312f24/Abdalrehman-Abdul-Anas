@@ -1,0 +1,233 @@
+<div class="search-container">
+    <form class="form-student-search">
+        <div class="form-group">
+            <label class="form-label">College:</label>
+            <div class="input-wrapper">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="search" id="college-input" class="form-input with-icon"
+                    placeholder="College name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Course Number:</label>
+            <div class="input-wrapper">
+                <input type="search" class="form-input" id="id-input" placeholder="Course number">
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button id="toggle-expand" class="toggle-button" type="button">
+                <svg id="expand-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <svg id="collapse-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </button>
+            <button class="search-button">Search</button>
+        </div>
+        
+            <div class="form-group expandable-section" style="display: none;">
+                <label class="form-label">Keyword:</label>
+                <div class="input-wrapper">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="search" id="keyword-input" class="form-input with-icon" placeholder="Keyword">
+                    <button id="clear-keyword" class="clear-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group expandable-section" style="display: none;">
+                <label class="form-label">Campus:</label>
+                <div class="campus-options">
+                    <button class="campus-button male" data-campus="male" name="campus" value="male" type="button">Male</button>
+                    <button class="campus-button female" data-campus="female" name="campus" value="female" type="button">Female</button>
+                </div>
+            </div>
+    
+    </form>
+</div>
+<div class="table-container">
+    <table class="summary-table">
+        <thead class="summary-header">
+            <tr class="table-header-row">
+                <th>CourseNo</th>
+                <th>Title</th>
+                <th>Section</th>
+                <th>Credit</th>
+                <th>Instructor</th>
+                <th>College</th>
+                <th>Timing/Place</th>
+                <th>Status</th>
+                <th>Campus</th>
+                <th>Add</th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+            <tr class="table-body-row">
+                <td>course no</td>
+                <td>Title</td>
+                <td>section</td>
+                <td>credit</td>
+                <td>instructor</td>
+                <td>college</td>
+                <td>timing/place</td>
+                <td>status</td>
+                <td>campus</td>
+                <td class="add-box"><button class="add-button">+</button></td>
+            </tr>
+            <tr class="table-body-row">
+                <td>course no</td>
+                <td>Title</td>
+                <td>section</td>
+                <td>credit</td>
+                <td>instructor</td>
+                <td>college</td>
+                <td>timing/place</td>
+                <td>status</td>
+                <td>campus</td>
+                <td class="add-box"><button class="add-button">+</button></td>
+            </tr>
+            <tr class="table-body-row">
+                <td>course no</td>
+                <td>Title</td>
+                <td>section</td>
+                <td>credit</td>
+                <td>instructor</td>
+                <td>college</td>
+                <td>timing/place</td>
+                <td>status</td>
+                <td>campus</td>
+                <td class="add-box"><button class="add-button">+</button></td>
+            </tr>
+            <tr class="table-body-row">
+                <td>course no</td>
+                <td>Title</td>
+                <td>section</td>
+                <td>credit</td>
+                <td>instructor</td>
+                <td>college</td>
+                <td>timing/place</td>
+                <td>status</td>
+                <td>campus</td>
+                <td class="add-box"><button class="add-button">+</button></td>
+            </tr>
+            <tr class="table-body-row">
+                <td>course no</td>
+                <td>Title</td>
+                <td>section</td>
+                <td>credit</td>
+                <td>instructor</td>
+                <td>college</td>
+                <td>timing/place</td>
+                <td>status</td>
+                <td>campus</td>
+                <td class="add-box"><button class="add-button">+</button></td>
+            </tr>
+            <tr class="table-body-row">
+                <td>course no</td>
+                <td>Title</td>
+                <td>section</td>
+                <td>credit</td>
+                <td>instructor</td>
+                <td>college</td>
+                <td>timing/place</td>
+                <td>status</td>
+                <td>campus</td>
+                <td class="add-box"><button class="add-button">+</button></td>
+            </tr>
+            <tr class="table-body-row">
+                <td>course no</td>
+                <td>Title</td>
+                <td>section</td>
+                <td>credit</td>
+                <td>instructor</td>
+                <td>college</td>
+                <td>timing/place</td>
+                <td>status</td>
+                <td>campus</td>
+                <td class="add-box"><button class="add-button">+</button></td>
+            </tr>
+            <tr class="table-body-row">
+                <td>course no</td>
+                <td>Title</td>
+                <td>section</td>
+                <td>credit</td>
+                <td>instructor</td>
+                <td>college</td>
+                <td>timing/place</td>
+                <td>status</td>
+                <td>campus</td>
+                <td class="add-box"><button class="add-button">+</button></td>
+            </tr>
+            <tr class="table-body-row">
+                <td>course no</td>
+                <td>Title</td>
+                <td>section</td>
+                <td>credit</td>
+                <td>instructor</td>
+                <td>college</td>
+                <td>timing/place</td>
+                <td>status</td>
+                <td>campus</td>
+                <td class="add-box"><button class="add-button">+</button></td>
+            </tr>
+            <tr class="table-body-row">
+                <td>course no</td>
+                <td>Title</td>
+                <td>section</td>
+                <td>credit</td>
+                <td>instructor</td>
+                <td>college</td>
+                <td>timing/place</td>
+                <td>status</td>
+                <td>campus</td>
+                <td class="add-box"><button class="add-button">+</button></td>
+            </tr>
+            <tr class="table-body-row">
+                <td>course no</td>
+                <td>Title</td>
+                <td>section</td>
+                <td>credit</td>
+                <td>instructor</td>
+                <td>college</td>
+                <td>timing/place</td>
+                <td>status</td>
+                <td>campus</td>
+                <td class="add-box"><button class="add-button">+</button></td>
+            </tr>
+            <tr class="table-body-row">
+                <td>course no</td>
+                <td>Title</td>
+                <td>section</td>
+                <td>credit</td>
+                <td>instructor</td>
+                <td>college</td>
+                <td>timing/place</td>
+                <td>status</td>
+                <td>campus</td>
+                <td class="add-box"><button class="add-button">+</button></td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>

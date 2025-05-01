@@ -17,7 +17,7 @@
             }
         ],
         "collage": "Engineering",
-        "role": "instructor",
+        "role": "INSTRUCTOR",
         "email": "ak1001@qu.edu.qa"
     },
     {
@@ -35,7 +35,7 @@
             }
         ],
         "collage": "Engineering",
-        "role": "instructor",
+        "role": "INSTRUCTOR",
         "email": "of1002@qu.edu.qa"
     },
     {
@@ -44,7 +44,7 @@
         "phoneNo": "123456789",
         "sections": [],
         "collage": "Engineering",
-        "role": "instructor",
+        "role": "INSTRUCTOR",
         "email": "sa1003@qu.edu.qa"
     },
     {
@@ -53,7 +53,7 @@
         "phoneNo": "123456789",
         "sections": [],
         "collage": "Engineering",
-        "role": "instructor",
+        "role": "INSTRUCTOR",
         "email": "yh1004@qu.edu.qa"
     },
     {
@@ -67,7 +67,7 @@
             }
         ],
         "collage": "Engineering",
-        "role": "instructor",
+        "role": "INSTRUCTOR",
         "email": "nr1005@qu.edu.qa"
     }
 ]

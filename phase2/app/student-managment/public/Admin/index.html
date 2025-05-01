@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/2ddf4c0450.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/Student/css/nav-bar.css">
+</head>
+
+<body>
+    <div class="mobile-header">
+        <i class="fa-solid fa-bars nav-button-mobile" onclick="showMobileNav()"></i>
+        <h2 class="header-page-name">Home</h2>
+        <img src="/img\profile.png" alt="User" id="mobile-img-user" onclick="displaytSettings(document.querySelector('#Settings-btn'))">
+    </div>
+    <!-- menu bar -->
+    <nav class="nav">
+        <i class="fa-solid fa-arrow-left back-button-mobile" onclick="hideMobileNav()"></i>
+        <!-- user info -->
+        <span id="user-info">
+            <img src="/img\profile.png" alt="User" id="img-user" onclick="displaytSettings(document.querySelector('#Settings-btn'))">
+            <h2 id="user-Name" class="user-text">Anas Elrhmani</h2>
+            <p id="user-username" class="user-text">ae2203650</p>
+        </span>
+        <hr class="nav-lines">
+        <!-- main menu -->
+        <ul id="main-menu">
+            <li><a onclick="displayHome(this)" class="menu-element selected"><img src="/img/famicons_home.png" alt="Home">
+                    <p class="menu-text">Home</p>
+                </a></li>
+            <li><a onclick="displayCourses(this)" class="menu-element"><img src="/img/tdesign_course-filled.png" alt="Courses">
+                    <p class="menu-text">Courses</p>
+                </a></li>
+            <li><a onclick="displayRegisteration(this)" class="menu-element"><img src="/img/game-icons_archive-register.png" alt="Registeration">
+                    <p class="menu-text">Registeration</p>
+                </a></li>
+        </ul>
+        <hr class="nav-lines">
+        <!-- secondry menu -->
+        <ul id="secondry-menu">
+            <li><a onclick="displaytSettings(this)" class="menu-element" id="Settings-btn"><img src="/img/material-symbols_settings.png" alt="Settings">
+                    <p class="menu-text">Settings</p>
+                </a></li>
+            <li><a onclick="loadPage('/others/Help_Support.html',this)" class="menu-element"><img src="/img/clarity_help-info-solid.png" alt="Help">
+                    <p class="menu-text">Help & Support</p>
+                </a></li>
+            <li><a onclick="logout()" class="menu-element"><img src="/img/tabler_logout.png" alt="Logout">
+                    <p class="menu-text">Logout</p>
+                </a></li>
+        </ul>
+    </nav>
+
+    <!-- main content -->
+    <main class="content-area">
+        <div class="container">
+            
+        </div>
+    </main>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>

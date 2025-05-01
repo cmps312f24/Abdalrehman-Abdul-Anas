@@ -10,7 +10,7 @@
             }
         ],
         "collage": "Engineering",
-        "role": "admin",
+        "role": "ADMIN",
         "email": "ah11@qu.edu.qa"
     },
     {
@@ -19,7 +19,7 @@
         "phoneNo": "123456789",
         "sections": [],
         "collage": "Engineering",
-        "role": "admin",
+        "role": "ADMIN",
         "email": "ls12@qu.edu.qa"
     },
     {
@@ -33,7 +33,7 @@
             }
         ],
         "collage": "Engineering",
-        "role": "admin",
+        "role": "ADMIN",
         "email": "ok13@qu.edu.qa"
     },
     {
@@ -42,7 +42,7 @@
         "phoneNo": "123456789",
         "sections": [],
         "collage": "Engineering",
-        "role": "admin",
+        "role": "ADMIN",
         "email": "sa14@qu.edu.qa"
     }
 ]

@@ -1,0 +1,99 @@
+<div class="addCourse-container">
+        <h2 id="addCourse-header">Add New Course</h2>
+        
+        <form class="form-container" action="">
+            <section class="field-section">
+                <label for="courseName">Course Name</label>
+
+                <input type="text" id="course-Name" name="courseName" class="field" placeholder="Course Name"  oninput="this.value = this.value.replace(/[^a-zA-Z-\s]/g, '')"required>
+            </section>
+
+            <section class="field-section">
+                <label for="courseNumber">Course Number</label>
+
+
+                <input type="text" id="courseNumber" name="courseNumber" class="field" placeholder="Course Number" required>
+            </section>
+
+            <section class="field-section">
+                <label for="category">Category</label>
+
+                <select name="category" id="category" class="field" placeholder="Select Category" onchange="categoryChange(value)" required>
+                    <option value="Lecture" selected>Lecture</option>
+                    <option value="Lab">Lab</option>
+                </select>
+            </section>
+
+            <section class="field-section">
+                <label for="courseSection">Section</label>
+
+
+                <div class="input-prefix-wrapper">
+                    <span class="prefix">L</span>
+                    <input type="text" id="courseSection" name="courseSection" class="field" placeholder="Section" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                </div>
+            </section>
+            <section class="field-section">
+                    <label for="credit">Credit</label>
+                    <input type="number" id="credit" name="credit" min="1" max="4" class="field"
+                        placeholder="Credit" required></input>
+            </section>
+            <section class="field-section">
+                <label for="capacity">Capacity</label>
+                <input type="number" id="capacity" name="capacity" min="1" max="50" class="field"
+                placeholder="Capacity" required></input>
+            </section>
+            <section class="field-section">
+                <label for="instructorID">Instructor</label>
+                <input type="text" id="instructorID" name="instructorID" class="field" placeholder="InstructorID" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required></input>
+            </section>
+
+            <section class="field-section">
+                <label for="place">Place</label>
+
+
+                <input type="text" id="place" name="place" class="field" placeholder="Place" required>
+            </section>
+
+            <section class="field-section">
+                    <label for="days">Days</label>
+                    <select name="days" id="days" class="field" placeholder="Select Days" required>
+                    <option value="sun/tue/thu" selected>Sunday-Tuesday-Thursday</option>
+                    <option value="mon/wed">Monday-Wednesday</option>
+                    </select>
+            </section>
+
+            <section class="field-section">
+                <label for="timing">Timing</label>
+                    <select name="timing" id="timing" class="field" placeholder="Select Start Time" required>
+                        <option value="8" selected>8am</option>
+                        <option value="9">9am</option>
+                        <option value="10">10am</option>
+                        <option value="11">11am</option>
+                        <option value="12">12pm</option>
+                        <option value="13">1pm</option>
+                        <option value="14">2pm</option>
+                        <option value="15">3pm</option>
+                        <option value="16">4pm</option>
+                        <option value="17">5pm</option>
+                    </select>
+            </section>
+
+            <section class="field-section">
+                <label for="campus">Campus</label>
+
+                <select name="campus" id="campus" class="field" placeholder="Select campus" required>
+                    <option value="male" selected>Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </section>
+
+            <section class="field-section">
+                <label for="college">College</label>
+                <input type="text" id="college" name="college" class="field" placeholder="College" required>
+            </section>
+
+            <button type="submit" id="addCourse">Add Course</button>
+
+        </form>
+    </div>

@@ -3,38 +3,19 @@
         "id": "101",
         "name": "Ahmed Mohamed",
         "gender": "male",
+        "role": "STUDENT",
         "email": "am101@qu.edu.qa",
-        "gpa": [
-            {
-                "CH": "3",
-                "gpa": 2.5
-            }
-        ],
+        "gpa": [],
         "major": "Computer Science",
         "phoneNo": "12345678",
-        "sections": [
-            {
-                "courseNo": "MATH101",
-                "section": "L03",
-                "status": "completed",
-                "grade": "C+"
-            }
-        ],
-        "pendingSections": [
-            {
-                "courseNo": "MATH102",
-                "section": "L08"
-            },
-            {
-                "courseNo": "CHEM103",
-                "section": "B02"
-            }
-        ]
+        "sections": [],
+        "pendingSections": []
     },
     {
         "id": "102",
         "name": "Sara Ali",
         "gender": "male",
+        "role": "STUDENT",
         "email": "sa102@qu.edu.qa",
         "gpa": [],
         "major": "Computer Science",
@@ -46,6 +27,7 @@
         "id": "103",
         "name": "Yusuf Hamdan",
         "gender": "male",
+        "role": "STUDENT",
         "email": "yh103@qu.edu.qa",
         "gpa": [],
         "major": "Mathematics",
@@ -57,6 +39,7 @@
         "id": "104",
         "name": "Nadia Rahman",
         "gender": "male",
+        "role": "STUDENT",
         "email": "nr104@qu.edu.qa",
         "gpa": [],
         "major": "Physics",
@@ -68,6 +51,7 @@
         "id": "105",
         "name": "Ali Hassan",
         "gender": "male",
+        "role": "STUDENT",
         "email": "ah105@qu.edu.qa",
         "gpa": [],
         "major": "Chemistry",
@@ -79,6 +63,7 @@
         "id": "106",
         "name": "Mariam Hussein",
         "gender": "male",
+        "role": "STUDENT",
         "email": "mh106@qu.edu.qa",
         "gpa": [],
         "major": "History",
@@ -90,6 +75,7 @@
         "id": "107",
         "name": "Hassan Ahmed",
         "gender": "male",
+        "role": "STUDENT",
         "email": "ha107@qu.edu.qa",
         "gpa": [],
         "major": "English",
@@ -101,6 +87,7 @@
         "id": "108",
         "name": "Sami Haidar",
         "gender": "male",
+        "role": "STUDENT",
         "email": "sh108@qu.edu.qa",
         "gpa": [],
         "major": "Computer Science",
@@ -112,6 +99,7 @@
         "id": "109",
         "name": "Fatima Al-Khouri",
         "gender": "male",
+        "role": "STUDENT",
         "email": "fa109@qu.edu.qa",
         "gpa": [],
         "major": "Computer Engineering",
@@ -123,6 +111,7 @@
         "id": "110",
         "name": "Bilal Ameer",
         "gender": "male",
+        "role": "STUDENT",
         "email": "ba110@qu.edu.qa",
         "gpa": [],
         "major": "Computer Science",
