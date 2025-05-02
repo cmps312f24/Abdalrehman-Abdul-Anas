@@ -1,140 +1,183 @@
+'use client';
 
+import { useEffect,useState } from 'react';
+import {uniInfoAction} from '../actions/Home-actions'
 
-export default async function displayHome(){
-    await loadPage('/others/Home.html', button);
-    displayUserInfo();
-    displayUniInfo()
-    calender();
+export default function Home() {
+  const [user, setUser] = useState(null);
+  const [role, setRole] = useState(null);
+
+  useEffect(() => {
+    const stored = localStorage.getItem('user');
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      setUser(parsed);
+      setRole(parsed.role);
+    }
+  }, []);
+
+  return (
+    <div id="Home-box">
+      <div className="backgroud-home"></div>
+
+      <section id="content-home">
+        {displayUniInfo()}
+
+        {displayUserInfo(user)}
+
+        {calendar()}
+
+        <div className="calendar content-home">
+          <div className="header-calendar">
+            <button id="prevMonth">◀</button>
+            <h2 id="monthYear"></h2>
+            <button id="nextMonth">▶</button>
+          </div>
+          <div className="days">
+            <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+          </div>
+          <div id="calendarBody" className="dates"></div>
+
+          <div className="legend">
+            <div className="legend-item">
+              <span className="legend-box today"></span> Today
+            </div>
+            <div className="legend-item">
+              <span className="legend-box event-calender"></span> Event
+            </div>
+          </div>
+          <span id="events">
+            <div className="event-container"></div>
+          </span>
+        </div>
+      </section>
+    </div>
+  );
 }
 
-
-
-async function displayUniInfo() {
-    const data= await fetch(baseUrl+'uni');
-    const info= await (await data.json()).info;
-    document.querySelector("#uni-info-text").innerHTML=info.join("<br>");
-}
-
-async function displayUserInfo() {
-    const user= JSON.parse(localStorage.user);
-    if (user.role=="admin" || user.role=="instructor"){
-        document.getElementById("stu-info").style="display:none";
-    }else{
-        graph();
-        document.getElementById("stu-info-text").innerHTML=`Major : ${user.major} <br>GPA : ${user.gpa[user.gpa.length-1].gpa} <br>CH : ${user.gpa[user.gpa.length-1].CH}`;
+function displayUserInfo(user) {  
+    if (user.role === 'admin' || user.role === 'instructor') {
+        return
+    } else {
+      drawGraph(user.gpa);
+      const last = user.gpa[user.gpa.length - 1];
+      return(
+        <span id="stu-info" class="content-home">
+                <span id="student-text">
+                    <h2 class="header">Student Information</h2>
+                    <p id="stu-info-text">Major : {user.major} <br>GPA</br> : {last.gpa} <br>CH</br> : {last.CH}</p>
+                </span>
+                <div id="myGraph"></div>
+        </span>
+      );
     }
 }
 
-function graph() {
-    const usergpa = JSON.parse(localStorage.user).gpa;
-    const gpaList = [];
-    const CHList = [];
-    usergpa.forEach((gpa) => {
-        gpaList.push(gpa.gpa);
-        CHList.push(gpa.CH);
-    });
-    // Define the data
-    var data = [
-        {
-            x: CHList,  // CH values
-            y: gpaList,  // gpa values
-            mode: 'lines+markers',
-            type: 'scatter'
-        }
-    ];
+function drawGraph(gpaList) {
+    const gpaValues = gpaList.map(e => e.gpa);
+    const chValues = gpaList.map(e => e.CH);
 
-    // Define the layout
-    var layout = {
+    const data = [{
+        x: chValues,
+        y: gpaValues,
+        mode: 'lines+markers',
+        type: 'scatter',
+    }];
+
+    const layout = {
         title: 'GPA Graph',
         xaxis: { title: 'Credit Hours' },
-        yaxis: { title: 'GPA' }
+        yaxis: { title: 'GPA' },
     };
-    var config = {
-        displayModeBar: true,
-        modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'autoScale2d', 'resetScale2d']
-    };
-    // Render the graph
-    Plotly.newPlot('myGraph', data, layout, config);
+
+    Plotly.newPlot('myGraph', data, layout);
 }
 
-// calender 
-async function calender() {
-    const data= await fetch(baseUrl+'uni');
-    const events= await (await data.json()).events;
+async function displayUniInfo() {
+    const uni = uniInfoAction();
+    const info=uni.info;
+
+    return(
+        <span id="uni-info" class="content-home">
+            <h2 class="header-home">Information</h2>
+            <p id="uni-info-text">
+                info.join(<br></br>);
+            </p>
+        </span>
+    );
+}
+
+
+async function calendar() {
+    const events = uniInfoAction().events;
     const calendarBody = document.getElementById("calendarBody");
     const monthYear = document.getElementById("monthYear");
     const prevMonthBtn = document.getElementById("prevMonth");
     const nextMonthBtn = document.getElementById("nextMonth");
-
+  
     let date = new Date();
     let currentMonth = date.getMonth();
     let currentYear = date.getFullYear();
-    let today = date.getDate();
-    let todayMonth = date.getMonth();
-    let todayYear = date.getFullYear();
-    const specialEvents = events;
-
+  
+    const today = new Date();
+  
     function generateCalendar(month, year) {
-        calendarBody.innerHTML = "";
-        monthYear.textContent = new Date(year, month).toLocaleString("default", { month: "long", year: "numeric" });
-
-        let firstDay = new Date(year, month, 1).getDay();
-        let daysInMonth = new Date(year, month + 1, 0).getDate();
-
-        for (let i = 0; i < firstDay; i++) {
-            let emptyDiv = document.createElement("div");
-            calendarBody.appendChild(emptyDiv);
+      calendarBody.innerHTML = "";
+      monthYear.textContent = new Date(year, month).toLocaleString("default", { month: "long", year: "numeric" });
+  
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+  
+      for (let i = 0; i < firstDay; i++) {
+        calendarBody.appendChild(document.createElement("div"));
+      }
+  
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dayDiv = document.createElement("div");
+        dayDiv.textContent = day;
+        const formattedDate = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+  
+        if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+          dayDiv.classList.add("today");
         }
-
-        for (let day = 1; day <= daysInMonth; day++) {
-            let dayDiv = document.createElement("div");
-            dayDiv.textContent = day;
-
-            let formattedDate = `${year}-${(month + 1).toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`;
-
-            if (day === today && month === todayMonth && year === todayYear) {
-                dayDiv.classList.add("today");
-            }
-
-            if (specialEvents[formattedDate]) {
-                dayDiv.classList.add("event-calender");
-                dayDiv.setAttribute("title", specialEvents[formattedDate]); // Tooltip for event name
-            }
-
-            calendarBody.appendChild(dayDiv);
+  
+        if (events[formattedDate]) {
+          dayDiv.classList.add("event-calender");
+          dayDiv.title = events[formattedDate];
         }
+  
+        calendarBody.appendChild(dayDiv);
+      }
     }
-
-    prevMonthBtn.addEventListener("click", () => {
-        if (currentMonth === 0) {
-            currentMonth = 11;
-            currentYear--;
-        } else {
-            currentMonth--;
-        }
-        generateCalendar(currentMonth, currentYear);
-    });
-
-    nextMonthBtn.addEventListener("click", () => {
-        if (currentMonth === 11) {
-            currentMonth = 0;
-            currentYear++;
-        } else {
-            currentMonth++;
-        }
-        generateCalendar(currentMonth, currentYear);
-    });
+  
     function renderEventList(events) {
-        document.querySelector(".event-container").innerHTML = ""; // Clear previous content
-        const sortedDates = Object.keys(events).sort(); // Sort dates
-        for (const date of sortedDates) {  
-            const eventParagraph = document.createElement("p");
-            eventParagraph.textContent = `${date}: ${events[date]}`;
-            eventParagraph.classList.add("event");
-            document.querySelector(".event-container").appendChild(eventParagraph);
-            
-        }
+      const container = document.querySelector(".event-container");
+      container.innerHTML = "";
+      Object.keys(events).sort().forEach(date => {
+        const p = document.createElement("p");
+        p.textContent = `${date}: ${events[date]}`;
+        p.classList.add("event");
+        container.appendChild(p);
+      });
     }
+  
+    prevMonthBtn.onclick = () => {
+      if (--currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+      }
+      generateCalendar(currentMonth, currentYear);
+    };
+  
+    nextMonthBtn.onclick = () => {
+      if (++currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+      }
+      generateCalendar(currentMonth, currentYear);
+    };
+  
     renderEventList(events);
     generateCalendar(currentMonth, currentYear);
 }
+  

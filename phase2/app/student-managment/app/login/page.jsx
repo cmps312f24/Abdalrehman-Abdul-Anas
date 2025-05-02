@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { loginAction } from '@/app/actions/server-actions';
+import { loginAction } from '@/app/actions/Login-actions';
 import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
@@ -17,7 +17,6 @@ export default function LoginPage() {
   const login = async () => {
 
     const user = await loginAction(email,password);
-    console.log(user);
     if (!user) {
         alert('Incorrect email or password');
         return;

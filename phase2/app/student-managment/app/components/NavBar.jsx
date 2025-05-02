@@ -1,11 +1,29 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
-export default async function RoleNavbar() {
-  const user = await JSON.parse(localStorage.getItem('user'));
-  const role = user.role;
+export default function Navbar() {
+  const [user, setUser] = useState(null);
+  const [role, setRole] = useState(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const stored = localStorage.getItem('user');
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      setUser(parsed);
+      setRole(parsed.role);
+    }
+  }, []);
+
+  const logout = () => {
+    localStorage.clear();
+    router.push('/login');
+  };
+
+  if (!user) return <div>Loading...</div>;
 
   return (
     <nav className="nav">
@@ -36,15 +54,14 @@ export default async function RoleNavbar() {
             <p className="menu-text">Courses</p>
           </Link>
         </li>
-        {(role === 'STUDENT' || role==='ADMIN') && (
-         <li>
+        {(role === 'STUDENT' || role === 'ADMIN') && (
+          <li>
             <Link href="/registeration" className="menu-element">
               <img src="/img/game-icons_archive-register.png" alt="Registeration" />
               <p className="menu-text">Registeration</p>
             </Link>
-         </li>
+          </li>
         )}
- 
         {role === 'STUDENT' && (
           <li>
             <Link href="/path" className="menu-element">
@@ -71,10 +88,10 @@ export default async function RoleNavbar() {
           </Link>
         </li>
         <li>
-          <Link href="/login" onClick={logout} className="menu-element">
+          <button onClick={logout} className="menu-element">
             <img src="/img/tabler_logout.png" alt="Logout" />
             <p className="menu-text">Logout</p>
-          </Link>
+          </button>
         </li>
       </ul>
     </nav>
@@ -88,10 +105,4 @@ function hideMobileNav() {
 
 function displaytSettings() {
   // optionally handle active class toggle here
-}
-
-function logout() {
-  const router = useRouter();
-  localStorage.clear();
-  router.push('/login');
 }
