@@ -153,6 +153,21 @@ class Repo {
     }
   }
 
+  async changePass(email,pass,newPass){
+    const user = await prisma.login.findUnique({
+      where: { email },
+    });
+ 
+    if (user.password !== pass) return 'wrong_password';
+  
+    await prisma.login.update({
+      where: { email },
+      data: { password: newPass },
+    });
+
+    return 1;
+  }
+
   async updateUser(user) {
     return await prisma.login.update({data: user,where: { email: user.email }});
   }

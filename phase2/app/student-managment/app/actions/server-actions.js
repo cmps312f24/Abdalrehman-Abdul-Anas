@@ -29,6 +29,10 @@ export async function getCoursesAction(user) {
   return userSections;
 }
 
+export async function changePassAction(email,pass,newPass) {
+  return await repo.changePass(email,pass,newPass);
+}
+
 
 //courses
 export async function getSectionGrades(courseNo, sectionID){
@@ -38,3 +42,4 @@ export async function getSectionGrades(courseNo, sectionID){
 export async function updateGradeAction(courseNo, section, studentId, grade){
   await repo.updateGrade(courseNo, section, studentId, grade);
 }
+
