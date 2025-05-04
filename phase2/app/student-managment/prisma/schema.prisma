@@ -153,11 +153,12 @@ model Path {
 }
 
 model PathCourse {
-  pathName    String  
+  pathName    String
   courseNo    String
   prerequests String?
+  order       Int
+  path        Path    @relation(fields: [pathName], references: [name])
+  course      Course  @relation(fields: [courseNo], references: [courseNo])
 
   @@id([pathName, courseNo])
-  path   Path   @relation(fields: [pathName], references: [name])
-  course Course @relation(fields: [courseNo], references: [courseNo])
 }

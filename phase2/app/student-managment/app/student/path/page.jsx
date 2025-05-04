@@ -1,6 +1,6 @@
 "use client"
 
-import { getPathAction } from "@/app/actions/server-actions"
+import { getPathAction } from "@/app/actions/server-actions";
 import { useEffect } from "react"
 
 export default function Path() {
@@ -16,30 +16,29 @@ export default function Path() {
         uncompleted: "#101820",
       }
 
-      const path= getPathAction(user.major);
+      const path= await getPathAction(user.major.split(" ").join(""));
 
-      let index = 1
-      for (const c of path) {
-        if (c.name === "empty") {
-          index++
-          continue
-        }
+
+      for (const c of path.courses) {
+        console.log(c);
+        console.log(c.order);
         
-        const courseElement = document.createElement("span")
-        courseElement.className = "course"
-        courseElement.id = `c${index}`
-        courseElement.style.backgroundColor = mapColor[section.status]
+        const courseElement = document.createElement("span");
+        courseElement.className = "course";
+        courseElement.id = `c${c.order}`;
+        
+        const status = "uncompleted"; 
+        courseElement.style.backgroundColor = mapColor[status];
 
         courseElement.innerHTML = `
-          ${c.name}<br>${c.courseNo}
+          ${c.course.name}<br>${c.course.courseNo}
           <div class="course-details">
-            <div>Credits: ${c.credit}</div>
-            <div>Status: ${section.status}</div>
-            <div>Grade: ${section.grade}</div>
+            <div>Credits: ${c.course.credit}</div>
+            <div>Status: ${status}</div>
+            <div>Grade: N/A</div>
           </div>
-        `
-        content.appendChild(courseElement)
-        index++
+        `;
+        content.appendChild(courseElement);
       }
     }
 

@@ -80,13 +80,13 @@ async function seedPaths(){
 
 async function seedPathCourses() {
     const uni = await fs.readJson('app/data/uni.json');
-  
+    let index=1;
     for (const path of uni.paths) {
       const pathName = path.name;
   
       for (const c of path.courses) {
-        if (!c.courseNo) continue;
-
+        if (c.name=='empty') {continue};
+        if(!c.courseNo){c.courseNo=`pack_${index}`}
         await prisma.course.upsert({
           where: { courseNo: c.courseNo },
           update: {},
@@ -103,6 +103,7 @@ async function seedPathCourses() {
           data: {
             pathName,
             courseNo: c.courseNo,
+            order:index++,
             prerequests: c.prerequests?.join(',') || undefined,
           },
         });
@@ -111,16 +112,15 @@ async function seedPathCourses() {
   }
 
 async function seed() {
-    await seedUNI();
-    await seedCourses();
-    await seedInstructors();
-    await seedAdmins();
-    await seedStudents();
-    await seedLogins();
-    await seedPaths();
+    // await seedUNI();
+    // await seedCourses();
+    // await seedInstructors();
+    // await seedAdmins();
+    // await seedStudents();
+    // await seedLogins();
+    // await seedPaths();
     await seedPathCourses();
 }
-
 
 
 

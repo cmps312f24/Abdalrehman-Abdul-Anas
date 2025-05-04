@@ -48,10 +48,14 @@ class Repo {
   }
 
   async addCourse(course) {
-    return await prisma.course.create({ data: course });
+    return await prisma.course.upsert({
+      where: { courseNo: course.courseNo },
+      update: course,
+      create: course
+    });
   }
 
-  //To update the course if there is any update on its sections
+  
   async updateCourse(course) {
     return await prisma.course.update({data:course,where:{courseNo:course.courseNo}});
   }
@@ -178,12 +182,33 @@ class Repo {
   }
 
   async getPaths() {
-    return await prisma.path.findMany();
+    return await prisma.path.findMany({
+      include: {
+        courses: {
+          include: {
+            course: true
+          }
+        }
+      }
+    });
   }
 
-  async getPath(name){
-    return await prisma.path.findUnique({where:{name:name}})
+  async getPath(name) {
+    return await prisma.path.findUnique({
+      where: { name },
+      include: {
+        courses: {
+          include: {
+            course: true
+          },
+          orderBy: {
+            order: 'asc'
+          }
+        }
+      }
+    });
   }
+  
 }
 
 
