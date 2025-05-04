@@ -43,3 +43,6 @@ export async function updateGradeAction(courseNo, section, studentId, grade){
   await repo.updateGrade(courseNo, section, studentId, grade);
 }
 
+export async function getPathAction(name){
+  return await repo.getPath(name);
+}

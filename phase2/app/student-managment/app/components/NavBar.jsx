@@ -29,7 +29,7 @@ export default function Navbar() {
     <nav className="nav">
       <i className="fa-solid fa-arrow-left back-button-mobile" onClick={hideMobileNav}></i>
 
-      <span id="user-info" onClick={displaytSettings}>
+      <Link id="user-info" href='/settings'>
         <img
           src={role === 'STUDENT' ? '/img/student.png' : '/img/profile.png'}
           alt="User"
@@ -37,7 +37,7 @@ export default function Navbar() {
         />
         <h2 id="user-Name" className="user-text">{user.name}</h2>
         <p id="user-username" className="user-text">{user.email}</p>
-      </span>
+      </Link>
 
       <hr className="nav-lines" />
 
@@ -64,7 +64,7 @@ export default function Navbar() {
         )}
         {role === 'STUDENT' && (
           <li>
-            <Link href="/path" className="menu-element">
+            <Link href={`/${role.toLowerCase()}/path`} className="menu-element">
               <img src="/img/ph_path-bold.png" alt="Path" />
               <p className="menu-text">Path</p>
             </Link>
@@ -82,7 +82,7 @@ export default function Navbar() {
           </Link>
         </li>
         <li>
-          <Link href="/others/Help_Support.html" className="menu-element">
+          <Link href="/help&support" className="menu-element">
             <img src="/img/clarity_help-info-solid.png" alt="Help" />
             <p className="menu-text">Help & Support</p>
           </Link>
