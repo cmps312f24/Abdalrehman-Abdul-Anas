@@ -43,13 +43,13 @@ export default function Navbar() {
 
       <ul id="main-menu">
         <li>
-          <Link href="/home" className="menu-element selected">
+          <Link href={`/${role.toLowerCase()}`} className="menu-element selected">
             <img src="/img/famicons_home.png" alt="Home" />
             <p className="menu-text">Home</p>
           </Link>
         </li>
         <li>
-          <Link href="/courses" className="menu-element">
+          <Link href={`/${role.toLowerCase()}/courses`} className="menu-element">
             <img src="/img/tdesign_course-filled.png" alt="Courses" />
             <p className="menu-text">Courses</p>
           </Link>

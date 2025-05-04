@@ -1,5 +1,7 @@
-export default async function Home() {
+import Home from '../components/Home';
+
+export default async function HomePage() {
       return (
-            <></>
+            <Home />            
       );
     }

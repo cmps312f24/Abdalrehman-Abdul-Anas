@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { loginAction } from '@/app/actions/Login-actions';
+import { loginAction } from '@/app/actions/server-actions';
 import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
@@ -24,13 +24,13 @@ export default function LoginPage() {
     localStorage.setItem('user', JSON.stringify(user));
     switch (user.role) {
       case 'ADMIN':
-        router.push('/Admin');
+        router.push('/admin');
         break;
       case 'INSTRUCTOR':
-        router.push('/Instructor');
+        router.push('/instructor');
         break;
       case 'STUDENT':
-        router.push('/Student');
+        router.push('/student');
         break;
     }
   };

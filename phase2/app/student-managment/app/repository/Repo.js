@@ -56,6 +56,23 @@ class Repo {
     return await prisma.course.update({data:course,where:{courseNo:course.courseNo}});
   }
 
+  async getSectionById(courseNo, section) {
+    const result = await prisma.section.findUnique({
+      where: {
+        courseNo_section: {
+          courseNo,
+          section,
+        },
+      },
+      include: {
+        course: true,
+        instructors: true,
+        enrollments: true,
+      },
+    });
+  return result;
+}
+
   // Student
 
   async getStudents() {
