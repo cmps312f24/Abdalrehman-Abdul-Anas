@@ -23,7 +23,7 @@ export default function CoursesPage() {
 
   const displayGrades = (section) => {
     router.push(
-      `/instructor/courses/${section.courseNo}/grades?section=${section.section}&status=${section.status}`
+      `/instructor/courses/${section.courseNo}/grades?section=${section.section}`
     );
   };
 

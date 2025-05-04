@@ -31,4 +31,6 @@ export async function getCoursesAction(user) {
 
 
 //courses
-export async function get
+export async function getSectionGrades(courseNo, sectionID){
+  return (await repo.getSectionById(courseNo,sectionID)).enrollments;
+}
