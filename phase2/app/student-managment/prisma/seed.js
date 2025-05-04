@@ -66,6 +66,50 @@ async function seedLogins() {
     }
 }
 
+async function seedPaths(){
+    const uni= (await fs.readJson('app/data/uni.json'));
+    for (const path of uni.paths) {
+        await prisma.path.create({
+          data: {
+            name: path.name,
+            universityName: uni.name,
+          }
+        });
+      }
+}
+
+async function seedPathCourses() {
+    const uni = await fs.readJson('app/data/uni.json');
+  
+    for (const path of uni.paths) {
+      const pathName = path.name;
+  
+      for (const c of path.courses) {
+        if (!c.courseNo) continue;
+
+        await prisma.course.upsert({
+          where: { courseNo: c.courseNo },
+          update: {},
+          create: {
+            courseNo: c.courseNo,
+            name: c.name,
+            credit: c.credit.toString(),
+            category: "N/A",
+            college: "N/A",
+          },
+        });
+
+        await prisma.pathCourse.create({
+          data: {
+            pathName,
+            courseNo: c.courseNo,
+            prerequests: c.prerequests?.join(',') || undefined,
+          },
+        });
+      }
+    }
+  }
+
 async function seed() {
     await seedUNI();
     await seedCourses();
@@ -73,6 +117,8 @@ async function seed() {
     await seedAdmins();
     await seedStudents();
     await seedLogins();
+    await seedPaths();
+    await seedPathCourses();
 }
 
 
