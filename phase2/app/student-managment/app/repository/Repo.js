@@ -89,6 +89,23 @@ class Repo {
     return await prisma.student.update({data:student,where:{id:student.id}}); 
   }
 
+  // actions/server-actions.js
+
+  async updateGrade(courseNo, section, studentId, grade) {
+    return await prisma.enrollment.update({
+      where: {
+        studentId_courseNo_section: {
+          studentId,
+          courseNo,
+          section,
+        },
+      },
+      data: {
+        grade,
+      },
+    });
+  }
+
   ///           Instructor           ///
 
   async getInstructors() {

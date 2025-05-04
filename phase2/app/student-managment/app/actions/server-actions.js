@@ -34,3 +34,7 @@ export async function getCoursesAction(user) {
 export async function getSectionGrades(courseNo, sectionID){
   return (await repo.getSectionById(courseNo,sectionID)).enrollments;
 }
+
+export async function updateGradeAction(courseNo, section, studentId, grade){
+  await repo.updateGrade(courseNo, section, studentId, grade);
+}
