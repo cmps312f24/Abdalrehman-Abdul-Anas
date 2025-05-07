@@ -1,5 +1,6 @@
 'use server'
 import repo from "@/app/repository/Repo"
+import { StatisticRepo } from "@/app/repository/StatisticRepo";
 
 
 // LOGIN
@@ -45,4 +46,10 @@ export async function updateGradeAction(courseNo, section, studentId, grade){
 
 export async function getPathAction(name){
   return await repo.getPath(name);
+}
+
+
+//Statistics
+export async function getStatistics() {
+  return await StatisticRepo.getAllStatistics();
 }

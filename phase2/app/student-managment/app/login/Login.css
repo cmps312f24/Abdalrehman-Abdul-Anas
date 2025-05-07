@@ -296,3 +296,73 @@ body {
     stroke-linecap: round;
     stroke-linejoin: round;
 }
+
+.oauth-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .oauth-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 130px;
+    height: 44px;
+    padding: 0 18px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    line-height: 1;
+  }
+  
+  .oauth-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .oauth-btn.github {
+    background-color: #171515;
+    color: white;
+    border: 1px solid #171515;
+  }
+  
+  .oauth-btn.github:hover {
+    background-color: #2d2d2d;
+  }
+  
+  .oauth-btn.google {
+    background-color: white;
+    color: #444;
+    border: 1px solid #ddd;
+  }
+  
+  .oauth-btn.google:hover {
+    background-color: #cac8c8;
+  }
+
+  .oauth-separator {
+    margin: 1.5rem 0 0.5rem;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #bbb;
+    position: relative;
+  }
+  
+  .oauth-separator::before,
+  .oauth-separator::after {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background-color: #444;
+    vertical-align: middle;
+    margin: 0 10px;
+  }

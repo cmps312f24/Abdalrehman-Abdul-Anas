@@ -1,5 +1,6 @@
 import fs from 'fs-extra'
 import { PrismaClient } from '@prisma/client';
+import bcrypt from "bcryptjs";
 
 const prisma=new PrismaClient();
 
@@ -52,9 +53,12 @@ async function seedStudents() {
 
 async function seedLogins() {
     const logins = await fs.readJson('app/data/login.json');
-    for (const { id, role, email, password } of logins) {
-      const roleKey = role.toLowerCase();
-  
+    for (const login of logins) {
+      const roleKey = login.role.toLowerCase();
+      const password= await bcrypt.hash(login.password,10);
+      const email=login.email;
+      const id=login.id;
+      const role = login.role;
       await prisma.login.create({
         data: {
           email,
@@ -119,7 +123,7 @@ async function seed() {
     // await seedStudents();
     // await seedLogins();
     // await seedPaths();
-    await seedPathCourses();
+    // await seedPathCourses();
 }
 
 

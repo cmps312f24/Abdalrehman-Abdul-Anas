@@ -1,5 +1,4 @@
-import './Login.css';
-import { Providers } from './providers'; // import client wrapper
+import './stat.css';
 
 export const metadata = {
   title: 'Student Management',
@@ -10,7 +9,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        {children}
       </body>
     </html>
   );

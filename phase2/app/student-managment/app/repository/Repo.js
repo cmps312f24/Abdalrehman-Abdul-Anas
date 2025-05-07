@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-
+import bcrypt from "bcryptjs";
 const prisma=new PrismaClient();
 
 class Repo {
@@ -132,7 +132,7 @@ class Repo {
 
   // get user info
   async getUser(email, pass) {
-    const login = await prisma.login.findUnique({
+    const user = await prisma.login.findUnique({
       where: { email },
       include: {
         admin: true,
@@ -140,18 +140,18 @@ class Repo {
         student: true
       }
     });
-  
-    if (!login || login.password !== pass) {
+
+    if (!user || !(await bcrypt.compare(pass, user.password))) {
       return null;
     }
-  
-    switch (login.role) {
+
+    switch (user.role) {
       case 'ADMIN':
-        return login.admin;
+        return user.admin;
       case 'INSTRUCTOR':
-        return login.instructor;
+        return user.instructor;
       case 'STUDENT':
-        return login.student;
+        return user.student;
       default:
         return null;
     }
