@@ -116,6 +116,7 @@ nav li {
   border-radius: 15px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  background-color: #101820;
 }
 
 /* Menu Hover */
