@@ -9,16 +9,15 @@ export default function CoursesPage() {
   const router = useRouter();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const stored = localStorage.getItem('user');
-      if (!stored) return;
-
-      const user = JSON.parse(stored);
+    const fetchUser = async () => {
+      const token = Cookies.get('token');
+      const decoded = jwtDecode(token);
+      const user = await getUserFromToken(decoded);
       const sectionsData = await getCoursesAction(user);
       setSections(sectionsData);
     };
-
-    fetchData();
+  
+    fetchUser();
   }, []);
 
   const displayGrades = (section) => {

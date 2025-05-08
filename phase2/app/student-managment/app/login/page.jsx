@@ -29,8 +29,6 @@ export default function LoginPage() {
       return;
     }
 
-    localStorage.setItem('user', JSON.stringify(user));
-
     switch (user.role) {
       case 'ADMIN':
         router.push('/admin');

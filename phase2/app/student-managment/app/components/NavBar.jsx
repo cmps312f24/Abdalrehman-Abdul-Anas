@@ -3,6 +3,9 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
+import { getUserFromToken } from '../actions/server-actions';
 
 export default function Navbar() {
   const [user, setUser] = useState(null);
@@ -10,16 +13,23 @@ export default function Navbar() {
   const router = useRouter();
 
   useEffect(() => {
-    const stored = localStorage.getItem('user');
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      setUser(parsed);
-      setRole(parsed.role);
-    }
+    const fetchUser = async () => {
+      const token = Cookies.get('token');
+      if (token) {
+        const decoded = jwtDecode(token);
+        const user = await getUserFromToken(decoded);
+        setUser(user);
+        setRole(user.role);
+      } else {
+        router.push('/login');
+      }
+    };
+  
+    fetchUser();
   }, []);
 
   const logout = () => {
-    localStorage.clear();
+    Cookies.remove('token');
     router.push('/login');
   };
 
@@ -35,8 +45,8 @@ export default function Navbar() {
           alt="User"
           id="img-user"
         />
-        <h2 id="user-Name" className="user-text">{user.name}</h2>
-        <p id="user-username" className="user-text">{user.email}</p>
+        <h2 id="user-Name" className="user-text">{user.name || user.id}</h2>
+        <p id="user-username" className="user-text">{user.email || ''}</p>
       </Link>
 
       <hr className="nav-lines" />
@@ -101,8 +111,4 @@ export default function Navbar() {
 function hideMobileNav() {
   const nav = document.querySelector('.nav');
   if (nav) nav.style.display = 'none';
-}
-
-function displaytSettings() {
-  // optionally handle active class toggle here
 }

@@ -4,18 +4,28 @@ import { useEffect, useState } from 'react';
 import Graph from '@/app/components/Graph';
 import Calendar from '@/app/components/Calendar';
 import { uniInfoAction } from '../actions/server-actions';
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
+import { getUserFromToken } from '../actions/server-actions';
 
 export default function Home() {
   const [user, setUser] = useState(null);
   const [role, setRole] = useState(null);
 
   useEffect(() => {
-    const stored = localStorage.getItem('user');
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      setUser(parsed);
-      setRole(parsed.role);
-    }
+    const fetchUser = async () => {
+      const token = Cookies.get('token');
+      if (token) {
+        const decoded = jwtDecode(token);
+        const user = await getUserFromToken(decoded);
+        setUser(user);
+        setRole(user.role);
+      } else {
+        router.push('/login');
+      }
+    };
+  
+    fetchUser();
   }, []);
 
   return (

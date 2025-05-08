@@ -4,10 +4,13 @@ import { getPathAction } from "@/app/actions/server-actions";
 import { useEffect } from "react"
 
 export default function Path() {
+  
   useEffect(() => {
     async function displayPath() {
       const content = document.querySelector("#Flowchart-content")
-      const user = JSON.parse(localStorage.user);
+      const token = Cookies.get('token');
+      const decoded = jwtDecode(token);
+      const user = await getUserFromToken(decoded);
 
       const mapColor = {
         completed: "#359A6C",
