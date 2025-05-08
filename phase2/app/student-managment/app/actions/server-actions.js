@@ -15,7 +15,7 @@ export async function loginAction(email, pass) {
   cookieStore.set('token', token, {
     httpOnly: false,
     secure: process.env.NODE_ENV === 'production',
-    path: `/${user.role.toLowerCase()}`,
+    path: '/',
   });
 
   return user;

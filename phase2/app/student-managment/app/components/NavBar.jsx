@@ -29,8 +29,12 @@ export default function Navbar() {
   }, []);
 
   const logout = () => {
-    Cookies.remove('token');
+    Cookies.set('token', '', {
+      path: '/',
+      maxAge: 0,
+    });
     router.push('/login');
+    router.refresh();
   };
 
   if (!user) return <div>Loading...</div>;

@@ -7,10 +7,12 @@ import { uniInfoAction } from '../actions/server-actions';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import { getUserFromToken } from '../actions/server-actions';
+import { useRouter } from 'next/navigation';
+
 
 export default function Home() {
   const [user, setUser] = useState(null);
-  const [role, setRole] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -19,7 +21,6 @@ export default function Home() {
         const decoded = jwtDecode(token);
         const user = await getUserFromToken(decoded);
         setUser(user);
-        setRole(user.role);
       } else {
         router.push('/login');
       }

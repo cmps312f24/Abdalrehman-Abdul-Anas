@@ -28,18 +28,8 @@ export default function LoginPage() {
       alert('Incorrect email or password');
       return;
     }
-
-    switch (user.role) {
-      case 'ADMIN':
-        router.push('/admin');
-        break;
-      case 'INSTRUCTOR':
-        router.push('/instructor');
-        break;
-      case 'STUDENT':
-        router.push('/student');
-        break;
-    }
+    router.push(`/${user.role.toLowerCase()}`)
+    router.refresh();
   };
 
   const togglePassword = () => {
