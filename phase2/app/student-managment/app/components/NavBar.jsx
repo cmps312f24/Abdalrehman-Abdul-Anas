@@ -86,7 +86,7 @@ export default function Navbar() {
 
       <ul id="secondry-menu">
         <li>
-          <Link href="/settings" className="menu-element" id="Settings-btn">
+          <Link href={`/${role.toLowerCase()}/settings`} className="menu-element" id="Settings-btn">
             <img src="/img/material-symbols_settings.png" alt="Settings" />
             <p className="menu-text">Settings</p>
           </Link>

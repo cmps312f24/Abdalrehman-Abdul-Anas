@@ -1,9 +1,29 @@
 'use client'
 
 import { changePassAction } from "@/app/actions/server-actions";
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
+import { getUserFromToken } from '@/app/actions/server-actions';
+import { useEffect, useState } from "react";
 
 export default function Settings(){
-    const user= JSON.parse(localStorage.user);
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        const fetchUser = async () => {
+            const token = Cookies.get('token');
+            if (token) {
+              const decoded = jwtDecode(token);
+              const fullUser = await getUserFromToken(decoded);
+              setUser(fullUser);
+            } else {
+              router.push('/login');
+            }
+        };
+
+        fetchUser();
+      }, []);
+
+    if(!user){return <h1>loading</h1>}
 
     async function HandleChangePassword(e) {
         e.preventDefault();
@@ -38,7 +58,7 @@ export default function Settings(){
                     <div className="field-section-settings">
                         <label htmlFor="collageMajor">COLLAGE/MAJOR</label>
 
-                        <input type="text" value={user.major} id="collageMajor"
+                        <input type="text" value={user.major? user.major:user.collage} id="collageMajor"
                             name="collageMajor" className="field" readOnly />
                     </div>
 
@@ -126,6 +146,3 @@ export default function Settings(){
         </div>
     );
 }
-
-
-
