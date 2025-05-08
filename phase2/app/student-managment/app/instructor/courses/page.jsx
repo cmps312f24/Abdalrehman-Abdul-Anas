@@ -3,6 +3,9 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getCoursesAction } from '../../actions/server-actions';
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
+import { getUserFromToken } from '@/app/actions/server-actions';
 
 export default function CoursesPage() {
   const [sections, setSections] = useState([]);

@@ -2,6 +2,9 @@
 
 import { getPathAction } from "@/app/actions/server-actions";
 import { useEffect } from "react"
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
+import { getUserFromToken } from '@/app/actions/server-actions';
 
 export default function Path() {
   
