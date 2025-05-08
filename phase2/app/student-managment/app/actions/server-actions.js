@@ -4,21 +4,21 @@ import { cookies } from 'next/headers';
 import { generateToken , verifyToken } from '@/app/utils/jwt';
 import repo from '@/app/repository/Repo';
 import { StatisticRepo } from "@/app/repository/StatisticRepo";
+import { redirect }  from 'next/navigation'
 
 export async function loginAction(email, pass) {
-  const user = await repo.getUser(email, pass);
-  if (!user) return null;
+  const user = await repo.getUser(email, pass)
+  if (!user) return null
 
   const token = generateToken({ id: user.id, role: user.role });
-
-  const cookieStore = await cookies();
+  const cookieStore = await cookies()
   cookieStore.set('token', token, {
     httpOnly: false,
     secure: process.env.NODE_ENV === 'production',
-    path: '/',
-  });
+    path: '/'
+  })
 
-  return user;
+  return user.role
 }
 
 export async function getUserFromToken(user) {

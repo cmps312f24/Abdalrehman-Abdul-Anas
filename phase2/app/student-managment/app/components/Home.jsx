@@ -1,102 +1,17 @@
-'use client';
+import { cookies } from 'next/headers'
+import { verifyToken } from '@/app/utils/jwt'
+import { getUserFromToken, uniInfoAction } from '@/app/actions/server-actions'
+import HomeClient from './HomeClient'
 
-import { useEffect, useState } from 'react';
-import Graph from '@/app/components/Graph';
-import Calendar from '@/app/components/Calendar';
-import { uniInfoAction } from '../actions/server-actions';
-import Cookies from 'js-cookie';
-import { jwtDecode } from 'jwt-decode';
-import { getUserFromToken } from '../actions/server-actions';
-import { useRouter } from 'next/navigation';
+export default async function HomePage () {
+  const token = (await cookies()).get('token')?.value
+  if (!token) return null
 
+  const decoded = verifyToken(token)
+  const [user, uni] = await Promise.all([
+    getUserFromToken(decoded),
+    uniInfoAction()
+  ])
 
-export default function Home() {
-  const [user, setUser] = useState(null);
-  const router = useRouter();
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      const token = Cookies.get('token');
-      if (token) {
-        const decoded = jwtDecode(token);
-        const user = await getUserFromToken(decoded);
-        setUser(user);
-      } else {
-        router.push('/login');
-      }
-    };
-  
-    fetchUser();
-  }, []);
-
-  return (
-    <div id="Home-box">
-      <div className="backgroud-home"></div>
-      <section id="content-home">
-        <UniSection />
-        {user && <UserSection user={user} />}
-        <Calendar />
-      </section>
-    </div>
-  );
+  return <HomeClient user={user} uni={uni} />
 }
-
-function UniSection() {
-  const [info, setInfo] = useState([]);
-
-  useEffect(() => {
-    const fetchUniInfo = async () => {
-      try {
-        const uni = await uniInfoAction();
-        const lines = uni.info?.split(/(?=\d-)/).map(line => line.trim()) || [];
-        setInfo(lines);
-      } catch (err) {
-        setInfo([]);
-      }
-    };
-    fetchUniInfo();
-  }, []);
-
-  return (
-    <span id="uni-info" className="content-home">
-      <h2 className="header-home">Information</h2>
-      <p id="uni-info-text">
-        {info.map((line, idx) => (
-          <span key={idx}>
-            {line}
-            <br />
-          </span>
-        ))}
-      </p>
-    </span>
-  );
-}
-
-function UserSection({ user }) {
-  if (user.role === 'ADMIN' || user.role === 'INSTRUCTOR') return null;
-  const last = user.gpa?.[user.gpa.length - 1];
-
-  let gpa=0;
-  let CH=0;
-  if (last){
-    gpa=last.gpa;
-    CH=last.CH;
-  }
-
-  return (
-    <span id="stu-info" className="content-home">
-      <span id="student-text">
-        <h2 className="header">Student Information</h2>
-        <p id="stu-info-text">
-          Major : {user.major}
-          <br />
-          GPA : {gpa}
-          <br />
-          CH : {CH}
-        </p>
-      </span>
-      <Graph gpaList={user.gpa} />
-    </span>
-  );
-}
-

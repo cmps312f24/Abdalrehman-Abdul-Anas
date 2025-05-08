@@ -1,135 +1,74 @@
-'use client';
+'use client'
 
-import { useEffect } from 'react';
-import { uniInfoAction } from '../actions/server-actions';
+import { useEffect } from 'react'
 
-export default function Calendar() {
+export default function Calendar ({ rawEvents }) {
   useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const uni = await uniInfoAction();
-        const raw = uni.events || '';
-        const events = {};
-        raw.split(',').forEach(entry => {
-          const [date, desc] = entry.split(':');
-          if (date && desc) events[date.trim()] = desc.trim();
-        });
+    const events = {}
+    rawEvents.split(',').forEach(e => {
+      const [d, t] = e.split(':')
+      if (d && t) events[d.trim()] = t.trim()
+    })
 
-        const calendarBody = document.getElementById('calendarBody');
-        const monthYear = document.getElementById('monthYear');
-        const prevMonthBtn = document.getElementById('prevMonth');
-        const nextMonthBtn = document.getElementById('nextMonth');
+    const body = document.getElementById('calendarBody')
+    const header = document.getElementById('monthYear')
+    const prev = document.getElementById('prevMonth')
+    const next = document.getElementById('nextMonth')
+    const today = new Date()
+    let m = today.getMonth()
+    let y = today.getFullYear()
 
-        let date = new Date();
-        let currentMonth = date.getMonth();
-        let currentYear = date.getFullYear();
-        const today = new Date();
-
-        function generateCalendar(month, year) {
-          calendarBody.innerHTML = '';
-          monthYear.textContent = new Date(year, month).toLocaleString('default', {
-            month: 'long',
-            year: 'numeric',
-          });
-
-          const firstDay = new Date(year, month, 1).getDay();
-          const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-          for (let i = 0; i < firstDay; i++) {
-            calendarBody.appendChild(document.createElement('div'));
-          }
-
-          for (let day = 1; day <= daysInMonth; day++) {
-            const dayDiv = document.createElement('div');
-            dayDiv.textContent = day;
-            const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(
-              day
-            ).padStart(2, '0')}`;
-
-            if (
-              day === today.getDate() &&
-              month === today.getMonth() &&
-              year === today.getFullYear()
-            ) {
-              dayDiv.classList.add('today');
-            }
-
-            if (events[formattedDate]) {
-              dayDiv.classList.add('event-calender');
-              dayDiv.title = events[formattedDate];
-            }
-
-            calendarBody.appendChild(dayDiv);
-          }
-        }
-
-        function renderEventList() {
-          const container = document.querySelector('.event-container');
-          container.innerHTML = '';
-          Object.keys(events)
-            .sort()
-            .forEach(date => {
-              const p = document.createElement('p');
-              p.textContent = `${date}: ${events[date]}`;
-              p.classList.add('event');
-              container.appendChild(p);
-            });
-        }
-
-        prevMonthBtn.onclick = () => {
-          if (--currentMonth < 0) {
-            currentMonth = 11;
-            currentYear--;
-          }
-          generateCalendar(currentMonth, currentYear);
-        };
-
-        nextMonthBtn.onclick = () => {
-          if (++currentMonth > 11) {
-            currentMonth = 0;
-            currentYear++;
-          }
-          generateCalendar(currentMonth, currentYear);
-        };
-
-        renderEventList();
-        generateCalendar(currentMonth, currentYear);
-      } catch (err) {
-        console.error('Failed to fetch or render events:', err);
+    const paint = () => {
+      body.innerHTML = ''
+      header.textContent = new Date(y, m).toLocaleString('default', { month: 'long', year: 'numeric' })
+      const first = new Date(y, m, 1).getDay()
+      const days  = new Date(y, m + 1, 0).getDate()
+      body.append(...Array(first).fill('').map(() => document.createElement('div')))
+      for (let d = 1; d <= days; d++) {
+        const div = document.createElement('div')
+        div.textContent = d
+        const iso = `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`
+        if (d === today.getDate() && m === today.getMonth() && y === today.getFullYear()) div.classList.add('today')
+        if (events[iso]) { div.classList.add('event-calender'); div.title = events[iso] }
+        body.appendChild(div)
       }
-    };
+    }
 
-    fetchEvents();
-  }, []);
+    prev.onclick = () => { if (--m < 0) { m = 11; y-- } ; paint() }
+    next.onclick = () => { if (++m > 11) { m = 0 ; y++ } ; paint() }
+
+    paint()
+
+    const list = document.querySelector('.event-container')
+    list.innerHTML = ''
+    Object.keys(events).sort().forEach(k => {
+      const p = document.createElement('p')
+      p.className = 'event'
+      p.textContent = `${k}: ${events[k]}`
+      list.appendChild(p)
+    })
+  }, [rawEvents])
 
   return (
-    <div className="calendar content-home">
-      <div className="header-calendar">
-        <button id="prevMonth">◀</button>
-        <h2 id="monthYear"></h2>
-        <button id="nextMonth">▶</button>
+    <div className='calendar content-home'>
+      <div className='header-calendar'>
+        <button id='prevMonth'>◀</button>
+        <h2 id='monthYear' />
+        <button id='nextMonth'>▶</button>
       </div>
-      <div className="days">
-        <div>Sun</div>
-        <div>Mon</div>
-        <div>Tue</div>
-        <div>Wed</div>
-        <div>Thu</div>
-        <div>Fri</div>
-        <div>Sat</div>
+
+      <div className='days'>
+        {['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d => <div key={d}>{d}</div>)}
       </div>
-      <div id="calendarBody" className="dates"></div>
-      <div className="legend">
-        <div className="legend-item">
-          <span className="legend-box today"></span> Today
-        </div>
-        <div className="legend-item">
-          <span className="legend-box event-calender"></span> Event
-        </div>
+
+      <div id='calendarBody' className='dates' />
+
+      <div className='legend'>
+        <div className='legend-item'><span className='legend-box today'/> Today</div>
+        <div className='legend-item'><span className='legend-box event-calender'/> Event</div>
       </div>
-      <span id="events">
-        <div className="event-container"></div>
-      </span>
+
+      <span id='events'><div className='event-container'/></span>
     </div>
-  );
+  )
 }

@@ -1,81 +1,74 @@
-'use client';
+'use client'
 
-import { useState, useEffect } from 'react';
-import { loginAction } from '@/app/actions/server-actions';
-import { useRouter } from 'next/navigation';
-import { signIn, useSession } from 'next-auth/react';
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { loginAction } from '@/app/actions/server-actions'
+import { signIn, useSession } from 'next-auth/react'
 
 export default function LoginPage() {
-  const router = useRouter();
-  const { data: session, status } = useSession();
+  const router = useRouter()
+  const { status } = useSession()
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  useEffect(() => {
-    createBackgroundElements();
-  }, []);
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [showPass, setShowPass] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    if (status === "authenticated") {
-      router.push("/statistics");
-    }
-  }, [status]);
+    if (status === 'authenticated') router.push('/statistics')
+  }, [status, router])
 
-  const login = async () => {
-    const user = await loginAction(email, password);
-    if (!user) {
-      alert('Incorrect email or password');
-      return;
-    }
-    router.push(`/${user.role.toLowerCase()}`)
-    router.refresh();
-  };
+  useEffect(() => {
+    createFx()
+  }, [])
 
-  const togglePassword = () => {
-    const passwordInput = document.getElementById('user-password');
-    const eyeIcon = document.getElementById('eye-icon');
-
-    if (passwordInput.type === 'password') {
-      passwordInput.type = 'text';
-      eyeIcon.innerHTML = `<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-10-7-10-7a18.45 18.45 0 015.06-5.94" /><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 10 7 10 7a18.5 18.5 0 01-2.16 3.19" /><path d="M14.12 14.12A3 3 0 119.88 9.88" /><line x1="1" y1="1" x2="23" y2="23" />`;
-    } else {
-      passwordInput.type = 'password';
-      eyeIcon.innerHTML = `<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" />`;
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+  
+    const role = await loginAction(email, password)
+    setLoading(false)
+  
+    if (!role) {
+      alert('Incorrect email or password')
+      return
     }
-  };
+  
+    router.push(`/${role.toLowerCase()}`)
+    router.refresh()
+  }
 
   return (
     <>
-      <div className="background-container" id="background">
-        <div className="particles" id="particles"></div>
-        <div className="wave"></div>
-        <div className="wave"></div>
-        <div className="wave"></div>
+      <div id="background" className="background-container">
+        <div id="particles" className="particles" />
+        <div className="wave" />
+        <div className="wave" />
+        <div className="wave" />
       </div>
 
       <div className="login-container">
-        <div className="login-header">
+        <header className="login-header">
           <h1>Welcome Back</h1>
           <p>Please sign in to your account</p>
-        </div>
+        </header>
 
-        <form onSubmit={(e) => { e.preventDefault(); login(); }}>
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="user-email">Email</label>
             <div className="input-group">
-              <div className="input-icon">
+              <span className="input-icon">
                 <svg className="icon" viewBox="0 0 24 24">
                   <rect x="2" y="4" width="20" height="16" rx="2" />
                   <path d="M22 7l-10 5-10-5" />
                 </svg>
-              </div>
+              </span>
               <input
-                type="email"
                 id="user-email"
+                type="email"
                 placeholder="name@example.com"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={e => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -84,47 +77,71 @@ export default function LoginPage() {
           <div className="form-group">
             <label htmlFor="user-password">Password</label>
             <div className="input-group">
-              <div className="input-icon">
+              <span className="input-icon">
                 <svg className="icon" viewBox="0 0 24 24">
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                   <path d="M7 11V7a5 5 0 0110 0v4" />
                 </svg>
-              </div>
+              </span>
               <input
-                type="password"
                 id="user-password"
+                type={showPass ? 'text' : 'password'}
                 placeholder="••••••••"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
                 required
               />
-              <button type="button" className="password-toggle" onClick={togglePassword}>
-                <svg className="icon" id="eye-icon" viewBox="0 0 24 24">
-                  <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
+              <button
+                type="button"
+                className="password-toggle"
+                aria-label="toggle password visibility"
+                onClick={() => setShowPass(x => !x)}
+              >
+                {showPass ? (
+                  <svg className="icon" viewBox="0 0 24 24">
+                    <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-10-7-10-7a18.45 18.45 0 015.06-5.94" />
+                    <path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 10 7 10 7a18.5 18.5 0 01-2.16 3.19" />
+                    <path d="M14.12 14.12A3 3 0 119.88 9.88" />
+                    <line x1="1" y1="1" x2="23" y2="23" />
+                  </svg>
+                ) : (
+                  <svg className="icon" viewBox="0 0 24 24">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                )}
               </button>
             </div>
           </div>
 
-          <button type="submit" id="Login-btn">Sign in</button>
+          <button id="Login-btn" type="submit" disabled={loading}>
+            {loading ? 'Signing in…' : 'Sign in'}
+          </button>
         </form>
 
-        <div className="form-group" style={{ textAlign: 'center', marginTop: '1rem' }}>
-        <p className="oauth-separator">Or login with</p>
-          <div className="oauth-buttons" style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-            <button type="button" className="oauth-btn github" onClick={() => signIn('github', { callbackUrl: "/statistics" })}>
+        <div className="form-group oauth-wrapper">
+          <p className="oauth-separator">Or login with</p>
+          <div className="oauth-buttons">
+            <button
+              type="button"
+              className="oauth-btn github"
+              onClick={() => signIn('github', { callbackUrl: '/statistics' })}
+            >
               <svg className="oauth-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.438 9.8 8.207 11.387.6.11.793-.26.793-.577v-2.17c-3.338.724-4.033-1.61-4.033-1.61-.547-1.387-1.337-1.757-1.337-1.757-1.092-.747.083-.732.083-.732 1.207.085 1.84 1.238 1.84 1.238 1.074 1.836 2.82 1.305 3.507.997.107-.78.42-1.305.763-1.605-2.665-.3-5.466-1.334-5.466-5.933 0-1.31.468-2.382 1.236-3.222-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.51 11.51 0 0 1 3-.403c1.02.004 2.045.137 3 .403 2.29-1.552 3.297-1.23 3.297-1.23.654 1.653.243 2.873.12 3.176.77.84 1.236 1.913 1.236 3.222 0 4.61-2.803 5.63-5.475 5.922.432.37.816 1.102.816 2.222v3.293c0 .32.192.694.8.576C20.565 22.297 24 17.798 24 12.5 24 5.87 18.627.5 12 .5z" />
+                <path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.438 9.8 8.207 11.387.6.11.793-.26.793-.577v-2.17c-3.338.724-4.033-1.61-4.033-1.61-.547-1.387-1.337-1.757-1.337-1.757-1.092-.747.083-.732.083-.732 1.207.085 1.84 1.238 1.84 1.238 1.074 1.836 2.82 1.305 3.507.997.107-.78.42-1.305.763-1.605-2.665-.3-5.466-1.334-5.466-5.933 0-1.31.468-2.382 1.236-3.222-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.51 11.51 0 013-.403c1.02.004 2.045.137 3 .403 2.29-1.552 3.297-1.23 3.297-1.23.654 1.653.243 2.873.12 3.176.77.84 1.236 1.913 1.236 3.222 0 4.61-2.803 5.63-5.475 5.922.432.37.816 1.102.816 2.222v3.293c0 .32.192.694.8.576C20.565 22.297 24 17.798 24 12.5 24 5.87 18.627.5 12 .5z" />
               </svg>
               GitHub
             </button>
 
-            <button type="button" className="oauth-btn google" onClick={() => signIn('google', { callbackUrl: "/statistics" })}>
+            <button
+              type="button"
+              className="oauth-btn google"
+              onClick={() => signIn('google', { callbackUrl: '/statistics' })}
+            >
               <svg className="oauth-icon" viewBox="0 0 533.5 544.3">
                 <path fill="#4285f4" d="M533.5 278.4c0-17.4-1.6-34.1-4.7-50.2H272v95.2h146.9c-6.4 34.4-25.8 63.6-55 83.1v68h88.9c52-47.8 80.7-118.2 80.7-196.1z" />
                 <path fill="#34a853" d="M272 544.3c74.7 0 137.5-24.7 183.4-67.1l-88.9-68c-24.7 16.6-56.3 26.5-94.5 26.5-72.7 0-134.3-49-156.3-114.9h-91.7v72.4c45.5 89.8 138.4 151.1 248 151.1z" />
-                <path fill="#fbbc04" d="M115.7 320.8c-10.1-30-10.1-62.1 0-92.1v-72.4h-91.7a272.2 272.2 0 0 0 0 236.9l91.7-72.4z" />
+                <path fill="#fbbc04" d="M115.7 320.8c-10.1-30-10.1-62.1 0-92.1v-72.4h-91.7a272.2 272.2 0 000 236.9l91.7-72.4z" />
                 <path fill="#ea4335" d="M272 107.7c39.5 0 75.1 13.6 103.1 40.3l77.4-77.4C409.5 25.5 346.7 0 272 0 162.4 0 69.5 61.3 24 151.1l91.7 72.4c22-65.9 83.6-115.8 156.3-115.8z" />
               </svg>
               Google
@@ -133,18 +150,20 @@ export default function LoginPage() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-
-function createBackgroundElements() {
-  const background = document.getElementById('background');
-  const particlesContainer = document.getElementById('particles');
-  createParticles(particlesContainer, 100);
-  createGlowingOrbs(background, 5);
-  createShootingStars(background, 5);
-  createFloatingShapes(background, 15);
-  addMouseInteraction();
+function createFx() {
+  if (typeof window !== 'undefined' && !window.__loginFxLoaded) {
+    window.__loginFxLoaded = true
+    const background = document.getElementById('background')
+    const pc = document.getElementById('particles')
+    createParticles(pc, 100)
+    createGlowingOrbs(background, 5)
+    createShootingStars(background, 5)
+    createFloatingShapes(background, 15)
+    addMouseInteraction()
+  }
 }
 
  // Create particles

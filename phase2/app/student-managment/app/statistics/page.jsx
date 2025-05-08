@@ -16,7 +16,7 @@ export default function StatisticsPage() {
 
   return (
     <div className="stats-container">
-      <h1 className="stats-title">📊 System Statistics</h1>
+      <h1 className="stats-title">System Statistics</h1>
       <div className="stats-grid">
         {stats.map((stat, index) => (
           <div key={index} className="stat-card">

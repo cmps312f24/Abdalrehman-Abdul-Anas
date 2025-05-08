@@ -1,100 +1,332 @@
-body {
-    margin: 0;
-    background: linear-gradient(to bottom right, #f0f4ff, #ffffff);
+:root {
+  --primary: #4361ee;
+  --primary-light: #4895ef;
+  --secondary: #3a0ca3;
+  --accent: #4cc9f0;
+  --success: #2ec4b6;
+  --warning: #ff9f1c;
+  --danger: #e71d36;
+  --dark: #1a1a2e;
+  --text-primary: #2d3748;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
+  --bg-gradient: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  --card-bg: #ffffff;
+  --card-border: rgba(226, 232, 240, 0.6);
+  --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
-/* Keep existing styles, just improve padding, spacing, and font */
+
+body {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Main container */
 .stats-container {
-    padding: 60px 40px;
-    max-width: 1100px;
-    margin: auto;
-    background: #f9fbff;
-    border-radius: 20px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  max-width: 1300px;
+  margin: 2rem auto;
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+}
+
+/* Page title */
+.stats-title {
+  text-align: center;
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--dark);
+  position: relative;
+  padding-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+/* Title underline */
+.stats-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  border-radius: 0.25rem;
+}
+
+/* Stats grid layout */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Featured stats layout - first row with larger cards */
+.stat-card.featured {
+  grid-column: span 1;
+}
+/* Stat card */
+.stat-card {
+  background: var(--card-bg);
+  padding: 1.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Card hover effect */
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+/* Card accent line */
+.stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  opacity: 0.8;
+  transition: width 0.3s ease;
+}
+
+/* Card hover accent effect */
+.stat-card:hover::before {
+  width: 6px;
+}
+
+/* Card accent colors */
+.stat-card:nth-child(4n + 1)::before {
+  background: linear-gradient(to bottom, var(--primary), var(--primary-light));
+}
+
+.stat-card:nth-child(4n + 2)::before {
+  background: linear-gradient(to bottom, var(--secondary), var(--primary));
+}
+
+.stat-card:nth-child(4n + 3)::before {
+  background: linear-gradient(to bottom, var(--success), var(--accent));
+}
+
+.stat-card:nth-child(4n + 4)::before {
+  background: linear-gradient(to bottom, var(--warning), var(--danger));
+}
+
+/* Card heading */
+.stat-heading {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+/* Card heading icon/bullet */
+.stat-heading::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+/* Card value */
+.stat-value {
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin: 0.5rem 0;
+  line-height: 1.1;
+  background-size: 200% auto;
+  background-position: 0 0;
+  transition: background-position 0.5s ease;
+}
+
+/* Value hover effect */
+.stat-card:hover .stat-value {
+  background-position: 100% 0;
+}
+
+/* Value colors - simplified from gradients to solid colors */
+.stat-card:nth-child(4n + 1) .stat-value {
+  color: #4361ee; /* Blue */
+}
+
+.stat-card:nth-child(4n + 2) .stat-value {
+  color: #8b5cf6; /* Purple */
+}
+
+.stat-card:nth-child(4n + 3) .stat-value {
+  color: #10b981; /* Green */
+}
+
+.stat-card:nth-child(4n + 4) .stat-value {
+  color: #f59e0b; /* Orange */
+}
+
+/* Special value styles - these will need to be added via className in your component */
+.stat-value.zero {
+  color: var(--text-muted);
+  -webkit-text-fill-color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.stat-value.na {
+  color: var(--text-muted);
+  -webkit-text-fill-color: var(--text-muted);
+  font-size: 2.25rem;
+  opacity: 0.7;
+}
+
+/* Card description */
+.stat-description {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Card icon */
+.stat-icon {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  font-size: 1.25rem;
+  opacity: 0.2;
+  transition: opacity 0.3s ease;
+}
+
+.stat-card:hover .stat-icon {
+  opacity: 0.5;
+}
+
+/* Decorative elements */
+.stats-container::after {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 50%;
+  top: -50px;
+  right: -50px;
+  z-index: -1;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .stats-title {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    color: #222;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
+}
+
+.stat-card {
+  animation: fadeIn 0.5s ease forwards;
+  animation-delay: calc(var(--index, 0) * 0.1s);
+  opacity: 0;
+}
+
+/* Featured cards */
+.stat-card.featured {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-card.featured .stat-value {
+  font-size: 3.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
   .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
-  
-  .stat-card {
-    background: #fff;
-    padding: 28px;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-    transition: transform 0.2s ease;
+
+  .stat-card.featured {
+    grid-column: span 1;
   }
-  
-  .stat-card:hover {
-    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .stats-container {
+    padding: 1.5rem;
+    margin: 1rem;
   }
-  
-  .stat-heading {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 10px;
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
-  
+
   .stat-value {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #2563eb;
+    font-size: 2.25rem;
   }
-  
-  .stat-description {
-    margin-top: 10px;
-    font-size: 0.9rem;
-    color: #666;
+
+  .stats-title {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .stat-card.featured .stat-value {
+    font-size: 2.5rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    --card-bg: rgba(30, 41, 59, 0.8);
+    --card-border: rgba(71, 85, 105, 0.2);
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --dark: #f8fafc;
+  }
+
+  .stats-container {
+    background: rgba(30, 41, 59, 0.7);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(71, 85, 105, 0.2) inset;
   }
 
   .stat-card {
-    position: relative;
-    transition: all 0.2s ease-in-out;
+    background: var(--card-bg);
+    border-color: var(--card-border);
   }
-  
+
   .stat-card:hover {
-    transform: scale(1.02);
-    border-color: #d1e3ff;
-    box-shadow: 0 6px 20px rgba(33, 111, 255, 0.08);
+    border-color: rgba(99, 102, 241, 0.5);
   }
-  
-  .stat-icon {
-    position: absolute;
-    top: 18px;
-    right: 18px;
-    font-size: 22px;
-    opacity: 0.2;
-  }
-  .stats-container {
-    padding: 80px 30px;
-    border-radius: 16px;
-  }
-  
-  .stat-heading {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #222;
-  }
-  
-  .stat-value {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #1e40af;
-    margin-top: 10px;
-  }
+}

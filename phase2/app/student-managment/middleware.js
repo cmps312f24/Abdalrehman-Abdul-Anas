@@ -1,40 +1,39 @@
-import { NextResponse } from 'next/server';
-import { jwtVerify } from 'jose';
+import { NextResponse } from 'next/server'
+import { jwtVerify } from 'jose'
 
-const roleProtectedPaths = {
+const MAP = {
   ADMIN: ['/admin'],
   INSTRUCTOR: ['/instructor'],
-  STUDENT: ['/student'],
-};
+  STUDENT: ['/student']
+}
 
 export async function middleware(request) {
-  const token = request.cookies.get('token')?.value;
-  const pathname = request.nextUrl.pathname;
+  const { pathname, origin } = request.nextUrl
+  const token = request.cookies.get('token')?.value
 
-  if (!token) {
-    return NextResponse.redirect(new URL('/login', request.url));
+  if (pathname === '/login' || pathname === '/') {
+    if (!token) return NextResponse.next()
+    try {
+      const { payload } = await jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET))
+      return NextResponse.redirect(`${origin}/${String(payload.role).toLowerCase()}`)
+    } catch {
+      return NextResponse.next()
+    }
   }
 
+  if (!token) return NextResponse.redirect(`${origin}/login`)
+
   try {
-    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
-    const { payload } = await jwtVerify(token, secret);
-    const userRole = payload.role;
-
-    if (pathname.startsWith('/statistics')) {
-      return NextResponse.next();
+    const { payload } = await jwtVerify(token, new TextEncoder().encode(process.env.JWT_SECRET))
+    const role = String(payload.role)
+    if (pathname.startsWith('/statistics')) return NextResponse.next()
+    for (const [r, paths] of Object.entries(MAP)) {
+      if (paths.some(p => pathname.startsWith(p)) && r !== role)
+        return NextResponse.redirect(`${origin}/${role.toLowerCase()}`)
     }
-
-    for (const [role, paths] of Object.entries(roleProtectedPaths)) {
-      if (paths.some(path => pathname.startsWith(path))) {
-        if (userRole !== role) {
-          return NextResponse.redirect(new URL('/unauthorized', request.url));
-        }
-      }
-    }
-
-    return NextResponse.next();
-  } catch (err) {
-    return NextResponse.redirect(new URL('/login', request.url));
+    return NextResponse.next()
+  } catch {
+    return NextResponse.redirect(`${origin}/login`)
   }
 }
 
@@ -43,6 +42,8 @@ export const config = {
     '/admin/:path*',
     '/instructor/:path*',
     '/student/:path*',
-    '/statistics'
-  ],
-};
+    '/statistics',
+    '/',
+    '/login'
+  ]
+}
