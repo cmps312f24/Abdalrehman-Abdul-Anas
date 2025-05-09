@@ -16,28 +16,32 @@ class Repo {
     return await prisma.admin.update({data:admin,where:{id:admin.id}});
   }
 
-  async getCourses(status, campus) {
-    const filter = {};
-  
-    if (status) {
-      filter.sections = {
-        some: { status }
-      };
-    } else if (campus) {
-      filter.sections = {
-        some: { campus }
-      };
-    }
-  
+  async getCourses(pageType, campus = null) {
+    const sectionStatus = pageType === 'pending' ? 'pending'
+                      : pageType === 'approved' ? 'approved'
+                      : pageType === 'register' ? 'approved'
+                      : pageType === 'summary'  ? undefined
+                      : undefined;
+
+    const sectionFilter = {};
+    if (sectionStatus) sectionFilter.status = sectionStatus;
+    if (campus) sectionFilter.campus = campus;
+
     return await prisma.course.findMany({
-      where: filter,
+      where: Object.keys(sectionFilter).length
+        ? { sections: { some: sectionFilter } }
+        : undefined,
       include: {
         sections: {
-          where: status
-            ? { status }
-            : campus
-            ? { campus }
-            : undefined
+          where: sectionFilter,
+          include: {
+            instructors: {
+              include: {
+                instructor: true,
+                admin: true
+              }
+            }
+          }
         }
       }
     });
@@ -55,6 +59,67 @@ class Repo {
     });
   }
 
+  
+  async addCourseWithSection(data) {
+    const {
+      courseNo, name, credit, category, college,
+      section, place, timing, dow, campus, capacity, instructorID
+    } = data;
+
+    const status = "pending"
+
+    await this.addCourse({ courseNo, name, credit, category, college })
+
+
+    await prisma.section.create({
+      data: {
+        section, place, timing, dow, campus, capacity, courseNo, status
+      }
+    })
+    await this.addInstructorToSection(instructorID, courseNo, section)
+  }
+
+  async addInstructorToSection(instructorID, courseNo, section) {
+    const user = await prisma.admin.findUnique({
+      where: { id: instructorID }
+    })
+
+    if (!user) {
+      return await prisma.sectionInstructor.create({
+        data: {
+          courseNo: courseNo,
+          section : section,
+          instructorId :  instructorID,
+          role : 'INSTRUCTOR'
+        }
+      });
+    }
+
+    return await prisma.sectionInstructor.create({
+      data: {
+        courseNo: courseNo,
+        section : section,
+        instructorId :  instructorID,
+        role : 'ADMIN'
+      }
+    });
+
+  }
+
+
+  async getCoursesByFilter({ courseNo, college }) {
+    const filter = {};
+
+    if (courseNo) whereClause.courseNo = courseNo;
+    if (college) whereClause.college = college;
+
+    return await prisma.course.findMany({
+      where: whereClause,
+      include: {
+        sections: true
+      }
+    });
+  }
   
   async updateCourse(course) {
     return await prisma.course.update({data:course,where:{courseNo:course.courseNo}});
@@ -77,7 +142,30 @@ class Repo {
     return result;
   }
 
+async updateSectionStatus(courseNo, section, newStatus) {
+    return await prisma.section.update({
+      where: {
+        courseNo_section: {
+          courseNo,
+          section
+        }
+      },
+      data: {
+        status: newStatus
+      }
+    });
+  }
 
+  async deleteSection(courseNo, section) {
+    return await prisma.section.delete({
+      where: {
+        courseNo_section: {
+          courseNo,
+          section
+        }
+      }
+    });
+  }
 
   // Student
 
@@ -91,6 +179,42 @@ class Repo {
 
   async updateStudent(student) {
     return await prisma.student.update({data:student,where:{id:student.id}}); 
+  }
+
+async registerStudentInSection(studentId, courseNo, section) {
+    return await prisma.enrollment.create({
+      data: {
+        studentId,
+        courseNo,
+        section,
+        status: 'pending',
+      }
+    });
+  }
+
+  async unregisterStudentFromSection(studentId, courseNo, section) {
+    return await prisma.enrollment.delete({
+      where: {
+        studentId_courseNo_section: {
+          studentId,
+          courseNo,
+          section
+        }
+      }
+    });
+  }
+
+  async getStudentSchedule(studentId) {
+    return await prisma.enrollment.findMany({
+      where: { studentId },
+      include: {
+        sectionRef: {
+          include: {
+            course: true
+          }
+        }
+      }
+    });
   }
 
   // actions/server-actions.js

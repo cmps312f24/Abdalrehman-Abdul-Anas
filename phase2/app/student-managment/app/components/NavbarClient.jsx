@@ -66,8 +66,8 @@ export default function NavbarClient ({ user }) {
 
           {(role === 'student' || role === 'admin') && (
             <li>
-              <Link href='/registeration'
-                    className={`menu-element ${active('/registeration') ? 'selected' : ''}`}
+              <Link href={`${root}/registeration`}
+                    className={`menu-element ${active(`${root}/registeration`) ? 'selected' : ''}`}
                     onClick={hide}>
                 <img src='/img/game-icons_archive-register.png' alt='' />
                 <p  className='menu-text'>Registeration</p>

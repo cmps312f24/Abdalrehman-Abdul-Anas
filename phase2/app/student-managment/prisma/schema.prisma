@@ -36,17 +36,21 @@ model Section {
 }
 
 model SectionInstructor {
-  courseNo String
-  section  String
-  userId   String
-  role     Role
+  courseNo     String
+  section      String
+  instructorId String?
+  adminId      String?
+  role         Role
 
+  
   sectionRef Section     @relation(fields: [courseNo, section], references: [courseNo, section])
-  admin      admin?      @relation("AdminSections", fields: [userId], references: [id])
-  instructor instructor? @relation("InstructorSections", fields: [userId], references: [id])
+  instructor instructor? @relation("InstructorSections", fields: [instructorId], references: [id])
+  admin      admin?      @relation("AdminSections",     fields: [adminId],     references: [id])
 
-  @@id([userId, courseNo, section])
+  
+  @@id([courseNo, section])
 }
+
 
 model Enrollment {
   studentId String
@@ -82,6 +86,7 @@ model admin {
   sections SectionInstructor[] @relation("AdminSections")
   Login    Login?
 }
+
 
 model instructor {
   id      String @id

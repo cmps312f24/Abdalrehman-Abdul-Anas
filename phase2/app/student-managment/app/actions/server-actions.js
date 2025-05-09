@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 import { generateToken , verifyToken } from '@/app/utils/jwt';
 import repo from '@/app/repository/Repo';
 import { StatisticRepo } from "@/app/repository/StatisticRepo";
-import { redirect }  from 'next/navigation'
+
 
 export async function loginAction(email, pass) {
   const user = await repo.getUser(email, pass)
@@ -66,4 +66,54 @@ export async function getPathAction(name) {
 // STATISTICS
 export async function getStatistics() {
   return await StatisticRepo.getAllStatistics();
+}
+
+
+
+function removeServerActionProperty(data) {
+  for (const key in data) {
+      if (key.startsWith('$ACTION_ID_')) {
+          delete data[key];
+          break
+      }
+  }
+  return data
+}
+
+//Registeration
+export async function getCoursesRegisterationAction({ status, campus, courseNo, college }) {
+  return await repo.getCourses();
+}
+
+//Add Course
+export async function handelAddCourseAction(formData) {
+  const course = Object.fromEntries(formData.entries());
+
+  course.capacity = String(course.capacity);
+  course.credit = String(course.credit);
+  course.campus = course.campus.toUpperCase();
+  const c = removeServerActionProperty(course)
+  await repo.addCourseWithSection(c);
+}
+
+//Change section status
+export async function updateSectionStatusAction(courseNo, section, newStatus) {
+  await repo.updateSectionStatus(courseNo, section, newStatus);
+}
+
+export async function deleteSectionAction(courseNo, section) {
+  await repo.deleteSection(courseNo, section);
+}
+
+//Register course
+export async function registerStudentAction(studentId, courseNo, section) {
+  await repo.registerStudentInSection(studentId, courseNo, section);
+}
+export async function unregisterStudentAction(studentId, courseNo, section) {
+  await repo.unregisterStudentFromSection(studentId, courseNo, section);
+}
+
+//Schedule
+export async function getStudentScheduleAction(studentId) {
+    return await repo.getStudentSchedule(studentId);
 }
