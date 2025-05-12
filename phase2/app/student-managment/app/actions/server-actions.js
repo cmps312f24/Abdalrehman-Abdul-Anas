@@ -93,6 +93,7 @@ export async function handelAddCourseAction(formData) {
   course.credit = String(course.credit);
   course.campus = course.campus.toUpperCase();
   const c = removeServerActionProperty(course)
+  course.section=course.category=='Lab'? `B${course.section}`:`L${course.section}`;
   await repo.addCourseWithSection(c);
 }
 

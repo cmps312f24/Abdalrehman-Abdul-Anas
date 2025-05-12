@@ -32,7 +32,7 @@ export default function RegisterationTable({ user, initCourses, pageType }) {
                 <td>{c.name}</td>
                 <td>{s.section}</td>
                 <td>{c.credit}</td>
-                <td>{s.instructors[0].instructor?s.instructors[0].instructor.name: s.instructors[0].admin.name}</td>
+                {/* <td>{s.instructors[0].instructor?s.instructors[0].instructor.name: s.instructors[0].admin.name}</td> */}
                 <td>{c.college}</td>
                 <td>{`${s.timing}/${s.place}`}</td>
                 <td>{s.status}</td>

@@ -70,40 +70,23 @@ class Repo {
 
     await this.addCourse({ courseNo, name, credit, category, college })
 
-
-    await prisma.section.create({
-      data: {
-        section, place, timing, dow, campus, capacity, courseNo, status
-      }
-    })
-    await this.addInstructorToSection(instructorID, courseNo, section)
-  }
-
-  async addInstructorToSection(instructorID, courseNo, section) {
     const user = await prisma.admin.findUnique({
       where: { id: instructorID }
     })
 
-    if (!user) {
-      return await prisma.sectionInstructor.create({
+    if(user){
+      return await prisma.section.create({
         data: {
-          courseNo: courseNo,
-          section : section,
-          instructorId :  instructorID,
-          role : 'INSTRUCTOR'
+          section, place, timing, dow, campus, capacity, courseNo, status, adminId:instructorID
         }
-      });
+    })
     }
 
-    return await prisma.sectionInstructor.create({
-      data: {
-        courseNo: courseNo,
-        section : section,
-        instructorId :  instructorID,
-        role : 'ADMIN'
-      }
-    });
-
+    return await prisma.section.create({
+        data: {
+          section, place, timing, dow, campus, capacity, courseNo, status, instructorId:instructorID
+        }
+      })
   }
 
 
