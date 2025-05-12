@@ -21,7 +21,8 @@ async function seedUNI() {
 async function seedCourses() {
     const courses = await fs.readJson('app/data/course.json');
     for (const course of courses) {
-        const { sections, ...courseData } = course; 
+        const { sections, ...courseData } = course;
+        delete courseData.category;
         await prisma.course.create({ data: courseData });
     }
 }
@@ -98,7 +99,6 @@ async function seedPathCourses() {
             courseNo: c.courseNo,
             name: c.name,
             credit: c.credit.toString(),
-            category: "N/A",
             college: "N/A",
           },
         });
@@ -136,4 +136,3 @@ try{
     await prisma.$disconnect();
 }
 
-console.log(await prisma.section.deleteMany());
