@@ -226,6 +226,8 @@ body {
   opacity: 0.5;
 }
 
+
+
 /* Decorative elements */
 .stats-container::after {
   content: "";
@@ -251,7 +253,37 @@ body {
   }
 }
 
+.details-message {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #fff;
+  text-align: center;
+  background-color: rgba(52, 88, 130, 0.264);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  display: inline-block;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer; 
+}
+
+.details-message:hover {
+  background-color: rgba(0, 91, 181, 0.8);
+  transform: translateY(-2px); 
+}
+
+.stat-card.non-clickable {
+  cursor: default; 
+  opacity: 0.8; 
+}
+
+.stat-card.non-clickable:hover {
+  box-shadow: none;
+  transform: none;
+}
+
 .stat-card {
+  text-decoration: none;
+  color: inherit;
   animation: fadeIn 0.5s ease forwards;
   animation-delay: calc(var(--index, 0) * 0.1s);
   opacity: 0;

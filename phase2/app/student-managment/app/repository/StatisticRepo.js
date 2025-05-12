@@ -47,17 +47,32 @@ export class StatisticRepo {
   }
 
   static async topInstructor() {
-    const result = await prisma.sectionInstructor.groupBy({
-      by: ['userId'],
-      _count: { userId: true },
-      orderBy: { _count: { userId: 'desc' } },
+    const result = await prisma.section.groupBy({
+      by: ['instructorId'],
+      where: { instructorId: { not: null } },
+      _count: { instructorId: true },
+      orderBy: { _count: { instructorId: 'desc' } },
       take: 1,
     });
 
+    const top = result[0];
+    if (!top?.instructorId) {
+      return {
+        title: "Top Instructor",
+        value: "N/A",
+        description: "Instructor teaching most sections",
+      };
+    }
+
+    const instr = await prisma.instructor.findUnique({
+      where: { id: top.instructorId }
+    });
+
+    const count = top._count.instructorId;
     return {
       title: "Top Instructor",
-      value: result[0]?.userId || "N/A",
-      description: "Instructor teaching most sections",
+      value: instr?.name ?? top.instructorId,
+      description: `${instr?.name ?? top.instructorId} teaches ${count} section${count > 1 ? 's' : ''}`,
     };
   }
 

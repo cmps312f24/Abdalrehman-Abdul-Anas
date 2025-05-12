@@ -26,9 +26,6 @@ export default function Path() {
 
 
       for (const c of path.courses) {
-        console.log(c);
-        console.log(c.order);
-        
         const courseElement = document.createElement("span");
         courseElement.className = "course";
         courseElement.id = `c${c.order}`;
@@ -60,11 +57,8 @@ export default function Path() {
         <div className="year">Fourth Year</div>
       </div>
 
-      {/* Flowchart Content */}
       <div id="Flowchart-content">
-        {/* Courses will be added here by the JavaScript */}
 
-        {/* Arrows */}
         <div id="Arrows">
           <img src="/img/Arrow 1.png" id="arrow1" className="arrow" alt="" />
           <img src="/img/Arrow 1.png" id="arrow2" className="arrow" alt="" />

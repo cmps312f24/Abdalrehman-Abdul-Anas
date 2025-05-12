@@ -4,6 +4,7 @@ import { cookies } from 'next/headers';
 import { generateToken , verifyToken } from '@/app/utils/jwt';
 import repo from '@/app/repository/Repo';
 import { StatisticRepo } from "@/app/repository/StatisticRepo";
+import { Prisma } from '@prisma/client';
 
 
 export async function loginAction(email, pass) {
@@ -40,7 +41,7 @@ export async function uniInfoAction() {
 
 // USERS
 export async function getCoursesAction(user) {
-  const userSections = user.enrollments;
+  const userSections = user.role=='STUDENT'?user.enrollments:user.sections;
   if (!userSections) return [];
   await userSections.map((s) => repo.getSectionById(s.courseNo, s.section));
   return userSections;
@@ -117,4 +118,8 @@ export async function unregisterStudentAction(studentId, courseNo, section) {
 //Schedule
 export async function getStudentScheduleAction(studentId) {
     return await repo.getStudentSchedule(studentId);
+}
+
+export async function getAllCoursesAction(){
+  return repo.getAllcourses();
 }
