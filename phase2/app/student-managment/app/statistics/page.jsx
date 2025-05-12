@@ -19,7 +19,6 @@ export default function StatisticsPage() {
     'Total Students',
     'Total Instructors',
     'Total Courses',
-    'Average GPA',
   ];
 
   return (
