@@ -93,7 +93,9 @@ class Repo {
   async getSectionsByFilter({ status, campus, courseNo, college }) {
     const sectionss = await prisma.section.findMany({
       where: {
-        status, campus, courseNo, college
+        status, campus, courseNo,
+        course: college ? { college: { contains: college } }
+        : undefined 
       },
       include: {
         course: true,
