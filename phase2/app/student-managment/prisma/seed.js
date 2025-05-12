@@ -136,3 +136,4 @@ try{
     await prisma.$disconnect();
 }
 
+console.log(await prisma.section.deleteMany());

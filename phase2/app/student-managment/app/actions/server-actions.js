@@ -82,7 +82,7 @@ function removeServerActionProperty(data) {
 
 //Registeration
 export async function getCoursesRegisterationAction({ status, campus, courseNo, college }) {
-  return await repo.getCourses();
+  return await repo.getSectionsByFilter({ status, campus, courseNo, college });
 }
 
 //Add Course

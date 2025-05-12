@@ -68,7 +68,7 @@ class Repo {
 
     const status = "pending"
 
-    await this.addCourse({ courseNo, name, credit, category, college })
+    await this.addCourse({ courseNo, name, credit, college })
 
     const user = await prisma.admin.findUnique({
       where: { id: instructorID }
@@ -77,14 +77,14 @@ class Repo {
     if(user){
       return await prisma.section.create({
         data: {
-          section, place, timing, dow, campus, capacity, courseNo, status, adminId:instructorID
+          section, place, timing, dow, campus, category,capacity, courseNo, status, adminId:instructorID
         }
     })
     }
 
     return await prisma.section.create({
         data: {
-          section, place, timing, dow, campus, capacity, courseNo, status, instructorId:instructorID
+          section, place, timing, dow, campus, capacity,category, courseNo, status, instructorId:instructorID
         }
       })
   }
