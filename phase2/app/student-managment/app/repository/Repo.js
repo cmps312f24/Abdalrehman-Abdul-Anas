@@ -3,6 +3,9 @@ import bcrypt from "bcryptjs";
 const prisma = new PrismaClient();
 
 class Repo {
+  async getAllcourses(){
+    return await prisma.course.findMany();
+  }
   // Admins
   async getAdmins() {
     return await prisma.admin.findMany();
@@ -77,14 +80,14 @@ class Repo {
     if (user) {
       return await prisma.section.create({
         data: {
-          section, place, timing, dow, campus, capacity,category, courseNo, status, adminId: instructorID
+          section, place, timing, dow, campus, capacity, category, courseNo, status, adminId: instructorID
         }
       })
     }
 
     return await prisma.section.create({
       data: {
-        section, place, timing, dow, campus, capacity, category,courseNo, status, instructorId: instructorID
+        section, place, timing, dow, campus, capacity, category, courseNo, status, instructorId: instructorID
       }
     })
   }
@@ -95,7 +98,7 @@ class Repo {
       where: {
         status, campus, courseNo,
         course: college ? { college: { contains: college } }
-        : undefined 
+          : undefined
       },
       include: {
         course: true,
@@ -168,15 +171,48 @@ class Repo {
   }
 
   async registerStudentInSection(studentId, courseNo, section) {
+    const exists = await prisma.enrollment.findUnique({
+      where: {
+        studentId_courseNo_section: {
+          studentId,
+          courseNo,
+          section
+        }
+      }
+    });
+
+    if (exists) {
+      throw new Error('Student is already enrolled in this section.');
+    }
+
     return await prisma.enrollment.create({
       data: {
         studentId,
         courseNo,
         section,
-        status: 'pending',
+        status: 'pendding'
       }
     });
   }
+
+  async getStudentsSections(id) {
+    return await prisma.enrollment.findMany({
+      where: {
+        studentId: id
+      },
+      include: {
+        sectionRef: {
+          include: {
+            course: true,
+            instructor: true,
+            admin: true,
+          }
+        }
+      }
+    });
+  }
+
+
 
   async unregisterStudentFromSection(studentId, courseNo, section) {
     return await prisma.enrollment.delete({
@@ -196,7 +232,9 @@ class Repo {
       include: {
         sectionRef: {
           include: {
-            course: true
+            course: true,
+            instructor: true,
+            admin: true
           }
         }
       }

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import {
   deleteSectionAction,
   getCoursesRegisterationAction,
+  getStudentScheduleAction,
   registerStudentAction,
   unregisterStudentAction,
   updateSectionStatusAction
@@ -11,19 +12,30 @@ import {
 
 export default function RegisterationTable({ user, pageType, initCourses = [] }) {
   const [courses, setCourses] = useState(initCourses);
-
-  const loadCourses = async () => {
-    const data = await getCoursesRegisterationAction(pageType);
+  
+  const loadCourses = async (filter) => {
+    if (pageType === 'summary') {
+      const data = await getStudentScheduleAction(user.id);
+      setCourses(data ?? []);
+    } 
+    else if (pageType === 'register') {
+    const data = await getCoursesRegisterationAction({ status: 'pending' });
     setCourses(data ?? []);
+  } else {
+    const data = await getCoursesRegisterationAction({ status: pageType });
+    setCourses(data ?? []);
+  }
+    
   };
 
-  useEffect(() => {
-    if (initCourses.length) {
-      setCourses(initCourses);
-    } else {
+  useEffect(() => {       
+    if (pageType === 'register' || pageType === "approved" || pageType === "pending") {
       loadCourses();
     }
-  }, [initCourses, pageType]);
+    else if (pageType === 'summary') {
+      loadCourses();
+    }
+  }, [pageType, user]);
 
   const removeRow = (courseNo, section) =>
     setCourses(prev =>
@@ -61,12 +73,18 @@ export default function RegisterationTable({ user, pageType, initCourses = [] })
             courses.map((s, idx) => (
               <tr key={`${s.courseNo}-${s.section}-${idx}`} className="table-body-row">
                 <td>{s.courseNo}</td>
-                <td>{s.course.name}</td>
+                <td>{s.course?.name ?? s.sectionRef?.course?.name ?? 'N/A'}</td>
                 <td>{s.section}</td>
-                <td>{s.course.credit}</td>
-                <td>{s.instructor ? s.instructor.name : s.admin?.name ?? '-'}</td>
-                <td>{s.course.college}</td>
-                <td>{`${s.timing}/${s.place}`}</td>
+                <td>{s.course?.credit ?? s.sectionRef?.course?.credit ?? 'N/A'}</td>
+                <td>
+                  {s.instructor?.name ??
+                    s.admin?.name ??
+                    s.sectionRef?.instructor?.name ??
+                    s.sectionRef?.admin?.name ??
+                    '-'}
+                </td>
+                <td>{s.course?.college ?? s.sectionRef?.course?.college ?? 'N/A'}</td>
+                <td>{`${s.timing ?? s.sectionRef?.timing ?? '-'}/${s.place ?? s.sectionRef?.place ?? '-'}`}</td>
                 <td>{s.status}</td>
                 <td>{s.section?.[0] === 'B' ? 'Lab' : 'Lecture'}</td>
 
