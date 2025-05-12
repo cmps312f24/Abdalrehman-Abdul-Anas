@@ -9,14 +9,9 @@ export default function RegisterationPage() {
 
     const [courses, setCourses] = useState([]);
     const [pageIndex, setPageIndex] = useState("pending");
-    const [user, setUser] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
-            const stored = localStorage.getItem('user');
-
-            if (stored) setUser(JSON.parse(stored));
-            
             const courses = await getCoursesRegisterationAction({ status: "pending" });
             setCourses(courses);
         };
