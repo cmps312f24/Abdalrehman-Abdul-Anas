@@ -77,16 +77,16 @@ class Repo {
     if (user) {
       return await prisma.section.create({
         data: {
-          section, place, timing, dow, campus, capacity, courseNo, status, adminId:instructorID
+          section, place, timing, dow, campus, capacity, courseNo, status, adminId: instructorID
         }
       })
     }
 
     return await prisma.section.create({
-        data: {
-          section, place, timing, dow, campus, capacity, courseNo, status, instructorId:instructorID
-        }
-      })
+      data: {
+        section, place, timing, dow, campus, capacity, courseNo, status, instructorId: instructorID
+      }
+    })
   }
 
 
