@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import bcrypt from "bcryptjs";
-const prisma=new PrismaClient();
+const prisma = new PrismaClient();
 
 class Repo {
   // Admins
@@ -9,19 +9,19 @@ class Repo {
   }
 
   async getAdmin(id) {
-    return await prisma.admin.findUnique({where:{id:id}});
+    return await prisma.admin.findUnique({ where: { id: id } });
   }
 
   async updateAdmin(admin) {
-    return await prisma.admin.update({data:admin,where:{id:admin.id}});
+    return await prisma.admin.update({ data: admin, where: { id: admin.id } });
   }
 
   async getCourses(pageType, campus = null) {
     const sectionStatus = pageType === 'pending' ? 'pending'
-                      : pageType === 'approved' ? 'approved'
-                      : pageType === 'register' ? 'approved'
-                      : pageType === 'summary'  ? undefined
-                      : undefined;
+      : pageType === 'approved' ? 'approved'
+        : pageType === 'register' ? 'approved'
+          : pageType === 'summary' ? undefined
+            : undefined;
 
     const sectionFilter = {};
     if (sectionStatus) sectionFilter.status = sectionStatus;
@@ -48,7 +48,7 @@ class Repo {
   }
 
   async getCourse(courseNo) {
-    return await prisma.course.findUnique({where:{courseNo:courseNo}});
+    return await prisma.course.findUnique({ where: { courseNo: courseNo } });
   }
 
   async addCourse(course) {
@@ -59,7 +59,7 @@ class Repo {
     });
   }
 
-  
+
   async addCourseWithSection(data) {
     const {
       courseNo, name, credit, category, college,
@@ -74,38 +74,39 @@ class Repo {
       where: { id: instructorID }
     })
 
-    if(user){
+    if (user) {
       return await prisma.section.create({
         data: {
-          section, place, timing, dow, campus, category,capacity, courseNo, status, adminId:instructorID
+          section, place, timing, dow, campus, capacity, courseNo, status, adminId:instructorID
         }
-    })
+      })
     }
 
     return await prisma.section.create({
         data: {
-          section, place, timing, dow, campus, capacity,category, courseNo, status, instructorId:instructorID
+          section, place, timing, dow, campus, capacity, courseNo, status, instructorId:instructorID
         }
       })
   }
 
 
-  async getCoursesByFilter({ courseNo, college }) {
-    const filter = {};
-
-    if (courseNo) whereClause.courseNo = courseNo;
-    if (college) whereClause.college = college;
-
-    return await prisma.course.findMany({
-      where: whereClause,
+  async getSectionsByFilter({ status, campus, courseNo, college }) {
+    const sectionss = await prisma.section.findMany({
+      where: {
+        status, campus, courseNo, college
+      },
       include: {
-        sections: true
+        course: true,
+        instructor: true,
+        admin: true
       }
     });
+    return sectionss;
+
   }
-  
+
   async updateCourse(course) {
-    return await prisma.course.update({data:course,where:{courseNo:course.courseNo}});
+    return await prisma.course.update({ data: course, where: { courseNo: course.courseNo } });
   }
 
   async getSectionById(courseNo, section) {
@@ -125,7 +126,7 @@ class Repo {
     return result;
   }
 
-async updateSectionStatus(courseNo, section, newStatus) {
+  async updateSectionStatus(courseNo, section, newStatus) {
     return await prisma.section.update({
       where: {
         courseNo_section: {
@@ -157,14 +158,14 @@ async updateSectionStatus(courseNo, section, newStatus) {
   }
 
   async getStudent(id) {
-    return await prisma.student.findUnique({where:{id:id}});
+    return await prisma.student.findUnique({ where: { id: id } });
   }
 
   async updateStudent(student) {
-    return await prisma.student.update({data:student,where:{id:student.id}}); 
+    return await prisma.student.update({ data: student, where: { id: student.id } });
   }
 
-async registerStudentInSection(studentId, courseNo, section) {
+  async registerStudentInSection(studentId, courseNo, section) {
     return await prisma.enrollment.create({
       data: {
         studentId,
@@ -224,11 +225,11 @@ async registerStudentInSection(studentId, courseNo, section) {
   }
 
   async getInstructor(id) {
-    return await prisma.instructor.findUnique({where:{id:id}});
+    return await prisma.instructor.findUnique({ where: { id: id } });
   }
 
   async updateinstructor(instructor) {
-    return await prisma.instructor.update({data:instructor,where:{id:instructor.id}});
+    return await prisma.instructor.update({ data: instructor, where: { id: instructor.id } });
   }
 
   ///           LOGIN           ///
@@ -268,21 +269,21 @@ async registerStudentInSection(studentId, courseNo, section) {
     const user = await prisma.login.findUnique({
       where: { email },
     });
-  
+
     if (!(await bcrypt.compare(pass, user.password))) return 'wrong_password';
-  
+
     const hashedPassword = await bcrypt.hash(newPass, 10);
-  
+
     await prisma.login.update({
       where: { email },
       data: { password: hashedPassword },
     });
-  
+
     return 1;
   }
-  
+
   async updateUser(user) {
-    return await prisma.login.update({data: user,where: { email: user.email }});
+    return await prisma.login.update({ data: user, where: { email: user.email } });
   }
 
   // Home page data
@@ -317,7 +318,7 @@ async registerStudentInSection(studentId, courseNo, section) {
       }
     });
   }
-  
+
 }
 
 
